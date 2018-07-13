@@ -18,6 +18,22 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask { return .portrait }
     override var shouldAutorotate: Bool { return false }
     
+    @IBAction func sceneLongPressed(_ sender: UILongPressGestureRecognizer) {
+        if let camera = self.sceneView.pointOfView {
+            let localPosition = SCNVector3(x: 0, y: 0, z: -0.5)
+            let scenePosition = camera.convertPosition(localPosition, to: nil)
+            addSphere(point: scenePosition)
+        }
+    }
+    
+    func addSphere(point: SCNVector3) {
+        print("added sphere")
+        let geometry = SCNSphere(radius: 0.15)
+        let node = SCNNode(geometry: geometry)
+        node.position = point
+        self.sceneView.scene.rootNode.addChildNode(node)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -26,6 +42,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         // Show statistics such as fps and timing information
         sceneView.showsStatistics = true
+        sceneView.debugOptions = ARSCNDebugOptions.showFeaturePoints
         
         // Create a new scene
         let scene = SCNScene(named: "art.scnassets/world.scn")!
