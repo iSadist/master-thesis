@@ -18,6 +18,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask { return .portrait }
     override var shouldAutorotate: Bool { return false }
     
+    var addingSphere = false
+    
     @IBAction func sceneLongPressed(_ sender: UILongPressGestureRecognizer) {
         if let camera = self.sceneView.pointOfView {
             let localPosition = SCNVector3(x: 0, y: 0, z: -0.5)
@@ -26,11 +28,31 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         }
     }
     
+    @IBAction func scenePressed(_ sender: UITapGestureRecognizer) {
+        if let camera = self.sceneView.pointOfView {
+            let localPosition = SCNVector3(x: 0, y: 0, z: -1)
+            let scenePosition = camera.convertPosition(localPosition, to: nil)
+            addSphere(point: scenePosition)
+        }
+    }
+    
     func addSphere(point: SCNVector3) {
-        print("added sphere")
-        let geometry = SCNSphere(radius: 0.15)
+        if addingSphere { return }
+        
+        addingSphere = true
+        
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1, execute: {
+            self.addingSphere = false
+        })
+        
+        let geometry = SCNSphere(radius: 0.2)
+        let textureImage = UIImage(named: "texture.png")
+        geometry.firstMaterial?.diffuse.contents = textureImage
         let node = SCNNode(geometry: geometry)
         node.position = point
+        
+        // Animate the sphere to rotate
+        node.runAction(SCNAction.repeatForever(SCNAction.rotate(by: CGFloat.pi , around: SCNVector3.init(x: 1, y: 1, z: 0), duration: 5)))
         self.sceneView.scene.rootNode.addChildNode(node)
     }
     

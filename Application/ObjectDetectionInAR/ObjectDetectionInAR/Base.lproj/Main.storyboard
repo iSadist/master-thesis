@@ -19,6 +19,7 @@
                         <gestureRecognizers/>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="MeH-2g-FDy" appends="YES" id="qSS-Lq-pWh"/>
+                            <outletCollection property="gestureRecognizers" destination="0OD-LF-jkZ" appends="YES" id="znw-UN-Rz1"/>
                         </connections>
                     </arscnView>
                     <connections>
@@ -31,6 +32,11 @@
                         <action selector="sceneLongPressed:" destination="BV1-FR-VrT" id="fTb-2O-7zE"/>
                     </connections>
                 </pongPressGestureRecognizer>
+                <tapGestureRecognizer id="0OD-LF-jkZ">
+                    <connections>
+                        <action selector="scenePressed:" destination="BV1-FR-VrT" id="lWo-zd-Cwl"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
         </scene>
     </scenes>
