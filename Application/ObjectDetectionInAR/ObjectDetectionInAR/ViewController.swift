@@ -41,19 +41,28 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         addingSphere = true
         
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1, execute: {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2, execute: {
             self.addingSphere = false
         })
         
         let geometry = SCNSphere(radius: 0.2)
-        let textureImage = UIImage(named: "texture.png")
+        let textureImage = UIImage(named: "stone_diffuse.jpg")
+        let normalImage = UIImage(named: "stone_normal.jpg")
         geometry.firstMaterial?.diffuse.contents = textureImage
+        geometry.firstMaterial?.normal.contents = normalImage
         let node = SCNNode(geometry: geometry)
+        node.physicsBody = createPhysicsBody(geometry: geometry)
         node.position = point
         
-        // Animate the sphere to rotate
-        node.runAction(SCNAction.repeatForever(SCNAction.rotate(by: CGFloat.pi , around: SCNVector3.init(x: 1, y: 1, z: 0), duration: 5)))
+        node.physicsBody?.velocity = (sceneView.pointOfView?.convertVector(SCNVector3(x: 0, y: 0, z: -1), to: nil))!
+        
         self.sceneView.scene.rootNode.addChildNode(node)
+    }
+    
+    func createPhysicsBody(geometry: SCNGeometry) -> SCNPhysicsBody {
+        let shape = SCNPhysicsShape(geometry: geometry, options: nil)
+        let body = SCNPhysicsBody(type: .dynamic, shape: shape)
+        return body
     }
     
     override func viewDidLoad() {
