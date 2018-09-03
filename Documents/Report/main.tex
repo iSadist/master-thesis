@@ -1,0 +1,238 @@
+% This is a comment in LaTeX!
+
+% If a line has a % in the front of it, the entire line becomes a comment
+% We're going to use comments quite a bit in this file in order to explain
+% what is going on
+
+% Let's begin this guide by building this LaTeX file!
+% If you're not sure how to do that, refer to the online LaTeX setup guide!
+
+% Cool! Now you should be looking at a rendered pdf of the LaTeX file.
+% The way to think about the .tex file (this file) is that it is a instruction
+% manual for the LaTeX compiler to create the .pdf file!
+% In future, we will generally not ask you to submit the .tex file, and only
+% submit the .pdf file.
+
+% If you look in the folder where this .tex file is, you may have also noticed
+% a bunch of random other files that were created by building this LaTeX file.
+% Those are just byproducts of the LaTeX compiler - feel free to delete them
+% or ignore them without safety.
+
+% Now, onto more LaTeX...
+
+% Here we define a ``document class''. This is the type of document that
+% this will become.
+% Let's leave it alone for now - if you want to find out more,
+% look it up on Google!
+\documentclass{article}
+
+% Here are some lines that include packages.
+% A package is basically something that contains a bunch of useful commands
+% Normally, you wouldn't need more packages than what we've included here.
+% But, there are thousands of packages out there - feel free to explore and
+% use any useful packages that you may come across!
+\usepackage[letterpaper, margin=1in]{geometry}
+\usepackage{amssymb,amsmath}
+\usepackage{parskip}
+\usepackage{fancyhdr}
+\usepackage{tabu}
+\usepackage{enumerate}
+
+% In LaTeX, you are allowed to define new commands, in addition to any that you
+% may get from packages.
+% Below are two simple commands that basically work like a word stamp.
+% Each time you include \MyName{} in the LaTeX file, the words in its definition
+% will be printed instead.
+\newcommand{\MyName}{Generic Name That Needs Changing}
+\newcommand{\MyRecitation}{2XX}
+% Give it a shot! Update the definition of the two commands to your name and
+% your recitation, respectively. Then build the file again, and you should see
+% your changes in the newly created .pdf file.
+
+% Below is some mumble-jumble that helps to format the LaTeX pages nicely and
+% create the right headers and footers. Let's not worry about it for now...
+% Skip on ahead until you see the text ``STOP SKIPPING HERE''
+\renewcommand{\baselinestretch}{1.3}
+\newcommand{\DocTitle}{A Guide to \LaTeX}
+\fancypagestyle{plain}{
+  \fancyhead{}
+  \fancyfoot[L]{\MyName{}}
+  \fancyfoot[R]{Recitation \MyRecitation{}}
+  \renewcommand{\headrulewidth}{0pt}
+}
+
+\fancypagestyle{firstpage}{
+  \fancyhead{}
+  \fancyhead[L]{
+    CIS 160 \\ \LARGE{\textbf{\DocTitle}}
+  }
+  \fancyhead[R]{
+      \Large{\MyName{}} \\ Recitation \MyRecitation{}
+  }
+% STOP SKIPP--- just kidding, keep on going
+  \renewcommand{\headrulewidth}{0.2pt}
+  \setlength{\headheight}{50pt}
+  \setlength{\headsep}{12pt}
+}
+
+% STOP SKIPPING HERE
+
+% Now we get to the good stuff - actually doing things in LaTeX
+
+% \begin{document} is the standard way to, well, begin a document.
+% You will always need this in your file, so just keep it here
+\begin{document}
+% This lets LaTeX know that we want the first page to be a different style.
+% Keep it here, so we keep the nice header!
+\thispagestyle{firstpage}
+
+% Here we gooo!
+Welcome to Latex. This is how normal text is displayed. You can keep on typing off the screen like this but LaTeX is nice and smart and will just wrap everything for you. Of course, you
+can be kind to yourself and just use a linebreak (hit return/enter) to keep
+all of your lines within some reasonable width in the .tex file. Notice how
+LaTeX automatically ignores all of your line breaks in the .pdf. Neat! But now
+you wonder, how DO we add line breaks then???
+
+This is how! Two line breaks is interpreted by LaTeX as a separator between two
+different paragraphs. And, because of some settings we included up there, there
+is a nice space between the two paragraphs too. Neato! Speaking of LaTeX...
+
+\LaTeX! This is the first command you've seen that displays something neat!
+Notice the command is prefixed by a backslash, much like a lot of things that
+you've seen so far in this file. The backslash is a really special character in
+\LaTeX, so much so that you even need a special command in order to display
+it! \textbackslash{}
+
+Let's try to do some other things with just plaintext. You can \textbf{bold}
+text, \textit{italicize} text, and \underline{underline} text. You can also
+make text {\large big}, {\Large bigger}, even {\LARGE bigger}, and even
+{\Huge HHHUUGEEE}.
+
+\LaTeX{} \@ also has a pretty unique way of generating the quote characters.
+``This is how a quote should look in LaTeX''.
+
+You can also get bulleted and numbered lists, which are great for formatting
+questions and answers.
+\begin{itemize}
+  \item This is a bulleted list!
+  \item With a bunch of things in it.
+  \begin{itemize}
+    \item You can even nest these lists
+    \item In case there is serious categorization that you need to do.
+  \end{itemize}
+\end{itemize}
+
+And...
+
+\begin{enumerate}
+  \item This is a numbered list!
+  \item Pretty cool, huh.
+  \begin{enumerate}
+    \item Of course, nestable as well.
+  \end{enumerate}
+\end{enumerate}
+
+And...
+
+\begin{enumerate}
+  \item You can also mix and
+  \begin{itemize}
+    \item match!
+  \end{itemize}
+\end{enumerate}
+
+And...
+
+\begin{enumerate}
+  \item You can specify the format of the numbering like so:
+  \begin{enumerate}[Problem 1.]
+    \item Some Text
+    \item Next Problem
+    \item More Stuff
+  \end{enumerate}
+  \item You can even specify where it all begins!
+  \begin{enumerate}
+    \setcounter{enumii}{4}
+    \item Stuff
+    \begin{enumerate}
+      \setcounter{enumiii}{8}
+      \item Notice how we have ``enumiii'' instead of ``enumii'' here. The
+      number of i's is indicative of the level of the nesting that it controls.
+    \end{enumerate}
+  \end{enumerate}
+\end{enumerate}
+
+At this point you might be thinking what on earth the point of all of this is,
+since nothing we've done so far is hard to achieve using Word or a similar
+word processing software. Well, it turns out \LaTeX{} \@ is amazing at displaying
+and working with mathematical symbols and equation.
+
+For example: $(\frac{1}{2} + \frac{1}{2}) \times 34 = 1 \times 34 = 34$ or
+$(A \cap B) \cup (B \cap C) \subseteq D$.
+
+There are some quirks to it of course. For example, $i_2$ looks all fine and
+dandy but notice what happens when we try this $i_this$ -- doesn't look nearly
+like what we wanted it to. That's because ``operators'' such as
+\textunderscore{} and \^{} operate on the thing that is directly on their right.
+
+
+So, in order for it to work on a bunch of characters, we have to group them
+together using curly braces \{ \}. For example, $i_{234}$ or $i^{234}$.
+
+Let's explore some more: $this is some more math stuff i^2 \times \frac{4}{5}$.
+
+Hmm, that looks nothing like what we wanted. In fact, normal text behaves really
+poorly inside ``math mode''. Since LaTeX wants to interpret all of the things
+in as ``mathy'' as way as possible, all of the text generally gets converted to
+look like how you would want variables to look. So $e=mc^2$ look real good, but
+$something like this does not$.
+
+What can we do? One of two things:
+\begin{enumerate}
+  \item The first is that we can just move all of the normal text out of math
+  mode where possible. This means changing things from $this x^2+x+1$, to this
+  $x^2+x+1$.
+  \item The second is that we can explicit tell \LaTeX{} \@ that it's normal text
+  and it should handle it like it is. For example
+  $\{x | x \text{ is a cool variable} \}$
+  \begin{itemize}
+    \item While we're at it, notice how the two $x$'s are spaced pretty poorly?
+    We can fix that by adding a $\sim$ next to the pipe, like so:
+    $\{x ~|~ x \text{ is a cool variable} \}$
+  \end{itemize}
+\end{enumerate}
+
+So far, all of the expressions we've seen have been inline. But you can also
+make the expressions live in their own line by using \LaTeX's display mode,
+like so:
+\[\sum_{i=0}^n i^3 + i = \prod_{j=1}^m j^2\]
+
+And what if you want to display a series of equations?
+% Here, the ampersand is used to line up each line with one another, and
+% the double backslash \\ indicates where a new line should begin.
+% You should use both in the align environment, or things start to look funky
+% pretty quick.
+\begin{align*}
+  (x+1)(x+2)(x+3) &= (x^2+3x+2)(x+3)\\
+  &= x^3+6x^2+11x+6\\
+  &= 6 + 11x + 6x^2 + x^3
+\end{align*}
+
+This is a good place to stop this introductory guide to \LaTeX, but it's probably
+good for us to let you know that there is \textbf{so much} more to \LaTeX{} \@ than
+what we have covered in this guide. Once you're done with this guide, you'll
+definitely take a look at the ``Useful \LaTeX{} \@ commands'' document on the course
+site for all of different commands that you'll need for this course.
+
+Beyond that, there are many great resources online where you can learn even
+more \LaTeX{} and become a true power user (if you want).
+
+\LaTeX{} is something that you'll find that
+you'll need to use quite a few times in your college career, so it's best if you
+get a solid foundation starting in CIS160!
+
+If you ever get stuck on something \LaTeX{} \@ related, feel free to post in the Piazza
+group with your struggle. Please take the time to run a quick Google search first
+though -- more often than not that's what we as TAs do when a student has a \LaTeX{} \@
+question anyways!
+\end{document}
