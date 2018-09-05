@@ -3,30 +3,40 @@ import AVFoundation
 
 class SamplePhotoViewController: UIViewController, AVCapturePhotoCaptureDelegate
 {
-    var imageCapturer: AVCaptureDevice?
-    var cameraOutput: AVCaptureOutput?
+    var imageCaptureDevice: AVCaptureDevice?
+    var capturePhotoOutput: AVCapturePhotoOutput?
     var captureSession: AVCaptureSession?
     var videoPreview: AVCaptureVideoPreviewLayer?
+    
+    let imageProcessor = ImageProcessor()
 
     @IBOutlet weak var cameraOutputView: UIView!
     @IBOutlet weak var captureButton: UIButton!
-    
+
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        imageCapturer = AVCaptureDevice.default(for: .video)
+        
+        imageCaptureDevice = AVCaptureDevice.default(for: .video)
+        capturePhotoOutput = AVCapturePhotoOutput()
+        capturePhotoOutput?.isHighResolutionCaptureEnabled = true
         
         do
         {
-            guard let captureDevice = imageCapturer else { return }
+            guard let captureDevice = imageCaptureDevice else { return }
             let input = try AVCaptureDeviceInput(device: captureDevice)
-            
             captureSession = AVCaptureSession()
-            captureSession?.addInput(input)
             
+            // Set input and output of the session
+            captureSession?.addInput(input)
+            captureSession?.addOutput(capturePhotoOutput!)
+            
+            // Setup video preview to see the current camera feed
             videoPreview = AVCaptureVideoPreviewLayer(session: captureSession!)
             videoPreview?.videoGravity = AVLayerVideoGravity.resizeAspectFill
             videoPreview?.frame = cameraOutputView.layer.bounds
+            
+            // Add the videoPreview to the view on the controller
             cameraOutputView.layer.addSublayer(videoPreview!)
             captureSession?.startRunning()
         }
@@ -40,24 +50,32 @@ class SamplePhotoViewController: UIViewController, AVCapturePhotoCaptureDelegate
     
     @IBAction func captureButtonPressed(_ sender: UIButton)
     {
-        var image = captureImage()
+        if let capturePhotoOutput = self.capturePhotoOutput
+        {
+            // Set the photo settings
+            let photoSettings = AVCapturePhotoSettings()
+            photoSettings.embedsDepthDataInPhoto = true
+            photoSettings.flashMode = .auto
+            photoSettings.isAutoStillImageStabilizationEnabled = true
+            photoSettings.isHighResolutionPhotoEnabled = true
+            
+            // Take a photo
+            capturePhotoOutput.capturePhoto(with: photoSettings, delegate: self)
+        }
         
         // Detect objects in the image
         // Save cropped images to a local storage
     }
     
-    func captureImage() -> UIImage
-    {
-        let image = UIImage()
-        
-        return image
+    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
+        guard let pixelBuffer = photo.pixelBuffer else { return }
+        imageProcessor.addBuffer(buffer: pixelBuffer)
     }
 
     override func didReceiveMemoryWarning()
     {
         super.didReceiveMemoryWarning()
     }
-    
 
     /*
     // MARK: - Navigation

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		592DC1BE213FEF1A00E29665 /* SamplePhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592DC1BD213FEF1A00E29665 /* SamplePhotoViewController.swift */; };
+		599157A121402F4D00B3A8D7 /* ImageProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599157A021402F4D00B3A8D7 /* ImageProcessor.swift */; };
 		E1ED297120BCA23B007DBE66 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1ED297020BCA23B007DBE66 /* AppDelegate.swift */; };
 		E1ED297320BCA23B007DBE66 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = E1ED297220BCA23B007DBE66 /* art.scnassets */; };
 		E1ED297520BCA23B007DBE66 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1ED297420BCA23B007DBE66 /* ViewController.swift */; };
@@ -37,6 +38,7 @@
 
 /* Begin PBXFileReference section */
 		592DC1BD213FEF1A00E29665 /* SamplePhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SamplePhotoViewController.swift; sourceTree = "<group>"; };
+		599157A021402F4D00B3A8D7 /* ImageProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProcessor.swift; sourceTree = "<group>"; };
 		E1ED296D20BCA23B007DBE66 /* ObjectDetectionInAR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ObjectDetectionInAR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1ED297020BCA23B007DBE66 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E1ED297220BCA23B007DBE66 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 				E1ED297920BCA23C007DBE66 /* Assets.xcassets */,
 				E1ED297B20BCA23C007DBE66 /* LaunchScreen.storyboard */,
 				E1ED297E20BCA23C007DBE66 /* Info.plist */,
+				599157A021402F4D00B3A8D7 /* ImageProcessor.swift */,
 			);
 			path = ObjectDetectionInAR;
 			sourceTree = "<group>";
@@ -265,6 +268,7 @@
 			files = (
 				E1ED297520BCA23B007DBE66 /* ViewController.swift in Sources */,
 				E1ED297120BCA23B007DBE66 /* AppDelegate.swift in Sources */,
+				599157A121402F4D00B3A8D7 /* ImageProcessor.swift in Sources */,
 				592DC1BE213FEF1A00E29665 /* SamplePhotoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
