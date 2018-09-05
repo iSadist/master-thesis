@@ -12,3 +12,6 @@ https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=6553025
 Ubii: Physical World Interaction
 Through Augmented Reality
 https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=7469860
+
+Region-based Segmentation and Object Detection
+http://ai.stanford.edu/~tianshig/papers/nips09-sceneObject.pdf
