@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
-    <device id="retina4_7" orientation="portrait">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ipu-OL-Mio">
+    <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -14,7 +15,7 @@
             <objects>
                 <viewController id="BV1-FR-VrT" customClass="ViewController" customModule="ObjectDetectionInAR" customModuleProvider="target" sceneMemberID="viewController">
                     <arscnView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="BrB-h1-WRS">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <gestureRecognizers/>
                         <connections>
@@ -38,6 +39,106 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
+            <point key="canvasLocation" x="823" y="40"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="hyY-La-xGc">
+            <objects>
+                <viewController id="ipu-OL-Mio" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="e0i-Ih-dsq">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y6A-OZ-edm">
+                                <rect key="frame" x="168" y="363" width="78" height="30"/>
+                                <state key="normal" title="Get started"/>
+                                <connections>
+                                    <segue destination="BV1-FR-VrT" kind="show" id="zCQ-mq-gKh"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J3r-P6-YG9">
+                                <rect key="frame" x="139" y="401" width="137" height="30"/>
+                                <state key="normal" title="Take sample photos"/>
+                                <connections>
+                                    <segue destination="e6V-Cb-ssg" kind="show" id="0yD-t7-5dM"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="J3r-P6-YG9" firstAttribute="centerX" secondItem="y6A-OZ-edm" secondAttribute="centerX" id="IZq-c8-jGI"/>
+                            <constraint firstItem="y6A-OZ-edm" firstAttribute="centerY" secondItem="afZ-yc-swX" secondAttribute="centerY" id="J5S-HS-Beb"/>
+                            <constraint firstItem="y6A-OZ-edm" firstAttribute="centerX" secondItem="afZ-yc-swX" secondAttribute="centerX" id="T8v-e1-yA4"/>
+                            <constraint firstItem="J3r-P6-YG9" firstAttribute="top" secondItem="y6A-OZ-edm" secondAttribute="bottom" constant="8" id="lvF-yl-yF4"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="afZ-yc-swX"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8kV-Dg-NC2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-122" y="39"/>
+        </scene>
+        <!--Sample Photo View Controller-->
+        <scene sceneID="TTb-O3-iJ2">
+            <objects>
+                <viewController id="e6V-Cb-ssg" customClass="SamplePhotoViewController" customModule="ObjectDetectionInAR" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="M11-jh-aIt">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="evj-a8-wRP">
+                                <rect key="frame" x="0.0" y="20" width="414" height="716"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2qG-Dr-WMK">
+                                        <rect key="frame" x="157.66666666666666" y="678" width="98.999999999999972" height="30"/>
+                                        <state key="normal" title="Take snapshot"/>
+                                        <connections>
+                                            <action selector="captureButtonPressed:" destination="e6V-Cb-ssg" eventType="touchDown" id="1Sv-oM-b1E"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="2qG-Dr-WMK" firstAttribute="centerX" secondItem="evj-a8-wRP" secondAttribute="centerX" id="EDr-Sg-1oi"/>
+                                    <constraint firstAttribute="trailing" secondItem="2qG-Dr-WMK" secondAttribute="trailing" constant="8" id="jvl-K4-DQD"/>
+                                    <constraint firstAttribute="bottom" secondItem="2qG-Dr-WMK" secondAttribute="bottom" constant="8" id="lbl-Ob-5tX"/>
+                                    <constraint firstAttribute="trailing" secondItem="2qG-Dr-WMK" secondAttribute="trailing" constant="8" id="mdG-wx-8Du"/>
+                                    <constraint firstItem="2qG-Dr-WMK" firstAttribute="centerX" secondItem="evj-a8-wRP" secondAttribute="centerX" id="xmd-oL-YdB"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="EDr-Sg-1oi"/>
+                                        <exclude reference="mdG-wx-8Du"/>
+                                        <exclude reference="xmd-oL-YdB"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="EDr-Sg-1oi"/>
+                                        <exclude reference="jvl-K4-DQD"/>
+                                        <exclude reference="mdG-wx-8Du"/>
+                                        <exclude reference="xmd-oL-YdB"/>
+                                    </mask>
+                                </variation>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="evj-a8-wRP" firstAttribute="bottom" secondItem="lGF-d1-6lB" secondAttribute="bottom" id="GvS-Be-tt4"/>
+                            <constraint firstAttribute="trailing" secondItem="evj-a8-wRP" secondAttribute="trailing" id="KRz-k1-NA7"/>
+                            <constraint firstItem="evj-a8-wRP" firstAttribute="leading" secondItem="M11-jh-aIt" secondAttribute="leading" id="gDo-L4-dde"/>
+                            <constraint firstItem="evj-a8-wRP" firstAttribute="top" secondItem="lGF-d1-6lB" secondAttribute="top" id="miy-vY-bPV"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="lGF-d1-6lB"/>
+                    </view>
+                    <connections>
+                        <outlet property="cameraOutputView" destination="evj-a8-wRP" id="mgb-Ww-1rP"/>
+                        <outlet property="captureButton" destination="2qG-Dr-WMK" id="cl4-3C-bkB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5wS-JU-aGM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-122.78860569715144" y="788"/>
         </scene>
     </scenes>
 </document>
