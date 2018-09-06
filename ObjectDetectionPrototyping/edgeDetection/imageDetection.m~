@@ -2,7 +2,7 @@ clear all
 close all
 
 %% Load image 
-im1  = imread('im1.jpg');
+im1  = imread('im3.jpg');
 
 
 %% Print original image
@@ -21,26 +21,24 @@ figure(2)
 imshow(im)
 
 bw1 = ~imbinarize(C,0.05);
-bw2 = bwareaopen(bw1,500);
+bw2 = bwareaopen(bw1,50000);
 figure(3)
 hold on
 imshow(bw2)
-figure(1)
-hold on
 struct = regionprops(bw2);
 cell = struct2cell(struct);
 for i = 1:size(cell,2)
     rectangle('Position', cell{3,i},...
         'EdgeColor','r', 'LineWidth', 3)
 end
-% 
-% %% Trying gray scale
-% BW1 = edge(grayIm1,'sobel');
-% h = fspecial('disk');
-% BW1 = imfilter(BW1,h);
-% figure(4);
-% imshow(BW1);
-% BW2 = bwareaopen(BW1,10);
-% figure(5);
-% imshow(BW2);
+
+%% Trying gray scale
+BW1 = edge(grayIm1,'sobel');
+h = fspecial('disk');
+BW1 = imfilter(BW1,h);
+figure(4);
+imshow(BW1);
+BW2 = bwareaopen(BW1,10);
+figure(5);
+imshow(BW2);
 
