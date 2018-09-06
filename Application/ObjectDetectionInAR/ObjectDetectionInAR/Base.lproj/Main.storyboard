@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ipu-OL-Mio">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BHv-uu-ncy">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -41,6 +41,22 @@
             </objects>
             <point key="canvasLocation" x="823" y="40"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="rDH-7z-gek">
+            <objects>
+                <navigationController id="BHv-uu-ncy" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="elF-lb-AmS">
+                        <rect key="frame" x="0.0" y="20" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="ipu-OL-Mio" kind="relationship" relationship="rootViewController" id="c7m-8H-joU"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jH1-f3-FDg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1142" y="38"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="hyY-La-xGc">
             <objects>
@@ -50,14 +66,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y6A-OZ-edm">
-                                <rect key="frame" x="168" y="363" width="78" height="30"/>
+                                <rect key="frame" x="168" y="385" width="78" height="30"/>
                                 <state key="normal" title="Get started"/>
                                 <connections>
                                     <segue destination="BV1-FR-VrT" kind="show" id="zCQ-mq-gKh"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J3r-P6-YG9">
-                                <rect key="frame" x="139" y="401" width="137" height="30"/>
+                                <rect key="frame" x="139" y="423" width="137" height="30"/>
                                 <state key="normal" title="Take sample photos"/>
                                 <connections>
                                     <segue destination="e6V-Cb-ssg" kind="show" id="0yD-t7-5dM"/>
@@ -73,6 +89,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="afZ-yc-swX"/>
                     </view>
+                    <navigationItem key="navigationItem" id="5P6-qR-UOc"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8kV-Dg-NC2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -87,17 +104,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="evj-a8-wRP">
-                                <rect key="frame" x="0.0" y="20" width="414" height="716"/>
+                                <rect key="frame" x="0.0" y="64" width="414" height="672"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2qG-Dr-WMK">
-                                        <rect key="frame" x="158" y="678" width="99" height="30"/>
+                                        <rect key="frame" x="158" y="634" width="99" height="30"/>
                                         <state key="normal" title="Take snapshot"/>
                                         <connections>
                                             <action selector="captureButtonPressed:" destination="e6V-Cb-ssg" eventType="touchDown" id="1Sv-oM-b1E"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Device cannot take photos" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G8p-SR-HzT">
-                                        <rect key="frame" x="92.000000000000014" y="346.66666666666669" width="230.33333333333337" height="24"/>
+                                        <rect key="frame" x="92.000000000000014" y="324.66666666666669" width="230.33333333333337" height="24"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <color key="textColor" red="0.40888115284974091" green="0.40888115284974091" blue="0.40888115284974091" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
