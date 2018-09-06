@@ -43,8 +43,8 @@ class SamplePhotoViewController: UIViewController, AVCapturePhotoCaptureDelegate
             else
             {
                 print("Error! Could not establish a capture device.")
-                errorLabel.alpha = 1
-                captureButton.isEnabled = false
+                errorLabel?.alpha = 1
+                captureButton?.isEnabled = false
             }
         }
         catch
