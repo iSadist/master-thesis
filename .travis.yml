@@ -4,4 +4,4 @@ osx_image: xcode9.4
 sudo: enabled
 xcode_project: ./Application/ObjectDetectionInAR/ObjectDetectionInAR.xcodeproj
 xcode_scheme: ObjectDetectionInARTests
-xcode_destination: platform=iOS Simulator,OS=10.1,name=iPad Pro (9.7-inch)
+xcode_destination: platform:iOS Simulator, id:19ABD42A-1EBA-4455-9EB1-8B8D2DD9BC5A, OS:11.4, name:iPhone X
