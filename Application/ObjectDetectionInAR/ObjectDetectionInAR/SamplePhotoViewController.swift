@@ -12,40 +12,45 @@ class SamplePhotoViewController: UIViewController, AVCapturePhotoCaptureDelegate
 
     @IBOutlet weak var cameraOutputView: UIView!
     @IBOutlet weak var captureButton: UIButton!
-
+    @IBOutlet weak var errorLabel: UILabel!
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
-        imageCaptureDevice = AVCaptureDevice.default(for: .video)
-        capturePhotoOutput = AVCapturePhotoOutput()
-        capturePhotoOutput?.isHighResolutionCaptureEnabled = true
-        
+
         do
         {
-            guard let captureDevice = imageCaptureDevice else { return }
-            let input = try AVCaptureDeviceInput(device: captureDevice)
-            captureSession = AVCaptureSession()
-            
-            // Set input and output of the session
-            captureSession?.addInput(input)
-            captureSession?.addOutput(capturePhotoOutput!)
-            
-            // Setup video preview to see the current camera feed
-            videoPreview = AVCaptureVideoPreviewLayer(session: captureSession!)
-            videoPreview?.videoGravity = AVLayerVideoGravity.resizeAspectFill
-            videoPreview?.frame = cameraOutputView.layer.bounds
-            
-            // Add the videoPreview to the view on the controller
-            cameraOutputView.layer.addSublayer(videoPreview!)
-            captureSession?.startRunning()
+            if let captureDevice = AVCaptureDevice.default(for: .video)
+            {
+                let input = try AVCaptureDeviceInput(device: captureDevice)
+                capturePhotoOutput = AVCapturePhotoOutput()
+                capturePhotoOutput?.isHighResolutionCaptureEnabled = true
+                captureSession = AVCaptureSession()
+                
+                // Set input and output of the session
+                captureSession?.addInput(input)
+                captureSession?.addOutput(capturePhotoOutput!)
+                
+                // Setup video preview to see the current camera feed
+                videoPreview = AVCaptureVideoPreviewLayer(session: captureSession!)
+                videoPreview?.videoGravity = AVLayerVideoGravity.resizeAspectFill
+                videoPreview?.frame = cameraOutputView.layer.bounds
+                
+                // Add the videoPreview to the view on the controller
+                cameraOutputView.layer.addSublayer(videoPreview!)
+                captureSession?.startRunning()
+            }
+            else
+            {
+                print("Error! Could not establish a capture device.")
+                errorLabel.alpha = 1
+                captureButton.isEnabled = false
+            }
         }
         catch
         {
-            print("Error! Could not establish camera connection.")
-            return
+            print("Error! Could not create a capture device input.")
         }
-
     }
     
     @IBAction func captureButtonPressed(_ sender: UIButton)
