@@ -1,2 +1,10 @@
 .DS_Store
+
+# Xcode
 *.xcuserdatad/
+
+# Generated images
+Training/Images/ArtificialSeat/*
+
+# Tensorflow data model
+*.h5
