@@ -6,6 +6,7 @@
 # Generated images
 Training/Images/ArtificialSeat/*
 Training/Images/ArtificialPiece1/*
+Training/Images/ArtificialPiece2/*
 
 # Tensorflow data model
 *.h5
