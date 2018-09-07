@@ -6,6 +6,10 @@ generate-data:
 	mkdir Images/ArtificialSeat/
 	python artificialDataCreator.py
 
+	rm -rf Images/ArtificialPiece1/
+	mkdir Images/ArtificialPiece1/
+	python artificialDataCreatorPiece1.py
+
 install:
 	pip install Pillow --user
 	pip install tensorflow --user
