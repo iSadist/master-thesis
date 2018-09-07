@@ -2,11 +2,14 @@ clear all
 close all
 
 %% Load image 
-im1  = imread('im1.jpg');
+im1  = imread('im3.jpg');
+
+%% Histogram equalization
 
 
 %% Print original image
 figure(1)
+
 imshow(im1);
 
 %% Processing with color
@@ -21,7 +24,7 @@ figure(2)
 imshow(im)
 
 bw1 = ~imbinarize(C,0.05);
-bw2 = bwareaopen(bw1,500);
+bw2 = bwareaopen(bw1,100);
 figure(3)
 hold on
 imshow(bw2)

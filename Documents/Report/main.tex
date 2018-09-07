@@ -59,10 +59,9 @@
         Jonatan Atles, \texttt{elt13jat@student.lu.se} \\
 }
 %https://www.overleaf.com/8187414vnsqvdmvvcyt for sharing rwx :)
-
+\pagenumbering{roman}
 \begin{document}
 
-\thispagestyle{empty}						% Remove page numbering on this page
 \printtitle									% Print the title data as defined above
  	\vfill
 \printauthor								% Print the author data as defined above
@@ -71,14 +70,26 @@
 % ###### Begin document ######
 % ------------------------------------------------------------------------------
 
-\setcounter{page}{2}
-% Underubriker
+ 
+% Underubrikerna ska vara:
+% Abstract
+% Table of contents
+%  Förord
+% Inledning
+% Metodik
+% Diskussion/slutsats
 % hämta externa filer
 %\newpage
-\input{abstract.tex}
+\input{Subsections/abstract.tex}
+\input{Subsections/preface.tex}
 \tableofcontents
 \newpage
+\pagenumbering{arabic}
+\input{Subsections/introduction.tex}
+\input{Subsections/methods.tex}
+\input{Subsections/conclusion.tex}
+% As we go on we decide on what we will write here.
+\input{Subsections/bib.tex}
 
-\input{bib.tex}
 
 \end{document}
