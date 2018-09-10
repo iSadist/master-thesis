@@ -41,6 +41,8 @@
 	</array>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Photos taken in the app will be saved in the library.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Photos taken in the app will be saved in the library for training a neural net.</string>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
