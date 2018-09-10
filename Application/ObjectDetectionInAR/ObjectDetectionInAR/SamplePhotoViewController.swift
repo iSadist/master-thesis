@@ -60,7 +60,7 @@ class SamplePhotoViewController: UIViewController, AVCapturePhotoCaptureDelegate
             // Set the photo settings
             let photoSettings = AVCapturePhotoSettings()
             photoSettings.embedsDepthDataInPhoto = true
-            photoSettings.flashMode = .auto
+            photoSettings.flashMode = .off
             photoSettings.isAutoStillImageStabilizationEnabled = true
             photoSettings.isHighResolutionPhotoEnabled = true
             
@@ -84,7 +84,7 @@ class SamplePhotoViewController: UIViewController, AVCapturePhotoCaptureDelegate
         
         // Get the pixel buffer
         let pixelBuffer = convertToPixelBuffer(forImage: cgImage!)
-        imageProcessor.addBuffer(buffer: pixelBuffer!)
+        imageProcessor.process(buffer: pixelBuffer!)
     }
     
 
