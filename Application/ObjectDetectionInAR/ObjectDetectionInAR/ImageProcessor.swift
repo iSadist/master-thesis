@@ -14,15 +14,14 @@ class ImageProcessor
         // Get the pixel values
         let width = CVPixelBufferGetWidth(buffer)
         let height = CVPixelBufferGetHeight(buffer)
-        
-        for x in 0...width
+
+        for x in stride(from: width-1, through: 0, by: -1)// 0...width-1
         {
-            for y in 0...height
+            for y in stride(from: height-1, through: 0, by:-1)// 0...height-1
             {
                 pixels.append(getPixel(x: x, y: y, frame: buffer))
             }
         }
-        
         CVPixelBufferUnlockBaseAddress(buffer, CVPixelBufferLockFlags(rawValue: 0))
     }
     
@@ -31,8 +30,8 @@ class ImageProcessor
         
         let bytesPerRow = CVPixelBufferGetBytesPerRow(frame)
         let buffer = baseAddress!.assumingMemoryBound(to: UInt8.self)
-
-        let index = x+y*bytesPerRow
+        //Bytes per row = 16896 > 4224 which is width
+        let index = 4*x+y*bytesPerRow
         let b = buffer[index]
         let g = buffer[index+1]
         let r = buffer[index+2]

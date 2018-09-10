@@ -7,8 +7,7 @@ class SamplePhotoViewController: UIViewController, AVCapturePhotoCaptureDelegate
     var capturePhotoOutput: AVCapturePhotoOutput?
     var captureSession: AVCaptureSession?
     var videoPreview: AVCaptureVideoPreviewLayer?
-    
-    let imageProcessor = ImageProcessor()
+
 
     @IBOutlet weak var cameraOutputView: UIView!
     @IBOutlet weak var captureButton: UIButton!
@@ -84,7 +83,7 @@ class SamplePhotoViewController: UIViewController, AVCapturePhotoCaptureDelegate
         
         // Get the pixel buffer
         let pixelBuffer = convertToPixelBuffer(forImage: cgImage!)
-        imageProcessor.process(buffer: pixelBuffer!)
+        ImageProcessor().process(buffer: pixelBuffer!)
     }
     
 
