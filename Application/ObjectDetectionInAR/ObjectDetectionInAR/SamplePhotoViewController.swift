@@ -23,9 +23,8 @@ class SamplePhotoViewController: UIViewController, AVCapturePhotoCaptureDelegate
             {
                 let input = try AVCaptureDeviceInput(device: captureDevice)
                 capturePhotoOutput = AVCapturePhotoOutput()
-                capturePhotoOutput?.isHighResolutionCaptureEnabled = true
                 captureSession = AVCaptureSession()
-                
+
                 // Set input and output of the session
                 captureSession?.addInput(input)
                 captureSession?.addOutput(capturePhotoOutput!)
@@ -61,7 +60,6 @@ class SamplePhotoViewController: UIViewController, AVCapturePhotoCaptureDelegate
             photoSettings.embedsDepthDataInPhoto = true
             photoSettings.flashMode = .off
             photoSettings.isAutoStillImageStabilizationEnabled = true
-            photoSettings.isHighResolutionPhotoEnabled = true
             
             // Take a photo
             capturePhotoOutput.capturePhoto(with: photoSettings, delegate: self)
