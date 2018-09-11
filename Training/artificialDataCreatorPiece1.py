@@ -2,8 +2,10 @@ from PIL import Image, ImageFilter, ImageEnhance
 
 for x in xrange(2253,2424):
 	image = Image.open('./Images/Piece1/IMG_' + str(x) + '.jpg')
-	artificalImages = []
+	image = image.resize((400,300))
 
+	artificalImages = []
+	artificalImages.append(image)
 	artificalImages.append(image.rotate(45))
 	artificalImages.append(image.rotate(90))
 	artificalImages.append(image.rotate(-45))
