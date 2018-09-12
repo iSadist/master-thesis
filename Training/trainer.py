@@ -5,8 +5,8 @@ import matplotlib.pyplot as plt
 from PIL import Image
 from sklearn.utils import shuffle
 
-image_width = 400
-image_height = 300
+image_width = 800
+image_height = 600
 
 # # Load test image dataset from tensorflow
 # fashion_mnist = keras.datasets.fashion_mnist
@@ -16,7 +16,7 @@ def loadImageLibrary(library_name, image_list, label, label_list, start, end):
 	print("Saving images " + library_name + "...")
 	for num in xrange(start, end):
 		for artificalNum in xrange(1,13):
-			filename = './Images/Artificial' + library_name + '/IMG_' + str(num) + '-' + str(artificalNum) + '.jpg'
+			filename = './Images/Artificial' + library_name + '/image_' + str(num) + '-' + str(artificalNum) + '.jpg'
 			addImage(filename, image_list, label, label_list)
 			pass
 		pass
@@ -26,7 +26,7 @@ def addImage(filename, image_list, label, label_list):
 	image = Image.open(filename)
 	image_list.append(list(image.getdata(0)))
 	label_list.append(label)
-	return 
+	return
 
 # Create the neural network
 model = keras.Sequential([
@@ -46,7 +46,7 @@ model = keras.Sequential([
     keras.layers.Dense(3, activation=tf.nn.softmax) # The number of nodes must be the same as the number of possibilities
 ])
 
-model.compile(optimizer=tf.train.AdamOptimizer(), 
+model.compile(optimizer=tf.train.AdamOptimizer(),
               loss='sparse_categorical_crossentropy',
               metrics=['accuracy'])
 model.summary()
@@ -56,9 +56,9 @@ model.summary()
 train_images = []
 train_labels = []
 
-loadImageLibrary('Seat', train_images, 0, train_labels, 1863, 1963)
-loadImageLibrary('Piece1', train_images, 1, train_labels, 2253, 2353)
-loadImageLibrary('Piece2', train_images, 2, train_labels, 2536, 2636)
+loadImageLibrary('Seat', train_images, 0, train_labels, 1, 60)
+loadImageLibrary('Piece1', train_images, 1, train_labels, 1, 60)
+loadImageLibrary('Piece2', train_images, 2, train_labels, 1, 60)
 
 print("Importing images complete!")
 print("--------------------------------")
@@ -80,9 +80,9 @@ print("Starting testing...")
 test_images = []
 test_labels = []
 
-loadImageLibrary('Seat', test_images, 0, test_labels, 1965, 2015)
-loadImageLibrary('Piece1', test_images, 1, test_labels, 2355, 2405)
-loadImageLibrary('Piece2', test_images, 2, test_labels, 2640, 2690)
+loadImageLibrary('Seat', test_images, 0, test_labels, 61, 70)
+loadImageLibrary('Piece1', test_images, 1, test_labels, 61, 70)
+loadImageLibrary('Piece2', test_images, 2, test_labels, 61, 70)
 
 test_images = np.array(test_images).reshape(len(test_images), image_width, image_height, 1)
 
