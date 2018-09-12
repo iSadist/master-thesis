@@ -19,3 +19,4 @@ install:
 	pip install tensorflow --user
 	pip install numpy --user
 	pip install matplotlib --user
+	pip install scikit-learn --user

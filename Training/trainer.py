@@ -3,6 +3,7 @@ from tensorflow import keras
 import numpy as np
 import matplotlib.pyplot as plt
 from PIL import Image
+from sklearn.utils import shuffle
 
 image_width = 400
 image_height = 300
@@ -29,16 +30,18 @@ def addImage(filename, image_list, label, label_list):
 
 # Create the neural network
 model = keras.Sequential([
-	keras.layers.Conv2D(16, kernel_size=(5, 5), strides=(5, 5), input_shape=(image_width, image_height, 1)),
-	keras.layers.MaxPool2D(pool_size=(4, 4), padding="valid"),
-	keras.layers.Conv2D(16, kernel_size=(5,5), strides=(1, 1)),
-	keras.layers.MaxPool2D(pool_size=(4, 4), padding="valid"),
+	keras.layers.Conv2D(16, kernel_size=(4, 4), strides=(4, 4), input_shape=(image_width, image_height, 1)),
+	keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
+	keras.layers.Conv2D(16, kernel_size=(4,4), strides=(4, 4)),
+	keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
+	keras.layers.Conv2D(16, kernel_size=(2,2), strides=(2, 2)),
+	keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
 	keras.layers.Flatten(),
-    keras.layers.Dense(32, activation=tf.nn.relu),
+    keras.layers.Dense(16, activation=tf.nn.relu),
     keras.layers.Dropout(0.1),
-    keras.layers.Dense(32, activation=tf.nn.relu),
+    keras.layers.Dense(16, activation=tf.nn.relu),
     keras.layers.Dropout(0.1),
-    keras.layers.Dense(32, activation=tf.nn.relu),
+    keras.layers.Dense(16, activation=tf.nn.relu),
     keras.layers.Dropout(0.1),
     keras.layers.Dense(3, activation=tf.nn.softmax) # The number of nodes must be the same as the number of possibilities
 ])
@@ -62,6 +65,8 @@ print("--------------------------------")
 print("Reshaping to fit train images...")
 
 train_images = np.array(train_images).reshape(len(train_images), image_width, image_height, 1)
+
+train_images, train_labels = shuffle(train_images, train_labels)
 
 print("Reshaping complete!")
 print("Starting training...")
