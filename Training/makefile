@@ -1,6 +1,15 @@
 run:
 	python trainer.py
 
+convertToPb:
+	cd Models && python keras_converter.py -m ./recognizer.h5 -n 3
+
+convertToCoreML:
+	cd Models && python ml_converter.py
+
+convertModel:
+	make convertToPb && make convertToCoreML
+
 generate-data:
 	rm -rf Images/ArtificialSeat/
 	mkdir Images/ArtificialSeat/
@@ -20,3 +29,4 @@ install:
 	pip install numpy --user
 	pip install matplotlib --user
 	pip install scikit-learn --user
+	pip install tfcoreml --user
