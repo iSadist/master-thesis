@@ -13,26 +13,6 @@ class ViewController: UIViewController, ARSCNViewDelegate
     var object: ARFrame?
     var addingSphere = false
     
-    @IBAction func sceneLongPressed(_ sender: UILongPressGestureRecognizer)
-    {
-        if let camera = self.sceneView.pointOfView
-        {
-            let localPosition = SCNVector3(x: 0, y: 0, z: -0.5)
-            let scenePosition = camera.convertPosition(localPosition, to: nil)
-            addSphere(point: scenePosition)
-        }
-    }
-    
-    @IBAction func scenePressed(_ sender: UITapGestureRecognizer)
-    {
-        if let camera = self.sceneView.pointOfView
-        {
-            let localPosition = SCNVector3(x: 0, y: 0, z: -1)
-            let scenePosition = camera.convertPosition(localPosition, to: nil)
-            addSphere(point: scenePosition)
-        }
-    }
-    
     func addSphere(point: SCNVector3)
     {
         if addingSphere { return }
@@ -48,18 +28,8 @@ class ViewController: UIViewController, ARSCNViewDelegate
         geometry.firstMaterial?.diffuse.contents = textureImage
         geometry.firstMaterial?.normal.contents = normalImage
         let node = SCNNode(geometry: geometry)
-        node.physicsBody = createPhysicsBody(geometry: geometry)
         node.position = point
-        node.physicsBody?.velocity = (sceneView.pointOfView?.convertVector(SCNVector3(x: 0, y: 0, z: -1), to: nil))!
         self.sceneView.scene.rootNode.addChildNode(node)
-    }
-    
-    func createPhysicsBody(geometry: SCNGeometry) -> SCNPhysicsBody
-    {
-        let shape = SCNPhysicsShape(geometry: geometry, options: nil)
-        let body = SCNPhysicsBody(type: .dynamic, shape: shape)
-        
-        return body
     }
     
     override func viewDidLoad()
@@ -69,7 +39,10 @@ class ViewController: UIViewController, ARSCNViewDelegate
         
         // Show statistics such as fps and timing information
         sceneView.showsStatistics = true
-        sceneView.debugOptions = ARSCNDebugOptions.showFeaturePoints
+        sceneView.debugOptions = [
+            ARSCNDebugOptions.showFeaturePoints,
+            ARSCNDebugOptions.showWorldOrigin
+        ]
 
         let scene = SCNScene(named: "art.scnassets/world.scn")!
         sceneView.scene = scene
@@ -81,7 +54,7 @@ class ViewController: UIViewController, ARSCNViewDelegate
         
         // Create a session configuration
         let configuration = ARWorldTrackingConfiguration()
-        configuration.planeDetection = .horizontal
+        configuration.planeDetection = [.horizontal, .vertical]
 
         // Run the view's session
         sceneView.session.run(configuration)

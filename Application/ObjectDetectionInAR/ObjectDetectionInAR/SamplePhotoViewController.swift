@@ -8,6 +8,8 @@ class SamplePhotoViewController: UIViewController, AVCapturePhotoCaptureDelegate
     var captureSession: AVCaptureSession?
     var videoPreview: AVCaptureVideoPreviewLayer?
 
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask { return .portrait }
+    override var shouldAutorotate: Bool { return false }
 
     @IBOutlet weak var cameraOutputView: UIView!
     @IBOutlet weak var captureButton: UIButton!

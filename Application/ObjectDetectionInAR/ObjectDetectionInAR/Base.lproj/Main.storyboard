@@ -18,26 +18,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <gestureRecognizers/>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="MeH-2g-FDy" appends="YES" id="qSS-Lq-pWh"/>
-                            <outletCollection property="gestureRecognizers" destination="0OD-LF-jkZ" appends="YES" id="znw-UN-Rz1"/>
-                        </connections>
                     </arscnView>
                     <connections>
                         <outlet property="sceneView" destination="BrB-h1-WRS" id="5nT-qQ-ynl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
-                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="MeH-2g-FDy">
-                    <connections>
-                        <action selector="sceneLongPressed:" destination="BV1-FR-VrT" id="fTb-2O-7zE"/>
-                    </connections>
-                </pongPressGestureRecognizer>
-                <tapGestureRecognizer id="0OD-LF-jkZ">
-                    <connections>
-                        <action selector="scenePressed:" destination="BV1-FR-VrT" id="lWo-zd-Cwl"/>
-                    </connections>
-                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="823" y="40"/>
         </scene>
