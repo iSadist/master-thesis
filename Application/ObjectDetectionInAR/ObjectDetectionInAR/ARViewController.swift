@@ -1,8 +1,9 @@
 import UIKit
 import SceneKit
 import ARKit
+import Vision
 
-class ViewController: UIViewController, ARSCNViewDelegate
+class ARViewController: UIViewController, ARSCNViewDelegate, AVCaptureVideoDataOutputSampleBufferDelegate
 {
     @IBOutlet var sceneView: ARSCNView!
     
@@ -11,6 +12,8 @@ class ViewController: UIViewController, ARSCNViewDelegate
     override var shouldAutorotate: Bool { return false }
     
     var object: ARFrame?
+    var videoDataOutput: AVCaptureVideoDataOutput?
+    var captureSession: AVCaptureSession?
     var addingSphere = false
     
     func addSphere(point: SCNVector3)
@@ -32,6 +35,8 @@ class ViewController: UIViewController, ARSCNViewDelegate
         self.sceneView.scene.rootNode.addChildNode(node)
     }
     
+    // MARK: Lifecycle events
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -43,7 +48,18 @@ class ViewController: UIViewController, ARSCNViewDelegate
             ARSCNDebugOptions.showFeaturePoints,
             ARSCNDebugOptions.showWorldOrigin
         ]
-
+        
+        // Setup data capture for the camera
+        guard let captureDevice = AVCaptureDevice.default(for: .video) else { return }
+        guard let captureInput = try? AVCaptureDeviceInput(device: captureDevice) else { return }
+        let dataOutput = AVCaptureVideoDataOutput()
+        captureSession = AVCaptureSession()
+        captureSession?.addInput(captureInput)
+        captureSession?.addOutput(dataOutput)
+        
+        dataOutput.setSampleBufferDelegate(self, queue: DispatchQueue(label: "videoQueue"))
+        
+        // Load the scene
         let scene = SCNScene(named: "art.scnassets/world.scn")!
         sceneView.scene = scene
     }
@@ -58,6 +74,7 @@ class ViewController: UIViewController, ARSCNViewDelegate
 
         // Run the view's session
         sceneView.session.run(configuration)
+        captureSession?.startRunning()
     }
     
     override func viewWillDisappear(_ animated: Bool)
@@ -97,5 +114,20 @@ class ViewController: UIViewController, ARSCNViewDelegate
     func sessionInterruptionEnded(_ session: ARSession)
     {
         // Reset tracking and/or remove existing anchors if consistent tracking is required
+    }
+    
+    // MARK: - AVCaptureVideoDataOutputSampleBufferDelegate
+    
+    func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+        let pixelBuffer: CVPixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer)!
+        guard let model = try? VNCoreMLModel(for: Resnet50().model) else { return }
+        let request = VNCoreMLRequest(model: model, completionHandler: { (finishedReq, err) in
+            if let results = finishedReq.results as? [VNClassificationObservation]
+            {
+                print(results.first?.identifier as! String)
+                print(results.first?.confidence as! String)
+            }
+        })
+        try? VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:]).perform([request])
     }
 }
