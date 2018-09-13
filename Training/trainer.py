@@ -8,6 +8,8 @@ from sklearn.utils import shuffle
 image_width = 800
 image_height = 600
 
+training_batch_size = 60
+
 # # Load test image dataset from tensorflow
 # fashion_mnist = keras.datasets.fashion_mnist
 # (train_images, train_labels), (test_images, test_labels) = fashion_mnist.load_data()
@@ -15,7 +17,7 @@ image_height = 600
 def loadImageLibrary(library_name, image_list, label, label_list, start, end):
 	print("Saving images " + library_name + "...")
 	for num in xrange(start, end):
-		for artificalNum in xrange(1,13):
+		for artificalNum in xrange(1,18):
 			filename = './Images/Artificial' + library_name + '/image_' + str(num) + '-' + str(artificalNum) + '.jpg'
 			addImage(filename, image_list, label, label_list)
 			pass
@@ -46,19 +48,21 @@ model = keras.Sequential([
     keras.layers.Dense(3, activation=tf.nn.softmax) # The number of nodes must be the same as the number of possibilities
 ])
 
-model.compile(optimizer=tf.train.AdamOptimizer(),
+model.compile(optimizer=keras.optimizers.Adam(),
               loss='sparse_categorical_crossentropy',
               metrics=['accuracy'])
 model.summary()
+
+
 
 # Load images from datasets
 
 train_images = []
 train_labels = []
 
-loadImageLibrary('Seat', train_images, 0, train_labels, 1, 60)
-loadImageLibrary('Piece1', train_images, 1, train_labels, 1, 60)
-loadImageLibrary('Piece2', train_images, 2, train_labels, 1, 60)
+loadImageLibrary('Seat', train_images, 0, train_labels, 1, training_batch_size)
+loadImageLibrary('Piece1', train_images, 1, train_labels, 1, training_batch_size)
+loadImageLibrary('Piece2', train_images, 2, train_labels, 1, training_batch_size)
 
 print("Importing images complete!")
 print("--------------------------------")
@@ -71,7 +75,7 @@ train_images, train_labels = shuffle(train_images, train_labels)
 print("Reshaping complete!")
 print("Starting training...")
 
-model.fit(train_images, train_labels, epochs=10)
+model.fit(train_images, train_labels, epochs=50)
 
 print("Training complete!")
 
@@ -80,9 +84,9 @@ print("Starting testing...")
 test_images = []
 test_labels = []
 
-loadImageLibrary('Seat', test_images, 0, test_labels, 61, 70)
-loadImageLibrary('Piece1', test_images, 1, test_labels, 61, 70)
-loadImageLibrary('Piece2', test_images, 2, test_labels, 61, 70)
+loadImageLibrary('Seat', test_images, 0, test_labels, training_batch_size + 1, 77)
+loadImageLibrary('Piece1', test_images, 1, test_labels, training_batch_size + 1, 77)
+loadImageLibrary('Piece2', test_images, 2, test_labels, training_batch_size + 1, 77)
 
 test_images = np.array(test_images).reshape(len(test_images), image_width, image_height, 1)
 
@@ -90,4 +94,4 @@ test_images = np.array(test_images).reshape(len(test_images), image_width, image
 test_loss, test_acc = model.evaluate(test_images, test_labels)
 print('Test accuracy:', test_acc)
 
-# model.save("recognizer.h5")
+model.save("recognizer.h5")
