@@ -15,3 +15,6 @@ https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=7469860
 
 Region-based Segmentation and Object Detection
 http://ai.stanford.edu/~tianshig/papers/nips09-sceneObject.pdf
+
+A practical theory for designing very deep convolutional neural networks
+https://kaggle2.blob.core.windows.net/forum-message-attachments/69182/2287/A%20practical%20theory%20for%20designing%20very%20deep%20convolutional%20neural%20networks.pdf
