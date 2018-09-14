@@ -10,3 +10,5 @@ Training/Images/ArtificialPiece2/*
 
 # Tensorflow data model
 *.h5
+*.pb
+*.ascii
