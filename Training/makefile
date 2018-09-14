@@ -1,14 +1,8 @@
-run:
+train:
 	python trainer.py
 
-convertToPb:
-	cd Models && python keras_converter.py -m ./recognizer.h5 -n 3
-
-convertToCoreML:
-	cd Models && python ml_converter.py
-
-convertModel:
-	make convertToPb && make convertToCoreML
+convert:
+	cd Models && python convertKerasToCoreML.py
 
 generate-data:
 	rm -rf Images/ArtificialSeat/
@@ -22,6 +16,11 @@ generate-data:
 	rm -rf Images/ArtificialPiece2/
 	mkdir Images/ArtificialPiece2/
 	python artificialDataCreatorPiece2.py
+
+setup: 
+	make generate-data
+	make train
+	make convert
 
 install:
 	pip install Pillow --user

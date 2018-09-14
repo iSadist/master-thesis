@@ -94,4 +94,4 @@ test_images = np.array(test_images).reshape(len(test_images), image_width, image
 test_loss, test_acc = model.evaluate(test_images, test_labels)
 print('Test accuracy:', test_acc)
 
-model.save("recognizer.h5")
+model.save("./Models/recognizer.h5")

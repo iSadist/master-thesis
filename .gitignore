@@ -12,3 +12,4 @@ Training/Images/ArtificialPiece2/*
 *.h5
 *.pb
 *.ascii
+*.mlmodel
