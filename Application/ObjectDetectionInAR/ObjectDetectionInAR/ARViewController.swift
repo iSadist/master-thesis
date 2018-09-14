@@ -120,13 +120,21 @@ class ARViewController: UIViewController, ARSCNViewDelegate, AVCaptureVideoDataO
     
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         let pixelBuffer: CVPixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer)!
-        guard let model = try? VNCoreMLModel(for: Resnet50().model) else { return }
+        
+        guard let model = try? VNCoreMLModel(for: Furniture().model) else { return }
         let request = VNCoreMLRequest(model: model, completionHandler: { (finishedReq, err) in
-            if let results = finishedReq.results as? [VNClassificationObservation]
+            
+            if let result = finishedReq.results as? [VNCoreMLFeatureValueObservation]
             {
-                print(results.first?.identifier as! String)
-                print(results.first?.confidence as! String)
+                let observations = result.first?.featureValue.multiArrayValue!
+                let confidenceValues: [Double] = [observations![0], observations![1], observations![2]] as! [Double]
+                
+                let maxNumber = confidenceValues.max()
+                let index = confidenceValues.index(of: maxNumber!)
+                
+                print(confidenceValues)
             }
+            
         })
         try? VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:]).perform([request])
     }
