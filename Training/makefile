@@ -25,6 +25,7 @@ setup:
 install:
 	pip install Pillow --user
 	pip install tensorflow --user
+	pip install keras==2.1.6 --user
 	pip install numpy --user
 	pip install matplotlib --user
 	pip install scikit-learn --user
