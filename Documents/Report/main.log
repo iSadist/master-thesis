@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.4.16)  7 SEP 2018 13:56
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.4.16)  17 SEP 2018 13:24
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -555,10 +555,10 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 
  [4]
 (./Subsections/introduction.tex [1]) (./Subsections/methods.tex
-<./Images/im1.jpg, id=60, 770.88pt x 1027.84pt>
+<./Images/im1.jpg, id=90, 770.88pt x 1027.84pt>
 File: ./Images/im1.jpg Graphic file (type jpg)
 <use ./Images/im1.jpg>
-Package pdftex.def Info: ./Images/im1.jpg  used on input line 5.
+Package pdftex.def Info: ./Images/im1.jpg  used on input line 16.
 (pdftex.def)             Requested size: 209.12683pt x 278.82224pt.
  [2 <./Images/im1.jpg>]) (./Subsections/conclusion.tex [3]) (./Subsections/bib.
 tex)
@@ -570,14 +570,14 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 95.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 95.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 95.
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 086AD2D6F01DBAD1028686D2AAD0539C;278.
+(rerunfilecheck)             Checksum: 35E2E378EA985A18EF0E24B1DC3EC96C;707.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 95.
  ) 
 Here is how much of TeX's memory you used:
- 8903 strings out of 492649
- 136769 string characters out of 6129622
- 268606 words of memory out of 5000000
- 12586 multiletter control sequences out of 15000+600000
+ 8915 strings out of 492649
+ 136949 string characters out of 6129622
+ 270606 words of memory out of 5000000
+ 12592 multiletter control sequences out of 15000+600000
  48544 words of font info for 49 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  41i,6n,38p,234b,330s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -587,10 +587,10 @@ texlive/2018/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/local/texlive/20
 dist/fonts/type1/public/lm/lmr12.pfb></usr/local/texlive/2018/texmf-dist/fonts/
 type1/public/lm/lmri12.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/publ
 ic/lm/lmtt12.pfb>
-Output written on main.pdf (8 pages, 224632 bytes).
+Output written on main.pdf (8 pages, 229921 bytes).
 PDF statistics:
- 105 PDF objects out of 1000 (max. 8388607)
- 88 compressed objects within 1 object stream
- 19 named destinations out of 1000 (max. 500000)
- 15414 words of extra memory for PDF output out of 17280 (max. 10000000)
+ 137 PDF objects out of 1000 (max. 8388607)
+ 119 compressed objects within 2 object streams
+ 25 named destinations out of 1000 (max. 500000)
+ 15462 words of extra memory for PDF output out of 17280 (max. 10000000)
 
