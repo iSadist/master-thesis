@@ -14,25 +14,40 @@ class ARViewController: UIViewController, ARSCNViewDelegate, AVCaptureVideoDataO
     var object: ARFrame?
     var videoDataOutput: AVCaptureVideoDataOutput?
     var captureSession: AVCaptureSession?
-    var addingSphere = false
+    let trackingImageURLs: [String] = [] // Images that will be tracked
     
-    func addSphere(point: SCNVector3)
+    func makeSphere() -> SCNNode
     {
-        if addingSphere { return }
-        addingSphere = true
-        
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2, execute: {
-            self.addingSphere = false
-        })
-        
         let geometry = SCNSphere(radius: 0.2)
         let textureImage = UIImage(named: "stone_diffuse.jpg")
         let normalImage = UIImage(named: "stone_normal.jpg")
         geometry.firstMaterial?.diffuse.contents = textureImage
         geometry.firstMaterial?.normal.contents = normalImage
         let node = SCNNode(geometry: geometry)
-        node.position = point
-        self.sceneView.scene.rootNode.addChildNode(node)
+        return node
+    }
+    
+    func loadImageConfiguration()
+    {
+        let imageConfig = ARImageTrackingConfiguration()
+        
+        for imageURL in trackingImageURLs
+        {
+            guard let image: CGImage = UIImage(named: imageURL)?.cgImage else { return }
+            let referenceImage = ARReferenceImage(image, orientation: CGImagePropertyOrientation.up, physicalWidth: 0.3)
+            imageConfig.trackingImages.insert(referenceImage)
+        }
+
+        imageConfig.isAutoFocusEnabled = true
+        imageConfig.maximumNumberOfTrackedImages = trackingImageURLs.count
+        sceneView.session.run(imageConfig)
+    }
+    
+    func loadWorldTrackingConfiguration()
+    {
+        let configuration = ARWorldTrackingConfiguration()
+        configuration.planeDetection = [.horizontal, .vertical]
+        sceneView.session.run(configuration)
     }
     
     // MARK: Lifecycle events
@@ -67,13 +82,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate, AVCaptureVideoDataO
     override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
-        
-        // Create a session configuration
-        let configuration = ARWorldTrackingConfiguration()
-        configuration.planeDetection = [.horizontal, .vertical]
-
-        // Run the view's session
-        sceneView.session.run(configuration)
+        loadWorldTrackingConfiguration()
         captureSession?.startRunning()
     }
     
@@ -97,6 +106,9 @@ class ARViewController: UIViewController, ARSCNViewDelegate, AVCaptureVideoDataO
     func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode?
     {
         let node = SCNNode()
+        
+        let sphereNode = makeSphere()
+        node.addChildNode(sphereNode)
         
         return node
     }
