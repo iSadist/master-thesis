@@ -3,7 +3,7 @@ import SceneKit
 import ARKit
 import Vision
 
-class ARViewController: UIViewController, ARSCNViewDelegate, AVCaptureVideoDataOutputSampleBufferDelegate
+class ARViewController: UIViewController, ARSCNViewDelegate
 {
     @IBOutlet var sceneView: ARSCNView!
     
@@ -64,16 +64,6 @@ class ARViewController: UIViewController, ARSCNViewDelegate, AVCaptureVideoDataO
             ARSCNDebugOptions.showWorldOrigin
         ]
         
-        // Setup data capture for the camera
-        guard let captureDevice = AVCaptureDevice.default(for: .video) else { return }
-        guard let captureInput = try? AVCaptureDeviceInput(device: captureDevice) else { return }
-        let dataOutput = AVCaptureVideoDataOutput()
-        captureSession = AVCaptureSession()
-        captureSession?.addInput(captureInput)
-        captureSession?.addOutput(dataOutput)
-        
-        dataOutput.setSampleBufferDelegate(self, queue: DispatchQueue(label: "videoQueue"))
-        
         // Load the scene
         let scene = SCNScene(named: "art.scnassets/world.scn")!
         sceneView.scene = scene
@@ -99,6 +89,18 @@ class ARViewController: UIViewController, ARSCNViewDelegate, AVCaptureVideoDataO
         super.didReceiveMemoryWarning()
         // Release any cached data, images, etc that aren't in use.
     }
+    
+    // MARK: - UI Events
+    
+    @IBAction func screenTapped(_ sender: UITapGestureRecognizer)
+    {
+        let snapshot = sceneView.snapshot()
+        let converter = ImageConverter()
+        
+        guard let pixelBuffer = converter.convertImageToPixelBuffer(image: snapshot) else { return }
+        _ = predict(pixelBuffer: pixelBuffer)
+    }
+    
 
     // MARK: - ARSCNViewDelegate
     
@@ -128,12 +130,9 @@ class ARViewController: UIViewController, ARSCNViewDelegate, AVCaptureVideoDataO
         // Reset tracking and/or remove existing anchors if consistent tracking is required
     }
     
-    // MARK: - AVCaptureVideoDataOutputSampleBufferDelegate
-    
-    func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-        let pixelBuffer: CVPixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer)!
-        
-        guard let model = try? VNCoreMLModel(for: Furniture().model) else { return }
+    func predict(pixelBuffer: CVPixelBuffer) -> Double
+    {
+        guard let model = try? VNCoreMLModel(for: Furniture().model) else { return 99 }
         let request = VNCoreMLRequest(model: model, completionHandler: { (finishedReq, err) in
             
             if let result = finishedReq.results as? [VNCoreMLFeatureValueObservation]
@@ -141,13 +140,15 @@ class ARViewController: UIViewController, ARSCNViewDelegate, AVCaptureVideoDataO
                 let observations = result.first?.featureValue.multiArrayValue!
                 let confidenceValues: [Double] = [observations![0], observations![1], observations![2]] as! [Double]
                 
-                let maxNumber = confidenceValues.max()
-                let index = confidenceValues.index(of: maxNumber!)
+//                let maxNumber = confidenceValues.max()
+//                let index = confidenceValues.index(of: maxNumber!)
                 
                 print(confidenceValues)
             }
             
         })
         try? VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:]).perform([request])
+        
+        return 99
     }
 }

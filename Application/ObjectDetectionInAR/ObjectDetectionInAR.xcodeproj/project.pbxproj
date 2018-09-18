@@ -10,6 +10,7 @@
 		592DC1BE213FEF1A00E29665 /* SamplePhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592DC1BD213FEF1A00E29665 /* SamplePhotoViewController.swift */; };
 		594DBBBC214A8E1F00275FEC /* Resnet50.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 594DBBBB214A8E1F00275FEC /* Resnet50.mlmodel */; };
 		594DBBC0214BFC5200275FEC /* Furniture.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 594DBBBF214BFC5200275FEC /* Furniture.mlmodel */; };
+		598D526D215149BE00DD307E /* ImageConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598D526C215149BE00DD307E /* ImageConverter.swift */; };
 		599157A121402F4D00B3A8D7 /* ImageProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599157A021402F4D00B3A8D7 /* ImageProcessor.swift */; };
 		E1ED297120BCA23B007DBE66 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1ED297020BCA23B007DBE66 /* AppDelegate.swift */; };
 		E1ED297320BCA23B007DBE66 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = E1ED297220BCA23B007DBE66 /* art.scnassets */; };
@@ -42,6 +43,7 @@
 		592DC1BD213FEF1A00E29665 /* SamplePhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SamplePhotoViewController.swift; sourceTree = "<group>"; };
 		594DBBBB214A8E1F00275FEC /* Resnet50.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = Resnet50.mlmodel; path = ../../../../../Downloads/Resnet50.mlmodel; sourceTree = "<group>"; };
 		594DBBBF214BFC5200275FEC /* Furniture.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = Furniture.mlmodel; path = ../../../Training/Models/Furniture.mlmodel; sourceTree = "<group>"; };
+		598D526C215149BE00DD307E /* ImageConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageConverter.swift; sourceTree = "<group>"; };
 		599157A021402F4D00B3A8D7 /* ImageProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProcessor.swift; sourceTree = "<group>"; };
 		E1ED296D20BCA23B007DBE66 /* ObjectDetectionInAR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ObjectDetectionInAR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1ED297020BCA23B007DBE66 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 				E1ED297B20BCA23C007DBE66 /* LaunchScreen.storyboard */,
 				E1ED297E20BCA23C007DBE66 /* Info.plist */,
 				599157A021402F4D00B3A8D7 /* ImageProcessor.swift */,
+				598D526C215149BE00DD307E /* ImageConverter.swift */,
 				594DBBBB214A8E1F00275FEC /* Resnet50.mlmodel */,
 				594DBBBF214BFC5200275FEC /* Furniture.mlmodel */,
 			);
@@ -273,6 +276,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				594DBBBC214A8E1F00275FEC /* Resnet50.mlmodel in Sources */,
+				598D526D215149BE00DD307E /* ImageConverter.swift in Sources */,
 				E1ED297520BCA23B007DBE66 /* ARViewController.swift in Sources */,
 				E1ED297120BCA23B007DBE66 /* AppDelegate.swift in Sources */,
 				594DBBC0214BFC5200275FEC /* Furniture.mlmodel in Sources */,
