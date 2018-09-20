@@ -25,23 +25,23 @@ def loadImageLibrary(library_name, image_list, label, label_list, start, end):
 	print("Done with " + library_name + "!")
 
 def addImage(filename, image_list, label, label_list):
-	print("Adding image " + filename)
+	#print("Adding image " + filename)
 	image = Image.open(filename)
-	image_list.append(list(image.getdata()))
+	image_array = np.asarray(image)
+	image_list.append(image_array)
 	label_list.append(label)
-	print("Complete")
+	#print("Complete")
 	return
 
 def reshapeArray(oldArray):
 	print("Reshaping...")
-	npArray = np.array(oldArray)
-	reshapedArray = npArray.reshape((len(oldArray), image_width, image_height, number_of_color_channels))
+	reshapedArray = np.asarray(oldArray)
 	return reshapedArray
 
 def createModel():
 	# Create the neural network
 	model = keras.Sequential([
-		keras.layers.Conv2D(16, kernel_size=(4, 4), strides=(4, 4), input_shape=(image_width, image_height, number_of_color_channels)),
+		keras.layers.Conv2D(16, kernel_size=(4, 4), strides=(4, 4), input_shape=(image_height, image_width, number_of_color_channels)),
 		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
 		keras.layers.Conv2D(16, kernel_size=(4,4), strides=(4, 4)),
 		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
@@ -65,7 +65,7 @@ def createModel():
 
 def trainModel(model, train_data, train_labels):
 	print("Starting training...")
-	model.fit(train_images, train_labels, epochs=20)
+	model.fit(train_data, train_labels, epochs=20)
 
 def loadTrainImages(image_list, labels_list):
 	for i in xrange(0,len(image_libraries)):
@@ -75,7 +75,7 @@ def loadTestImages(image_list, labels_list):
 	for i in xrange(0,len(image_libraries)):
 		loadImageLibrary(image_libraries[i], image_list, i, labels_list, training_batch_size + 1, 77)
 
-def test():
+def test(test_images,test_labels):
 	print("Start testing...")
 	loadTestImages(test_images, test_labels)
 	test_images = reshapeArray(test_images)
@@ -96,7 +96,9 @@ def main():
 	model = createModel()
 
 	trainModel(model, train_images, train_labels)
-	test()
 	model.save("./Models/recognizer.h5")
+	loadTestImages(test_images,test_labels)
+	test_images = reshapeArray(test_images)
+	test(test_images,test_labels)
 
 main()
