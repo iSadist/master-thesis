@@ -13,3 +13,12 @@ Training/Images/ArtificialPiece2/*
 *.pb
 *.ascii
 *.mlmodel
+
+# Latex
+Documents/Report/main.aux
+Documents/Report/main.pdf
+Documents/Report/main.out
+Documents/Report/main.log
+Documents/Report/main.synctex.gz
+Documents/Report/main.toc
+Documents/Report/Subsections/methods.log
