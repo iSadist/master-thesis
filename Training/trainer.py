@@ -7,12 +7,12 @@ from sklearn.utils import shuffle
 
 image_width = 800
 image_height = 600
+number_of_color_channels = 3
 
 training_batch_size = 60
+image_libraries = ["Seat", "Piece1", "Piece2"]
 
-# # Load test image dataset from tensorflow
-# fashion_mnist = keras.datasets.fashion_mnist
-# (train_images, train_labels), (test_images, test_labels) = fashion_mnist.load_data()
+# MARK: - Functions
 
 def loadImageLibrary(library_name, image_list, label, label_list, start, end):
 	print("Saving images " + library_name + "...")
@@ -25,73 +25,77 @@ def loadImageLibrary(library_name, image_list, label, label_list, start, end):
 	print("Done with " + library_name + "!")
 
 def addImage(filename, image_list, label, label_list):
+	print("Adding image " + filename)
 	image = Image.open(filename)
-	image_list.append(list(image.getdata(0)))
+	image_list.append(list(image.getdata()))
 	label_list.append(label)
 	return
 
-# Create the neural network
-model = keras.Sequential([
-	keras.layers.Conv2D(16, kernel_size=(4, 4), strides=(4, 4), input_shape=(image_width, image_height, 1)),
-	keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-	keras.layers.Conv2D(16, kernel_size=(4,4), strides=(4, 4)),
-	keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-	keras.layers.Conv2D(16, kernel_size=(2,2), strides=(2, 2)),
-	keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-	keras.layers.Flatten(),
-    keras.layers.Dense(16, activation=tf.nn.relu),
-    keras.layers.Dropout(0.1),
-    keras.layers.Dense(16, activation=tf.nn.relu),
-    keras.layers.Dropout(0.1),
-    keras.layers.Dense(16, activation=tf.nn.relu),
-    keras.layers.Dropout(0.1),
-    keras.layers.Dense(3, activation=tf.nn.softmax) # The number of nodes must be the same as the number of possibilities
-])
+def reshapeArray(oldArray):
+	print("Reshaping...")
+	npArray = np.array(oldArray)
+	reshapedArray = npArray.reshape((len(oldArray), image_width, image_height, number_of_color_channels))
+	return reshapedArray
 
-model.compile(optimizer=keras.optimizers.Adam(),
-              loss='sparse_categorical_crossentropy',
-              metrics=['accuracy'])
-model.summary()
+def createModel():
+	# Create the neural network
+	model = keras.Sequential([
+		keras.layers.Conv2D(16, kernel_size=(4, 4), strides=(4, 4), input_shape=(image_width, image_height, number_of_color_channels)),
+		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
+		keras.layers.Conv2D(16, kernel_size=(4,4), strides=(4, 4)),
+		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
+		keras.layers.Conv2D(16, kernel_size=(2,2), strides=(2, 2)),
+		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
+		keras.layers.Flatten(),
+	    keras.layers.Dense(16, activation=tf.nn.relu),
+	    keras.layers.Dropout(0.1),
+	    keras.layers.Dense(16, activation=tf.nn.relu),
+	    keras.layers.Dropout(0.1),
+	    keras.layers.Dense(16, activation=tf.nn.relu),
+	    keras.layers.Dropout(0.1),
+	    keras.layers.Dense(3, activation=tf.nn.softmax) # The number of nodes must be the same as the number of possibilities
+	])
 
+	model.compile(optimizer=keras.optimizers.Adam(),
+	              loss='sparse_categorical_crossentropy',
+	              metrics=['accuracy'])
+	model.summary()
+	return model
 
+def trainModel(model, train_data, train_labels):
+	print("Starting training...")
+	model.fit(train_images, train_labels, epochs=20)
 
-# Load images from datasets
+def loadTrainImages(image_list, labels_list):
+	for i in xrange(1,len(image_libraries)):
+		loadImageLibrary(image_libraries[i-1], image_list, i-1, labels_list, 1, training_batch_size)
 
-train_images = []
-train_labels = []
+def loadTestImages(image_list, labels_list):
+	for i in xrange(1,len(image_libraries)):
+		loadImageLibrary(image_libraries[i-1], image_list, i-1, labels_list, training_batch_size + 1, 77)
 
-loadImageLibrary('Seat', train_images, 0, train_labels, 1, training_batch_size)
-loadImageLibrary('Piece1', train_images, 1, train_labels, 1, training_batch_size)
-loadImageLibrary('Piece2', train_images, 2, train_labels, 1, training_batch_size)
+def test():
+	print("Start testing...")
+	loadTestImages(test_images, test_labels)
+	test_images = reshapeArray(test_images)
+	test_loss, test_acc = model.evaluate(test_images, test_labels)
+	print('Test accuracy:', test_acc)
 
-print("Importing images complete!")
-print("--------------------------------")
-print("Reshaping to fit train images...")
+def main():
+	train_images = []
+	train_labels = []
 
-train_images = np.array(train_images).reshape(len(train_images), image_width, image_height, 1)
+	test_images = []
+	test_labels = []
 
-train_images, train_labels = shuffle(train_images, train_labels)
+	loadTrainImages(train_images, train_labels)
+	train_images = reshapeArray(train_images)
+	# train_images, train_labels = shuffle(train_images, train_labels)
 
-print("Reshaping complete!")
-print("Starting training...")
+	model = createModel()
 
-model.fit(train_images, train_labels, epochs=50)
+	trainModel(model, train_images, train_labels)
+	test()
+	model.save("./Models/recognizer.h5")
 
-print("Training complete!")
-
-print("Starting testing...")
-
-test_images = []
-test_labels = []
-
-loadImageLibrary('Seat', test_images, 0, test_labels, training_batch_size + 1, 77)
-loadImageLibrary('Piece1', test_images, 1, test_labels, training_batch_size + 1, 77)
-loadImageLibrary('Piece2', test_images, 2, test_labels, training_batch_size + 1, 77)
-
-test_images = np.array(test_images).reshape(len(test_images), image_width, image_height, 1)
-
-# Evaluate the model
-test_loss, test_acc = model.evaluate(test_images, test_labels)
-print('Test accuracy:', test_acc)
-
-model.save("./Models/recognizer.h5")
+main()
