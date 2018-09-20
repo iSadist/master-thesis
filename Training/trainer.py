@@ -29,6 +29,7 @@ def addImage(filename, image_list, label, label_list):
 	image = Image.open(filename)
 	image_list.append(list(image.getdata()))
 	label_list.append(label)
+	print("Complete")
 	return
 
 def reshapeArray(oldArray):
@@ -67,12 +68,12 @@ def trainModel(model, train_data, train_labels):
 	model.fit(train_images, train_labels, epochs=20)
 
 def loadTrainImages(image_list, labels_list):
-	for i in xrange(1,len(image_libraries)):
-		loadImageLibrary(image_libraries[i-1], image_list, i-1, labels_list, 1, training_batch_size)
+	for i in xrange(0,len(image_libraries)):
+		loadImageLibrary(image_libraries[i], image_list, i, labels_list, 1, training_batch_size)
 
 def loadTestImages(image_list, labels_list):
-	for i in xrange(1,len(image_libraries)):
-		loadImageLibrary(image_libraries[i-1], image_list, i-1, labels_list, training_batch_size + 1, 77)
+	for i in xrange(0,len(image_libraries)):
+		loadImageLibrary(image_libraries[i], image_list, i, labels_list, training_batch_size + 1, 77)
 
 def test():
 	print("Start testing...")
