@@ -13,26 +13,50 @@
         <scene sceneID="tXr-a1-R10">
             <objects>
                 <viewController id="BV1-FR-VrT" customClass="ARViewController" customModule="ObjectDetectionInAR" customModuleProvider="target" sceneMemberID="viewController">
-                    <arscnView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="BrB-h1-WRS">
+                    <view key="view" contentMode="scaleToFill" id="J7w-MF-Wz6" customClass="ARSCNView">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <gestureRecognizers/>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="fLv-Cq-h2r" appends="YES" id="2YB-bP-olg"/>
-                        </connections>
-                    </arscnView>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Lz-yn-kVX">
+                                <rect key="frame" x="142.66666666666666" y="658" width="90" height="90"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="90" id="dxE-Eh-Tyk"/>
+                                    <constraint firstAttribute="height" constant="90" id="zs1-5p-eat"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="15"/>
+                                <state key="normal" title="Identify" backgroundImage="blue_circle">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="identifyButtonTapped:" destination="BV1-FR-VrT" eventType="touchUpInside" id="tnj-4n-sUh"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="unknown item" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6T1-Rn-eeT">
+                                <rect key="frame" x="16" y="108" width="343" height="14"/>
+                                <color key="backgroundColor" red="0.41479450464248657" green="0.66528862714767456" blue="0.91081827878952026" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="dKC-5Y-GCf" firstAttribute="trailing" secondItem="6T1-Rn-eeT" secondAttribute="trailing" constant="16" id="9NB-sj-DlW"/>
+                            <constraint firstItem="dKC-5Y-GCf" firstAttribute="bottom" secondItem="3Lz-yn-kVX" secondAttribute="bottom" constant="30" id="BRc-TG-QL9"/>
+                            <constraint firstItem="6T1-Rn-eeT" firstAttribute="top" secondItem="dKC-5Y-GCf" secondAttribute="top" constant="20" id="FbG-qL-UWK"/>
+                            <constraint firstItem="6T1-Rn-eeT" firstAttribute="leading" secondItem="dKC-5Y-GCf" secondAttribute="leading" constant="16" id="VSI-6D-CZs"/>
+                            <constraint firstItem="3Lz-yn-kVX" firstAttribute="centerX" secondItem="dKC-5Y-GCf" secondAttribute="centerX" id="jnD-u8-j14"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="dKC-5Y-GCf"/>
+                    </view>
                     <connections>
-                        <outlet property="sceneView" destination="BrB-h1-WRS" id="5nT-qQ-ynl"/>
+                        <outlet property="recognitionResultLabel" destination="6T1-Rn-eeT" id="rJU-0S-FBc"/>
+                        <outlet property="sceneView" destination="J7w-MF-Wz6" id="tYg-3t-V9p"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="fLv-Cq-h2r">
-                    <connections>
-                        <action selector="screenTapped:" destination="BV1-FR-VrT" id="8rP-Dx-CVd"/>
-                    </connections>
-                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="823" y="40"/>
+            <point key="canvasLocation" x="821.60000000000002" y="39.90147783251232"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="rDH-7z-gek">
@@ -152,4 +176,7 @@
             <point key="canvasLocation" x="-124" y="786.94581280788179"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="blue_circle" width="467" height="469"/>
+    </resources>
 </document>

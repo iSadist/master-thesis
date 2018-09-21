@@ -6,14 +6,12 @@ import Vision
 class ARViewController: UIViewController, ARSCNViewDelegate
 {
     @IBOutlet var sceneView: ARSCNView!
+    @IBOutlet weak var recognitionResultLabel: UILabel!
     
     override var prefersStatusBarHidden: Bool { return true }
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask { return .portrait }
     override var shouldAutorotate: Bool { return false }
     
-    var object: ARFrame?
-    var videoDataOutput: AVCaptureVideoDataOutput?
-    var captureSession: AVCaptureSession?
     let trackingImageURLs: [String] = [] // Images that will be tracked
     
     func makeSphere() -> SCNNode
@@ -72,8 +70,11 @@ class ARViewController: UIViewController, ARSCNViewDelegate
     override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
+    }
+    
+    override func viewDidAppear(_ animated: Bool)
+    {
         loadWorldTrackingConfiguration()
-        captureSession?.startRunning()
     }
     
     override func viewWillDisappear(_ animated: Bool)
@@ -92,7 +93,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate
     
     // MARK: - UI Events
     
-    @IBAction func screenTapped(_ sender: UITapGestureRecognizer)
+    @IBAction func identifyButtonTapped(_ sender: UIButton)
     {
         let snapshot = sceneView.snapshot()
         let converter = ImageConverter()
@@ -100,7 +101,6 @@ class ARViewController: UIViewController, ARSCNViewDelegate
         guard let pixelBuffer = converter.convertImageToPixelBuffer(image: snapshot) else { return }
         _ = predict(pixelBuffer: pixelBuffer)
     }
-    
 
     // MARK: - ARSCNViewDelegate
     
@@ -143,7 +143,17 @@ class ARViewController: UIViewController, ARSCNViewDelegate
 //                let maxNumber = confidenceValues.max()
 //                let index = confidenceValues.index(of: maxNumber!)
                 
-                print(confidenceValues)
+                var labelText = "[ "
+                for value in confidenceValues
+                {
+                    let valueString = String(format: "%.03f", value)
+                    labelText.append(contentsOf: valueString)
+                    labelText.append(contentsOf: " ,")
+                }
+                labelText.removeLast()
+                labelText.append(contentsOf: " ]")
+
+                self.recognitionResultLabel.text = labelText
             }
             
         })
