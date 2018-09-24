@@ -12,8 +12,6 @@ The general interest for AR has undeniably grown in recent years, with games and
 
  But Augmented Reality has not only reached the casual users; the technology has also peaked an interest in several industries. One such project is Fieldbit's Fieldbit Hero \cite{fieldbit}, a platform enabling technicians to get instant AR annotations to their AR devices from an engineer, allowing the technician to get visual instructions while simultaneously  being able to work hands-free. 
 
-
-
 \subsection{Previous studies}
 \label{subsecPrevStud}
 D. Chatzopoulos et al.(2017) describes the basics of Mobile Augmented Reality, its advancements and it's flaws. They estimate that MAR is the most promising field of mobile applications and that it will have a massive impact on how we interact with the real world. However, they also go through some of the current hiccoughs with the technology, such as bandwith limitation and the computing power required. 
@@ -29,7 +27,25 @@ Y LeCun and M.A. Ranzato goes in-depth on the history and progress of deep learn
 
 \subsection{The goal of this project}
 \label{subsecGoal}
-What are we going to do and what do we hope to achieve with this project.
+When working with Augmented Reality it is obviously interesting to know where planes are and how the camera moves in the scene to be able to render virtual object. But usually there is more than one single plane in ones environment. Usually there are other objects in the scene that affects how the virtual objects should be rendered. Sometimes maybe the virtual objects could interact with the real objects to make a more realistic scene. Because of this it can be very interesting to know what those objects actually are.
 
-Our aim was to research and become familiar with these fairly new, but broad, subjects. 
+For example, if you are going to place a virtual furniture in your home it would be good to detect other furnitures in the area so that the virtual object can collide with the real object. This way, they will not intertwine with each other.
+
+% Our master thesis
+Or maybe one would like to give virtual instructions to a user for assembling or constructing a certain product or to do maintenance. It is then important to figure out what 3D objects there are in the scene to be able to render instructions on the right places.
+
+Augmented Reality technology has come a long way, but there are still things missing for making it a genuine experience. In ARKit, for instance, if a virtual object is rendered on top of a plane and a real object come in between the virtual object will still be rendered first. This makes it painfully obvious that the virtual object is just a 2D drawing on the screen.
+
+\begin{figure}[hbtp]
+\begin{center}
+\includegraphics[width = 0.25\textwidth]{./Images/overlapping2.jpg} 
+\caption{Book shelf rendered in a corner. No objects in front so it looks realistic.}
+\includegraphics[width = 0.25\textwidth]{./Images/overlapping1.jpg} 
+\caption{Same book shelf as above but with a lamp in front of it.}
+\end{center}
+\end{figure}
+
+Our goal is to try to combine Augmented Reality with Object detection and Object recognition to see if there is a possibility to create something valuable out of this. This report will investigate both the performance possibilities and the creative possibilities as well as research the current tools and try to push them to their limits.
+
+
 \newpage
