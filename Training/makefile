@@ -17,6 +17,10 @@ generate-data:
 	mkdir Images/ArtificialPiece2/
 	python artificialDataCreatorPiece2.py
 
+	rm -rf Images/ArtificialUnknownObjects/
+	mkdir Images/ArtificialUnknownObjects/
+	python artificialDataCreatorUnknown.py
+
 setup: 
 	make generate-data
 	make train
