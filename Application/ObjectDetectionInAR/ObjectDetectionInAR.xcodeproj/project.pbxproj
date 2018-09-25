@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		592DC1BE213FEF1A00E29665 /* SamplePhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592DC1BD213FEF1A00E29665 /* SamplePhotoViewController.swift */; };
-		594DBBC0214BFC5200275FEC /* Furniture.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 594DBBBF214BFC5200275FEC /* Furniture.mlmodel */; };
+		596864F221591AB100CF02CE /* Furniture.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 596864F121591AB100CF02CE /* Furniture.mlmodel */; };
 		598D526D215149BE00DD307E /* ImageConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598D526C215149BE00DD307E /* ImageConverter.swift */; };
 		599157A121402F4D00B3A8D7 /* ImageProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599157A021402F4D00B3A8D7 /* ImageProcessor.swift */; };
 		E1ED297120BCA23B007DBE66 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1ED297020BCA23B007DBE66 /* AppDelegate.swift */; };
@@ -40,7 +40,7 @@
 
 /* Begin PBXFileReference section */
 		592DC1BD213FEF1A00E29665 /* SamplePhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SamplePhotoViewController.swift; sourceTree = "<group>"; };
-		594DBBBF214BFC5200275FEC /* Furniture.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = Furniture.mlmodel; path = ../../../Training/Models/Furniture.mlmodel; sourceTree = "<group>"; };
+		596864F121591AB100CF02CE /* Furniture.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = Furniture.mlmodel; path = ../../../Training/Models/Furniture.mlmodel; sourceTree = "<group>"; };
 		598D526C215149BE00DD307E /* ImageConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageConverter.swift; sourceTree = "<group>"; };
 		599157A021402F4D00B3A8D7 /* ImageProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProcessor.swift; sourceTree = "<group>"; };
 		E1ED296D20BCA23B007DBE66 /* ObjectDetectionInAR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ObjectDetectionInAR.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -117,7 +117,7 @@
 				E1ED297E20BCA23C007DBE66 /* Info.plist */,
 				599157A021402F4D00B3A8D7 /* ImageProcessor.swift */,
 				598D526C215149BE00DD307E /* ImageConverter.swift */,
-				594DBBBF214BFC5200275FEC /* Furniture.mlmodel */,
+				596864F121591AB100CF02CE /* Furniture.mlmodel */,
 			);
 			path = ObjectDetectionInAR;
 			sourceTree = "<group>";
@@ -275,7 +275,7 @@
 				598D526D215149BE00DD307E /* ImageConverter.swift in Sources */,
 				E1ED297520BCA23B007DBE66 /* ARViewController.swift in Sources */,
 				E1ED297120BCA23B007DBE66 /* AppDelegate.swift in Sources */,
-				594DBBC0214BFC5200275FEC /* Furniture.mlmodel in Sources */,
+				596864F221591AB100CF02CE /* Furniture.mlmodel in Sources */,
 				599157A121402F4D00B3A8D7 /* ImageProcessor.swift in Sources */,
 				592DC1BE213FEF1A00E29665 /* SamplePhotoViewController.swift in Sources */,
 			);
