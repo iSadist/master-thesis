@@ -39,8 +39,27 @@ Each story was estimated with a size which was a number in the fibonacci sequenc
 \textbf{Close relationship with project owner} \\
 We worked very close to the project owner by sitting on desks right across him. Whenever we had a questing we could simply raise our head and ask it.
 
-\subsection{Matlab prototype}
+\subsection{Testing Object Scanning with ARKit2}
+Apple's ARKit2 has a feature where it can detect scanned 3D objects. For scanning, they have developed an app that can be downloaded from their website. \cite{ARScanning}
+After the scanning is complete the app lets you export the model to then include it in your ARKit2 project. Once in the project it is simply imported into the ARWorldTrackingConfiguration like shown below.
 
+\lstinputlisting[language=swift,firstline=63,lastline=71]{../../Application/ObjectDetectionInAR/ObjectDetectionInAR/ARViewController.swift}
+
+\begin{figure}[hbtp]
+\begin{center}
+\includegraphics[width = 0.32\textwidth]{./Images/3dscanning1.png}
+\includegraphics[width = 0.32\textwidth]{./Images/3dscanning2.png}
+\includegraphics[width = 0.32\textwidth]{./Images/3dscanning3.png} 
+\caption{3D Scanning using Apple's app. On the right, the bounding box is defined so that no reference points from other objects are included. In the middle, the object is scanned by aiming the camera around the object at all angles. On the right the created model is tested. In this case, the object is detected after 0.4 seconds.}
+\end{center}
+\end{figure}
+
+Once imported into our project we were able to test the performance of recognizing and tracking three pieces of our furniture.
+Sadly, this method came up short for our purpose. When testing live in our app the time for detection were much longer ( over 1 second ) which made tracking them difficult. The tracking wasn't smooth but rather choppy. Many times, the object wasn't detected at all. This was mainly due to our objects being a little big to fit the screen while being close with the camera but also that the object had a lot of empty space within its bounding box.
+
+The detection worked best while being in the same environment, static with the same kind of lightning conditions, but fell short when the object was moving or being held. Therefore, since the user is going to hold the pieces by hand and moving them around, this method cannot be used for our purpose.
+
+\subsection{Matlab prototype for Object Detection}
 
 \subsection{Tensorflow and Machine Learning}
 
