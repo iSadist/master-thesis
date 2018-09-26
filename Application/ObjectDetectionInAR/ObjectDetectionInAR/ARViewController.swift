@@ -170,24 +170,18 @@ class ARViewController: UIViewController, ARSCNViewDelegate
         guard let model = try? VNCoreMLModel(for: Furniture().model) else { return 99 }
         let request = VNCoreMLRequest(model: model, completionHandler: { (finishedReq, err) in
             
-            if let result = finishedReq.results as? [VNCoreMLFeatureValueObservation]
+            if let observations = finishedReq.results as? [VNClassificationObservation]
             {
-                let observations = result.first?.featureValue.multiArrayValue!
-                let confidenceValues: [Double] = [observations![0], observations![1], observations![2]] as! [Double]
-                
-//                let maxNumber = confidenceValues.max()
-//                let index = confidenceValues.index(of: maxNumber!)
-                
                 var labelText = "[ "
-                for value in confidenceValues
+                for value in observations
                 {
-                    let valueString = String(format: "%.03f", value)
+                    labelText.append(contentsOf: "\(value.identifier): ")
+                    let valueString = String(format: "%.03f", value.confidence)
                     labelText.append(contentsOf: valueString)
                     labelText.append(contentsOf: " ,")
                 }
                 labelText.removeLast()
                 labelText.append(contentsOf: " ]")
-
                 self.recognitionResultLabel.text = labelText
             }
             
