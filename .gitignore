@@ -15,6 +15,9 @@ Training/Images/ArtificialUnknownObjects/*
 *.ascii
 *.mlmodel
 
+# Python
+*.pyc
+
 # Latex
 Documents/Report/main.aux
 Documents/Report/main.pdf
