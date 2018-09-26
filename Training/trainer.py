@@ -31,12 +31,10 @@ def loadImageLibrary(library_name, image_list, label, label_list, start, end):
 	print("Done with " + library_name + "!")
 
 def addImage(filename, image_list, label, label_list):
-	#print("Adding image " + filename)
 	image = Image.open(filename)
 	image_array = np.asarray(image)
 	image_list.append(image_array)
 	label_list.append(label)
-	#print("Complete")
 	return
 
 def reshapeArray(oldArray):
@@ -81,7 +79,7 @@ def trainModel(model, train_data, train_labels):
 	x_validation = train_data[partial_train_size:]
 	y_validation = train_labels[partial_train_size:]
 
-	history = model.fit(train_data, train_labels, epochs=100, batch_size=238, validation_data=(x_validation, y_validation), verbose=1)
+	history = model.fit(train_data, train_labels, epochs=100, batch_size=476, validation_data=(x_validation, y_validation), verbose=1)
 	return history
 
 def loadTrainImages(image_list, labels_list):
@@ -106,7 +104,7 @@ def main():
 
 	loadTrainImages(train_images, train_labels)
 	train_images = reshapeArray(train_images)
-	# train_images, train_labels = shuffle(train_images, train_labels)
+	train_images, train_labels = shuffle(train_images, train_labels)
 
 	model = createModel()
 	history = trainModel(model, train_images, train_labels)
