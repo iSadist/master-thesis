@@ -7,8 +7,8 @@ from sklearn.utils import shuffle
 
 import plotter
 
-image_width = 800
-image_height = 600
+image_width = 200
+image_height = 150
 number_of_color_channels = 3
 
 training_share = 0.75
@@ -45,11 +45,11 @@ def reshapeArray(oldArray):
 def createModel():
 	# Create the neural network
 	model = keras.Sequential([
-		keras.layers.Conv2D(16, kernel_size=(4, 4), strides=(4, 4), input_shape=(image_height, image_width, number_of_color_channels)),
+		keras.layers.Conv2D(8, kernel_size=(8, 8), strides=(2, 2), input_shape=(image_height, image_width, number_of_color_channels)),
 		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-		keras.layers.Conv2D(16, kernel_size=(4,4), strides=(4, 4)),
+		keras.layers.Conv2D(8, kernel_size=(6,6), strides=(2, 2)),
 		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-		keras.layers.Conv2D(16, kernel_size=(2,2), strides=(2, 2)),
+		keras.layers.Conv2D(8, kernel_size=(4,4), strides=(2, 2)),
 		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
 		keras.layers.Flatten(),
 	    keras.layers.Dense(16, activation=tf.nn.relu),
@@ -79,7 +79,7 @@ def trainModel(model, train_data, train_labels):
 	x_validation = train_data[partial_train_size:]
 	y_validation = train_labels[partial_train_size:]
 
-	history = model.fit(train_data, train_labels, epochs=100, batch_size=476, validation_data=(x_validation, y_validation), verbose=1)
+	history = model.fit(train_data, train_labels, epochs=65, batch_size=476, validation_data=(x_validation, y_validation), verbose=1)
 	return history
 
 def loadTrainImages(image_list, labels_list):

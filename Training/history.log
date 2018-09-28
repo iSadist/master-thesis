@@ -1,0 +1,34 @@
+Model History:
+
+[
+	Epochs: 100
+	Batch Size: 476
+	Training share: 75%
+
+	Training Accuracy: 89.08%
+	Evaluation Accuracy: 96.85%
+
+	Test Accuracy: 48%
+
+	model = keras.Sequential([
+			keras.layers.Conv2D(8, kernel_size=(8, 8), strides=(2, 2), input_shape=(image_height, image_width, number_of_color_channels)),
+			keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
+			keras.layers.Conv2D(8, kernel_size=(6,6), strides=(2, 2)),
+			keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
+			keras.layers.Conv2D(8, kernel_size=(4,4), strides=(2, 2)),
+			keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
+			keras.layers.Flatten(),
+		    keras.layers.Dense(16, activation=tf.nn.relu),
+		    keras.layers.Dropout(0.1),
+		    keras.layers.Dense(16, activation=tf.nn.relu),
+		    keras.layers.Dropout(0.1),
+		    keras.layers.Dense(16, activation=tf.nn.relu),
+		    keras.layers.Dropout(0.1),
+		    keras.layers.Dense(4, activation=tf.nn.softmax) # The number of nodes must be the same as the number of possibilities
+		])
+
+		model.compile(optimizer=keras.optimizers.Adam(),
+		              loss='sparse_categorical_crossentropy',
+		              metrics=['accuracy'])
+
+]

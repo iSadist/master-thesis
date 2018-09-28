@@ -16,6 +16,5 @@ def graphTrainingData(history):
 		plt.title('Training and validation accuracy')
 		plt.xlabel('Epochs')
 		plt.ylabel('Accuracy')
-		plt.legend()
 
 		plt.show()
