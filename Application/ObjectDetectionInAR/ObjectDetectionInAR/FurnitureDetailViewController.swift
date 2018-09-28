@@ -1,11 +1,3 @@
-//
-//  FurnitureDetailViewController.swift
-//  ObjectDetectionInAR
-//
-//  Created by Jan Svensson on 2018-09-28.
-//  Copyright © 2018 Jan Svensson. All rights reserved.
-//
-
 import UIKit
 
 class FurnitureDetailViewController: UIViewController
@@ -22,6 +14,7 @@ class FurnitureDetailViewController: UIViewController
         iconView.image = furniture?.icon
         idLabel.text = furniture?.id
         descriptionTextView.text = furniture?.description
+        self.navigationItem.title = furniture?.name
     }
 
     @IBAction func assembleButtonTapped(_ sender: UIButton)

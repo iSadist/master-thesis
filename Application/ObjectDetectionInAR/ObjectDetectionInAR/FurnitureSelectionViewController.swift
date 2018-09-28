@@ -1,29 +1,27 @@
-//
-//  FurnitureSelectionViewController.swift
-//  ObjectDetectionInAR
-//
-//  Created by Jan Svensson on 2018-09-28.
-//  Copyright © 2018 Jan Svensson. All rights reserved.
-//
-
 import UIKit
 
-class FurnitureSelectionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource
+class FurnitureSelectionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate
 {
     
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     var collection: [Furniture]?
+    var filteredCollection: [Furniture]?
 
     override func viewDidLoad()
     {
         super.viewDidLoad()
         collectionView.delegate = self
         collectionView.dataSource = self
+        searchBar.delegate = self
         
         let nolmyra = Furniture(name: "Nolmyra", id: "102.335.32", description: "Fåtöljen är lätt och därför enkel att flytta när du vill tvätta golvet eller möblera om.", icon: UIImage(named: "nolmyra")!)
         collection = [nolmyra]
+        filteredCollection = collection
     }
+    
+    // MARK: Collection View Delegate
     
     func numberOfSections(in collectionView: UICollectionView) -> Int
     {
@@ -32,7 +30,7 @@ class FurnitureSelectionViewController: UIViewController, UICollectionViewDelega
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
-        return collection!.count
+        return filteredCollection!.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
@@ -41,8 +39,8 @@ class FurnitureSelectionViewController: UIViewController, UICollectionViewDelega
         
         if let furnitureCell = cell as? FurnitureCollectionViewCell
         {
-            furnitureCell.title.text = collection![indexPath.row].name
-            furnitureCell.icon.image = collection![indexPath.row].icon
+            furnitureCell.title.text = filteredCollection![indexPath.row].name
+            furnitureCell.icon.image = filteredCollection![indexPath.row].icon
             cell = furnitureCell
         }
         
@@ -52,6 +50,25 @@ class FurnitureSelectionViewController: UIViewController, UICollectionViewDelega
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
         performSegue(withIdentifier: "ShowFurnitureDetailSegue", sender: nil)
+    }
+    
+    // MARK: - Search Bar Delegate
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        let searchText = searchBar.text
+        
+        if searchText!.isEmpty
+        {
+            filteredCollection = collection
+        }
+        else
+        {
+            filteredCollection = collection?.filter({ (item) in
+                return item.name.range(of: searchText!) != nil
+            })
+        }
+        
+        collectionView.reloadData()
     }
 
     // MARK: - Navigation
