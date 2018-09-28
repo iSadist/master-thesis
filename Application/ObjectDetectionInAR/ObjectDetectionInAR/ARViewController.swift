@@ -167,7 +167,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate
     
     func predict(pixelBuffer: CVPixelBuffer) -> Double
     {
-        guard let model = try? VNCoreMLModel(for: Furniture().model) else { return 99 }
+        guard let model = try? VNCoreMLModel(for: FurnitureNet().model) else { return 99 }
         let request = VNCoreMLRequest(model: model, completionHandler: { (finishedReq, err) in
             
             if let observations = finishedReq.results as? [VNClassificationObservation]

@@ -8,9 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		592DC1BE213FEF1A00E29665 /* SamplePhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592DC1BD213FEF1A00E29665 /* SamplePhotoViewController.swift */; };
-		596864F221591AB100CF02CE /* Furniture.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 596864F121591AB100CF02CE /* Furniture.mlmodel */; };
+		596864F221591AB100CF02CE /* FurnitureNet.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 596864F121591AB100CF02CE /* FurnitureNet.mlmodel */; };
 		598D526D215149BE00DD307E /* ImageConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598D526C215149BE00DD307E /* ImageConverter.swift */; };
 		599157A121402F4D00B3A8D7 /* ImageProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599157A021402F4D00B3A8D7 /* ImageProcessor.swift */; };
+		59F84AD3215E1649003FB510 /* FurnitureSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F84AD2215E1649003FB510 /* FurnitureSelectionViewController.swift */; };
+		59F84AD5215E19ED003FB510 /* FurnitureCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F84AD4215E19ED003FB510 /* FurnitureCollectionViewCell.swift */; };
+		59F84AD7215E1A5D003FB510 /* Furniture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F84AD6215E1A5D003FB510 /* Furniture.swift */; };
+		59F84AD9215E1E50003FB510 /* FurnitureDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F84AD8215E1E50003FB510 /* FurnitureDetailViewController.swift */; };
 		E1ED297120BCA23B007DBE66 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1ED297020BCA23B007DBE66 /* AppDelegate.swift */; };
 		E1ED297320BCA23B007DBE66 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = E1ED297220BCA23B007DBE66 /* art.scnassets */; };
 		E1ED297520BCA23B007DBE66 /* ARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1ED297420BCA23B007DBE66 /* ARViewController.swift */; };
@@ -40,9 +44,13 @@
 
 /* Begin PBXFileReference section */
 		592DC1BD213FEF1A00E29665 /* SamplePhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SamplePhotoViewController.swift; sourceTree = "<group>"; };
-		596864F121591AB100CF02CE /* Furniture.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = Furniture.mlmodel; path = ../../../Training/Models/Furniture.mlmodel; sourceTree = "<group>"; };
+		596864F121591AB100CF02CE /* FurnitureNet.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = FurnitureNet.mlmodel; path = ../../../Training/Models/FurnitureNet.mlmodel; sourceTree = "<group>"; };
 		598D526C215149BE00DD307E /* ImageConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageConverter.swift; sourceTree = "<group>"; };
 		599157A021402F4D00B3A8D7 /* ImageProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProcessor.swift; sourceTree = "<group>"; };
+		59F84AD2215E1649003FB510 /* FurnitureSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FurnitureSelectionViewController.swift; sourceTree = "<group>"; };
+		59F84AD4215E19ED003FB510 /* FurnitureCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FurnitureCollectionViewCell.swift; sourceTree = "<group>"; };
+		59F84AD6215E1A5D003FB510 /* Furniture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Furniture.swift; sourceTree = "<group>"; };
+		59F84AD8215E1E50003FB510 /* FurnitureDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FurnitureDetailViewController.swift; sourceTree = "<group>"; };
 		E1ED296D20BCA23B007DBE66 /* ObjectDetectionInAR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ObjectDetectionInAR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1ED297020BCA23B007DBE66 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E1ED297220BCA23B007DBE66 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
@@ -117,7 +125,11 @@
 				E1ED297E20BCA23C007DBE66 /* Info.plist */,
 				599157A021402F4D00B3A8D7 /* ImageProcessor.swift */,
 				598D526C215149BE00DD307E /* ImageConverter.swift */,
-				596864F121591AB100CF02CE /* Furniture.mlmodel */,
+				596864F121591AB100CF02CE /* FurnitureNet.mlmodel */,
+				59F84AD2215E1649003FB510 /* FurnitureSelectionViewController.swift */,
+				59F84AD8215E1E50003FB510 /* FurnitureDetailViewController.swift */,
+				59F84AD4215E19ED003FB510 /* FurnitureCollectionViewCell.swift */,
+				59F84AD6215E1A5D003FB510 /* Furniture.swift */,
 			);
 			path = ObjectDetectionInAR;
 			sourceTree = "<group>";
@@ -275,9 +287,13 @@
 				598D526D215149BE00DD307E /* ImageConverter.swift in Sources */,
 				E1ED297520BCA23B007DBE66 /* ARViewController.swift in Sources */,
 				E1ED297120BCA23B007DBE66 /* AppDelegate.swift in Sources */,
-				596864F221591AB100CF02CE /* Furniture.mlmodel in Sources */,
+				596864F221591AB100CF02CE /* FurnitureNet.mlmodel in Sources */,
+				59F84AD7215E1A5D003FB510 /* Furniture.swift in Sources */,
 				599157A121402F4D00B3A8D7 /* ImageProcessor.swift in Sources */,
+				59F84AD5215E19ED003FB510 /* FurnitureCollectionViewCell.swift in Sources */,
 				592DC1BE213FEF1A00E29665 /* SamplePhotoViewController.swift in Sources */,
+				59F84AD9215E1E50003FB510 /* FurnitureDetailViewController.swift in Sources */,
+				59F84AD3215E1649003FB510 /* FurnitureSelectionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
