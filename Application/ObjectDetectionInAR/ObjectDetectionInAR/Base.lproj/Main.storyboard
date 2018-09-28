@@ -138,6 +138,44 @@
             </objects>
             <point key="canvasLocation" x="244" y="39.90147783251232"/>
         </scene>
+        <!--Furniture Inspecter View Controller-->
+        <scene sceneID="qnJ-9D-R7a">
+            <objects>
+                <viewController id="vgA-uN-EPa" customClass="FurnitureInspecterViewController" customModule="ObjectDetectionInAR" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="SRJ-Jv-kfM">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <sceneKitView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cqt-NH-oKT">
+                                <rect key="frame" x="0.0" y="88" width="375" height="724"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="f6V-wm-uy1" appends="YES" id="6FI-00-gUN"/>
+                                </connections>
+                            </sceneKitView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Cqt-NH-oKT" firstAttribute="top" secondItem="Uwb-Xs-sLx" secondAttribute="top" id="QsY-vg-yVk"/>
+                            <constraint firstItem="Cqt-NH-oKT" firstAttribute="leading" secondItem="SRJ-Jv-kfM" secondAttribute="leading" id="RtN-XK-bM5"/>
+                            <constraint firstAttribute="trailing" secondItem="Cqt-NH-oKT" secondAttribute="trailing" id="iag-sg-Hh1"/>
+                            <constraint firstAttribute="bottom" secondItem="Cqt-NH-oKT" secondAttribute="bottom" id="wLK-a5-Nsj"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Uwb-Xs-sLx"/>
+                    </view>
+                    <connections>
+                        <outlet property="sceneView" destination="Cqt-NH-oKT" id="vLE-jD-XdK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VJu-cx-hzF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="f6V-wm-uy1">
+                    <connections>
+                        <action selector="panGesture:" destination="vgA-uN-EPa" id="na8-pJ-rqG"/>
+                    </connections>
+                </panGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="1277.5999999999999" y="-729.31034482758628"/>
+        </scene>
         <!--Sample Photo View Controller-->
         <scene sceneID="TTb-O3-iJ2">
             <objects>
@@ -281,7 +319,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Dso-KU-2tY"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="Zjw-98-3tE"/>
+                    <navigationItem key="navigationItem" title="Title" id="Zjw-98-3tE">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="3drotate" id="OFe-Gm-s5N">
+                            <connections>
+                                <segue destination="vgA-uN-EPa" kind="show" id="GCD-Xx-Q4N"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="descriptionTextView" destination="wKl-Jm-yaw" id="47N-bI-MFN"/>
                         <outlet property="iconView" destination="mOd-th-49W" id="zMB-ak-ZXN"/>
@@ -294,6 +338,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="3drotate" width="50" height="50"/>
         <image name="blue_circle" width="467" height="469"/>
     </resources>
 </document>
