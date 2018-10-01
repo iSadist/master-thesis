@@ -70,6 +70,16 @@ class FurnitureSelectionViewController: UIViewController, UICollectionViewDelega
         
         collectionView.reloadData()
     }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar)
+    {
+        searchBar.resignFirstResponder()
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar)
+    {
+        searchBar.resignFirstResponder()
+    }
 
     // MARK: - Navigation
 
