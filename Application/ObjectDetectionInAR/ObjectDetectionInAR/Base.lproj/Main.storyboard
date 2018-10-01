@@ -127,7 +127,14 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="kyw-7r-NJ0"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Select" id="UKj-Gi-JbI"/>
+                    <navigationItem key="navigationItem" title="Select" id="UKj-Gi-JbI">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="barcode-scanner" id="8K9-3T-hYU">
+                            <inset key="largeContentSizeImageInsets" minX="0.0" minY="20" maxX="0.0" maxY="0.0"/>
+                            <connections>
+                                <segue destination="Kfq-UC-EQp" kind="show" id="DOB-vy-y8w"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="5iX-24-qc9" id="w9f-mK-qIz"/>
                         <outlet property="searchBar" destination="qZO-4D-mn9" id="YIK-2G-Y3u"/>
@@ -137,6 +144,39 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3kN-ae-kp1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="244" y="39.90147783251232"/>
+        </scene>
+        <!--Barcode scanner-->
+        <scene sceneID="CUs-Va-IUC">
+            <objects>
+                <viewController id="Kfq-UC-EQp" customClass="BarcodeScannerViewController" customModule="ObjectDetectionInAR" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cXJ-h0-MDd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HmP-pH-MGu">
+                                <rect key="frame" x="0.0" y="88" width="375" height="724"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="HmP-pH-MGu" firstAttribute="trailing" secondItem="rag-cd-4r8" secondAttribute="trailing" id="2sP-FQ-0lE"/>
+                            <constraint firstItem="HmP-pH-MGu" firstAttribute="top" secondItem="rag-cd-4r8" secondAttribute="top" id="3yp-ws-bpS"/>
+                            <constraint firstItem="HmP-pH-MGu" firstAttribute="leading" secondItem="rag-cd-4r8" secondAttribute="leading" id="aDF-bm-wg8"/>
+                            <constraint firstItem="HmP-pH-MGu" firstAttribute="bottom" secondItem="cXJ-h0-MDd" secondAttribute="bottom" id="xAP-6N-bBx"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="rag-cd-4r8"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Barcode scanner" id="HGI-Yu-pNX"/>
+                    <connections>
+                        <outlet property="cameraView" destination="HmP-pH-MGu" id="cYW-Ff-iQT"/>
+                        <segue destination="Ow5-nB-qLA" kind="unwind" identifier="unwindToFurnitureSelection" unwindAction="unwindToFurnitureSelectionWithSegue:" id="Yh2-ZX-m4X"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Fvj-zE-r0o" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Ow5-nB-qLA" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="244" y="-729.31034482758628"/>
         </scene>
         <!--Furniture Inspecter View Controller-->
         <scene sceneID="qnJ-9D-R7a">
@@ -151,6 +191,7 @@
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="f6V-wm-uy1" appends="YES" id="6FI-00-gUN"/>
+                                    <outletCollection property="gestureRecognizers" destination="KaD-Id-hgz" appends="YES" id="mWu-c2-e77"/>
                                 </connections>
                             </sceneKitView>
                         </subviews>
@@ -168,11 +209,16 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VJu-cx-hzF" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <panGestureRecognizer minimumNumberOfTouches="1" id="f6V-wm-uy1">
+                <panGestureRecognizer minimumNumberOfTouches="1" maximumNumberOfTouches="1" id="f6V-wm-uy1">
                     <connections>
                         <action selector="panGesture:" destination="vgA-uN-EPa" id="na8-pJ-rqG"/>
                     </connections>
                 </panGestureRecognizer>
+                <pinchGestureRecognizer id="KaD-Id-hgz">
+                    <connections>
+                        <action selector="pinchGesture:" destination="vgA-uN-EPa" id="DJK-1p-o7J"/>
+                    </connections>
+                </pinchGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1277.5999999999999" y="-729.31034482758628"/>
         </scene>
@@ -339,6 +385,7 @@
     </scenes>
     <resources>
         <image name="3drotate" width="50" height="50"/>
+        <image name="barcode-scanner" width="50" height="50"/>
         <image name="blue_circle" width="467" height="469"/>
     </resources>
 </document>

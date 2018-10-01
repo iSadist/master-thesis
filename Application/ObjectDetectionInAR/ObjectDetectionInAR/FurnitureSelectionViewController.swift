@@ -91,5 +91,13 @@ class FurnitureSelectionViewController: UIViewController, UICollectionViewDelega
             detailViewController.furniture = collection?.first
         }
     }
+    
+    @IBAction func unwindToFurnitureSelection(segue: UIStoryboardSegue)
+    {
+        if let previousViewController = segue.source as? BarcodeScannerViewController
+        {
+            searchBar.text = previousViewController.payloadString
+        }
+    }
 
 }
