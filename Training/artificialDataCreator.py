@@ -4,15 +4,15 @@ image_width = 200
 image_height = 150
 
 def create(name, number_of_images):
-	for x in xrange(1,number_of_images):
+	for x in range(1,number_of_images):
 		image = Image.open('./Images/' + name + '/image_' + str(x) + '.jpg')
 		image = image.resize((image_width,image_height),Image.LANCZOS)
 
-		image_90 = image.transpose(Image.ROTATE_90).resize((image_width,image_height),Image.LANCZOS)
-		image_180 = image.transpose(Image.ROTATE_180)
-		image_270 = image.transpose(Image.ROTATE_270).resize((image_width,image_height),Image.LANCZOS)
+		image_90 = image.rotate(90)
+		image_180 = image.rotate(180)
+		image_270 = image.rotate(270)
 		artificalImages = []
-		
+
 		artificalImages.append(image)
 		artificalImages.append(image_90)
 		artificalImages.append(image_180)

@@ -22,8 +22,8 @@ image_libraries = ["UnknownObjects", "Seat", "Piece1", "Piece2"]
 
 def loadImageLibrary(library_name, image_list, label, label_list, start, end):
 	print("Saving images " + library_name + "...")
-	for num in xrange(start, end):
-		for artificalNum in xrange(1,18):
+	for num in range(start, end):
+		for artificalNum in range(1,18):
 			filename = './Images/Artificial' + library_name + '/image_' + str(num) + '-' + str(artificalNum) + '.jpg'
 			addImage(filename, image_list, label, label_list)
 			pass
@@ -87,11 +87,11 @@ def trainModel(model, train_data, train_labels):
 	return history
 
 def loadTrainImages(image_list, labels_list):
-	for i in xrange(0,len(image_libraries)):
+	for i in range(0,len(image_libraries)):
 		loadImageLibrary(image_libraries[i], image_list, i, labels_list, 1, training_batch_size)
 
 def loadTestImages(image_list, labels_list):
-	for i in xrange(0,len(image_libraries)):
+	for i in range(0,len(image_libraries)):
 		loadImageLibrary(image_libraries[i], image_list, i, labels_list, training_batch_size + 1, number_of_total_images)
 
 def test(model, test_images,test_labels):
