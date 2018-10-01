@@ -307,6 +307,7 @@ Model History:
 	              metrics=['accuracy'])
 ]
 
+[
 Epochs: 100
 Batch Size: 300
 Training share: 75%
@@ -331,4 +332,38 @@ model = keras.Sequential([
     keras.layers.Dropout(0.1),
     keras.layers.Dense(4, activation=tf.nn.softmax) # The number of nodes must be the same as the number of possibilities
 ])
+model.compile(optimizer=keras.optimizers.Adam(),
+							loss='sparse_categorical_crossentropy',
+							metrics=['accuracy'])
+]
+
+[
+Epochs: 65
+Batch Size: 476
+Training share: 75%
+Validation share: 25%%
+
+Training Accuracy: 85.27%
+Evaluation Accuracy: 89.29%
+
+Test Accuracy: 41.25%
+
+	keras.layers.Conv2D(8, kernel_size=(9, 9), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
+	keras.layers.MaxPool2D(pool_size=(4, 4), padding="valid"),
+	keras.layers.Conv2D(8, kernel_size=(6,6), strides=(1, 1)),
+	keras.layers.MaxPool2D(pool_size=(4, 4), padding="valid"),
+	keras.layers.Conv2D(8, kernel_size=(4,4), strides=(1, 1)),
+	keras.layers.Flatten(),
+	keras.layers.Dense(32, activation=tf.nn.relu),
+	keras.layers.Dropout(0.1),
+	keras.layers.Dense(32, activation=tf.nn.relu),
+	keras.layers.Dropout(0.1),
+	keras.layers.Dense(16, activation=tf.nn.relu),
+	keras.layers.Dropout(0.1),
+	keras.layers.Dense(16, activation=tf.nn.relu),
+	keras.layers.Dense(4, activation=tf.nn.softmax) # The number of nodes must be the same as the number of possibilities
+])
+model.compile(optimizer=keras.optimizers.Adam(),
+							loss='sparse_categorical_crossentropy',
+							metrics=['accuracy'])
 ]
