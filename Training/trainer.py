@@ -83,7 +83,7 @@ def trainModel(model, train_data, train_labels):
 	x_validation = train_data[partial_train_size:]
 	y_validation = train_labels[partial_train_size:]
 
-	history = model.fit(train_data, train_labels, epochs=100, batch_size=476, validation_data=(x_validation, y_validation), verbose=1)
+	history = model.fit(train_data, train_labels, epochs=150, batch_size=476, validation_data=(x_validation, y_validation), verbose=1)
 	return history
 
 def loadTrainImages(image_list, labels_list):
