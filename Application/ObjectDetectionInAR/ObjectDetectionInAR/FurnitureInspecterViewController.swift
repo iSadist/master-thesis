@@ -7,12 +7,24 @@ class FurnitureInspecterViewController: UIViewController
     var cameraConfiguration: SCNCameraControlConfiguration?
     var modelNode: SCNNode?
     var cameraNode: SCNNode?
+    var furniture: Furniture?
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        let scene = SCNScene(named: "art.scnassets/ship.scn")!
-        modelNode = scene.rootNode.childNode(withName: "ship", recursively: false)?.childNodes.first
+        var scene: SCNScene
+        
+        if let furnitureName = furniture?.name
+        {
+            scene = SCNScene(named: "art.scnassets/\(furnitureName).scn")!
+            modelNode = scene.rootNode.childNode(withName: furnitureName, recursively: false)
+        }
+        else
+        {
+            scene = SCNScene(named: "art.scnassets/ship.scn")!
+            modelNode = scene.rootNode.childNode(withName: "ship", recursively: false)?.childNodes.first
+        }
+        
         cameraNode = scene.rootNode.childNode(withName: "camera", recursively: false)
         cameraNode?.constraints = [SCNLookAtConstraint(target: modelNode)]
         sceneView.scene = scene

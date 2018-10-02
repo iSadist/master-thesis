@@ -8,6 +8,7 @@ class FurnitureSelectionViewController: UIViewController, UICollectionViewDelega
     
     var collection: [Furniture]?
     var filteredCollection: [Furniture]?
+    var selectedFurniture: Furniture?
 
     override func viewDidLoad()
     {
@@ -48,6 +49,7 @@ class FurnitureSelectionViewController: UIViewController, UICollectionViewDelega
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
+        selectedFurniture = filteredCollection![indexPath.row]
         performSegue(withIdentifier: "ShowFurnitureDetailSegue", sender: nil)
     }
     
@@ -87,7 +89,7 @@ class FurnitureSelectionViewController: UIViewController, UICollectionViewDelega
     {
         if let detailViewController = segue.destination as? FurnitureDetailViewController
         {
-            detailViewController.furniture = collection?.first
+            detailViewController.furniture = selectedFurniture
         }
     }
     
