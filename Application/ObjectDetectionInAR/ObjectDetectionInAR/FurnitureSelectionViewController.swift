@@ -64,7 +64,7 @@ class FurnitureSelectionViewController: UIViewController, UICollectionViewDelega
         else
         {
             filteredCollection = collection?.filter({ (item) in
-                return item.name.range(of: searchText!) != nil
+                return item.name.range(of: searchText!) != nil || searchText! == item.id
             })
         }
         
@@ -96,7 +96,15 @@ class FurnitureSelectionViewController: UIViewController, UICollectionViewDelega
     {
         if let previousViewController = segue.source as? BarcodeScannerViewController
         {
-            searchBar.text = previousViewController.payloadString
+            guard var barcodeString = previousViewController.payloadString else { return }
+            
+            let lowerBound = String.Index.init(encodedOffset: 0)
+            let upperBound = String.Index.init(encodedOffset: 10)
+            
+            barcodeString.insert(".", at: String.Index.init(encodedOffset: 3))
+            barcodeString.insert(".", at: String.Index.init(encodedOffset: 7))
+            searchBar.text = String(barcodeString[lowerBound..<upperBound])
+            searchBar.delegate?.searchBar!(searchBar, textDidChange: searchBar.text!)
         }
     }
 

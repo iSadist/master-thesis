@@ -222,69 +222,6 @@
             </objects>
             <point key="canvasLocation" x="1277.5999999999999" y="-729.31034482758628"/>
         </scene>
-        <!--Sample Photo View Controller-->
-        <scene sceneID="TTb-O3-iJ2">
-            <objects>
-                <viewController id="e6V-Cb-ssg" customClass="SamplePhotoViewController" customModule="ObjectDetectionInAR" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="M11-jh-aIt">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="evj-a8-wRP">
-                                <rect key="frame" x="0.0" y="44" width="375" height="768"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Device cannot take photos" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G8p-SR-HzT">
-                                        <rect key="frame" x="92" y="205" width="230" height="24"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <color key="textColor" red="0.40888115284974091" green="0.40888115284974091" blue="0.40888115284974091" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2qG-Dr-WMK">
-                                <rect key="frame" x="147" y="752" width="81" height="30"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Take photo"/>
-                                <connections>
-                                    <action selector="captureButtonPressed:" destination="e6V-Cb-ssg" eventType="touchDown" id="1Sv-oM-b1E"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="evj-a8-wRP" firstAttribute="leading" secondItem="lGF-d1-6lB" secondAttribute="leading" id="0ky-04-xwO"/>
-                            <constraint firstAttribute="bottom" secondItem="evj-a8-wRP" secondAttribute="bottom" id="KZb-ef-6c6">
-                                <variation key="heightClass=regular" constant="0.0"/>
-                            </constraint>
-                            <constraint firstItem="lGF-d1-6lB" firstAttribute="trailing" secondItem="evj-a8-wRP" secondAttribute="trailing" id="Tf9-mk-QHI"/>
-                            <constraint firstItem="2qG-Dr-WMK" firstAttribute="top" secondItem="evj-a8-wRP" secondAttribute="bottom" constant="-60" id="aRU-P5-s7X"/>
-                            <constraint firstItem="2qG-Dr-WMK" firstAttribute="centerX" secondItem="lGF-d1-6lB" secondAttribute="centerX" id="e5n-hj-kXb"/>
-                            <constraint firstItem="evj-a8-wRP" firstAttribute="top" secondItem="lGF-d1-6lB" secondAttribute="top" id="kLZ-bL-CmH"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="lGF-d1-6lB"/>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="KZb-ef-6c6"/>
-                            </mask>
-                        </variation>
-                        <variation key="heightClass=regular-widthClass=compact">
-                            <mask key="constraints">
-                                <include reference="KZb-ef-6c6"/>
-                            </mask>
-                        </variation>
-                    </view>
-                    <connections>
-                        <outlet property="ErrorLabel" destination="G8p-SR-HzT" id="Ft3-H4-Cpa"/>
-                        <outlet property="cameraOutputView" destination="evj-a8-wRP" id="mgb-Ww-1rP"/>
-                        <outlet property="captureButton" destination="2qG-Dr-WMK" id="cl4-3C-bkB"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="5wS-JU-aGM" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2449" y="-729"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="fff-U5-Dfh">
             <objects>
