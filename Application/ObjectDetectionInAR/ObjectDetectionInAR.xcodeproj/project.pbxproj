@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		592DC1BE213FEF1A00E29665 /* SamplePhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592DC1BD213FEF1A00E29665 /* SamplePhotoViewController.swift */; };
+		59652B12216360BD00B0CC1A /* GeometryFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59652B11216360BD00B0CC1A /* GeometryFactory.swift */; };
 		596864F221591AB100CF02CE /* FurnitureNet.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 596864F121591AB100CF02CE /* FurnitureNet.mlmodel */; };
 		598D526D215149BE00DD307E /* ImageConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598D526C215149BE00DD307E /* ImageConverter.swift */; };
 		599157A121402F4D00B3A8D7 /* ImageProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599157A021402F4D00B3A8D7 /* ImageProcessor.swift */; };
@@ -47,6 +48,7 @@
 
 /* Begin PBXFileReference section */
 		592DC1BD213FEF1A00E29665 /* SamplePhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SamplePhotoViewController.swift; sourceTree = "<group>"; };
+		59652B11216360BD00B0CC1A /* GeometryFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeometryFactory.swift; sourceTree = "<group>"; };
 		596864F121591AB100CF02CE /* FurnitureNet.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = FurnitureNet.mlmodel; path = ../../../Training/Models/FurnitureNet.mlmodel; sourceTree = "<group>"; };
 		598D526C215149BE00DD307E /* ImageConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageConverter.swift; sourceTree = "<group>"; };
 		599157A021402F4D00B3A8D7 /* ImageProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProcessor.swift; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 				59F84ADA215E77A5003FB510 /* FurnitureInspecterViewController.swift */,
 				59F84AD4215E19ED003FB510 /* FurnitureCollectionViewCell.swift */,
 				59F84AD6215E1A5D003FB510 /* Furniture.swift */,
+				59652B11216360BD00B0CC1A /* GeometryFactory.swift */,
 			);
 			path = ObjectDetectionInAR;
 			sourceTree = "<group>";
@@ -293,6 +296,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				59652B12216360BD00B0CC1A /* GeometryFactory.swift in Sources */,
 				59F84ADB215E77A5003FB510 /* FurnitureInspecterViewController.swift in Sources */,
 				598D526D215149BE00DD307E /* ImageConverter.swift in Sources */,
 				E1ED297520BCA23B007DBE66 /* ARViewController.swift in Sources */,
