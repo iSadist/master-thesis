@@ -11,7 +11,7 @@ image_width = 200
 image_height = 150
 number_of_color_channels = 3
 
-training_share = 0.75
+training_share = 0.9
 
 number_of_total_images = 77
 training_batch_size = int(number_of_total_images * training_share)
@@ -46,21 +46,21 @@ def createModel():
 	# Create the neural network
 	model = keras.Sequential([
 		keras.layers.Conv2D(16, kernel_size=(10, 10), strides=(2, 2), input_shape=(image_height, image_width, number_of_color_channels)),
-		keras.layers.BatchNormalization(),
 		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
+		keras.layers.Dropout(0.2),
 		keras.layers.Conv2D(16, kernel_size=(8,8), strides=(2, 2)),
-		keras.layers.BatchNormalization(),
 		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
+		keras.layers.Dropout(0.2),
 		keras.layers.Conv2D(16, kernel_size=(4,4), strides=(1, 1)),
-		keras.layers.BatchNormalization(),
 		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
+		keras.layers.Dropout(0.2),
 		keras.layers.Flatten(),
 	    keras.layers.Dense(32, activation=tf.nn.relu),
-	    keras.layers.Dropout(0.15),
+	    keras.layers.Dropout(0.2),
 	    keras.layers.Dense(32, activation=tf.nn.relu),
-	    keras.layers.Dropout(0.15),
+	    keras.layers.Dropout(0.1),
 	    keras.layers.Dense(16, activation=tf.nn.relu),
-	    keras.layers.Dropout(0.15),
+	    keras.layers.Dropout(0.1),
 	    keras.layers.Dense(16, activation=tf.nn.relu),
 	    keras.layers.Dense(4, activation=tf.nn.softmax) # The number of nodes must be the same as the number of possibilities
 	])
@@ -84,7 +84,7 @@ def trainModel(model, train_data, train_labels):
 	y_validation = train_labels[partial_train_size:]
 
 
-	history = model.fit(train_data, train_labels, epochs=60, batch_size=476, validation_data=(x_validation, y_validation), verbose=1)
+	history = model.fit(train_data, train_labels, epochs=150, batch_size=476, validation_data=(x_validation, y_validation), verbose=1)
 	return history
 
 def loadTrainImages(image_list, labels_list):
