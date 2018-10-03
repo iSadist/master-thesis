@@ -3,9 +3,15 @@ import SceneKit
 import ARKit
 import Vision
 
-class ARViewController: UIViewController, ARSCNViewDelegate
+protocol ObjectTrackerDelegate: class {
+    func displayRects(rects: [CGRect])
+    func getFrame() -> UIImage?
+}
+
+class ARViewController: UIViewController, ARSCNViewDelegate, ObjectTrackerDelegate
 {
     @IBOutlet var sceneView: ARSCNView!
+    @IBOutlet weak var overlayView: OverlayView!
     @IBOutlet weak var recognitionResultLabel: UILabel!
     
     override var prefersStatusBarHidden: Bool { return true }
@@ -13,6 +19,10 @@ class ARViewController: UIViewController, ARSCNViewDelegate
     override var shouldAutorotate: Bool { return false }
     
     let trackingImageURLs: [String] = [] // Images that will be tracked
+    var tracker: ObjectTracker?
+    var currentSnapshot: UIImage?
+
+    private var trackerQueue = DispatchQueue(label: "tracker", qos: DispatchQoS.userInitiated)
     
     func loadImageConfiguration()
     {
@@ -67,6 +77,13 @@ class ARViewController: UIViewController, ARSCNViewDelegate
     override func viewDidAppear(_ animated: Bool)
     {
         loadWorldTrackingConfiguration()
+        let object = CGRect(x: 150, y: 150, width: 50, height: 100)
+        tracker = ObjectTracker(view: sceneView, objects: [object], overlay: overlayView)
+        tracker?.delegate = self
+        
+        trackerQueue.async {
+            self.tracker?.track()
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool)
@@ -75,12 +92,15 @@ class ARViewController: UIViewController, ARSCNViewDelegate
         
         // Pause the view's session
         sceneView.session.pause()
+        tracker?.requestCancelTracking()
     }
     
     override func didReceiveMemoryWarning()
     {
         super.didReceiveMemoryWarning()
-        // Release any cached data, images, etc that aren't in use.
+        tracker?.requestCancelTracking()
+        tracker = nil
+        print("Memory is full!")
     }
     
     // MARK: - UI Events
@@ -152,5 +172,20 @@ class ARViewController: UIViewController, ARSCNViewDelegate
         try? VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:]).perform([request])
         
         return 99
+    }
+    
+    func displayRects(rects: [CGRect]) {
+        DispatchQueue.main.async {
+            self.overlayView.rectangles = rects
+            self.overlayView.setNeedsDisplay()
+        }
+    }
+    
+    func getFrame() -> UIImage? {
+        DispatchQueue.main.async {
+            self.currentSnapshot = self.sceneView.snapshot()
+        }
+        
+        return currentSnapshot
     }
 }
