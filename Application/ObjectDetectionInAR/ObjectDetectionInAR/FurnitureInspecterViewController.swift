@@ -38,7 +38,6 @@ class FurnitureInspecterViewController: UIViewController
 
     @IBAction func pinchGesture(_ sender: UIPinchGestureRecognizer)
     {
-        print(sender.velocity)
         let vector = SCNVector3(0, 0, sender.velocity/50)
         let action = SCNAction.move(by: vector, duration: 0.1)
         modelNode?.runAction(action)

@@ -16,7 +16,6 @@ class OverlayView: UIView
     // An empty implementation adversely affects performance during animation.
     override func draw(_ rect: CGRect)
     {
-        print(rectangles)
         let context = UIGraphicsGetCurrentContext()!
 
         let color = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
