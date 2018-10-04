@@ -3,15 +3,13 @@ import UIKit
 
 class ImageConverter
 {
-    var lastBuffer: CVPixelBuffer? = nil
-    
     init()
     {}
     
     func convertImageToPixelBuffer(image: UIImage) -> CVPixelBuffer?
     {
         guard let cgImage = convertUIImageToCGImage(image: image) else { return nil }
-        guard let pixelBuffer = convertToPixelBuffer(forImage: cgImage, onAddress: lastBuffer) else { return nil }
+        guard let pixelBuffer = convertToPixelBuffer(forImage: cgImage) else { return nil }
         return pixelBuffer
     }
     
@@ -33,21 +31,18 @@ class ImageConverter
         return uiImage
     }
     
-    private func convertToPixelBuffer (forImage image:CGImage, onAddress buffer: CVPixelBuffer?) -> CVPixelBuffer?
+    private func convertToPixelBuffer (forImage image:CGImage) -> CVPixelBuffer?
     {
         let frameSize = CGSize(width: image.width, height: image.height)
         
         let attrs = [kCVPixelBufferCGImageCompatibilityKey: kCFBooleanTrue, kCVPixelBufferCGBitmapContextCompatibilityKey: kCFBooleanTrue] as CFDictionary
-        var pixelBuffer:CVPixelBuffer? = buffer
-        
-        if pixelBuffer == nil
-        {
-            let status = CVPixelBufferCreate(kCFAllocatorDefault, Int(frameSize.width), Int(frameSize.height), kCVPixelFormatType_32BGRA , attrs, &pixelBuffer)
+        var pixelBuffer:CVPixelBuffer? = nil
 
-            if status != kCVReturnSuccess
-            {
-                return nil
-            }
+        let status = CVPixelBufferCreate(kCFAllocatorDefault, Int(frameSize.width), Int(frameSize.height), kCVPixelFormatType_32BGRA , attrs, &pixelBuffer)
+
+        if status != kCVReturnSuccess
+        {
+            return nil
         }
         
         CVPixelBufferLockBaseAddress(pixelBuffer!, CVPixelBufferLockFlags.init(rawValue: 0))
@@ -59,8 +54,7 @@ class ImageConverter
         context?.draw(image, in: CGRect(x: 0, y: 0, width: image.width, height: image.height))
 
         CVPixelBufferUnlockBaseAddress(pixelBuffer!, CVPixelBufferLockFlags(rawValue: 0))
-        
-        lastBuffer = pixelBuffer
+
         return pixelBuffer
     }
 }

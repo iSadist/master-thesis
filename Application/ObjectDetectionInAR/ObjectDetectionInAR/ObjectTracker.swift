@@ -3,7 +3,7 @@ import UIKit
 import Vision
 import ARKit
 
-private let framesPerSecond = 10.0
+private let framesPerSecond = 5.0
 private var millisecondsPerFrame = 1.0/framesPerSecond * 1000
 
 class ObjectTracker
@@ -11,7 +11,6 @@ class ObjectTracker
     let trackingView: ARSCNView
     let overlay: OverlayView
     var trackingObservations = [UUID: VNDetectedObjectObservation]()
-    var trackingRequests = [VNRequest]()
     var objectsToTrack: [CGRect]
     var trackedObjects = [UUID: CGRect]()
     var cancelTracking: Bool = false
@@ -19,9 +18,6 @@ class ObjectTracker
     
     let requestHandler = VNSequenceRequestHandler()
     let converter = ImageConverter()
-    
-    var posX = 1
-    var posY = 1
     
     init(view: ARSCNView, objects: [CGRect], overlay: OverlayView)
     {
@@ -37,11 +33,6 @@ class ObjectTracker
             let observation = VNDetectedObjectObservation(boundingBox: object)
             trackingObservations[observation.uuid] = observation
             trackedObjects[observation.uuid] = object
-            
-            let request = VNTrackObjectRequest(detectedObjectObservation: observation)
-            request.trackingLevel = .fast
-            
-            trackingRequests.append(request)
         }
         
         while true
@@ -49,21 +40,28 @@ class ObjectTracker
             if cancelTracking { break }
             
             var rects = [CGRect]()
+            var trackingRequests = [VNRequest]()
             
             guard let frame = delegate?.getFrame() else {
                 usleep(useconds_t(millisecondsPerFrame * 1000))
                 continue
             }
             
-            guard let pixelBuffer = converter.convertImageToPixelBuffer(image: frame) else { continue }
+            for trackingObservation in trackingObservations
+            {
+                let request = VNTrackObjectRequest(detectedObjectObservation: trackingObservation.value)
+                request.trackingLevel = .fast
+                trackingRequests.append(request)
+            }
 
-            try? requestHandler.perform(trackingRequests, on: pixelBuffer, orientation: CGImagePropertyOrientation.up)
+            try? requestHandler.perform(trackingRequests, on: frame, orientation: CGImagePropertyOrientation.up)
 
             for processedRequest in trackingRequests
             {
-                guard let result = processedRequest.results?.first as? VNDetectedObjectObservation else { continue }
-                trackedObjects[result.uuid] = result.boundingBox
-                rects.append(result.boundingBox)
+                guard let observation = processedRequest.results?.first as? VNDetectedObjectObservation else { continue }
+                trackedObjects[observation.uuid] = observation.boundingBox
+                trackingObservations[observation.uuid] = observation
+                rects.append(observation.boundingBox)
             }
 
             delegate?.displayRects(rects: rects)

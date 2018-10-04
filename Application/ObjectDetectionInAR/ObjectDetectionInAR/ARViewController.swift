@@ -5,7 +5,7 @@ import Vision
 
 protocol ObjectTrackerDelegate: class {
     func displayRects(rects: [CGRect])
-    func getFrame() -> UIImage?
+    func getFrame() -> CVPixelBuffer?
 }
 
 class ARViewController: UIViewController, ARSCNViewDelegate, ObjectTrackerDelegate
@@ -20,25 +20,9 @@ class ARViewController: UIViewController, ARSCNViewDelegate, ObjectTrackerDelega
     
     let trackingImageURLs: [String] = [] // Images that will be tracked
     var tracker: ObjectTracker?
-    var currentSnapshot: UIImage?
+    var currentSnapshot: CVPixelBuffer?
 
     private var trackerQueue = DispatchQueue(label: "tracker", qos: DispatchQoS.userInitiated)
-    
-    func loadImageConfiguration()
-    {
-        let imageConfig = ARImageTrackingConfiguration()
-        
-        for imageURL in trackingImageURLs
-        {
-            guard let image: CGImage = UIImage(named: imageURL)?.cgImage else { return }
-            let referenceImage = ARReferenceImage(image, orientation: CGImagePropertyOrientation.up, physicalWidth: 0.3)
-            imageConfig.trackingImages.insert(referenceImage)
-        }
-
-        imageConfig.isAutoFocusEnabled = true
-        imageConfig.maximumNumberOfTrackedImages = trackingImageURLs.count
-        sceneView.session.run(imageConfig)
-    }
     
     func loadWorldTrackingConfiguration()
     {
@@ -47,6 +31,16 @@ class ARViewController: UIViewController, ARSCNViewDelegate, ObjectTrackerDelega
 
         guard let detectingObjects = ARReferenceObject.referenceObjects(inGroupNamed: "Objects", bundle: nil) else { return }
         configuration.detectionObjects = detectingObjects
+        
+        for imageURL in trackingImageURLs
+        {
+            guard let image: CGImage = UIImage(named: imageURL)?.cgImage else { return }
+            let referenceImage = ARReferenceImage(image, orientation: CGImagePropertyOrientation.up, physicalWidth: 0.3)
+            configuration.detectionImages.insert(referenceImage)
+        }
+            
+        configuration.maximumNumberOfTrackedImages = trackingImageURLs.count
+            
         sceneView.session.run(configuration)
     }
     
@@ -77,13 +71,6 @@ class ARViewController: UIViewController, ARSCNViewDelegate, ObjectTrackerDelega
     override func viewDidAppear(_ animated: Bool)
     {
         loadWorldTrackingConfiguration()
-        let object = CGRect(x: 150, y: 150, width: 50, height: 100)
-        tracker = ObjectTracker(view: sceneView, objects: [object], overlay: overlayView)
-        tracker?.delegate = self
-        
-        trackerQueue.async {
-            self.tracker?.track()
-        }
     }
     
     override func viewWillDisappear(_ animated: Bool)
@@ -112,6 +99,14 @@ class ARViewController: UIViewController, ARSCNViewDelegate, ObjectTrackerDelega
         
         guard let pixelBuffer = converter.convertImageToPixelBuffer(image: snapshot) else { return }
         _ = predict(pixelBuffer: pixelBuffer)
+        
+        let object = CGRect(x: 150, y: 150, width: 150, height: 200)
+        tracker = ObjectTracker(view: sceneView, objects: [object], overlay: overlayView)
+        tracker?.delegate = self
+        
+        trackerQueue.async {
+            self.tracker?.track()
+        }
     }
 
     // MARK: - ARSCNViewDelegate
@@ -181,11 +176,12 @@ class ARViewController: UIViewController, ARSCNViewDelegate, ObjectTrackerDelega
         }
     }
     
-    func getFrame() -> UIImage? {
+    func getFrame() -> CVPixelBuffer? {
         DispatchQueue.main.async {
-            self.currentSnapshot = self.sceneView.snapshot()
+            let converter = ImageConverter()
+            self.currentSnapshot = converter.convertImageToPixelBuffer(image: self.sceneView.snapshot())
         }
-        
+
         return currentSnapshot
     }
 }
