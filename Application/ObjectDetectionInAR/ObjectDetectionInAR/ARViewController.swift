@@ -104,7 +104,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate, ObjectTrackerDelega
 
     @IBAction func trackButtonTapped(_ sender: UIButton)
     {
-        let objectsToTrack = [CGRect(x: 150, y: 150, width: 150, height: 200)]
+        let objectsToTrack = [CGRect(x: 0.5, y: 0.5, width: 0.30, height: 0.15)] // Rectangles must have values between 0-1 and starts in left lower corner
         tracker = ObjectTracker(view: sceneView, objects: objectsToTrack, overlay: overlayView)
         tracker?.delegate = self
         

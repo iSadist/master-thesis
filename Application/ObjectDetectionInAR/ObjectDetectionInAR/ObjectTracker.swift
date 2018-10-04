@@ -3,7 +3,7 @@ import UIKit
 import Vision
 import ARKit
 
-private let framesPerSecond = 5.0
+private let framesPerSecond = 20.0 // Best performance is between 10 and 30
 private var millisecondsPerFrame = 1.0/framesPerSecond * 1000
 
 class ObjectTracker
@@ -47,6 +47,11 @@ class ObjectTracker
                 continue
             }
             
+/*
+            // It might be possible to do it with the current frame, but the tracking is kind of off.
+            // Maybe it is possible to fix with just a conversion in OverlayView
+            guard let frame = trackingView.session.currentFrame?.capturedImage else { return }
+ */
             for trackingObservation in trackingObservations
             {
                 let request = VNTrackObjectRequest(detectedObjectObservation: trackingObservation.value)
