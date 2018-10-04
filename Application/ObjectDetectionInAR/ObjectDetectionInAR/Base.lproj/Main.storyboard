@@ -19,7 +19,21 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9R9-Pn-61C" customClass="OverlayView" customModule="ObjectDetectionInAR" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="88" width="375" height="724"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vDB-gP-aXr">
+                                        <rect key="frame" x="265" y="570" width="90" height="90"/>
+                                        <state key="normal" title="Track" backgroundImage="blue_circle">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="trackButtonTapped:" destination="BV1-FR-VrT" eventType="touchUpInside" id="nIZ-SZ-Lez"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="vDB-gP-aXr" secondAttribute="trailing" constant="20" id="mwX-OA-wi6"/>
+                                </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Lz-yn-kVX">
                                 <rect key="frame" x="142.66666666666666" y="658" width="90" height="90"/>
@@ -46,14 +60,17 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="dKC-5Y-GCf" firstAttribute="trailing" secondItem="6T1-Rn-eeT" secondAttribute="trailing" constant="16" id="9NB-sj-DlW"/>
+                            <constraint firstItem="vDB-gP-aXr" firstAttribute="height" secondItem="3Lz-yn-kVX" secondAttribute="height" id="Apd-vu-LGc"/>
                             <constraint firstItem="dKC-5Y-GCf" firstAttribute="bottom" secondItem="3Lz-yn-kVX" secondAttribute="bottom" constant="30" id="BRc-TG-QL9"/>
                             <constraint firstItem="6T1-Rn-eeT" firstAttribute="top" secondItem="dKC-5Y-GCf" secondAttribute="top" constant="20" id="FbG-qL-UWK"/>
                             <constraint firstItem="9R9-Pn-61C" firstAttribute="leading" secondItem="dKC-5Y-GCf" secondAttribute="leading" id="HFq-mu-GC1"/>
+                            <constraint firstItem="vDB-gP-aXr" firstAttribute="firstBaseline" secondItem="3Lz-yn-kVX" secondAttribute="firstBaseline" id="IUW-yy-Qdw"/>
                             <constraint firstItem="6T1-Rn-eeT" firstAttribute="leading" secondItem="dKC-5Y-GCf" secondAttribute="leading" constant="16" id="VSI-6D-CZs"/>
                             <constraint firstItem="dKC-5Y-GCf" firstAttribute="trailing" secondItem="9R9-Pn-61C" secondAttribute="trailing" id="cTS-pK-DWg"/>
                             <constraint firstAttribute="bottom" secondItem="9R9-Pn-61C" secondAttribute="bottom" id="gjX-Ck-N6B"/>
                             <constraint firstItem="3Lz-yn-kVX" firstAttribute="centerX" secondItem="dKC-5Y-GCf" secondAttribute="centerX" id="jnD-u8-j14"/>
                             <constraint firstItem="9R9-Pn-61C" firstAttribute="top" secondItem="dKC-5Y-GCf" secondAttribute="top" id="lIW-L3-PBu"/>
+                            <constraint firstItem="vDB-gP-aXr" firstAttribute="width" secondItem="3Lz-yn-kVX" secondAttribute="width" id="x8w-b2-XIV"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="dKC-5Y-GCf"/>
                     </view>

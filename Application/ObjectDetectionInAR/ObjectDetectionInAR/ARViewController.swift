@@ -80,6 +80,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate, ObjectTrackerDelega
         // Pause the view's session
         sceneView.session.pause()
         tracker?.requestCancelTracking()
+        tracker = nil
     }
     
     override func didReceiveMemoryWarning()
@@ -99,16 +100,19 @@ class ARViewController: UIViewController, ARSCNViewDelegate, ObjectTrackerDelega
         
         guard let pixelBuffer = converter.convertImageToPixelBuffer(image: snapshot) else { return }
         _ = predict(pixelBuffer: pixelBuffer)
-        
-        let object = CGRect(x: 150, y: 150, width: 150, height: 200)
-        tracker = ObjectTracker(view: sceneView, objects: [object], overlay: overlayView)
+    }
+
+    @IBAction func trackButtonTapped(_ sender: UIButton)
+    {
+        let objectsToTrack = [CGRect(x: 150, y: 150, width: 150, height: 200)]
+        tracker = ObjectTracker(view: sceneView, objects: objectsToTrack, overlay: overlayView)
         tracker?.delegate = self
         
-        trackerQueue.async {
+        trackerQueue.async{
             self.tracker?.track()
         }
     }
-
+    
     // MARK: - ARSCNViewDelegate
     
     // Override to create and configure nodes for anchors added to the view's session.
