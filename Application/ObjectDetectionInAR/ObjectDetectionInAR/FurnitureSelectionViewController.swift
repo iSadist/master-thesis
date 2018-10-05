@@ -64,9 +64,7 @@ class FurnitureSelectionViewController: UIViewController, UICollectionViewDelega
         }
         else
         {
-            filteredCollection = collection?.filter({ (item) in
-                return item.name.range(of: searchText!) != nil || searchText! == item.id
-            })
+            filteredCollection = collection?.filter({ (item) in item.name.range(of: searchText!) != nil || searchText! == item.id })
         }
         
         collectionView.reloadData()
@@ -84,7 +82,6 @@ class FurnitureSelectionViewController: UIViewController, UICollectionViewDelega
 
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
         if let detailViewController = segue.destination as? FurnitureDetailViewController
@@ -108,5 +105,4 @@ class FurnitureSelectionViewController: UIViewController, UICollectionViewDelega
             searchBar.delegate?.searchBar!(searchBar, textDidChange: searchBar.text!)
         }
     }
-
 }

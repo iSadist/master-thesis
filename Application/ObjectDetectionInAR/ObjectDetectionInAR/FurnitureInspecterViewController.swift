@@ -1,6 +1,9 @@
 import UIKit
 import SceneKit
 
+private let pinchSpeedRatio: CGFloat = 1.0 / 50.0
+private let panSpeedRatio: CGFloat = 1.0 / 5000.0
+
 class FurnitureInspecterViewController: UIViewController
 {
     @IBOutlet weak var sceneView: SCNView!
@@ -33,23 +36,13 @@ class FurnitureInspecterViewController: UIViewController
     @IBAction func panGesture(_ sender: UIPanGestureRecognizer)
     {
         let velocity = sender.velocity(in: sceneView)
-        modelNode?.runAction(SCNAction.rotateBy(x: -velocity.y/5000, y: velocity.x/5000, z: 0, duration: 0.1))
+        modelNode?.runAction(SCNAction.rotateBy(x: -velocity.y * pinchSpeedRatio, y: velocity.x * pinchSpeedRatio, z: 0, duration: 0.1))
     }
 
     @IBAction func pinchGesture(_ sender: UIPinchGestureRecognizer)
     {
-        let vector = SCNVector3(0, 0, sender.velocity/50)
+        let vector = SCNVector3(0, 0, sender.velocity * panSpeedRatio)
         let action = SCNAction.move(by: vector, duration: 0.1)
         modelNode?.runAction(action)
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

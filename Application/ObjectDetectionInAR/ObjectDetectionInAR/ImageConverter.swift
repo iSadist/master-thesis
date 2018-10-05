@@ -18,7 +18,6 @@ class ImageConverter
         let ciImage = CIImage(image: image)
         let context = CIContext(options: nil)
         let cgImage = context.createCGImage(ciImage!, from: ciImage!.extent)
-        
         return cgImage
     }
     

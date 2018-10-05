@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		592DC1BE213FEF1A00E29665 /* SamplePhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592DC1BD213FEF1A00E29665 /* SamplePhotoViewController.swift */; };
+		594D8D44216749F4002F9CA3 /* ObjectTrackerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594D8D43216749F4002F9CA3 /* ObjectTrackerDelegate.swift */; };
 		59652B12216360BD00B0CC1A /* GeometryFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59652B11216360BD00B0CC1A /* GeometryFactory.swift */; };
 		59652B142163648900B0CC1A /* FurnitureCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59652B132163648900B0CC1A /* FurnitureCollection.swift */; };
 		59652B1821638DC600B0CC1A /* ObjectTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59652B1721638DC600B0CC1A /* ObjectTracker.swift */; };
@@ -51,6 +52,7 @@
 
 /* Begin PBXFileReference section */
 		592DC1BD213FEF1A00E29665 /* SamplePhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SamplePhotoViewController.swift; sourceTree = "<group>"; };
+		594D8D43216749F4002F9CA3 /* ObjectTrackerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectTrackerDelegate.swift; sourceTree = "<group>"; };
 		59652B11216360BD00B0CC1A /* GeometryFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeometryFactory.swift; sourceTree = "<group>"; };
 		59652B132163648900B0CC1A /* FurnitureCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FurnitureCollection.swift; sourceTree = "<group>"; };
 		59652B1721638DC600B0CC1A /* ObjectTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectTracker.swift; sourceTree = "<group>"; };
@@ -146,10 +148,11 @@
 				59F84AD8215E1E50003FB510 /* FurnitureDetailViewController.swift */,
 				59F84ADA215E77A5003FB510 /* FurnitureInspecterViewController.swift */,
 				59F84AD4215E19ED003FB510 /* FurnitureCollectionViewCell.swift */,
+				59652B132163648900B0CC1A /* FurnitureCollection.swift */,
 				59F84AD6215E1A5D003FB510 /* Furniture.swift */,
 				59652B11216360BD00B0CC1A /* GeometryFactory.swift */,
-				59652B132163648900B0CC1A /* FurnitureCollection.swift */,
 				59652B1721638DC600B0CC1A /* ObjectTracker.swift */,
+				594D8D43216749F4002F9CA3 /* ObjectTrackerDelegate.swift */,
 				59652B192164AC8900B0CC1A /* FurnitureNet.mlmodel */,
 			);
 			path = ObjectDetectionInAR;
@@ -317,6 +320,7 @@
 				599157A121402F4D00B3A8D7 /* ImageProcessor.swift in Sources */,
 				59F84AD5215E19ED003FB510 /* FurnitureCollectionViewCell.swift in Sources */,
 				59652B1821638DC600B0CC1A /* ObjectTracker.swift in Sources */,
+				594D8D44216749F4002F9CA3 /* ObjectTrackerDelegate.swift in Sources */,
 				592DC1BE213FEF1A00E29665 /* SamplePhotoViewController.swift in Sources */,
 				59C058CA216221D40052AF82 /* BarcodeScannerViewController.swift in Sources */,
 				59F84AD9215E1E50003FB510 /* FurnitureDetailViewController.swift in Sources */,

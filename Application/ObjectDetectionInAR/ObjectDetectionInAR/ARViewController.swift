@@ -3,12 +3,7 @@ import SceneKit
 import ARKit
 import Vision
 
-protocol ObjectTrackerDelegate: class {
-    func displayRects(rects: [CGRect])
-    func getFrame() -> CVPixelBuffer?
-}
-
-class ARViewController: UIViewController, ARSCNViewDelegate, ObjectTrackerDelegate
+class ARViewController: UIViewController
 {
     @IBOutlet var sceneView: ARSCNView!
     @IBOutlet weak var overlayView: OverlayView!
@@ -44,6 +39,25 @@ class ARViewController: UIViewController, ARSCNViewDelegate, ObjectTrackerDelega
         sceneView.session.run(configuration)
     }
     
+    // Classify the object in the image
+    func predict(pixelBuffer: CVPixelBuffer) -> VNClassificationObservation?
+    {
+        var classification: VNClassificationObservation? = nil
+        
+        guard let model = try? VNCoreMLModel(for: FurnitureNet().model) else { return nil }
+        let request = VNCoreMLRequest(model: model, completionHandler: { (finishedReq, err) in
+            
+            if let observations = finishedReq.results as? [VNClassificationObservation]
+            {
+                let maxValue = observations.max(by: {(current, next) in current.confidence < next.confidence})
+                classification = maxValue
+            }
+        })
+        try? VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:]).perform([request])
+        
+        return classification
+    }
+    
     // MARK: Lifecycle events
     
     override func viewDidLoad()
@@ -53,19 +67,12 @@ class ARViewController: UIViewController, ARSCNViewDelegate, ObjectTrackerDelega
         
         // Show statistics such as fps and timing information
         sceneView.showsStatistics = true
-        sceneView.debugOptions = [
-            ARSCNDebugOptions.showFeaturePoints,
-            ARSCNDebugOptions.showWorldOrigin
-        ]
+        sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints]
+//        sceneView.debugOptions.insert(ARSCNDebugOptions.showWorldOrigin)
         
         // Load the scene
         let scene = SCNScene(named: "art.scnassets/world.scn")!
         sceneView.scene = scene
-    }
-    
-    override func viewWillAppear(_ animated: Bool)
-    {
-        super.viewWillAppear(animated)
     }
     
     override func viewDidAppear(_ animated: Bool)
@@ -76,8 +83,6 @@ class ARViewController: UIViewController, ARSCNViewDelegate, ObjectTrackerDelega
     override func viewWillDisappear(_ animated: Bool)
     {
         super.viewWillDisappear(animated)
-        
-        // Pause the view's session
         sceneView.session.pause()
         tracker?.requestCancelTracking()
         tracker = nil
@@ -97,9 +102,9 @@ class ARViewController: UIViewController, ARSCNViewDelegate, ObjectTrackerDelega
     {
         let snapshot = sceneView.snapshot()
         let converter = ImageConverter()
-        
         guard let pixelBuffer = converter.convertImageToPixelBuffer(image: snapshot) else { return }
-        _ = predict(pixelBuffer: pixelBuffer)
+        let result = predict(pixelBuffer: pixelBuffer)
+        self.recognitionResultLabel.text = "\(result?.identifier ?? "Nil"): \(result?.confidence ?? 100.0)%"
     }
 
     @IBAction func trackButtonTapped(_ sender: UIButton)
@@ -107,15 +112,14 @@ class ARViewController: UIViewController, ARSCNViewDelegate, ObjectTrackerDelega
         let objectsToTrack = [CGRect(x: 0.5, y: 0.5, width: 0.30, height: 0.15)] // Rectangles must have values between 0-1 and starts in left lower corner
         tracker = ObjectTracker(view: sceneView, objects: objectsToTrack, overlay: overlayView)
         tracker?.delegate = self
-        
         trackerQueue.async{
             self.tracker?.track()
         }
     }
-    
-    // MARK: - ARSCNViewDelegate
-    
-    // Override to create and configure nodes for anchors added to the view's session.
+}
+
+extension ARViewController: ARSCNViewDelegate
+{
     func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode?
     {
         let node = SCNNode()
@@ -131,61 +135,25 @@ class ARViewController: UIViewController, ARSCNViewDelegate, ObjectTrackerDelega
         
         return node
     }
-    
-    func session(_ session: ARSession, didFailWithError error: Error)
+}
+
+extension ARViewController: ObjectTrackerDelegate
+{
+    func displayRects(rects: [CGRect])
     {
-        // Present an error message to the user
-    }
-    
-    func sessionWasInterrupted(_ session: ARSession)
-    {
-        // Inform the user that the session has been interrupted, for example, by presenting an overlay
-    }
-    
-    func sessionInterruptionEnded(_ session: ARSession)
-    {
-        // Reset tracking and/or remove existing anchors if consistent tracking is required
-    }
-    
-    func predict(pixelBuffer: CVPixelBuffer) -> Double
-    {
-        guard let model = try? VNCoreMLModel(for: FurnitureNet().model) else { return 99 }
-        let request = VNCoreMLRequest(model: model, completionHandler: { (finishedReq, err) in
-            
-            if let observations = finishedReq.results as? [VNClassificationObservation]
-            {
-                var labelText = "[ "
-                for value in observations
-                {
-                    labelText.append(contentsOf: "\(value.identifier): ")
-                    let valueString = String(format: "%.03f", value.confidence)
-                    labelText.append(contentsOf: valueString)
-                    labelText.append(contentsOf: " ,")
-                }
-                labelText.removeLast()
-                labelText.append(contentsOf: " ]")
-                self.recognitionResultLabel.text = labelText
-            }
-            
-        })
-        try? VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:]).perform([request])
-        
-        return 99
-    }
-    
-    func displayRects(rects: [CGRect]) {
         DispatchQueue.main.async {
             self.overlayView.rectangles = rects
             self.overlayView.setNeedsDisplay()
         }
     }
     
-    func getFrame() -> CVPixelBuffer? {
+    func getFrame() -> CVPixelBuffer?
+    {
         DispatchQueue.main.async {
             let converter = ImageConverter()
             self.currentSnapshot = converter.convertImageToPixelBuffer(image: self.sceneView.snapshot())
         }
-
+        
         return currentSnapshot
     }
 }

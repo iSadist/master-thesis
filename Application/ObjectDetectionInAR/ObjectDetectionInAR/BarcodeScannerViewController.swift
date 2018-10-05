@@ -16,14 +16,13 @@ class BarcodeScannerViewController: ImageViewController, AVCapturePhotoCaptureDe
     
     override func viewDidAppear(_ animated: Bool)
     {
-        snapshot()
+        capturePhoto()
     }
     
-    func snapshot()
+    func capturePhoto()
     {
         let photoSettings = AVCapturePhotoSettings()
-        photoSettings.embedsDepthDataInPhoto = true
-        photoSettings.flashMode = .off
+        photoSettings.flashMode = .auto
         photoSettings.isAutoStillImageStabilizationEnabled = true
         capturePhotoOutput?.capturePhoto(with: photoSettings, delegate: self)
     }
@@ -41,7 +40,7 @@ class BarcodeScannerViewController: ImageViewController, AVCapturePhotoCaptureDe
                 }
                 else
                 {
-                    self.snapshot()
+                    self.capturePhoto()
                 }
             }
         })
