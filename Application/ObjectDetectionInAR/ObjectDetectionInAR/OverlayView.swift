@@ -1,19 +1,11 @@
-//
-//  OverlayView.swift
-//  ObjectDetectionInAR
-//
-//  Created by Jan Svensson on 2018-10-03.
-//  Copyright © 2018 Jan Svensson. All rights reserved.
-//
-
 import UIKit
 
 class OverlayView: UIView
 {
+    // The rectangles are passed in the Vision coordinate system
+    // which starts in the lower left corner and goes from 0-1.
     var rectangles = [CGRect]()
-    
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
+
     override func draw(_ rect: CGRect)
     {
         let context = UIGraphicsGetCurrentContext()!
@@ -24,11 +16,17 @@ class OverlayView: UIView
         
         for rectangle in rectangles
         {
-            let realHeight = rectangle.height * rect.height
-            let realWidth = rectangle.width * rect.width
-            let topLeftCorner = (rectangle.maxX * rect.width, rect.height - rectangle.minY * rect.height)
-            let scaledRect = CGRect(x: topLeftCorner.0, y: topLeftCorner.1, width: realWidth, height: realHeight)
-            context.stroke(scaledRect)
+            let translatedRect = translateRectToUIKit(fromVision: rectangle, frame: rect)
+            context.stroke(translatedRect)
         }
+    }
+    
+    private func translateRectToUIKit(fromVision rect: CGRect, frame: CGRect) -> CGRect
+    {
+        let realHeight = rect.height * frame.height
+        let realWidth = rect.width * frame.width
+        let topLeftCorner = (rect.maxX * frame.width, frame.height - rect.minY * frame.height)
+        let scaledRect = CGRect(x: topLeftCorner.0, y: topLeftCorner.1, width: realWidth, height: realHeight)
+        return scaledRect
     }
 }
