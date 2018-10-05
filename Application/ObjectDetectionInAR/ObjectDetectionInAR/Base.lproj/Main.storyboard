@@ -292,8 +292,7 @@
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
-                                    <action selector="assembleButtonTapped:" destination="l0C-mi-Syw" eventType="touchUpInside" id="DK8-qT-ows"/>
-                                    <segue destination="BV1-FR-VrT" kind="show" id="Vc2-kr-lRk"/>
+                                    <segue destination="BV1-FR-VrT" kind="show" id="A86-yh-rkT"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uvK-T8-ZV9">
