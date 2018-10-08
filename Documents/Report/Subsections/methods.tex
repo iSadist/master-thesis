@@ -69,27 +69,52 @@ Vision is a package from Apple which contains a lot of different methods for ima
 On their website, Apple has a project that lets any user try out the object tracking on a video. When trying this on one of the furnitures we are going to assemble, the result was very promising. While the parts were laying on the floor and simultaneously moving the camera around, the objects were tracked fairly well. It was only when the camera was moved in such a way that made the pieces rotate in the picture that it started having a hard time tracking it.
 
 For solving this, object detection can be performed in a reasonable time interval and be tracked until object detection is performed once again etc.
-\cite{ObjectTracking}
 
+\cite{ObjectTracking}
 The difference for this project and Apple's test project is that object tracking is going to be performed in real-time. This puts a limit on how many frames per second we can perform object tracking, since in a video playback you can just choose how fast you want to feed the new images. In real-time, the world doesn't stop moving.
+
 After the system was implemented into our application different frame rates were tested. The optimal value was somewhere in-between 10-30 fps. If you went higher than that the application would become very choppy and eventually shut down.
+
 Going lower than 10 fps the user will start to experience that the objects are hard to track in rapid movements.
 
 For this application, however, the user is not going to encounter any scenarios where objects are flying around rapidly. Therefore we will settle for 20 fps as the optimal value for performance since any higher amounts don't really contribute to a better experience.
 
-The following lines of code show how the object tracking was set up. One important thing to realize when setting this up is that the heavy calculations are run on a different thread than the main thread (in this case the work thread). That is why they can be executed in a while true loop. Later though, when drawing on the GUI wants to be made, they MUST be done on the main thread.
+The following lines of code show how the object tracking was set up. One important thing to realize when setting this up is that the heavy calculations are run on a different thread than the main thread (in this case the work thread). 
+
+That is why they can be executed in a while true loop. Later though, when drawing on the GUI wants to be made, they MUST be done on the main thread.
 
 \lstinputlisting[language=swift,firstline=48,lastline=90]{../../Application/ObjectDetectionInAR/ObjectDetectionInAR/ObjectTracker.swift}
+
 
 \subsection{Combining Object detection with Object Tracking}
 
 \subsection{Design process of Machine Learning Model}
+It was decided that a machine learning model for classification of different parts were to be designed using Keras [CITE]. Firstly, a lot of data would have to be gathered with which to train the network upon. Pictures of the different parts of the furniture was taken from several different angles and on various amounts of background floors. 
+All images were scaled down to \imageSize to speed up the training process as well as remove possible unnecessary features [CITE]. To easily generate even more data, the images were rotated, had their brightness and sharpness altered. 
+[INSERT IMAGE SET SHOWING DIFFERENT CONFIGURATIONS]
+ 
 % Write about what design choices we made, from first iterations or planing, to our final model, add some code. 
 \subsubsection{Deep Neural Networks}
 % Write about that we chose Keras and that why made our model the way we did
+In implementing the convolutional network several configurations were tried and further tested for accuracy in the developed application. What was tried was as follows:
+[ADD IMAGES/TEST RESULTS]
+
+\begin{itemize}
+\item Changing amount of convolutional layers
+\item Kernel sizes of the convolutional layers
+\item Addition and removal of pooling layers
+\item Stride sizes of the pooling layers
+\item Layers in the fully connected part
+\item Amount of nodes in the fully connected part
+\item Addition of dropout to reduce chance of overfitting 
+\end{itemize}
+
 \subsubsection{Transfer Learning}
 % Write about how we went about in order to insert Transfer Learning into the mix. 
-
+After trial of designing the network from scratch, it was decided to try and make use of pre-trained networks and then retrain them for another purpose. Models trained on imageNet [CITE] were chosen since that source domain is similar to this target domain. The models with their respective weights were loaded, without their fully connected layer. The top layer's weights were then frozen at different stages, and new fully connected layers were added on top, and new classifiers were trained. 
+Several different models were tried, including ResNet50[CITE], InceptionV3[CITE] and VGG19[CITE].
+[ADD CODE]
+[ADD IMAGES/TEST RESULTS]
 \subsection{AR implementation in ARKit}
 
 \newpage
