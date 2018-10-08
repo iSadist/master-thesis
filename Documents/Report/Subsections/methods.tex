@@ -69,8 +69,17 @@ Vision is a package from Apple which contains a lot of different methods for ima
 On their website, Apple has a project that lets any user try out the object tracking on a video. When trying this on one of the furnitures we are going to assemble, the result was very promising. While the parts were laying on the floor and simultaneously moving the camera around, the objects were tracked fairly well. It was only when the camera was moved in such a way that made the pieces rotate in the picture that it started having a hard time tracking it.
 
 For solving this, object detection can be performed in a reasonable time interval and be tracked until object detection is performed once again etc.
-
 \cite{ObjectTracking}
+
+The difference for this project and Apple's test project is that object tracking is going to be performed in real-time. This puts a limit on how many frames per second we can perform object tracking, since in a video playback you can just choose how fast you want to feed the new images. In real-time, the world doesn't stop moving.
+After the system was implemented into our application different frame rates were tested. The optimal value was somewhere in-between 10-30 fps. If you went higher than that the application would become very choppy and eventually shut down.
+Going lower than 10 fps the user will start to experience that the objects are hard to track in rapid movements.
+
+For this application, however, the user is not going to encounter any scenarios where objects are flying around rapidly. Therefore we will settle for 20 fps as the optimal value for performance since any higher amounts don't really contribute to a better experience.
+
+The following lines of code show how the object tracking was set up. One important thing to realize when setting this up is that the heavy calculations are run on a different thread than the main thread (in this case the work thread). That is why they can be executed in a while true loop. Later though, when drawing on the GUI wants to be made, they MUST be done on the main thread.
+
+\lstinputlisting[language=swift,firstline=48,lastline=90]{../../Application/ObjectDetectionInAR/ObjectDetectionInAR/ObjectTracker.swift}
 
 \subsection{Combining Object detection with Object Tracking}
 
