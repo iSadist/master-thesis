@@ -8,6 +8,10 @@ Training/Images/ArtificialSeat/*
 Training/Images/ArtificialPiece1/*
 Training/Images/ArtificialPiece2/*
 Training/Images/ArtificialUnknownObjects/*
+Training/Images/ArtificialBackgrounds/*
+Training/Images/ArtificialPiece1Cutouts/*
+Training/Images/ArtificialPiece2Cutouts/*
+Training/Images/ArtificialSeatCutouts/*
 
 # Tensorflow data model
 *.h5
