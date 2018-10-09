@@ -18,9 +18,9 @@ generate-data:
 	mkdir Images/ArtificialPiece2/
 	mkdir Images/ArtificialUnknownObjects/
 	mkdir Images/ArtificialBackgrounds/
-	mkdir Images/ArtificialPiece1Cutouts/
-	mkdir Images/ArtificialPiece2Cutouts/
-	mkdir Images/ArtificialSeatCutouts/
+	mkdir Images/ArtificialPiece1Cutout/
+	mkdir Images/ArtificialPiece2Cutout/
+	mkdir Images/ArtificialSeatCutout/
 	python artificialDataCreator.py
 
 setup: 
