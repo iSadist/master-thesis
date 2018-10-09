@@ -37,7 +37,7 @@ def create(name, number_of_images):
 			artificialImage.save("./Images/Artificial" + name + "/image_" + str(x) + "-" + str(num) + '.jpg', 'JPEG')
 			num += 1
 
-create('Seat', 107)
-create('Piece1', 107)
-create('Piece2', 107)
-create('UnknownObjects', 107)
+create('Seat', 154)
+create('Piece1', 154)
+create('Piece2', 154)
+create('UnknownObjects', 154)
