@@ -6,13 +6,21 @@ convert:
 
 generate-data:
 	rm -rf Images/ArtificialSeat/
-	mkdir Images/ArtificialSeat/
 	rm -rf Images/ArtificialPiece1/
-	mkdir Images/ArtificialPiece1/
 	rm -rf Images/ArtificialPiece2/
-	mkdir Images/ArtificialPiece2/
 	rm -rf Images/ArtificialUnknownObjects/
+	rm -rf Images/ArtificialBackgrounds/
+	rm -rf Images/ArtificialPiece1Cutouts/
+	rm -rf Images/ArtificialPiece2Cutouts/
+	rm -rf Images/ArtificialSeatCutouts/
+	mkdir Images/ArtificialSeat/
+	mkdir Images/ArtificialPiece1/
+	mkdir Images/ArtificialPiece2/
 	mkdir Images/ArtificialUnknownObjects/
+	mkdir Images/ArtificialBackgrounds/
+	mkdir Images/ArtificialPiece1Cutouts/
+	mkdir Images/ArtificialPiece2Cutouts/
+	mkdir Images/ArtificialSeatCutouts/
 	python artificialDataCreator.py
 
 setup: 
