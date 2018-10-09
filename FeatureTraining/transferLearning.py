@@ -10,9 +10,9 @@ import time
 img_width, img_height = 256, 256
 train_data_dir = "data/train"
 validation_data_dir = "data/val"
-nb_train_samples = 60
-nb_validation_samples = 17
-batch_size = 32
+nb_train_samples = 86
+nb_validation_samples = 21
+batch_size = 16
 epochs = 50
 input_layer = Input(shape=(256,256,3))
 model = applications.InceptionV3(include_top=False, weights='imagenet', input_tensor=input_layer, pooling=None)
