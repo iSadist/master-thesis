@@ -13,7 +13,7 @@ number_of_color_channels = 3
 
 training_share = 0.9
 
-number_of_total_images = 77
+number_of_total_images = 107
 training_batch_size = int(number_of_total_images * training_share)
 
 image_libraries = ["UnknownObjects", "Seat", "Piece1", "Piece2"]

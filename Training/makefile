@@ -9,18 +9,10 @@ generate-data:
 	rm -rf Images/ArtificialPiece1/
 	rm -rf Images/ArtificialPiece2/
 	rm -rf Images/ArtificialUnknownObjects/
-	rm -rf Images/ArtificialBackgrounds/
-	rm -rf Images/ArtificialPiece1Cutouts/
-	rm -rf Images/ArtificialPiece2Cutouts/
-	rm -rf Images/ArtificialSeatCutouts/
 	mkdir Images/ArtificialSeat/
 	mkdir Images/ArtificialPiece1/
 	mkdir Images/ArtificialPiece2/
 	mkdir Images/ArtificialUnknownObjects/
-	mkdir Images/ArtificialBackgrounds/
-	mkdir Images/ArtificialPiece1Cutout/
-	mkdir Images/ArtificialPiece2Cutout/
-	mkdir Images/ArtificialSeatCutout/
 	python artificialDataCreator.py
 
 setup: 
