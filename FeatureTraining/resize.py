@@ -2,7 +2,9 @@ from PIL import Image, ImageFilter, ImageEnhance
 
 image_width = 256
 image_height = 256
-
+start = 1
+middle = 87
+end = 107
 def create(name, start, end, type):
 	for x in range(start,end):
 		image = Image.open("./" + name + '/image_' + str(x) + '.jpg')
@@ -15,11 +17,11 @@ def create(name, start, end, type):
 			artificialImage.save("./data/" + type + "/" + name + "/image_" +str(x) + '.jpg', 'JPEG')
 			num += 1
 
-#create('seat', 1,60, 'train')
-#create('piece1', 1,60, 'train')
-#create('piece2', 1,60, 'train')
-#create('unknownObjects', 1,60, 'train')
-create('seat', 61,77, 'val')
-create('piece1', 61,77, 'val')
-create('piece2', 61,77, 'val')
-#create('unknownObjects', 61,77, 'val')
+create('seat', start, middle, 'train')
+create('piece1', start ,middle , 'train')
+create('piece2', start, middle, 'train')
+create('unknownObjects', start,middle, 'train')
+create('seat', middle,end, 'val')
+create('piece1', middle,end, 'val')
+create('piece2', middle,end, 'val')
+create('unknownObjects', middle,end, 'val')
