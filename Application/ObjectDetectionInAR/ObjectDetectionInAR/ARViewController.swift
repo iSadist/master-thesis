@@ -15,6 +15,7 @@ class ARViewController: UIViewController
     
     let trackingImageURLs: [String] = [] // Images that will be tracked
     var tracker: ObjectTracker?
+    var trackingRect = [CGRect]()
     var currentSnapshot: CVPixelBuffer?
 
     private var trackerQueue = DispatchQueue(label: "tracker", qos: DispatchQoS.userInitiated)
@@ -67,7 +68,7 @@ class ARViewController: UIViewController
         
         // Show statistics such as fps and timing information
         sceneView.showsStatistics = true
-        sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints]
+//        sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints]
 //        sceneView.debugOptions.insert(ARSCNDebugOptions.showWorldOrigin)
         
         // Load the scene
@@ -109,12 +110,21 @@ class ARViewController: UIViewController
 
     @IBAction func trackButtonTapped(_ sender: UIButton)
     {
-        let objectsToTrack = [CGRect(x: 0.5, y: 0.5, width: 0.30, height: 0.15)] // Rectangles must have values between 0-1 and starts in left lower corner
-        tracker = ObjectTracker(view: sceneView, objects: objectsToTrack, overlay: overlayView)
+        tracker = ObjectTracker(view: sceneView, objects: trackingRect, overlay: overlayView)
         tracker?.delegate = self
         trackerQueue.async{
             self.tracker?.track()
         }
+    }
+
+    @IBAction func screenTapped(_ sender: UITapGestureRecognizer)
+    {
+        let touchPoint = sender.location(in: overlayView)
+        let rect = CGRect(x: touchPoint.x, y: touchPoint.y, width: 100, height: 100)
+        
+        trackingRect.append(rect)
+        overlayView.rectangles = [rect]
+        overlayView.setNeedsDisplay()
     }
 }
 
@@ -142,7 +152,7 @@ extension ARViewController: ObjectTrackerDelegate
     func displayRects(rects: [CGRect])
     {
         DispatchQueue.main.async {
-            self.overlayView.rectangles = rects
+            self.overlayView.storeVisionRects(rects: rects)
             self.overlayView.setNeedsDisplay()
         }
     }

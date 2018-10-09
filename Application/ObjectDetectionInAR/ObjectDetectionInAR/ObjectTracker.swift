@@ -17,7 +17,29 @@ class ObjectTracker
     var delegate: ObjectTrackerDelegate?
     
     let requestHandler = VNSequenceRequestHandler()
-    let converter = ImageConverter()
+    
+    // MARK: Computed properties
+    
+    var normalizedObjectsToTrack: [CGRect]
+    {
+        var normalizedRects = [CGRect]()
+        
+        for rect in objectsToTrack
+        {
+            var normalizedRect = rect
+            
+            normalizedRect.origin.x = (normalizedRect.origin.x - overlay.frame.origin.x) / overlay.frame.size.width
+            normalizedRect.origin.y = (normalizedRect.origin.y - overlay.frame.origin.y) / overlay.frame.size.height
+            normalizedRect.size.width /= overlay.frame.size.width
+            normalizedRect.size.height /= overlay.frame.size.height
+            // Adjust to Vision.framework input requrement - origin at LLC
+            normalizedRect.origin.y = 1.0 - normalizedRect.origin.y - normalizedRect.size.height
+            
+            normalizedRects.append(normalizedRect)
+        }
+        
+        return normalizedRects
+    }
     
     init(view: ARSCNView, objects: [CGRect], overlay: OverlayView)
     {
@@ -28,7 +50,7 @@ class ObjectTracker
     
     func track()
     {
-        for object in objectsToTrack
+        for object in normalizedObjectsToTrack
         {
             let observation = VNDetectedObjectObservation(boundingBox: object)
             trackingObservations[observation.uuid] = observation
@@ -46,12 +68,7 @@ class ObjectTracker
                 usleep(useconds_t(millisecondsPerFrame * 1000))
                 continue
             }
-            
-/*
-            // It might be possible to do it with the current frame, but the tracking is kind of off.
-            // Maybe it is possible to fix with just a conversion in OverlayView
-            guard let frame = trackingView.session.currentFrame?.capturedImage else { return }
- */
+
             for trackingObservation in trackingObservations
             {
                 let request = VNTrackObjectRequest(detectedObjectObservation: trackingObservation.value)
