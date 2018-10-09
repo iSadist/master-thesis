@@ -8,15 +8,10 @@ private var millisecondsPerFrame = 1.0/framesPerSecond * 1000
 
 class ObjectTracker
 {
-    let trackingView: ARSCNView
     let overlay: OverlayView
-    var trackingObservations = [UUID: VNDetectedObjectObservation]()
     var objectsToTrack: [CGRect]
-    var trackedObjects = [UUID: CGRect]()
     var cancelTracking: Bool = false
     var delegate: ObjectTrackerDelegate?
-    
-    let requestHandler = VNSequenceRequestHandler()
     
     // MARK: Computed properties
     
@@ -41,15 +36,18 @@ class ObjectTracker
         return normalizedRects
     }
     
-    init(view: ARSCNView, objects: [CGRect], overlay: OverlayView)
+    init(objects: [CGRect], overlay: OverlayView)
     {
-        trackingView = view
         objectsToTrack = objects
         self.overlay = overlay
     }
     
     func track()
     {
+        var trackingObservations = [UUID: VNDetectedObjectObservation]()
+        var trackedObjects = [UUID: CGRect]()
+        let requestHandler = VNSequenceRequestHandler()
+        
         for object in normalizedObjectsToTrack
         {
             let observation = VNDetectedObjectObservation(boundingBox: object)
