@@ -3,7 +3,7 @@ import SceneKit
 import ARKit
 import Vision
 
-class ARViewController: UIViewController
+class AssemblerViewController: UIViewController
 {
     @IBOutlet var sceneView: ARSCNView!
     @IBOutlet weak var overlayView: OverlayView!
@@ -110,7 +110,7 @@ class ARViewController: UIViewController
 
     @IBAction func trackButtonTapped(_ sender: UIButton)
     {
-        tracker = ObjectTracker(view: sceneView, objects: trackingRect, overlay: overlayView)
+        tracker = ObjectTracker(objects: trackingRect, overlay: overlayView)
         tracker?.delegate = self
         trackerQueue.async{
             self.tracker?.track()
@@ -128,7 +128,7 @@ class ARViewController: UIViewController
     }
 }
 
-extension ARViewController: ARSCNViewDelegate
+extension AssemblerViewController: ARSCNViewDelegate
 {
     func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode?
     {
@@ -147,7 +147,7 @@ extension ARViewController: ARSCNViewDelegate
     }
 }
 
-extension ARViewController: ObjectTrackerDelegate
+extension AssemblerViewController: ObjectTrackerDelegate
 {
     func displayRects(rects: [CGRect])
     {

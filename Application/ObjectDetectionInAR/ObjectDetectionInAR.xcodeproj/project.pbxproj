@@ -25,7 +25,7 @@
 		59F84ADB215E77A5003FB510 /* FurnitureInspecterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F84ADA215E77A5003FB510 /* FurnitureInspecterViewController.swift */; };
 		E1ED297120BCA23B007DBE66 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1ED297020BCA23B007DBE66 /* AppDelegate.swift */; };
 		E1ED297320BCA23B007DBE66 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = E1ED297220BCA23B007DBE66 /* art.scnassets */; };
-		E1ED297520BCA23B007DBE66 /* ARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1ED297420BCA23B007DBE66 /* ARViewController.swift */; };
+		E1ED297520BCA23B007DBE66 /* AssemblerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1ED297420BCA23B007DBE66 /* AssemblerViewController.swift */; };
 		E1ED297820BCA23B007DBE66 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1ED297620BCA23B007DBE66 /* Main.storyboard */; };
 		E1ED297A20BCA23C007DBE66 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1ED297920BCA23C007DBE66 /* Assets.xcassets */; };
 		E1ED297D20BCA23C007DBE66 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1ED297B20BCA23C007DBE66 /* LaunchScreen.storyboard */; };
@@ -70,7 +70,7 @@
 		E1ED296D20BCA23B007DBE66 /* ObjectDetectionInAR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ObjectDetectionInAR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1ED297020BCA23B007DBE66 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E1ED297220BCA23B007DBE66 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
-		E1ED297420BCA23B007DBE66 /* ARViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewController.swift; sourceTree = "<group>"; };
+		E1ED297420BCA23B007DBE66 /* AssemblerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssemblerViewController.swift; sourceTree = "<group>"; };
 		E1ED297720BCA23B007DBE66 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E1ED297920BCA23C007DBE66 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E1ED297C20BCA23C007DBE66 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -133,7 +133,7 @@
 			children = (
 				E1ED297020BCA23B007DBE66 /* AppDelegate.swift */,
 				E1ED297220BCA23B007DBE66 /* art.scnassets */,
-				E1ED297420BCA23B007DBE66 /* ARViewController.swift */,
+				E1ED297420BCA23B007DBE66 /* AssemblerViewController.swift */,
 				59C058C721621EF50052AF82 /* ImageViewController.swift */,
 				59C058C9216221D40052AF82 /* BarcodeScannerViewController.swift */,
 				592DC1BD213FEF1A00E29665 /* SamplePhotoViewController.swift */,
@@ -312,7 +312,7 @@
 				59F84ADB215E77A5003FB510 /* FurnitureInspecterViewController.swift in Sources */,
 				598D526D215149BE00DD307E /* ImageConverter.swift in Sources */,
 				59652B142163648900B0CC1A /* FurnitureCollection.swift in Sources */,
-				E1ED297520BCA23B007DBE66 /* ARViewController.swift in Sources */,
+				E1ED297520BCA23B007DBE66 /* AssemblerViewController.swift in Sources */,
 				E1ED297120BCA23B007DBE66 /* AppDelegate.swift in Sources */,
 				59F84AD7215E1A5D003FB510 /* Furniture.swift in Sources */,
 				59652B1C2164BA4600B0CC1A /* OverlayView.swift in Sources */,
