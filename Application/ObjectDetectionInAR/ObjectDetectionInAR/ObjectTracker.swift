@@ -3,7 +3,7 @@ import UIKit
 import Vision
 import ARKit
 
-private let framesPerSecond = 20.0 // Best performance is between 10 and 30
+private let framesPerSecond = 30.0 // Best performance is between 10 and 30
 private var millisecondsPerFrame = 1.0/framesPerSecond * 1000
 
 class ObjectTracker

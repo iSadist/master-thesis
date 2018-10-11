@@ -16,6 +16,7 @@
 		59652B1C2164BA4600B0CC1A /* OverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59652B1B2164BA4600B0CC1A /* OverlayView.swift */; };
 		598D526D215149BE00DD307E /* ImageConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598D526C215149BE00DD307E /* ImageConverter.swift */; };
 		599157A121402F4D00B3A8D7 /* ImageProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599157A021402F4D00B3A8D7 /* ImageProcessor.swift */; };
+		59B80625216F896B00C28A1A /* Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B80624216F896B00C28A1A /* Instruction.swift */; };
 		59C058C821621EF50052AF82 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C058C721621EF50052AF82 /* ImageViewController.swift */; };
 		59C058CA216221D40052AF82 /* BarcodeScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C058C9216221D40052AF82 /* BarcodeScannerViewController.swift */; };
 		59F84AD3215E1649003FB510 /* FurnitureSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F84AD2215E1649003FB510 /* FurnitureSelectionViewController.swift */; };
@@ -60,6 +61,7 @@
 		59652B1B2164BA4600B0CC1A /* OverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayView.swift; sourceTree = "<group>"; };
 		598D526C215149BE00DD307E /* ImageConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageConverter.swift; sourceTree = "<group>"; };
 		599157A021402F4D00B3A8D7 /* ImageProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProcessor.swift; sourceTree = "<group>"; };
+		59B80624216F896B00C28A1A /* Instruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Instruction.swift; sourceTree = "<group>"; };
 		59C058C721621EF50052AF82 /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
 		59C058C9216221D40052AF82 /* BarcodeScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeScannerViewController.swift; sourceTree = "<group>"; };
 		59F84AD2215E1649003FB510 /* FurnitureSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FurnitureSelectionViewController.swift; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 				59652B1721638DC600B0CC1A /* ObjectTracker.swift */,
 				594D8D43216749F4002F9CA3 /* ObjectTrackerDelegate.swift */,
 				59652B192164AC8900B0CC1A /* FurnitureNet.mlmodel */,
+				59B80624216F896B00C28A1A /* Instruction.swift */,
 			);
 			path = ObjectDetectionInAR;
 			sourceTree = "<group>";
@@ -316,6 +319,7 @@
 				E1ED297120BCA23B007DBE66 /* AppDelegate.swift in Sources */,
 				59F84AD7215E1A5D003FB510 /* Furniture.swift in Sources */,
 				59652B1C2164BA4600B0CC1A /* OverlayView.swift in Sources */,
+				59B80625216F896B00C28A1A /* Instruction.swift in Sources */,
 				59652B1A2164AC8900B0CC1A /* FurnitureNet.mlmodel in Sources */,
 				599157A121402F4D00B3A8D7 /* ImageProcessor.swift in Sources */,
 				59F84AD5215E19ED003FB510 /* FurnitureCollectionViewCell.swift in Sources */,

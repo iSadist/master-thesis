@@ -8,6 +8,9 @@ class AssemblerViewController: UIViewController
     @IBOutlet var sceneView: ARSCNView!
     @IBOutlet weak var overlayView: OverlayView!
     @IBOutlet weak var recognitionResultLabel: UILabel!
+    @IBOutlet weak var messageView: UIView!
+    @IBOutlet weak var messageViewButton: UIButton!
+    @IBOutlet weak var messageViewText: UITextView!
     
     override var prefersStatusBarHidden: Bool { return true }
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask { return .portrait }
@@ -17,6 +20,17 @@ class AssemblerViewController: UIViewController
     var tracker: ObjectTracker?
     var trackingRect = [CGRect]()
     var currentSnapshot: CVPixelBuffer?
+    
+    var currentInstruction: Instruction?
+    {
+        willSet
+        {
+            messageViewText.text = newValue?.message
+            messageViewButton.setTitle(newValue?.buttonText, for: .normal)
+            messageViewButton.isHidden = newValue?.buttonText == nil
+            messageView.isHidden = newValue == nil
+        }
+    }
 
     private var trackerQueue = DispatchQueue(label: "tracker", qos: DispatchQoS.userInitiated)
     
@@ -59,15 +73,33 @@ class AssemblerViewController: UIViewController
         return classification
     }
     
+    func addTrackingRect(rect: CGRect)
+    {
+        trackingRect.append(rect)
+    }
+    
+    func startTracking()
+    {
+        tracker = ObjectTracker(objects: trackingRect, overlay: overlayView)
+        tracker?.delegate = self
+        trackerQueue.async{
+            self.tracker?.track()
+        }
+    }
+    
     // MARK: Lifecycle events
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
         sceneView.delegate = self
+        messageView.layer.cornerRadius = 25
+        
+        let instruction = Instruction(message: "Scan the floor", buttonText: nil)
+        currentInstruction = instruction
         
         // Show statistics such as fps and timing information
-        sceneView.showsStatistics = true
+//        sceneView.showsStatistics = true
 //        sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints]
 //        sceneView.debugOptions.insert(ARSCNDebugOptions.showWorldOrigin)
         
@@ -106,25 +138,9 @@ class AssemblerViewController: UIViewController
         guard let pixelBuffer = converter.convertImageToPixelBuffer(image: snapshot) else { return }
         let result = predict(pixelBuffer: pixelBuffer)
         self.recognitionResultLabel.text = "\(result?.identifier ?? "Nil"): \(result?.confidence ?? 100.0)%"
-    }
-
-    @IBAction func trackButtonTapped(_ sender: UIButton)
-    {
-        tracker = ObjectTracker(objects: trackingRect, overlay: overlayView)
-        tracker?.delegate = self
-        trackerQueue.async{
-            self.tracker?.track()
-        }
-    }
-
-    @IBAction func screenTapped(_ sender: UITapGestureRecognizer)
-    {
-        let touchPoint = sender.location(in: overlayView)
-        let rect = CGRect(x: touchPoint.x, y: touchPoint.y, width: 100, height: 100)
         
-        trackingRect.append(rect)
-        overlayView.rectangles = [rect]
-        overlayView.setNeedsDisplay()
+        let instruction = Instruction(message: "Put together the leg and seat", buttonText: "Next")
+        currentInstruction = instruction
     }
 }
 
