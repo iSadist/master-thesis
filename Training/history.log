@@ -515,3 +515,119 @@ model.compile(optimizer=keras.optimizers.Adam(),
 	              loss='sparse_categorical_crossentropy',
 	              metrics=['accuracy'])
 ]
+
+---------------------------
+After adding the new photos
+---------------------------
+
+[
+	Epochs: 50
+	Batch Size: 476
+	Training share: 90%
+	Validation share: 50%
+
+	Training Accuracy: 87.51%
+	Evaluation Accuracy: 94.87%
+
+	Test Accuracy: 66.76%
+
+	model = keras.Sequential([
+		keras.layers.Conv2D(32, kernel_size=(10, 10), strides=(2, 2), input_shape=(image_height, image_width, number_of_color_channels)),
+		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
+		keras.layers.Dropout(0.4),
+		keras.layers.Conv2D(32, kernel_size=(8,8), strides=(2, 2)),
+		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
+		keras.layers.Dropout(0.4),
+		keras.layers.Conv2D(32, kernel_size=(4,4), strides=(1, 1)),
+		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
+		keras.layers.Dropout(0.4),
+		keras.layers.Flatten(),
+	    keras.layers.Dense(32, activation=tf.nn.relu),
+	    keras.layers.Dropout(0.2),
+	    keras.layers.Dense(32, activation=tf.nn.relu),
+	    keras.layers.Dropout(0.1),
+	    keras.layers.Dense(16, activation=tf.nn.relu),
+	    keras.layers.Dropout(0.1),
+	    keras.layers.Dense(16, activation=tf.nn.relu),
+	    keras.layers.Dense(4, activation=tf.nn.softmax) # The number of nodes must be the same as the number of possibilities
+	])
+
+	model.compile(optimizer=keras.optimizers.Adam(),
+	              loss='sparse_categorical_crossentropy',
+	              metrics=['accuracy'])
+]
+
+
+--------------------------------------
+After shuffling training and test data
+--------------------------------------
+
+[
+	Epochs: 50
+	Batch Size: 476
+	Training share: 90%
+	Validation share: 50%
+
+	Training Accuracy: 88,72%
+	Evaluation Accuracy: 96.29%
+
+	Test Accuracy: 69.61%
+
+	model = keras.Sequential([
+		keras.layers.Conv2D(32, kernel_size=(10, 10), strides=(2, 2), input_shape=(image_height, image_width, number_of_color_channels)),
+		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
+		keras.layers.Dropout(0.4),
+		keras.layers.Conv2D(32, kernel_size=(8,8), strides=(2, 2)),
+		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
+		keras.layers.Dropout(0.4),
+		keras.layers.Conv2D(32, kernel_size=(4,4), strides=(1, 1)),
+		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
+		keras.layers.Dropout(0.4),
+		keras.layers.Flatten(),
+	    keras.layers.Dense(128, activation=tf.nn.relu),
+	    keras.layers.Dropout(0.5),
+	    keras.layers.Dense(64, activation=tf.nn.relu),
+	    keras.layers.Dropout(0.2),
+	    keras.layers.Dense(4, activation=tf.nn.softmax) # The number of nodes must be the same as the number of possibilities
+	])
+
+	model.compile(optimizer=keras.optimizers.Adam(),
+	              loss='sparse_categorical_crossentropy',
+	              metrics=['accuracy'])
+]
+
+[
+	Epochs: 100
+	Batch Size: 476
+	Training share: 90%
+	Validation share: 75%
+
+	Training Accuracy: 97,78%
+	Evaluation Accuracy: 96.11%
+
+	Test Accuracy: 92.67%
+
+	model = keras.Sequential([
+		keras.layers.Conv2D(16, kernel_size=(3, 3), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
+		keras.layers.Conv2D(16, kernel_size=(2,2), strides=(1, 1)),
+		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
+		keras.layers.Dropout(0.4),
+		keras.layers.Conv2D(16, kernel_size=(3,3), strides=(1, 1)),
+		keras.layers.Conv2D(16, kernel_size=(2,2), strides=(1, 1)),
+		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
+		keras.layers.Dropout(0.4),
+		keras.layers.Conv2D(32, kernel_size=(3,3), strides=(1, 1)),
+		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
+		keras.layers.Dropout(0.4),
+		keras.layers.Flatten(),
+	    keras.layers.Dense(128, activation=tf.nn.relu),
+	    keras.layers.Dropout(0.5),
+	    keras.layers.Dense(64, activation=tf.nn.relu),
+	    keras.layers.Dropout(0.2),
+	    keras.layers.Dense(4, activation=tf.nn.softmax) # The number of nodes must be the same as the number of possibilities
+	])
+
+	model.compile(optimizer=keras.optimizers.Adam(),
+	              loss='sparse_categorical_crossentropy',
+	              metrics=['accuracy'])
+]
