@@ -36,22 +36,21 @@ def reshapeArray(oldArray):
 def createModel():
 	# Create the neural network
 	model = keras.Sequential([
-		keras.layers.Conv2D(8, kernel_size=(3, 3), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
-		keras.layers.Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
-		keras.layers.Conv2D(8, kernel_size=(3,3), strides=(1, 1)),
-		keras.layers.Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
+		keras.layers.Conv2D(16, kernel_size=(3, 3), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
+		keras.layers.Conv2D(16, kernel_size=(2,2), strides=(1, 1)),
+		keras.layers.Conv2D(16, kernel_size=(3,3), strides=(1, 1)),
+		keras.layers.Conv2D(16, kernel_size=(2,2), strides=(1, 1)),
 		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
 		keras.layers.Conv2D(8, kernel_size=(3,3), strides=(1, 1)),
 		keras.layers.Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
 		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-		keras.layers.Conv2D(8, kernel_size=(3,3), strides=(1, 1)),
-		keras.layers.Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
+		keras.layers.Conv2D(4, kernel_size=(3,3), strides=(1, 1)),
+		keras.layers.Conv2D(4, kernel_size=(2,2), strides=(1, 1)),
 		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-		keras.layers.Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
+		keras.layers.Conv2D(4, kernel_size=(2,2), strides=(1, 1)),
 		keras.layers.MaxPool2D(pool_size=(4, 4), padding="valid"),
 		keras.layers.Flatten(),
-		keras.layers.Dropout(0.5),
-	    keras.layers.Dense(128, activation=tf.nn.relu),
+	    keras.layers.Dense(64, kernel_regularizer=keras.regularizers.l2(0.002), activation=tf.nn.relu),
 	    keras.layers.Dropout(0.5),
 	    keras.layers.Dense(4, activation=tf.nn.softmax) # The number of nodes must be the same as the number of possibilities
 	])
@@ -65,7 +64,7 @@ def createModel():
 def trainModel(model, train_data, train_labels, test_images, test_labels):
 	print("Starting training...")
 	train_data, train_labels = shuffle(train_data, train_labels) # Shuffle the whole training set
-	history = model.fit(train_data, train_labels, epochs=100, batch_size=20, validation_data=(test_images, test_labels), verbose=1)
+	history = model.fit(train_data, train_labels, epochs=50, batch_size=10, validation_data=(test_images, test_labels), verbose=1)
 	return history
 
 def loadImages(image_list, labels_list, folder, number_of_images):
@@ -81,13 +80,11 @@ def main():
 	train_images = []
 	train_labels = []
 	loadImages(train_images, train_labels, "Train", 134)
-	# loadImages(train_images, train_labels, "Train", 10) 
 	train_images = reshapeArray(train_images)
 
 	test_images = []
 	test_labels = []
-	loadImages(test_images, test_labels, "Test", 12)
-	# loadImages(test_images, test_labels, "Test", 3)
+	loadImages(test_images, test_labels, "Test", 31)
 	test_images = reshapeArray(test_images)
 
 	model = createModel()
