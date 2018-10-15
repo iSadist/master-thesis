@@ -5,14 +5,22 @@ convert:
 	cd Models && python convertKerasToCoreML.py
 
 generate-data:
-	rm -rf Images/ArtificialSeat/
-	rm -rf Images/ArtificialPiece1/
-	rm -rf Images/ArtificialPiece2/
-	rm -rf Images/ArtificialUnknownObjects/
-	mkdir Images/ArtificialSeat/
-	mkdir Images/ArtificialPiece1/
-	mkdir Images/ArtificialPiece2/
-	mkdir Images/ArtificialUnknownObjects/
+	rm -rf Images/Train/ArtificialSeat/
+	rm -rf Images/Train/ArtificialPiece1/
+	rm -rf Images/Train/ArtificialPiece2/
+	rm -rf Images/Train/ArtificialUnknownObjects/
+	rm -rf Images/Test/ArtificialSeat/
+	rm -rf Images/Test/ArtificialPiece1/
+	rm -rf Images/Test/ArtificialPiece2/
+	rm -rf Images/Test/ArtificialUnknownObjects/
+	mkdir Images/Train/ArtificialSeat/
+	mkdir Images/Train/ArtificialPiece1/
+	mkdir Images/Train/ArtificialPiece2/
+	mkdir Images/Train/ArtificialUnknownObjects/
+	mkdir Images/Test/ArtificialSeat/
+	mkdir Images/Test/ArtificialPiece1/
+	mkdir Images/Test/ArtificialPiece2/
+	mkdir Images/Test/ArtificialUnknownObjects/
 	python artificialDataCreator.py
 
 setup: 
