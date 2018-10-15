@@ -3,8 +3,8 @@ from PIL import Image, ImageFilter, ImageEnhance
 image_width = 256
 image_height = 256
 start = 1
-middle = 87
-end = 107
+middle = 130
+end = 154
 def create(name, start, end, type):
 	for x in range(start,end):
 		image = Image.open("./" + name + '/image_' + str(x) + '.jpg')
