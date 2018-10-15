@@ -631,3 +631,270 @@ After shuffling training and test data
 	              loss='sparse_categorical_crossentropy',
 	              metrics=['accuracy'])
 ]
+
+------------------------------------------------
+After creating seperate training and test images
+------------------------------------------------
+
+------------------------------------------------
+After shuffling the training data but having no augmented images in validation
+------------------------------------------------
+
+[
+	Epochs: 50
+	Batch Size: 100
+
+	Validation share: 25%
+
+	Training Accuracy: 87.09%
+	Evaluation Accuracy: 65.30%
+
+	Test Accuracy: 75.4%
+
+	model = keras.Sequential([
+		keras.layers.Conv2D(16, kernel_size=(3, 3), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
+		keras.layers.Conv2D(16, kernel_size=(2,2), strides=(1, 1)),
+		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
+		keras.layers.Dropout(0.4),
+		keras.layers.Conv2D(16, kernel_size=(3,3), strides=(1, 1)),
+		keras.layers.Conv2D(16, kernel_size=(2,2), strides=(1, 1)),
+		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
+		keras.layers.Dropout(0.4),
+		keras.layers.Conv2D(32, kernel_size=(3,3), strides=(1, 1)),
+		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
+		keras.layers.Dropout(0.4),
+		keras.layers.Flatten(),
+	    keras.layers.Dense(128, activation=tf.nn.relu),
+	    keras.layers.Dropout(0.5),
+	    keras.layers.Dense(64, activation=tf.nn.relu),
+	    keras.layers.Dropout(0.2),
+	    keras.layers.Dense(4, activation=tf.nn.softmax) # The number of nodes must be the same as the number of possibilities
+	])
+
+	model.compile(optimizer=keras.optimizers.Adam(),
+	              loss='sparse_categorical_crossentropy',
+	              metrics=['accuracy'])
+]
+
+[
+	Epochs: 40
+	Batch Size: 10
+
+	Validation share: 15%
+
+	Training Accuracy: 85.42%
+	Evaluation Accuracy: 43.48%
+
+	Test Accuracy: 73.53%
+
+	model = keras.Sequential([
+		keras.layers.Conv2D(8, kernel_size=(3, 3), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
+		keras.layers.Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
+		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
+		keras.layers.Conv2D(8, kernel_size=(3,3), strides=(1, 1)),
+		keras.layers.Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
+		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
+		keras.layers.Conv2D(8, kernel_size=(3,3), strides=(1, 1)),
+		keras.layers.Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
+		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
+		keras.layers.Conv2D(8, kernel_size=(3,3), strides=(1, 1)),
+		keras.layers.Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
+		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
+		keras.layers.Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
+		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
+		keras.layers.Dropout(0.5),
+		keras.layers.Flatten(),
+	    keras.layers.Dense(64, activation=tf.nn.relu),
+	    keras.layers.Dropout(0.5),
+	    keras.layers.Dense(4, activation=tf.nn.softmax) # The number of nodes must be the same as the number of possibilities
+	])
+
+	model.compile(optimizer=keras.optimizers.Adam(),
+	              loss='sparse_categorical_crossentropy',
+	              metrics=['accuracy'])
+	model.summary()
+]
+
+[
+	Epochs: 40
+	Batch Size: 10
+
+	Validation share: 50%
+
+	Training Accuracy: 94.91%
+	Evaluation Accuracy: 00.00%
+
+	Test Accuracy: 47.19%
+
+	model = keras.Sequential([
+		keras.layers.Conv2D(8, kernel_size=(3, 3), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
+		keras.layers.Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
+		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
+		keras.layers.Conv2D(8, kernel_size=(3,3), strides=(1, 1)),
+		keras.layers.Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
+		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
+		keras.layers.Conv2D(8, kernel_size=(3,3), strides=(1, 1)),
+		keras.layers.Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
+		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
+		keras.layers.Conv2D(8, kernel_size=(3,3), strides=(1, 1)),
+		keras.layers.Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
+		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
+		keras.layers.Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
+		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
+		keras.layers.Dropout(0.5),
+		keras.layers.Flatten(),
+	    keras.layers.Dense(64, activation=tf.nn.relu),
+	    keras.layers.Dropout(0.5),
+	    keras.layers.Dense(4, activation=tf.nn.softmax) # The number of nodes must be the same as the number of possibilities
+	])
+
+	model.compile(optimizer=keras.optimizers.Adam(),
+	              loss='sparse_categorical_crossentropy',
+	              metrics=['accuracy'])
+	model.summary()
+]
+
+[
+	Epochs: 40
+	Batch Size: 10
+
+	Validation share: 90%
+
+	Training Accuracy: 72.69%
+	Evaluation Accuracy: 26.52%
+
+	Test Accuracy: 62.30%
+
+	model = keras.Sequential([
+		keras.layers.Conv2D(8, kernel_size=(3, 3), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
+		keras.layers.Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
+		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
+		keras.layers.Conv2D(8, kernel_size=(3,3), strides=(1, 1)),
+		keras.layers.Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
+		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
+		keras.layers.Conv2D(4, kernel_size=(3,3), strides=(1, 1)),
+		keras.layers.Conv2D(4, kernel_size=(2,2), strides=(1, 1)),
+		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
+		keras.layers.Conv2D(4, kernel_size=(3,3), strides=(1, 1)),
+		keras.layers.Conv2D(4, kernel_size=(2,2), strides=(1, 1)),
+		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
+		keras.layers.Conv2D(4, kernel_size=(2,2), strides=(1, 1)),
+		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
+		keras.layers.Dropout(0.5),
+		keras.layers.Flatten(),
+	    keras.layers.Dense(64, activation=tf.nn.relu),
+	    keras.layers.Dropout(0.5),
+	    keras.layers.Dense(4, activation=tf.nn.softmax) # The number of nodes must be the same as the number of possibilities
+	])
+
+	model.compile(optimizer=keras.optimizers.Adam(),
+	              loss='sparse_categorical_crossentropy',
+	              metrics=['accuracy'])
+]
+
+---------------------------------------------------------------------------------------------------------------
+Problem is that the train_data is still not shuffled, so that the last images will all be of just one category.
+The images are loaded one category at a time
+---------------------------------------------------------------------------------------------------------------
+
+[
+	Epochs: 40
+	Batch Size: 10
+
+	Training Accuracy: 66.48%
+	Evaluation Accuracy: 65.37%
+
+	Test Accuracy: 65.37%
+
+	model = keras.Sequential([
+		keras.layers.Conv2D(4, kernel_size=(3, 3), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
+		keras.layers.Conv2D(4, kernel_size=(2,2), strides=(1, 1)),
+		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
+		keras.layers.Conv2D(4, kernel_size=(3,3), strides=(1, 1)),
+		keras.layers.Conv2D(4, kernel_size=(2,2), strides=(1, 1)),
+		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
+		keras.layers.Conv2D(4, kernel_size=(3,3), strides=(1, 1)),
+		keras.layers.Conv2D(4, kernel_size=(2,2), strides=(1, 1)),
+		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
+		keras.layers.Conv2D(4, kernel_size=(3,3), strides=(1, 1)),
+		keras.layers.Conv2D(4, kernel_size=(2,2), strides=(1, 1)),
+		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
+		keras.layers.Conv2D(4, kernel_size=(2,2), strides=(1, 1)),
+		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
+		keras.layers.Dropout(0.5),
+		keras.layers.Flatten(),
+	    keras.layers.Dense(32, activation=tf.nn.relu),
+	    keras.layers.Dropout(0.5),
+	    keras.layers.Dense(4, activation=tf.nn.softmax) # The number of nodes must be the same as the number of possibilities
+	])
+
+	model.compile(optimizer=keras.optimizers.Adam(),
+	              loss='sparse_categorical_crossentropy',
+	              metrics=['accuracy'])
+	model.summary()
+]
+
+[
+	Epochs: 40
+	Batch Size: 10
+
+	Training Accuracy: 81.80%
+	Evaluation Accuracy: 78.80%
+
+	model = keras.Sequential([
+		keras.layers.Conv2D(8, kernel_size=(3, 3), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
+		keras.layers.Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
+		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
+		keras.layers.Conv2D(8, kernel_size=(3,3), strides=(1, 1)),
+		keras.layers.Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
+		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
+		keras.layers.Conv2D(8, kernel_size=(3,3), strides=(1, 1)),
+		keras.layers.Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
+		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
+		keras.layers.Conv2D(8, kernel_size=(3,3), strides=(1, 1)),
+		keras.layers.Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
+		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
+		keras.layers.Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
+		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
+		keras.layers.Dropout(0.5),
+		keras.layers.Flatten(),
+	    keras.layers.Dense(64, activation=tf.nn.relu),
+	    keras.layers.Dropout(0.5),
+	    keras.layers.Dense(4, activation=tf.nn.softmax) # The number of nodes must be the same as the number of possibilities
+	])
+
+	model.compile(optimizer=keras.optimizers.Adam(),
+	              loss='sparse_categorical_crossentropy',
+	              metrics=['accuracy'])
+]
+
+[
+	Epochs: 100
+	Batch Size: 20
+
+	Training Accuracy: 86.57%
+	Evaluation Accuracy: 75.86%
+
+	keras.layers.Conv2D(8, kernel_size=(3, 3), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
+	keras.layers.Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
+	keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
+	keras.layers.Conv2D(8, kernel_size=(3,3), strides=(1, 1)),
+	keras.layers.Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
+	keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
+	keras.layers.Conv2D(8, kernel_size=(3,3), strides=(1, 1)),
+	keras.layers.Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
+	keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
+	keras.layers.Conv2D(8, kernel_size=(3,3), strides=(1, 1)),
+	keras.layers.Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
+	keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
+	keras.layers.Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
+	keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
+	keras.layers.Dropout(0.5),
+	keras.layers.Flatten(),
+    keras.layers.Dense(64, activation=tf.nn.relu),
+    keras.layers.Dropout(0.5),
+    keras.layers.Dense(4, activation=tf.nn.softmax)
+
+    Optimizer: Adam
+    Loss: sparse_categorical_crossentropy
+]

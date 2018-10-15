@@ -11,8 +11,10 @@ def graphTrainingData(history):
 
 		epochs = range(1, len(acc) + 1)
 
-		plt.plot(epochs, acc, 'bo', label='Training acc')
-		plt.plot(epochs, val_acc, 'b', label='Validation acc')
+		# plt.plot(epochs, acc, 'bo', label='Training acc')
+		# plt.plot(epochs, val_acc, 'b', label='Validation acc')
+		plt.plot(epochs, loss, 'green', label='Training loss')
+		plt.plot(epochs, val_loss, 'red', label='Validation loss')
 		plt.title('Training and validation accuracy')
 		plt.xlabel('Epochs')
 		plt.ylabel('Accuracy')
