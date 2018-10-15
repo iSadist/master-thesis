@@ -4,14 +4,14 @@
 *.xcuserdatad/
 
 # Generated images
-Training/Images/ArtificialSeat/*
-Training/Images/ArtificialPiece1/*
-Training/Images/ArtificialPiece2/*
-Training/Images/ArtificialUnknownObjects/*
-Training/Images/ArtificialBackgrounds/*
-Training/Images/ArtificialPiece1Cutouts/*
-Training/Images/ArtificialPiece2Cutouts/*
-Training/Images/ArtificialSeatCutouts/*
+Training/Images/Train/ArtificialSeat/*
+Training/Images/Train/ArtificialPiece1/*
+Training/Images/Train/ArtificialPiece2/*
+Training/Images/Train/ArtificialUnknownObjects/*
+Training/Images/Test/ArtificialPiece1/*
+Training/Images/Test/ArtificialPiece2/*
+Training/Images/Test/ArtificialSeat/*
+Training/Images/Test/ArtificialUnknownObjects/*
 
 # Tensorflow data model
 *.h5
