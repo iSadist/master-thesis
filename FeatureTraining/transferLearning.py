@@ -2,7 +2,7 @@ from keras import applications
 from keras.preprocessing.image import ImageDataGenerator
 from keras import optimizers
 from keras.models import Sequential, Model
-from keras.layers import Dropout, Flatten, Dense, GlobalAveragePooling2D, Input
+from keras.layers import Dropout, Flatten, Dense, GlobalAveragePooling2D, Input, Conv2D, MaxPool2D
 from keras import backend as k
 from keras.callbacks import ModelCheckpoint, LearningRateScheduler, TensorBoard, EarlyStopping
 import time
@@ -10,7 +10,7 @@ import time
 img_width, img_height = 256, 256
 train_data_dir = "data/train"
 validation_data_dir = "data/val"
-nb_train_samples = 86
+nb_train_samples = 129
 nb_validation_samples = 21
 batch_size = 16
 epochs = 50
@@ -69,10 +69,7 @@ Trainable params: 20,024,384.0
 Non-trainable params: 0.0
 """
 model.summary()
-i = 0
-for layer in model.layers:
-    print(i)
-    i+=1
+
 # Freeze the layers which you don't want to train. Here I am freezing the first 5 layers.
 """
 for layer in model.layers:
@@ -81,16 +78,22 @@ for layer in model.layers:
 for layer in model.layers[:141]:
     layer.trainable = False
 """
-x = model.output
+x = model.get_layer('mixed7').output
+#x = Conv2D(128,kernel_size=(3,3))(x)
+#x = Conv2D(128,kernel_size=(3,3))(x)
+#x = MaxPool2D(pool_size=(2,2))(x)
+#x = Conv2D(256,kernel_size=(3,3))(x)
+#x = Conv2D(256,kernel_size=(1,1))(x)
+#x = MaxPool2D(pool_size=(2,2))(x)
 x = GlobalAveragePooling2D()(x)
-#x = Flatten()(x)
-x = Dense(1024, activation="relu")(x)
-x = Dropout(0.5)(x)
+#x = Dense(512, activation="relu")(x)
+#x = Dropout(0.5)(x)
+#x = Dense(512, activation="relu")(x)
 predictions = Dense(4, activation="softmax")(x)
 
 # creating the final model
 model_final = Model(inputs = model.input, outputs = predictions)
-for layer in model_final.layers[:-4]:
+for layer in model_final.layers[:-11]:
     layer.trainable = False
 model_final.summary()
 # compile the model
@@ -128,8 +131,8 @@ class_mode = "categorical"
 )
 
 # Save the model according to the conditions
-checkpoint = ModelCheckpoint("Inception_1.h5", monitor='val_acc', verbose=1, save_best_only=True, save_weights_only=False, mode='auto', period=1)
-early = EarlyStopping(monitor='val_acc', min_delta=0, patience=10, verbose=1, mode='auto')
+checkpoint = ModelCheckpoint("Inception_5.h5", monitor='val_acc', verbose=1, save_best_only=True, save_weights_only=False, mode='auto', period=1)
+early = EarlyStopping(monitor='val_acc', min_delta=0, patience=14, verbose=1, mode='auto')
 
 
 # Train the model
@@ -137,10 +140,10 @@ t=time.time()
 
 hist = model_final.fit_generator(
 train_generator,
-steps_per_epoch = nb_train_samples,
+#steps_per_epoch = nb_train_samples,
 epochs = epochs,
 validation_data = validation_generator,
-validation_steps = nb_validation_samples,
+#validation_steps = nb_validation_samples,
 callbacks = [checkpoint, early])
 
 print('Training time: %s' % (t - time.time()))
@@ -154,26 +157,26 @@ train_loss=hist.history['loss']
 val_loss=hist.history['val_loss']
 train_acc=hist.history['acc']
 val_acc=hist.history['val_acc']
-xc=range(12)
 
 plt.figure(1,figsize=(7,5))
-plt.plot(xc,train_loss)
-plt.plot(xc,val_loss)
+plt.plot(train_loss)
+plt.plot(val_loss)
 plt.xlabel('num of Epochs')
 plt.ylabel('loss')
 plt.title('train_loss vs val_loss')
 plt.grid(True)
-plt.legend(['train','val'])
+plt.legend(['train','val'],loc='upper left')
 #print plt.style.available # use bmh, classic,ggplot for big pictures
-plt.style.use(['classic'])
+plt.show()
+
 
 plt.figure(2,figsize=(7,5))
-plt.plot(xc,train_acc)
-plt.plot(xc,val_acc)
+plt.plot(train_acc)
+plt.plot(val_acc)
 plt.xlabel('num of Epochs')
 plt.ylabel('accuracy')
 plt.title('train_acc vs val_acc')
 plt.grid(True)
 plt.legend(['train','val'],loc=4)
 #print plt.style.available # use bmh, classic,ggplot for big pictures
-plt.style.use(['classic'])
+plt.show()
