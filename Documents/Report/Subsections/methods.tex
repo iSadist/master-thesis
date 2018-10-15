@@ -44,17 +44,36 @@ We worked very close to the project owner by sitting on desks right across him. 
 % Probably add some code as well.
 
 \subsection{Collecting data}
+When working with machine learning, big sets of data is often required for a good resulting model.
+A problem with this is that it can be tricky to obtain such a large data set because it usually also requires
+labels with that data to be manually input. These labels will be used by the neural net to, during training, check if
+the predicted value is correct or not.
+
+In this project the data is sets of images of different furniture parts. These images didn't exist anywhere online, so they had to be collected by taking lots of photos. The photos contained the part in different background and from different angles. The backgrounds were mostly of typical office surroundings, although there were exceptions (as will be explained shortly).
+
+For the first furniture Nolmyra, there were only 3 unique part (, excluding screws and similar parts). Therefore the model was trained to recognize 4 things; the different parts and an unknown object. The unknown label was because the object detection algorithm could detect other objects and it is then unwanted that those objects be mistaken for furniture parts. This could of course also be done by setting a threshold on the confidence value, i.e if the model give a confidence value under X it discards it as being an unknown object. The problem with this type is that it is much harder to distinguish parts from unknown objects. This is due to that the best model is the one that can give a close to 100\% confidence value on every prediction.
+
+For this reason, photos of random objects were also added to the data set. Most of these photos were taken by ourselves, but some were also collected from the web. The images were placed in folders with a specific item which meant labelling them became much simpler. Just put all the images containing a certain part in the same folder.
+
+Training a model usually requires hundreds of thousands or even millions of photos. That much data is hard to get and would take a lot of time to obtain Going around the office to snap that many photos is almost unthinkable.
+However, there are other options.
 
 \subsubsection{Augmenting data}
-Cutting out the piece and pasting it on backgrounds
+Instead of training on only original images, some images can be created from other images by for example rotating, flipping, changing brightness, saturation, contrast etc.  This will essentially be an image of the same object, but the data will look different, thus gives the model more relevant data to train on.
+When doing this it is important to keep in mind that the augmented data should be relevant to real situations.
+Creating data with only the blue color band when the real situations are only in daylight makes no sense.
 
-Changing saturation, color, rotating etc.
+Furthermore, images of objects of interest can be cut out and pasted into random environments to create even more data.
+The idea of this is to try and make the model understand that the focus should be on the furniture part and the background environment is irrelevant. While doing this, even though the parts could be cut into totally random environments we tried to focus on pasting them into relevant spaces like office floors or carpets.
+In our project, this gave a good results as it increased the test accuracy by 8%.
+
+Doing this by hand can still be very time consuming, so automating this process as far as possible is recommended.
 
 \subsection{Testing Object Scanning with ARKit2}
 Apple's ARKit2 has a feature where it can detect scanned 3D objects. For scanning, they have developed an app that can be downloaded from their website. \cite{ARScanning}
 After the scanning is complete the app lets you export the model to then include it in your ARKit2 project. Once in the project it is simply imported into the ARWorldTrackingConfiguration like shown below.
 
-\lstinputlisting[language=swift,firstline=63,lastline=71]{../../Application/ObjectDetectionInAR/ObjectDetectionInAR/ARViewController.swift}
+\lstinputlisting[language=swift,firstline=63,lastline=71]{../../Application/ObjectDetectionInAR/ObjectDetectionInAR/AssemblerViewController.swift}
 
 \begin{figure}[hbtp]
 \begin{center}
