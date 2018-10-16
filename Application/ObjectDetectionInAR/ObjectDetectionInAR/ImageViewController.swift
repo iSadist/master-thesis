@@ -9,6 +9,8 @@ class ImageViewController: UIViewController
     var videoPreview: AVCaptureVideoPreviewLayer?
     
     var cameraOutputView: UIView!
+    var captureDevice: AVCaptureDevice!
+    var captureDepthData = false
     
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask { return .portrait }
     override var shouldAutorotate: Bool { return false }
@@ -19,29 +21,24 @@ class ImageViewController: UIViewController
         
         do
         {
-            if let captureDevice = AVCaptureDevice.default(for: .video)
-            {
-                let input = try AVCaptureDeviceInput(device: captureDevice)
-                capturePhotoOutput = AVCapturePhotoOutput()
-                captureSession = AVCaptureSession()
-                
-                // Set input and output of the session
-                captureSession?.addInput(input)
-                captureSession?.addOutput(capturePhotoOutput!)
-                
-                // Setup video preview to see the current camera feed
-                videoPreview = AVCaptureVideoPreviewLayer(session: captureSession!)
-                videoPreview?.videoGravity = AVLayerVideoGravity.resizeAspectFill
-                videoPreview?.frame = cameraOutputView.layer.bounds
-                
-                // Add the videoPreview to the view on the controller
-                cameraOutputView.layer.addSublayer(videoPreview!)
-                captureSession?.startRunning()
-            }
-            else
-            {
-                print("Error! Could not establish a capture device.")
-            }
+            let input = try AVCaptureDeviceInput(device: captureDevice)
+            capturePhotoOutput = AVCapturePhotoOutput()
+            captureSession = AVCaptureSession()
+            
+            // Set input and output of the session
+            captureSession?.sessionPreset = .photo
+            captureSession?.addInput(input)
+            captureSession?.addOutput(capturePhotoOutput!)
+            capturePhotoOutput?.isDepthDataDeliveryEnabled = captureDepthData
+            
+            // Setup video preview to see the current camera feed
+            videoPreview = AVCaptureVideoPreviewLayer(session: captureSession!)
+            videoPreview?.videoGravity = AVLayerVideoGravity.resizeAspectFill
+            videoPreview?.frame = cameraOutputView.layer.bounds
+            
+            // Add the videoPreview to the view on the controller
+            cameraOutputView.layer.addSublayer(videoPreview!)
+            captureSession?.startRunning()
         }
         catch
         {

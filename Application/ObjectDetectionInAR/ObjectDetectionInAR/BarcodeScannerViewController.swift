@@ -11,6 +11,7 @@ class BarcodeScannerViewController: ImageViewController, AVCapturePhotoCaptureDe
     override func viewDidLoad()
     {
         cameraOutputView = cameraView
+        captureDevice = AVCaptureDevice.default(for: .video)
         super.viewDidLoad()
     }
     
