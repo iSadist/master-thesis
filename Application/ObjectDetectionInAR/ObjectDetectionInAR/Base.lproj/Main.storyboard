@@ -171,11 +171,6 @@
                         <viewLayoutGuide key="safeArea" id="kyw-7r-NJ0"/>
                     </view>
                     <navigationItem key="navigationItem" title="Collection" id="UKj-Gi-JbI">
-                        <barButtonItem key="leftBarButtonItem" systemItem="camera" id="FKd-a1-rTy">
-                            <connections>
-                                <segue destination="g4D-Qk-0h4" kind="show" id="at1-MG-tcH"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Item" image="barcode-scanner" id="8K9-3T-hYU">
                             <inset key="largeContentSizeImageInsets" minX="0.0" minY="20" maxX="0.0" maxY="0.0"/>
                             <connections>
@@ -192,61 +187,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3kN-ae-kp1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="244" y="39.90147783251232"/>
-        </scene>
-        <!--Depth Data Capture View Controller-->
-        <scene sceneID="u1x-68-a1x">
-            <objects>
-                <viewController id="g4D-Qk-0h4" customClass="DepthDataCaptureViewController" customModule="ObjectDetectionInAR" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="f9q-R9-yKc">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LKd-5N-W1v">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                            <imageView hidden="YES" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UYn-MG-PAj">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FdC-DP-3bB">
-                                <rect key="frame" x="137.66666666666666" y="668" width="100" height="100"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="U5j-ti-szc"/>
-                                    <constraint firstAttribute="width" constant="100" id="UdY-d3-qRd"/>
-                                </constraints>
-                                <state key="normal" title="Capture" backgroundImage="blue_circle">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="captureButtonPressed:" destination="g4D-Qk-0h4" eventType="touchUpInside" id="oxC-jk-JLe"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="TGs-cH-tPJ" firstAttribute="bottom" secondItem="FdC-DP-3bB" secondAttribute="bottom" constant="10" id="07n-dH-EtC"/>
-                            <constraint firstAttribute="trailing" secondItem="LKd-5N-W1v" secondAttribute="trailing" id="HaR-ka-lFa"/>
-                            <constraint firstAttribute="bottom" secondItem="LKd-5N-W1v" secondAttribute="bottom" id="HdM-bU-kDz"/>
-                            <constraint firstItem="UYn-MG-PAj" firstAttribute="height" secondItem="LKd-5N-W1v" secondAttribute="height" id="M0i-B2-XZH"/>
-                            <constraint firstItem="LKd-5N-W1v" firstAttribute="leading" secondItem="f9q-R9-yKc" secondAttribute="leading" id="NQF-4i-BB2"/>
-                            <constraint firstItem="UYn-MG-PAj" firstAttribute="top" secondItem="LKd-5N-W1v" secondAttribute="top" id="Um1-n5-ZSf"/>
-                            <constraint firstItem="UYn-MG-PAj" firstAttribute="bottom" secondItem="LKd-5N-W1v" secondAttribute="bottom" id="WAu-al-1Kv"/>
-                            <constraint firstItem="UYn-MG-PAj" firstAttribute="leading" secondItem="LKd-5N-W1v" secondAttribute="leading" id="b8i-Qb-tLL"/>
-                            <constraint firstItem="UYn-MG-PAj" firstAttribute="centerY" secondItem="LKd-5N-W1v" secondAttribute="centerY" id="bZ5-XE-MNL"/>
-                            <constraint firstItem="UYn-MG-PAj" firstAttribute="width" secondItem="LKd-5N-W1v" secondAttribute="width" id="ddu-w2-QnM"/>
-                            <constraint firstItem="FdC-DP-3bB" firstAttribute="centerX" secondItem="TGs-cH-tPJ" secondAttribute="centerX" id="j1V-Mj-FZJ"/>
-                            <constraint firstItem="LKd-5N-W1v" firstAttribute="top" secondItem="f9q-R9-yKc" secondAttribute="top" id="kva-eC-YM4"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="TGs-cH-tPJ"/>
-                    </view>
-                    <connections>
-                        <outlet property="cameraView" destination="LKd-5N-W1v" id="eCH-IY-9VA"/>
-                        <outlet property="depthImageView" destination="UYn-MG-PAj" id="dYk-Ex-2RJ"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="yqd-OJ-n6W" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="253.59999999999999" y="757.38916256157643"/>
         </scene>
         <!--Barcode scanner-->
         <scene sceneID="CUs-Va-IUC">
