@@ -6,6 +6,7 @@ For further in depth explanation about the project and its goal, read the report
 ## Setup Training
 To train and generate the CoreML model for the network, using our model built from scratch, enter the Trainer directory. 
 First you need to install the following dependencies: 
+* Python 2.7
 * Pillow 
 * tensorflow 
 * keras version 2.1.6
