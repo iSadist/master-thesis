@@ -9,6 +9,7 @@ class FurnitureSelectionViewController: UIViewController, UICollectionViewDelega
     var collection: [Furniture]?
     var filteredCollection: [Furniture]?
     var selectedFurniture: Furniture?
+    var database = Database()
 
     override func viewDidLoad()
     {
@@ -17,7 +18,7 @@ class FurnitureSelectionViewController: UIViewController, UICollectionViewDelega
         collectionView.dataSource = self
         searchBar.delegate = self
 
-        collection = FurnitureCollection.init().furnitures
+        collection = database.getFurnitures()
         filteredCollection = collection
     }
     
