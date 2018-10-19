@@ -11,8 +11,10 @@ class ObjectDetector
        then classify them and return the rects that
        are interesting.
     */
-    func findObjects(frame: UIImage)
+    func findObjects(frame: UIImage, parts: [String])
     {
+        // Perform this on another DispatchQueue
+
         var list = [CGRect]()
         
         // Full method not implemented, just hardcoded to be able to design interface
@@ -29,7 +31,10 @@ class ObjectDetector
         list.append(rect1)
         list.append(rect2)
         list.append(rect3)
-        
-        delegate?.objectsFound(objects: list, error: nil)
+
+        // Fake delay of 5 seconds
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+            self.delegate?.objectsFound(objects: list, error: nil)
+        })
     }
 }

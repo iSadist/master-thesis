@@ -17,12 +17,16 @@ class AssemblerViewController: UIViewController
     override var shouldAutorotate: Bool { return false }
     
     let trackingImageURLs: [String] = [] // Images that will be tracked
+    var furniture: Furniture?
     var tracker: ObjectTracker?
     var detector: ObjectDetector?
     var trackingRect = [CGRect]()
     var currentSnapshot: CVPixelBuffer? = nil
     var currentFrame: UIImage? = nil
     
+    var classifier: Timer?
+    
+    let executioner = InstructionExecutioner()
     var currentInstruction: Instruction?
     {
         willSet
@@ -31,6 +35,9 @@ class AssemblerViewController: UIViewController
             messageViewButton.setTitle(newValue?.buttonText, for: .normal)
             messageViewButton.isHidden = newValue?.buttonText == nil
             messageView.isHidden = newValue == nil
+            
+            executioner.instruction = newValue
+            executioner.executeInstruction()
         }
     }
 
@@ -89,6 +96,19 @@ class AssemblerViewController: UIViewController
         }
     }
     
+    func nextInstruction()
+    {
+        if furniture?.instructions?.isEmpty ?? true
+        {
+            currentInstruction = nil
+            tracker?.requestCancelTracking()
+        }
+        else
+        {
+            currentInstruction = furniture?.instructions?.removeFirst()
+        }
+    }
+    
     // MARK: Lifecycle events
     
     override func viewDidLoad()
@@ -97,10 +117,7 @@ class AssemblerViewController: UIViewController
         sceneView.delegate = self
         messageView.layer.cornerRadius = 25
         
-        let instruction = Instruction(message: "Scan the floor", buttonText: nil)
-        currentInstruction = instruction
-        
-        // Show statistics such as fps and timing information
+//        Show statistics such as fps and timing information
 //        sceneView.showsStatistics = true
 //        sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints]
 //        sceneView.debugOptions.insert(ARSCNDebugOptions.showWorldOrigin)
@@ -108,6 +125,13 @@ class AssemblerViewController: UIViewController
         // Load the scene
         let scene = SCNScene(named: "art.scnassets/world.scn")!
         sceneView.scene = scene
+        
+        // Load the instructions for the furniture
+        let database = Database()
+        furniture!.instructions = database.getInstructions(for: furniture!)
+        
+        executioner.controller = self
+        currentInstruction = furniture?.instructions?.removeFirst()
     }
     
     override func viewDidAppear(_ animated: Bool)
@@ -115,10 +139,18 @@ class AssemblerViewController: UIViewController
         loadWorldTrackingConfiguration()
         
         currentSnapshot = ImageConverter().convertImageToPixelBuffer(image: sceneView.snapshot())
+
         // Setup the object detector
         detector = ObjectDetector()
-        detector?.delegate = self
-        detector?.findObjects(frame: UIImage()) // TODO: Add the real frame when detector is implemeted!
+        detector?.delegate = executioner
+        
+        classifier = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { (timer) in
+            let snapshot = self.sceneView.snapshot()
+            let converter = ImageConverter()
+            guard let pixelBuffer = converter.convertImageToPixelBuffer(image: snapshot) else { return }
+            let result = self.predict(pixelBuffer: pixelBuffer)
+            self.recognitionResultLabel.text = "\(result!.identifier): \(result!.confidence * 100)%"
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool)
@@ -127,6 +159,7 @@ class AssemblerViewController: UIViewController
         sceneView.session.pause()
         tracker?.requestCancelTracking()
         tracker = nil
+        classifier?.invalidate()
     }
     
     override func didReceiveMemoryWarning()
@@ -139,16 +172,9 @@ class AssemblerViewController: UIViewController
     
     // MARK: - UI Events
     
-    @IBAction func identifyButtonTapped(_ sender: UIButton)
+    @IBAction func messageViewButtonTapped(_ sender: UIButton)
     {
-        let snapshot = sceneView.snapshot()
-        let converter = ImageConverter()
-        guard let pixelBuffer = converter.convertImageToPixelBuffer(image: snapshot) else { return }
-        let result = predict(pixelBuffer: pixelBuffer)
-        self.recognitionResultLabel.text = "\(result?.identifier ?? "Nil"): \(result?.confidence ?? 100.0)%"
-        
-        let instruction = Instruction(message: "Put together the leg and seat", buttonText: "Next")
-        currentInstruction = instruction
+        nextInstruction()
     }
 }
 
@@ -175,6 +201,9 @@ extension AssemblerViewController: ObjectTrackerDelegate
 {
     func trackingDidStop() {
         print("Tracking stopped!")
+        DispatchQueue.main.async {
+            self.overlayView.clearDisplay()
+        }
     }
     
     func displayRects(rects: [CGRect])
@@ -198,27 +227,5 @@ extension AssemblerViewController: ObjectTrackerDelegate
         UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
         
         return currentSnapshot
-    }
-}
-
-extension AssemblerViewController: ObjectDetectorDelegate
-{
-    // Called when the ObjectDetector has found some objects
-    func objectsFound(objects rects: [CGRect], error: String?)
-    {
-        for rect in rects
-        {
-            addTrackingRect(rect: rect)
-        }
-        startTracking()
-    }
-    
-    func getFrame() -> UIImage?
-    {
-        DispatchQueue.main.async {
-            self.currentFrame = self.sceneView.snapshot()
-        }
-        
-        return currentFrame
     }
 }

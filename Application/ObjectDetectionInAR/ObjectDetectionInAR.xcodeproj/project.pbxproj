@@ -21,6 +21,9 @@
 		59B80625216F896B00C28A1A /* Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B80624216F896B00C28A1A /* Instruction.swift */; };
 		59C058C821621EF50052AF82 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C058C721621EF50052AF82 /* ImageViewController.swift */; };
 		59C058CA216221D40052AF82 /* BarcodeScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C058C9216221D40052AF82 /* BarcodeScannerViewController.swift */; };
+		59DFA236217A385E00FBBFF7 /* InstructionExecutioner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DFA235217A385E00FBBFF7 /* InstructionExecutioner.swift */; };
+		59DFA238217A3A0300FBBFF7 /* ScanInstruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DFA237217A3A0300FBBFF7 /* ScanInstruction.swift */; };
+		59DFA23C217A555500FBBFF7 /* AssembleIntruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DFA23B217A555400FBBFF7 /* AssembleIntruction.swift */; };
 		59F84AD3215E1649003FB510 /* FurnitureSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F84AD2215E1649003FB510 /* FurnitureSelectionViewController.swift */; };
 		59F84AD5215E19ED003FB510 /* FurnitureCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F84AD4215E19ED003FB510 /* FurnitureCollectionViewCell.swift */; };
 		59F84AD7215E1A5D003FB510 /* Furniture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F84AD6215E1A5D003FB510 /* Furniture.swift */; };
@@ -68,6 +71,9 @@
 		59B80624216F896B00C28A1A /* Instruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Instruction.swift; sourceTree = "<group>"; };
 		59C058C721621EF50052AF82 /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
 		59C058C9216221D40052AF82 /* BarcodeScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeScannerViewController.swift; sourceTree = "<group>"; };
+		59DFA235217A385E00FBBFF7 /* InstructionExecutioner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionExecutioner.swift; sourceTree = "<group>"; };
+		59DFA237217A3A0300FBBFF7 /* ScanInstruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanInstruction.swift; sourceTree = "<group>"; };
+		59DFA23B217A555400FBBFF7 /* AssembleIntruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssembleIntruction.swift; sourceTree = "<group>"; };
 		59F84AD2215E1649003FB510 /* FurnitureSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FurnitureSelectionViewController.swift; sourceTree = "<group>"; };
 		59F84AD4215E19ED003FB510 /* FurnitureCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FurnitureCollectionViewCell.swift; sourceTree = "<group>"; };
 		59F84AD6215E1A5D003FB510 /* Furniture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Furniture.swift; sourceTree = "<group>"; };
@@ -140,6 +146,7 @@
 				E1ED297020BCA23B007DBE66 /* AppDelegate.swift */,
 				E1ED297220BCA23B007DBE66 /* art.scnassets */,
 				E1ED297420BCA23B007DBE66 /* AssemblerViewController.swift */,
+				59DFA235217A385E00FBBFF7 /* InstructionExecutioner.swift */,
 				59C058C721621EF50052AF82 /* ImageViewController.swift */,
 				59C058C9216221D40052AF82 /* BarcodeScannerViewController.swift */,
 				592DC1BD213FEF1A00E29665 /* SamplePhotoViewController.swift */,
@@ -162,6 +169,8 @@
 				590E9FFA21785EA90080100A /* ObjectDetectorDelegate.swift */,
 				59652B192164AC8900B0CC1A /* FurnitureNet.mlmodel */,
 				59B80624216F896B00C28A1A /* Instruction.swift */,
+				59DFA237217A3A0300FBBFF7 /* ScanInstruction.swift */,
+				59DFA23B217A555400FBBFF7 /* AssembleIntruction.swift */,
 				590E9FF621775EF00080100A /* Database.swift */,
 			);
 			path = ObjectDetectionInAR;
@@ -323,9 +332,12 @@
 				E1ED297520BCA23B007DBE66 /* AssemblerViewController.swift in Sources */,
 				E1ED297120BCA23B007DBE66 /* AppDelegate.swift in Sources */,
 				59F84AD7215E1A5D003FB510 /* Furniture.swift in Sources */,
+				59DFA23C217A555500FBBFF7 /* AssembleIntruction.swift in Sources */,
+				59DFA236217A385E00FBBFF7 /* InstructionExecutioner.swift in Sources */,
 				59652B1C2164BA4600B0CC1A /* OverlayView.swift in Sources */,
 				59B80625216F896B00C28A1A /* Instruction.swift in Sources */,
 				59652B1A2164AC8900B0CC1A /* FurnitureNet.mlmodel in Sources */,
+				59DFA238217A3A0300FBBFF7 /* ScanInstruction.swift in Sources */,
 				599157A121402F4D00B3A8D7 /* ImageProcessor.swift in Sources */,
 				59F84AD5215E19ED003FB510 /* FurnitureCollectionViewCell.swift in Sources */,
 				590E9FF921785D8C0080100A /* ObjectDetector.swift in Sources */,

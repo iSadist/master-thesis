@@ -10,6 +10,7 @@ class OverlayView: UIView
     override func draw(_ rect: CGRect)
     {
         let context = UIGraphicsGetCurrentContext()!
+        context.clear(rect)
 
         let color = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
         context.setStrokeColor(color.cgColor)
@@ -48,5 +49,12 @@ class OverlayView: UIView
     func storeRects(rects: [CGRect])
     {
         rectangles = rects
+    }
+    
+    func clearDisplay()
+    {
+        rectangles.removeAll()
+        visionRects.removeAll()
+        setNeedsDisplay()
     }
 }

@@ -89,17 +89,20 @@ class ObjectTracker
             {
                 guard let observation = processedRequest.results?.first as? VNDetectedObjectObservation else { continue }
                 
-                if observation.confidence < 0.1
+                if observation.confidence > 0.1
                 {
-                    self.requestCancelTracking()
+                    trackedObjects[observation.uuid] = observation.boundingBox
+                    trackingObservations[observation.uuid] = observation
+                    rects.append(observation.boundingBox)
                 }
-                
-                trackedObjects[observation.uuid] = observation.boundingBox
-                trackingObservations[observation.uuid] = observation
-                rects.append(observation.boundingBox)
             }
 
             delegate?.displayRects(rects: rects)
+            
+            if rects.isEmpty
+            {
+                requestCancelTracking()
+            }
 
             usleep(useconds_t(millisecondsPerFrame * 1000))
         }

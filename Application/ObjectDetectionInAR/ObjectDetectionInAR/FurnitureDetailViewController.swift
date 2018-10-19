@@ -25,5 +25,10 @@ class FurnitureDetailViewController: UIViewController
         {
             inspectionViewController.furniture = furniture
         }
+        
+        if let assembleViewController = segue.destination as? AssemblerViewController
+        {
+            assembleViewController.furniture = furniture
+        }
     }
 }

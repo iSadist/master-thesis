@@ -35,6 +35,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iDV-o0-qqo">
                                         <rect key="frame" x="139.66666666666666" y="75" width="46" height="30"/>
                                         <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="messageViewButtonTapped:" destination="BV1-FR-VrT" eventType="touchUpInside" id="fUM-0I-Lwd"/>
+                                        </connections>
                                     </button>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EO1-me-qzt">
                                         <rect key="frame" x="20" y="20" width="285" height="47"/>
@@ -55,20 +58,6 @@
                                     <constraint firstItem="EO1-me-qzt" firstAttribute="leading" secondItem="Nj7-bF-yoU" secondAttribute="leading" constant="20" symbolic="YES" id="wo3-qi-wh7"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Lz-yn-kVX">
-                                <rect key="frame" x="265" y="137" width="90" height="90"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="90" id="7wf-Md-33q"/>
-                                    <constraint firstAttribute="height" constant="90" id="Y6N-Pj-Yko"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="15"/>
-                                <state key="normal" title="Identify" backgroundImage="blue_circle">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="identifyButtonTapped:" destination="BV1-FR-VrT" eventType="touchUpInside" id="tnj-4n-sUh"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <gestureRecognizers/>
@@ -76,12 +65,10 @@
                             <constraint firstItem="dKC-5Y-GCf" firstAttribute="trailing" secondItem="6T1-Rn-eeT" secondAttribute="trailing" constant="16" id="9NB-sj-DlW"/>
                             <constraint firstItem="dKC-5Y-GCf" firstAttribute="bottom" secondItem="Nj7-bF-yoU" secondAttribute="bottom" id="D67-0T-Z1f"/>
                             <constraint firstItem="6T1-Rn-eeT" firstAttribute="top" secondItem="dKC-5Y-GCf" secondAttribute="top" constant="20" id="FbG-qL-UWK"/>
-                            <constraint firstItem="3Lz-yn-kVX" firstAttribute="top" secondItem="6T1-Rn-eeT" secondAttribute="bottom" constant="15" id="HDj-5a-paD"/>
                             <constraint firstItem="9R9-Pn-61C" firstAttribute="leading" secondItem="dKC-5Y-GCf" secondAttribute="leading" id="HFq-mu-GC1"/>
                             <constraint firstItem="dKC-5Y-GCf" firstAttribute="trailing" secondItem="Nj7-bF-yoU" secondAttribute="trailing" constant="25" id="QcR-4f-Q0v"/>
                             <constraint firstItem="6T1-Rn-eeT" firstAttribute="leading" secondItem="dKC-5Y-GCf" secondAttribute="leading" constant="16" id="VSI-6D-CZs"/>
                             <constraint firstItem="dKC-5Y-GCf" firstAttribute="trailing" secondItem="9R9-Pn-61C" secondAttribute="trailing" id="cTS-pK-DWg"/>
-                            <constraint firstItem="dKC-5Y-GCf" firstAttribute="trailing" secondItem="3Lz-yn-kVX" secondAttribute="trailing" constant="20" id="dnY-aa-raN"/>
                             <constraint firstAttribute="bottom" secondItem="9R9-Pn-61C" secondAttribute="bottom" id="gjX-Ck-N6B"/>
                             <constraint firstItem="9R9-Pn-61C" firstAttribute="top" secondItem="J7w-MF-Wz6" secondAttribute="top" id="lIW-L3-PBu"/>
                             <constraint firstItem="Nj7-bF-yoU" firstAttribute="leading" secondItem="dKC-5Y-GCf" secondAttribute="leading" constant="25" id="mYI-Pv-CTp"/>
@@ -365,6 +352,5 @@
     <resources>
         <image name="3drotate" width="50" height="50"/>
         <image name="barcode-scanner" width="50" height="50"/>
-        <image name="blue_circle" width="467" height="469"/>
     </resources>
 </document>
