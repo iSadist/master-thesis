@@ -18,8 +18,10 @@ class AssemblerViewController: UIViewController
     
     let trackingImageURLs: [String] = [] // Images that will be tracked
     var tracker: ObjectTracker?
+    var detector: ObjectDetector?
     var trackingRect = [CGRect]()
-    var currentSnapshot: CVPixelBuffer?
+    var currentSnapshot: CVPixelBuffer? = nil
+    var currentFrame: UIImage? = nil
     
     var currentInstruction: Instruction?
     {
@@ -111,6 +113,12 @@ class AssemblerViewController: UIViewController
     override func viewDidAppear(_ animated: Bool)
     {
         loadWorldTrackingConfiguration()
+        
+        currentSnapshot = ImageConverter().convertImageToPixelBuffer(image: sceneView.snapshot())
+        // Setup the object detector
+        detector = ObjectDetector()
+        detector?.delegate = self
+        detector?.findObjects(frame: UIImage()) // TODO: Add the real frame when detector is implemeted!
     }
     
     override func viewWillDisappear(_ animated: Bool)
@@ -165,6 +173,10 @@ extension AssemblerViewController: ARSCNViewDelegate
 
 extension AssemblerViewController: ObjectTrackerDelegate
 {
+    func trackingDidStop() {
+        print("Tracking stopped!")
+    }
+    
     func displayRects(rects: [CGRect])
     {
         DispatchQueue.main.async {
@@ -180,6 +192,33 @@ extension AssemblerViewController: ObjectTrackerDelegate
             self.currentSnapshot = converter.convertImageToPixelBuffer(image: self.sceneView.snapshot())
         }
         
+        let converter = ImageConverter()
+        guard currentSnapshot != nil else { return currentSnapshot }
+        let image = converter.convertPixelBufferToUIImage(pixelBuffer: currentSnapshot!)
+        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+        
         return currentSnapshot
+    }
+}
+
+extension AssemblerViewController: ObjectDetectorDelegate
+{
+    // Called when the ObjectDetector has found some objects
+    func objectsFound(objects rects: [CGRect], error: String?)
+    {
+        for rect in rects
+        {
+            addTrackingRect(rect: rect)
+        }
+        startTracking()
+    }
+    
+    func getFrame() -> UIImage?
+    {
+        DispatchQueue.main.async {
+            self.currentFrame = self.sceneView.snapshot()
+        }
+        
+        return currentFrame
     }
 }

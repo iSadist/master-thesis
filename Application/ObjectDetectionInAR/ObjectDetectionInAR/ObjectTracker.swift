@@ -9,6 +9,11 @@ private var millisecondsPerFrame = 1.0/framesPerSecond * 1000
 class ObjectTracker
 {
     let overlay: OverlayView
+    var overlayOriginX: CGFloat = 0
+    var overlayOriginY: CGFloat = 0
+    var overlayWidth: CGFloat = 0
+    var overlayHeight: CGFloat = 0
+    
     var objectsToTrack: [CGRect]
     var cancelTracking: Bool = false
     var delegate: ObjectTrackerDelegate?
@@ -23,10 +28,10 @@ class ObjectTracker
         {
             var normalizedRect = rect
             
-            normalizedRect.origin.x = (normalizedRect.origin.x - overlay.frame.origin.x) / overlay.frame.size.width
-            normalizedRect.origin.y = (normalizedRect.origin.y - overlay.frame.origin.y) / overlay.frame.size.height
-            normalizedRect.size.width /= overlay.frame.size.width
-            normalizedRect.size.height /= overlay.frame.size.height
+            normalizedRect.origin.x = (normalizedRect.origin.x - overlayOriginX) / overlayWidth
+            normalizedRect.origin.y = (normalizedRect.origin.y - overlayOriginY) / overlayHeight
+            normalizedRect.size.width /= overlayWidth
+            normalizedRect.size.height /= overlayHeight
             // Adjust to Vision.framework input requrement - origin at LLC
             normalizedRect.origin.y = 1.0 - normalizedRect.origin.y - normalizedRect.size.height
             
@@ -39,6 +44,10 @@ class ObjectTracker
     init(objects: [CGRect], overlay: OverlayView)
     {
         objectsToTrack = objects
+        overlayOriginX = overlay.frame.origin.x
+        overlayOriginY = overlay.frame.origin.y
+        overlayWidth = overlay.frame.size.width
+        overlayHeight = overlay.frame.size.height
         self.overlay = overlay
     }
     
@@ -79,6 +88,12 @@ class ObjectTracker
             for processedRequest in trackingRequests
             {
                 guard let observation = processedRequest.results?.first as? VNDetectedObjectObservation else { continue }
+                
+                if observation.confidence < 0.1
+                {
+                    self.requestCancelTracking()
+                }
+                
                 trackedObjects[observation.uuid] = observation.boundingBox
                 trackingObservations[observation.uuid] = observation
                 rects.append(observation.boundingBox)
@@ -88,6 +103,8 @@ class ObjectTracker
 
             usleep(useconds_t(millisecondsPerFrame * 1000))
         }
+        
+        delegate?.trackingDidStop()
     }
     
     func requestCancelTracking()

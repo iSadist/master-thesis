@@ -898,3 +898,420 @@ The images are loaded one category at a time
     Optimizer: Adam
     Loss: sparse_categorical_crossentropy
 ]
+
+[
+	Epochs: 50
+	Batch Size: 10
+
+	Training Accuracy: 86.64%
+	Evaluation Accuracy: 72.82%
+
+	keras.layers.Conv2D(16, kernel_size=(3, 3), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
+	keras.layers.Conv2D(16, kernel_size=(2,2), strides=(1, 1)),
+	keras.layers.Conv2D(16, kernel_size=(3,3), strides=(1, 1)),
+	keras.layers.Conv2D(16, kernel_size=(2,2), strides=(1, 1)),
+	keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
+	keras.layers.Conv2D(8, kernel_size=(3,3), strides=(1, 1)),
+	keras.layers.Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
+	keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
+	keras.layers.Conv2D(4, kernel_size=(3,3), strides=(1, 1)),
+	keras.layers.Conv2D(4, kernel_size=(2,2), strides=(1, 1)),
+	keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
+	keras.layers.Conv2D(4, kernel_size=(2,2), strides=(1, 1)),
+	keras.layers.MaxPool2D(pool_size=(4, 4), padding="valid"),
+	keras.layers.Flatten(),
+    keras.layers.Dense(64, kernel_regularizer=keras.regularizers.l2(0.002), activation=tf.nn.relu),
+    keras.layers.Dropout(0.5),
+    keras.layers.Dense(4, activation=tf.nn.softmax)
+
+    Optimizer: Adam
+    Loss: sparse_categorical_crossentropy
+]
+
+[
+	Epochs: 20
+	Batch Size: 10
+
+	Training Accuracy: 97.86%
+	Evaluation Accuracy: 82.97%
+
+	val_loss: 0.9656
+
+	keras.layers.Conv2D(4, kernel_size=(3, 3), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
+	keras.layers.Conv2D(4, kernel_size=(2, 2), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
+	keras.layers.MaxPool2D(pool_size=(4, 4), padding="valid"),
+	keras.layers.Conv2D(4, kernel_size=(3,3), strides=(1, 1)),
+	keras.layers.Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
+	keras.layers.MaxPool2D(pool_size=(4, 4), padding="valid"),
+	keras.layers.Conv2D(16, kernel_size=(3,3), strides=(1, 1)),
+	keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
+	keras.layers.Flatten(),
+    keras.layers.Dense(64, kernel_regularizer=keras.regularizers.l2(0.002), activation=tf.nn.relu),
+    keras.layers.Dense(64, kernel_regularizer=keras.regularizers.l2(0.002), activation=tf.nn.relu),
+    keras.layers.Dropout(0.4),
+    keras.layers.Dense(4, activation=tf.nn.softmax)
+
+    Optimizer: Adam
+    Loss: sparse_categorical_crossentropy
+]
+
+[
+	Epochs: 20
+	Batch Size: 10
+
+	Training Accuracy: 97.20%
+	Evaluation Accuracy: 81.97%
+
+	val_loss: 1.0042
+
+	keras.layers.Conv2D(4, kernel_size=(3, 3), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
+	keras.layers.Conv2D(4, kernel_size=(2, 2), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
+	keras.layers.MaxPool2D(pool_size=(4, 4), padding="valid"),
+	keras.layers.Conv2D(4, kernel_size=(3,3), strides=(1, 1)),
+	keras.layers.Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
+	keras.layers.MaxPool2D(pool_size=(4, 4), padding="valid"),
+	keras.layers.Conv2D(16, kernel_size=(3,3), strides=(1, 1)),
+	keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
+	keras.layers.Flatten(),
+    keras.layers.Dense(64, kernel_regularizer=keras.regularizers.l2(0.005), activation=tf.nn.relu),
+    keras.layers.Dense(64, kernel_regularizer=keras.regularizers.l2(0.005), activation=tf.nn.relu),
+    keras.layers.Dropout(0.5),
+    keras.layers.Dense(4, activation=tf.nn.softmax)
+
+    Optimizer: Adam
+    Loss: sparse_categorical_crossentropy
+]
+
+[
+	Epochs: 20
+	Batch Size: 10
+
+	Training Accuracy: 96.31%
+	Evaluation Accuracy: 83.25%
+
+	val_loss: 0.7203
+
+	keras.layers.Conv2D(4, kernel_size=(3, 3), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
+	keras.layers.Conv2D(4, kernel_size=(2, 2), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
+	keras.layers.BatchNormalization(),
+	keras.layers.MaxPool2D(pool_size=(4, 4), padding="valid"),
+	keras.layers.Conv2D(4, kernel_size=(3,3), strides=(1, 1)),
+	keras.layers.Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
+	keras.layers.BatchNormalization(),
+	keras.layers.MaxPool2D(pool_size=(4, 4), padding="valid"),
+	keras.layers.Conv2D(16, kernel_size=(3,3), strides=(1, 1)),
+	keras.layers.BatchNormalization(),
+	keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
+	keras.layers.Flatten(),
+    keras.layers.Dense(64, kernel_regularizer=keras.regularizers.l2(0.005), activation=tf.nn.relu),
+    keras.layers.Dense(64, kernel_regularizer=keras.regularizers.l2(0.005), activation=tf.nn.relu),
+    keras.layers.Dropout(0.5),
+    keras.layers.Dense(4, activation=tf.nn.softmax)
+
+    Optimizer: Adam
+    Loss: sparse_categorical_crossentropy
+]
+
+[
+	Epochs: 20
+	Batch Size: 10
+
+	Training Accuracy: 87.17%
+	Evaluation Accuracy: 82.64%
+
+	val_loss: 0.6030
+
+	keras.layers.Conv2D(4, kernel_size=(3, 3), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
+	keras.layers.Conv2D(4, kernel_size=(2, 2), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
+	keras.layers.BatchNormalization(),
+	keras.layers.MaxPool2D(pool_size=(4, 4), padding="valid"),
+	keras.layers.Conv2D(4, kernel_size=(3,3), strides=(1, 1)),
+	keras.layers.Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
+	keras.layers.BatchNormalization(),
+	keras.layers.MaxPool2D(pool_size=(4, 4), padding="valid"),
+	keras.layers.Conv2D(16, kernel_size=(3,3), strides=(1, 1)),
+	keras.layers.BatchNormalization(),
+	keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
+	keras.layers.Flatten(),
+	keras.layers.Dropout(0.5),
+    keras.layers.Dense(64, kernel_regularizer=keras.regularizers.l2(0.005), activation=tf.nn.relu),
+    keras.layers.Dense(64, kernel_regularizer=keras.regularizers.l2(0.005), activation=tf.nn.relu),
+    keras.layers.Dropout(0.5),
+    keras.layers.Dense(4, activation=tf.nn.softmax)
+
+    Optimizer: Adam
+    Loss: sparse_categorical_crossentropy
+]
+
+
+!!========Did not get overtrained yet. Could do more epochs============!!
+[
+	Epochs: 20
+	Batch Size: 10
+
+	Training Accuracy: 83.02 %
+	Evaluation Accuracy: 81.97%
+
+	val_loss: 0.6229
+
+	keras.layers.Conv2D(4, kernel_size=(3, 3), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
+	keras.layers.Conv2D(4, kernel_size=(2, 2), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
+	keras.layers.BatchNormalization(),
+	keras.layers.MaxPool2D(pool_size=(4, 4), padding="valid"),
+	keras.layers.Conv2D(4, kernel_size=(3,3), strides=(1, 1)),
+	keras.layers.Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
+	keras.layers.BatchNormalization(),
+	keras.layers.MaxPool2D(pool_size=(4, 4), padding="valid"),
+	keras.layers.Conv2D(16, kernel_size=(3,3), strides=(1, 1)),
+	keras.layers.BatchNormalization(),
+	keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
+	keras.layers.Flatten(),
+	keras.layers.Dropout(0.5),
+    keras.layers.Dense(64, kernel_regularizer=keras.regularizers.l2(0.005), activation=tf.nn.relu),
+    keras.layers.Dropout(0.5),
+    keras.layers.Dense(64, kernel_regularizer=keras.regularizers.l2(0.005), activation=tf.nn.relu),
+    keras.layers.Dropout(0.5),
+    keras.layers.Dense(4, activation=tf.nn.softmax)
+
+    Optimizer: Adam
+    Loss: sparse_categorical_crossentropy
+]
+
+[
+	Epochs: 40
+	Batch Size: 10
+
+	Training Accuracy: 86.10 %
+	Evaluation Accuracy: 77.37%
+
+	val_loss: 0.7209
+
+	keras.layers.Conv2D(4, kernel_size=(3, 3), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
+	keras.layers.Conv2D(4, kernel_size=(2, 2), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
+	keras.layers.BatchNormalization(),
+	keras.layers.MaxPool2D(pool_size=(4, 4), padding="valid"),
+	keras.layers.Conv2D(4, kernel_size=(3,3), strides=(1, 1)),
+	keras.layers.Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
+	keras.layers.BatchNormalization(),
+	keras.layers.MaxPool2D(pool_size=(4, 4), padding="valid"),
+	keras.layers.Conv2D(16, kernel_size=(3,3), strides=(1, 1)),
+	keras.layers.BatchNormalization(),
+	keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
+	keras.layers.Flatten(),
+	keras.layers.Dropout(0.25),
+    keras.layers.Dense(64, kernel_regularizer=keras.regularizers.l2(0.005), activation=tf.nn.relu),
+    keras.layers.GaussianNoise(0.5),
+	keras.layers.Dropout(0.5),
+    keras.layers.Dense(64, kernel_regularizer=keras.regularizers.l2(0.005), activation=tf.nn.relu),
+    keras.layers.Dropout(0.5),
+    keras.layers.Dense(4, activation=tf.nn.softmax)
+
+    Optimizer: Adam
+    Loss: sparse_categorical_crossentropy
+]
+
+!!========Did not get overtrained yet. Could do more epochs============!!
+[
+	Epochs: 40
+	Batch Size: 10
+
+	Training Accuracy: 89.44%
+	Evaluation Accuracy: 83.49%
+
+	val_loss: 0.5785
+
+	keras.layers.Conv2D(4, kernel_size=(3, 3), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
+	keras.layers.Conv2D(4, kernel_size=(2, 2), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
+	keras.layers.BatchNormalization(),
+	keras.layers.MaxPool2D(pool_size=(4, 4), padding="valid"),
+	keras.layers.Conv2D(4, kernel_size=(3,3), strides=(1, 1)),
+	keras.layers.Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
+	keras.layers.BatchNormalization(),
+	keras.layers.MaxPool2D(pool_size=(4, 4), padding="valid"),
+	keras.layers.Conv2D(16, kernel_size=(3,3), strides=(1, 1)),
+	keras.layers.BatchNormalization(),
+	keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
+	keras.layers.Flatten(),
+	keras.layers.Dropout(0.4),
+    keras.layers.Dense(64, kernel_regularizer=keras.regularizers.l2(0.005), activation=tf.nn.relu),
+    keras.layers.GaussianNoise(0.4),
+    keras.layers.Dense(64, kernel_regularizer=keras.regularizers.l2(0.005), activation=tf.nn.relu),
+    keras.layers.Dropout(0.4),
+    keras.layers.Dense(4, activation=tf.nn.softmax)
+
+    Optimizer: Adam
+    Loss: sparse_categorical_crossentropy
+]
+
+-------Changing to Nadam--------------
+
+[
+	Epochs: 40
+	Batch Size: 10
+
+	Training Accuracy: 87.54%
+	Evaluation Accuracy: 80.55%
+
+	val_loss: 0.6263
+
+	keras.layers.Conv2D(4, kernel_size=(3, 3), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
+	keras.layers.Conv2D(4, kernel_size=(2, 2), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
+	keras.layers.BatchNormalization(),
+	keras.layers.MaxPool2D(pool_size=(4, 4), padding="valid"),
+	keras.layers.Conv2D(4, kernel_size=(3,3), strides=(1, 1)),
+	keras.layers.Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
+	keras.layers.BatchNormalization(),
+	keras.layers.MaxPool2D(pool_size=(4, 4), padding="valid"),
+	keras.layers.Conv2D(16, kernel_size=(3,3), strides=(1, 1)),
+	keras.layers.BatchNormalization(),
+	keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
+	keras.layers.Flatten(),
+	keras.layers.Dropout(0.4),
+    keras.layers.Dense(64, kernel_regularizer=keras.regularizers.l2(0.005), activation=tf.nn.relu),
+    keras.layers.GaussianNoise(0.4),
+    keras.layers.Dense(64, kernel_regularizer=keras.regularizers.l2(0.005), activation=tf.nn.relu),
+    keras.layers.Dropout(0.4),
+    keras.layers.Dense(4, activation=tf.nn.softmax)
+
+    Optimizer: Nadam
+    Loss: sparse_categorical_crossentropy
+]
+
+[
+	Epochs: 40
+	Batch Size: 10
+
+	Training Accuracy: 87.54%
+	Evaluation Accuracy: 80.55%
+
+	val_loss: 0.6263
+
+	keras.layers.Conv2D(4, kernel_size=(3, 3), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
+	keras.layers.Conv2D(4, kernel_size=(2, 2), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
+	keras.layers.BatchNormalization(),
+	keras.layers.MaxPool2D(pool_size=(4, 4), padding="valid"),
+	keras.layers.Conv2D(4, kernel_size=(3,3), strides=(1, 1)),
+	keras.layers.Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
+	keras.layers.BatchNormalization(),
+	keras.layers.MaxPool2D(pool_size=(4, 4), padding="valid"),
+	keras.layers.Conv2D(16, kernel_size=(3,3), strides=(1, 1)),
+	keras.layers.BatchNormalization(),
+	keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
+	keras.layers.Flatten(),
+	keras.layers.Dropout(0.4),
+    keras.layers.Dense(64, kernel_regularizer=keras.regularizers.l2(0.002), activation=tf.nn.relu),
+    keras.layers.GaussianNoise(0.4),
+    keras.layers.Dense(64, kernel_regularizer=keras.regularizers.l2(0.002), activation=tf.nn.relu),
+    keras.layers.Dropout(0.4),
+    keras.layers.Dense(4, activation=tf.nn.softmax)
+
+    Optimizer: Nadam
+    Loss: sparse_categorical_crossentropy
+]
+
+!!--Did reach a bottom it seemed in loss, but not overtrained--!!
+[
+	Epochs: 40
+	Batch Size: 10
+
+	Training Accuracy: ?? %
+	Evaluation Accuracy: ?? %
+
+	val_loss: ??
+
+	keras.layers.Conv2D(4, kernel_size=(5, 5), strides=(5, 5), input_shape=(image_height, image_width, number_of_color_channels)),
+	keras.layers.Conv2D(4, kernel_size=(3, 3), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
+	keras.layers.BatchNormalization(),
+	keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
+	keras.layers.Conv2D(4, kernel_size=(3,3), strides=(1, 1)),
+	keras.layers.Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
+	keras.layers.BatchNormalization(),
+	keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
+	keras.layers.Conv2D(16, kernel_size=(3,3), strides=(1, 1)),
+	keras.layers.BatchNormalization(),
+	keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
+	keras.layers.Flatten(),
+	keras.layers.Dropout(0.4),
+    keras.layers.Dense(64, kernel_regularizer=keras.regularizers.l2(0.005), activation=tf.nn.relu),
+    keras.layers.GaussianNoise(0.4),
+    keras.layers.Dense(64, kernel_regularizer=keras.regularizers.l2(0.005), activation=tf.nn.relu),
+    keras.layers.Dropout(0.4),
+    keras.layers.Dense(4, activation=tf.nn.softmax)
+
+    Optimizer: Nadam
+    Loss: sparse_categorical_crossentropy
+]
+
+-------Changing back to Adam since Nadam didn't give any improvements--------------
+-------Taking more photos still. 200 per item on train and 39 on test--------------
+
+[
+	Epochs: 40
+	Batch Size: 10
+
+	Training Accuracy: 83.23%
+	Evaluation Accuracy: 83.45%
+
+	val_loss: 0.5351 (on previous: 0.5120)
+
+	keras.layers.Conv2D(4, kernel_size=(5, 5), strides=(2, 2), input_shape=(image_height, image_width, number_of_color_channels)),
+	keras.layers.Conv2D(4, kernel_size=(3, 3), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
+	keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
+	keras.layers.BatchNormalization(),
+	keras.layers.Conv2D(8, kernel_size=(3,3), strides=(1, 1)),
+	keras.layers.Conv2D(8, kernel_size=(2,2), strides=(2, 2)),
+	keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
+	keras.layers.BatchNormalization(),
+	keras.layers.Conv2D(16, kernel_size=(3,3), strides=(1, 1)),
+	keras.layers.Conv2D(16, kernel_size=(2,2), strides=(2, 2)),
+	keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
+	keras.layers.BatchNormalization(),
+	keras.layers.Flatten(),
+	keras.layers.Dropout(0.4),
+    keras.layers.Dense(64, kernel_regularizer=keras.regularizers.l2(0.005), activation=tf.nn.relu),
+    keras.layers.GaussianNoise(0.4),
+    keras.layers.Dense(64, kernel_regularizer=keras.regularizers.l2(0.005), activation=tf.nn.relu),
+    keras.layers.Dropout(0.4),
+    keras.layers.Dense(4, activation=tf.nn.softmax)
+
+    Optimizer: Nadam
+    Loss: sparse_categorical_crossentropy
+]
+
+---------- Lowering dropout, noise and L2 ----------
+
+[
+	Epochs: 40
+	Batch Size: 10
+
+	Training Accuracy: 89.??%
+	Evaluation Accuracy: 91.??%
+
+	val_loss: 0.3???
+
+	keras.layers.Conv2D(4, kernel_size=(5, 5), strides=(2, 2), input_shape=(image_height, image_width, number_of_color_channels)),
+	keras.layers.Conv2D(4, kernel_size=(3, 3), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
+	keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
+	keras.layers.BatchNormalization(),
+	keras.layers.LeakyReLU(),
+	keras.layers.Conv2D(8, kernel_size=(3,3), strides=(1, 1)),
+	keras.layers.Conv2D(8, kernel_size=(2,2), strides=(2, 2)),
+	keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
+	keras.layers.BatchNormalization(),
+	keras.layers.LeakyReLU(),
+	keras.layers.Conv2D(16, kernel_size=(3,3), strides=(1, 1)),
+	keras.layers.Conv2D(16, kernel_size=(2,2), strides=(2, 2)),
+	keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
+	keras.layers.BatchNormalization(),
+	keras.layers.LeakyReLU(),
+	keras.layers.Flatten(),
+	keras.layers.Dropout(0.5),
+    keras.layers.Dense(64, kernel_regularizer=keras.regularizers.l2(0.003), activation=tf.nn.relu),
+    keras.layers.GaussianNoise(0.2),
+    keras.layers.Dense(64, kernel_regularizer=keras.regularizers.l2(0.003), activation=tf.nn.relu),
+    keras.layers.Dropout(0.25),
+    keras.layers.Dense(4, activation=tf.nn.softmax)
+
+    Optimizer: Adam
+    Loss: sparse_categorical_crossentropy
+]

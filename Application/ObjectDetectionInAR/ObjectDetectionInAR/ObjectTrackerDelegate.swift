@@ -4,4 +4,5 @@ protocol ObjectTrackerDelegate: class
 {
     func displayRects(rects: [CGRect])
     func getFrame() -> CVPixelBuffer?
+    func trackingDidStop()
 }

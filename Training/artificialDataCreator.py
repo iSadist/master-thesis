@@ -1,8 +1,8 @@
 from PIL import Image, ImageFilter, ImageEnhance
 from sklearn.utils import shuffle
 
-image_width = 200
-image_height = 150
+image_width = 256
+image_height = 256
 
 def create(name, folder, number_of_images):
 	image_numbers = range(1,number_of_images + 1)
@@ -22,30 +22,25 @@ def create(name, folder, number_of_images):
 		artificalImages.append(image_180)
 		artificalImages.append(image_270)
 		artificalImages.append(image.transpose(Image.FLIP_LEFT_RIGHT))
-		artificalImages.append(ImageEnhance.Brightness(image).enhance(0.7))
 		artificalImages.append(ImageEnhance.Brightness(image_90).enhance(1.3))
-		artificalImages.append(ImageEnhance.Brightness(image_270).enhance(0.7))
 		artificalImages.append(ImageEnhance.Brightness(image_180.transpose(Image.FLIP_LEFT_RIGHT)).enhance(1.5))
 		artificalImages.append(ImageEnhance.Contrast(image).enhance(1.4))
 		artificalImages.append(ImageEnhance.Contrast(image_180).enhance(0.7))
 		artificalImages.append(ImageEnhance.Color(image).enhance(0.5))
 		artificalImages.append(ImageEnhance.Color(image.transpose(Image.FLIP_LEFT_RIGHT)).enhance(0.3))
 		artificalImages.append(ImageEnhance.Color(image_270).enhance(1.6))
-		artificalImages.append(ImageEnhance.Sharpness(image).enhance(0.0))
-		artificalImages.append(ImageEnhance.Sharpness(image_180).enhance(2.0))
-		artificalImages.append(image.filter(ImageFilter.GaussianBlur(1)))
 
 		num = 1
 		for artificialImage in artificalImages:
 			artificialImage.save("./Images/" + folder + "/Artificial" + name + "/image_" + str(x) + "-" + str(num) + '.jpg', 'JPEG')
 			num += 1
 
-create('Seat', 'Train', 134)
-create('Piece1', 'Train', 134)
-create('Piece2', 'Train', 134)
-create('UnknownObjects', 'Train', 134)
+create('Seat', 'Train', 200)
+create('Piece1', 'Train', 200)
+create('Piece2', 'Train', 200)
+create('UnknownObjects', 'Train', 200)
 
-create('Seat', 'Test', 31)
-create('Piece1', 'Test', 31)
-create('Piece2', 'Test', 31)
-create('UnknownObjects', 'Test', 31)
+create('Seat', 'Test', 39)
+create('Piece1', 'Test', 39)
+create('Piece2', 'Test', 39)
+create('UnknownObjects', 'Test', 39)

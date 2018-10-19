@@ -30,14 +30,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nj7-bF-yoU">
-                                <rect key="frame" x="25" y="578" width="325" height="200"/>
+                                <rect key="frame" x="25" y="653" width="325" height="125"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iDV-o0-qqo">
-                                        <rect key="frame" x="139.66666666666666" y="150" width="46" height="30"/>
+                                        <rect key="frame" x="139.66666666666666" y="75" width="46" height="30"/>
                                         <state key="normal" title="Button"/>
                                     </button>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EO1-me-qzt">
-                                        <rect key="frame" x="20" y="20" width="285" height="122"/>
+                                        <rect key="frame" x="20" y="20" width="285" height="47"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -47,7 +47,7 @@
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="0.49526848591549294" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="EO1-me-qzt" firstAttribute="top" secondItem="Nj7-bF-yoU" secondAttribute="top" constant="20" symbolic="YES" id="EDw-Zy-2R5"/>
-                                    <constraint firstAttribute="height" constant="200" id="FLs-eJ-3s4"/>
+                                    <constraint firstAttribute="height" constant="125" id="FLs-eJ-3s4"/>
                                     <constraint firstItem="iDV-o0-qqo" firstAttribute="centerX" secondItem="Nj7-bF-yoU" secondAttribute="centerX" id="QtP-ln-thg"/>
                                     <constraint firstAttribute="bottom" secondItem="iDV-o0-qqo" secondAttribute="bottom" constant="20" id="k8a-hb-jgf"/>
                                     <constraint firstAttribute="trailing" secondItem="EO1-me-qzt" secondAttribute="trailing" constant="20" symbolic="YES" id="qdf-4k-iDF"/>
