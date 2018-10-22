@@ -224,7 +224,6 @@ extension AssemblerViewController: ObjectTrackerDelegate
         let converter = ImageConverter()
         guard currentSnapshot != nil else { return currentSnapshot }
         let image = converter.convertPixelBufferToUIImage(pixelBuffer: currentSnapshot!)
-        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
         
         return currentSnapshot
     }
