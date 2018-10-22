@@ -8,14 +8,14 @@ To train and generate the CoreML model for the network, using our model built fr
 First you need to install the following dependencies: 
 * Python 2.7
 * Pillow 
-* tensorflow 
-* keras version 2.1.6
+* tensorflow 1.5.0
+* keras version 2.1.3
 * numpy
 * matplotlib
 * scikit-learn 
 * tfcoreml
 
-These can all be installed by running 
+These can all be installed by going to the Training folder and running 
 ```make
 make install
 ```
