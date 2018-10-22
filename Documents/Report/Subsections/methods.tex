@@ -73,7 +73,7 @@ Doing this by hand can still be very time consuming, so automating this process 
 Apple's ARKit2 has a feature where it can detect scanned 3D objects. For scanning, they have developed an app that can be downloaded from their website. \cite{ARScanning}
 After the scanning is complete the app lets you export the model to then include it in your ARKit2 project. Once in the project it is simply imported into the ARWorldTrackingConfiguration like shown below.
 
-\lstinputlisting[language=swift,firstline=63,lastline=71]{../../Application/ObjectDetectionInAR/ObjectDetectionInAR/AssemblerViewController.swift}
+\lstinputlisting[language=swift,firstline=63,lastline=71]{../../Application/ObjectDetectionInAR/ObjectDetectionInAR/Assembler/AssemblerViewController.swift}
 
 \begin{figure}[hbtp]
 \begin{center}
@@ -109,7 +109,7 @@ The following lines of code show how the object tracking was set up. One importa
 
 That is why they can be executed in a while true loop. Later though, when drawing on the GUI wants to be made, they MUST be done on the main thread.
 
-\lstinputlisting[language=swift,firstline=48,lastline=90]{../../Application/ObjectDetectionInAR/ObjectDetectionInAR/ObjectTracker.swift}
+\lstinputlisting[language=swift,firstline=48,lastline=90]{../../Application/ObjectDetectionInAR/ObjectDetectionInAR/Assembler/ObjectTracker.swift}
 
 
 \subsection{Combining Object detection with Object Tracking}
