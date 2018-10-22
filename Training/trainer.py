@@ -46,13 +46,13 @@ def createModel():
 		keras.layers.Conv2D(8, kernel_size=(3, 3), strides=(1, 1)),
 		keras.layers.Conv2D(8, kernel_size=(3, 3), strides=(1, 1)),
 		keras.layers.Conv2D(8, kernel_size=(3, 3), strides=(1, 1)),
-		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
+		keras.layers.MaxPool2D(pool_size=(3, 3), padding="valid"),
 		keras.layers.BatchNormalization(),
 		keras.layers.LeakyReLU(),
 		keras.layers.Conv2D(16, kernel_size=(3, 3), strides=(1, 1)),
 		keras.layers.Conv2D(16, kernel_size=(3, 3), strides=(1, 1)),
 		keras.layers.Conv2D(16, kernel_size=(3, 3), strides=(1, 1)),
-		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
+		keras.layers.MaxPool2D(pool_size=(3, 3), padding="valid"),
 		keras.layers.BatchNormalization(),
 		keras.layers.LeakyReLU(),
 		keras.layers.Flatten(),
@@ -73,7 +73,11 @@ def createModel():
 def trainModel(model, train_data, train_labels, test_images, test_labels):
 	print("Starting training...")
 	train_data, train_labels = shuffle(train_data, train_labels) # Shuffle the whole training set
-	history = model.fit(train_data, train_labels, epochs=40, batch_size=10, validation_data=(test_images, test_labels), verbose=1)
+
+	early_stopping = keras.callbacks.EarlyStopping(monitor='val_acc', patience=5, verbose=1)
+	checkpoint = keras.callbacks.ModelCheckpoint("./Models/Nolmyra.h5", monitor='val_acc', verbose=1, save_best_only=True, save_weights_only=False, mode='auto', period=1)
+
+	history = model.fit(train_data, train_labels, epochs=40, batch_size=10, validation_data=(test_images, test_labels), callbacks=[early_stopping, checkpoint] , verbose=1)
 	return history
 
 def loadImages(image_list, labels_list, folder, number_of_images):
