@@ -64,7 +64,7 @@
 		594D8D43216749F4002F9CA3 /* ObjectTrackerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectTrackerDelegate.swift; sourceTree = "<group>"; };
 		59652B11216360BD00B0CC1A /* GeometryFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeometryFactory.swift; sourceTree = "<group>"; };
 		59652B1721638DC600B0CC1A /* ObjectTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectTracker.swift; sourceTree = "<group>"; };
-		59652B192164AC8900B0CC1A /* FurnitureNet.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = FurnitureNet.mlmodel; path = ../../../Training/Models/FurnitureNet.mlmodel; sourceTree = "<group>"; };
+		59652B192164AC8900B0CC1A /* FurnitureNet.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = FurnitureNet.mlmodel; sourceTree = "<group>"; };
 		59652B1B2164BA4600B0CC1A /* OverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayView.swift; sourceTree = "<group>"; };
 		598D526C215149BE00DD307E /* ImageConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageConverter.swift; sourceTree = "<group>"; };
 		599157A021402F4D00B3A8D7 /* ImageProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProcessor.swift; sourceTree = "<group>"; };
@@ -120,6 +120,80 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		594FE2FE217DF0CA000D5068 /* FurnitureSelection */ = {
+			isa = PBXGroup;
+			children = (
+				59C058C9216221D40052AF82 /* BarcodeScannerViewController.swift */,
+				59F84AD2215E1649003FB510 /* FurnitureSelectionViewController.swift */,
+				59F84AD8215E1E50003FB510 /* FurnitureDetailViewController.swift */,
+				59F84AD4215E19ED003FB510 /* FurnitureCollectionViewCell.swift */,
+				59F84ADA215E77A5003FB510 /* FurnitureInspecterViewController.swift */,
+				59F84AD6215E1A5D003FB510 /* Furniture.swift */,
+			);
+			path = FurnitureSelection;
+			sourceTree = "<group>";
+		};
+		594FE2FF217DF125000D5068 /* Assembler */ = {
+			isa = PBXGroup;
+			children = (
+				E1ED297420BCA23B007DBE66 /* AssemblerViewController.swift */,
+				59652B1B2164BA4600B0CC1A /* OverlayView.swift */,
+				59DFA235217A385E00FBBFF7 /* InstructionExecutioner.swift */,
+				59652B1721638DC600B0CC1A /* ObjectTracker.swift */,
+				590E9FF821785D8C0080100A /* ObjectDetector.swift */,
+			);
+			path = Assembler;
+			sourceTree = "<group>";
+		};
+		594FE300217DF17A000D5068 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				594FE302217DF1A5000D5068 /* Instruction */,
+				599157A021402F4D00B3A8D7 /* ImageProcessor.swift */,
+				598D526C215149BE00DD307E /* ImageConverter.swift */,
+				59652B11216360BD00B0CC1A /* GeometryFactory.swift */,
+				590E9FF621775EF00080100A /* Database.swift */,
+				59C058C721621EF50052AF82 /* ImageViewController.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		594FE301217DF193000D5068 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				594D8D43216749F4002F9CA3 /* ObjectTrackerDelegate.swift */,
+				590E9FFA21785EA90080100A /* ObjectDetectorDelegate.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		594FE302217DF1A5000D5068 /* Instruction */ = {
+			isa = PBXGroup;
+			children = (
+				59B80624216F896B00C28A1A /* Instruction.swift */,
+				59DFA237217A3A0300FBBFF7 /* ScanInstruction.swift */,
+				59DFA23B217A555400FBBFF7 /* AssembleIntruction.swift */,
+			);
+			path = Instruction;
+			sourceTree = "<group>";
+		};
+		594FE303217DF20F000D5068 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				E1ED297620BCA23B007DBE66 /* Main.storyboard */,
+				E1ED297B20BCA23C007DBE66 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		594FE304217DF23C000D5068 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				59652B192164AC8900B0CC1A /* FurnitureNet.mlmodel */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		E1ED296420BCA23B007DBE66 = {
 			isa = PBXGroup;
 			children = (
@@ -143,35 +217,17 @@
 		E1ED296F20BCA23B007DBE66 /* ObjectDetectionInAR */ = {
 			isa = PBXGroup;
 			children = (
+				594FE304217DF23C000D5068 /* Models */,
+				594FE303217DF20F000D5068 /* Storyboards */,
+				594FE301217DF193000D5068 /* Protocols */,
+				594FE300217DF17A000D5068 /* Utilities */,
+				594FE2FF217DF125000D5068 /* Assembler */,
+				594FE2FE217DF0CA000D5068 /* FurnitureSelection */,
 				E1ED297020BCA23B007DBE66 /* AppDelegate.swift */,
 				E1ED297220BCA23B007DBE66 /* art.scnassets */,
-				E1ED297420BCA23B007DBE66 /* AssemblerViewController.swift */,
-				59DFA235217A385E00FBBFF7 /* InstructionExecutioner.swift */,
-				59C058C721621EF50052AF82 /* ImageViewController.swift */,
-				59C058C9216221D40052AF82 /* BarcodeScannerViewController.swift */,
 				592DC1BD213FEF1A00E29665 /* SamplePhotoViewController.swift */,
-				59652B1B2164BA4600B0CC1A /* OverlayView.swift */,
-				E1ED297620BCA23B007DBE66 /* Main.storyboard */,
 				E1ED297920BCA23C007DBE66 /* Assets.xcassets */,
-				E1ED297B20BCA23C007DBE66 /* LaunchScreen.storyboard */,
 				E1ED297E20BCA23C007DBE66 /* Info.plist */,
-				599157A021402F4D00B3A8D7 /* ImageProcessor.swift */,
-				598D526C215149BE00DD307E /* ImageConverter.swift */,
-				59F84AD2215E1649003FB510 /* FurnitureSelectionViewController.swift */,
-				59F84AD8215E1E50003FB510 /* FurnitureDetailViewController.swift */,
-				59F84ADA215E77A5003FB510 /* FurnitureInspecterViewController.swift */,
-				59F84AD4215E19ED003FB510 /* FurnitureCollectionViewCell.swift */,
-				59F84AD6215E1A5D003FB510 /* Furniture.swift */,
-				59652B11216360BD00B0CC1A /* GeometryFactory.swift */,
-				59652B1721638DC600B0CC1A /* ObjectTracker.swift */,
-				594D8D43216749F4002F9CA3 /* ObjectTrackerDelegate.swift */,
-				590E9FF821785D8C0080100A /* ObjectDetector.swift */,
-				590E9FFA21785EA90080100A /* ObjectDetectorDelegate.swift */,
-				59652B192164AC8900B0CC1A /* FurnitureNet.mlmodel */,
-				59B80624216F896B00C28A1A /* Instruction.swift */,
-				59DFA237217A3A0300FBBFF7 /* ScanInstruction.swift */,
-				59DFA23B217A555400FBBFF7 /* AssembleIntruction.swift */,
-				590E9FF621775EF00080100A /* Database.swift */,
 			);
 			path = ObjectDetectionInAR;
 			sourceTree = "<group>";

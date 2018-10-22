@@ -220,11 +220,6 @@ extension AssemblerViewController: ObjectTrackerDelegate
             let converter = ImageConverter()
             self.currentSnapshot = converter.convertImageToPixelBuffer(image: self.sceneView.snapshot())
         }
-        
-        let converter = ImageConverter()
-        guard currentSnapshot != nil else { return currentSnapshot }
-        let image = converter.convertPixelBufferToUIImage(pixelBuffer: currentSnapshot!)
-        
         return currentSnapshot
     }
 }
