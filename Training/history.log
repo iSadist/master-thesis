@@ -1279,7 +1279,7 @@ The images are loaded one category at a time
 ]
 
 ---------- Lowering dropout, noise and L2 ----------
-
+---------- Gave really good result, best yet! ----------
 [
 	Epochs: 40
 	Batch Size: 10
@@ -1315,3 +1315,57 @@ The images are loaded one category at a time
     Optimizer: Adam
     Loss: sparse_categorical_crossentropy
 ]
+
+
+
+[
+	Epochs: 40
+	Batch Size: 10
+
+	Training Accuracy: 93.36%
+	Evaluation Accuracy: 89.92% (91.90% on epoch 29)
+
+	val_loss: 0.5494
+
+	keras.layers.Conv2D(4, kernel_size=(5, 5), strides=(2, 2), input_shape=(image_height, image_width, number_of_color_channels)),
+	keras.layers.Conv2D(4, kernel_size=(3, 3), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
+	keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
+	keras.layers.BatchNormalization(),
+	keras.layers.LeakyReLU(),
+	keras.layers.Conv2D(8, kernel_size=(3, 3), strides=(1, 1)),
+	keras.layers.Conv2D(8, kernel_size=(3, 3), strides=(1, 1)),
+	keras.layers.Conv2D(8, kernel_size=(3, 3), strides=(1, 1)),
+	keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
+	keras.layers.BatchNormalization(),
+	keras.layers.LeakyReLU(),
+	keras.layers.Conv2D(16, kernel_size=(3, 3), strides=(1, 1)),
+	keras.layers.Conv2D(16, kernel_size=(3, 3), strides=(1, 1)),
+	keras.layers.Conv2D(16, kernel_size=(3, 3), strides=(1, 1)),
+	keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
+	keras.layers.BatchNormalization(),
+	keras.layers.LeakyReLU(),
+	keras.layers.Flatten(),
+	keras.layers.Dropout(0.5),
+    keras.layers.Dense(64, kernel_regularizer=keras.regularizers.l2(0.003), activation=tf.nn.relu),
+    keras.layers.GaussianNoise(0.2),
+    keras.layers.Dense(64, kernel_regularizer=keras.regularizers.l2(0.003), activation=tf.nn.relu),
+    keras.layers.Dropout(0.25),
+    keras.layers.Dense(4, activation=tf.nn.softmax)
+
+    Optimizer: Adam
+    Loss: sparse_categorical_crossentropy
+]
+
+-- Same as last time but with early stopping --
+
+[
+	Epochs: 40
+	Batch Size: 10
+
+	Training Accuracy: 87.83%
+	Evaluation Accuracy: 92.25%
+
+	val_loss: 0.3995
+]
+
+
