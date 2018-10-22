@@ -141,6 +141,19 @@ After trial of designing the network from scratch, it was decided to try and mak
 Several different models were tried, including ResNet50[CITE], InceptionV3[CITE] and VGG19[CITE].
 [ADD CODE]
 [ADD IMAGES/TEST RESULTS]
+
+\subsubsection{Turi Create}
+%Write about the testing an implementation of Turi
+Apple have developed their own toolkit for development of custom machine learning models called Turi Create \url{https://github.com/apple/turicreate}. This was created to help developers to easily implement their own ideas into an app. It includes methods for image classification, object detection etc.. 
+
+In this project, the Object Detection method included in Turi Create was tested. First, one has to create ground truth data for every image that was trained and tested on. This was done using Simple Image Annotator \url{https://github.com/sgp715/simple_image_annotator}, where one has to draw bounding boxes for the objects in the images and label them; the data output is in the \textit{.csv} format.  Turi Create uses a different format for annotations called \textit{.sframe}, however, they provide a simple Python script which automatically does the conversion. 
+
+Turi then trains a model using a re-implementation of the TinyYOLO netwok. It also utilizes transfer learning by starting with an image classifier that has been trained on the imageNet dataset and the does \textit{end-to-end finetuning} do change the network to a \textit{one-stage detector}.
+
+After training and evaluating that the model lives up to a standard worth including in this project, it was converted to the \textit{.mlmodel} format usable by CoreML in the application. However, due to current technical bugs in Turi Create the model does not yield correct bounding boxes while running in the application, thus the decision was made to scrap the use of this toolkit.
+
+[iNCLUDE IMAGES FROM TESTING BOTH IN TURI AND FROM TESTING IN APP] 
+
 \subsection{AR implementation in ARKit}
 
 \newpage
