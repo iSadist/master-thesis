@@ -348,6 +348,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="assembleButton" destination="5BQ-AT-Vgj" id="G23-FT-kIA"/>
                         <outlet property="descriptionTextView" destination="wKl-Jm-yaw" id="47N-bI-MFN"/>
                         <outlet property="iconView" destination="mOd-th-49W" id="zMB-ak-ZXN"/>
                         <outlet property="idLabel" destination="uvK-T8-ZV9" id="xfS-qX-Lpe"/>
