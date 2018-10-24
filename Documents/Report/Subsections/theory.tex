@@ -54,14 +54,58 @@ Nadam
 
 \begin{figure}[hbtp]
 \begin{center}
-\includegraphics[width = 0.75\textwidth]{./Images/fully_connected.jpg} 
+\includegraphics[width = 1.0\textwidth]{./Images/fully_connected.jpg} 
 \caption{Two fully connected layers. One with 3 neurons and one with 2 neurons.}
 \end{center}
 \end{figure}
 
-With more layers and more neurons the networks parameters and complexity begins to grow. So does also the training time, size of the model and the cost for doing predictions. Thus, these networks are capable of describing much more complex data sets. But as a result of that, the risk of overfitting (The act of describing the training data set too well so that new data sets will not get recognized. More on this later.) becomes much greater. That is why a complex network is not always wanted.
+With more layers and more neurons the networks parameters and complexity begins to grow. So does also the training time, size of the model and the cost for doing predictions. Thus, these networks are capable of describing much more complex data sets. But as a result of that, the risk of overfitting (The act of describing the training data set too well so that new data sets will not get recognized. More on this soon.) becomes much greater. That is why a complex network is not always wanted.
 
 \subsubsection{Artificial Neural networks}
+
+\subsubsection{Overfitting}
+When training a neural net, one needs to be careful not to train the model too much or overfitting is likely to happen. Overfitting is when a model gets REALLY good at predicting the data that it is training on but fails to predict accurately on new data. This is because it starts to pick up too much on detail or in some instances even noise. For this reason it fails to pick up the general trends, which is more valuable. 
+
+\begin{figure}[hbtp]
+\begin{center}
+\includegraphics[width = 1.0\textwidth]{./Images/overfitting.jpg} 
+\caption{Overfitting of a dataset. On the left is a accurate trained model, on the right is an overtrained model. Image taken from OReilly.com}
+\end{center}
+\end{figure}
+
+\cite{overtraining}
+
+There are tricks for combating overfitting. They usually involve trying to limit the size of a small amount of weights.
+The hypothesis behind this is that if a weight is much larger than the rest it also has much more influence over the final prediction. That way, a small detail in the data can have much more influence than the general trend.
+
+One way to do this is to cut random connections between layers during epochs, usually by specifying a certain amount that is going to be cut.
+This way, the model is not relying on a small number of nodes to make the correct predictions. This method is called dropout.
+
+Another way is to introduce random noise on a layer during training. This works because if a node with a large weight receives noise, it will be heavily amplified and probably give a false prediction.
+When doing this, Gaussian noise is usually implemented, which is basically random noise with a gaussian distribution.
+
+To force the model to keep weights small, one way is to add a penalty to the loss for every weight based on its size. 
+This is called weight regularisation and is widely used and exists in two forms, L1 and L2.
+L1 simply adds the weights size multiplied with an l1 term that is chosen by the designer.
+The other, L2, is to do the same but in this case square that value. This has the effect of making values over 1 even bigger and values less than 1 smaller.
+In that way, it doesn't affect the loss as much as L1 when not being overtrained. L2 is also called weight decay and is the more common method of the two.
+
+One important thing to point out is that all these methods mentioned so far are only active during training and is not doing anything when making real predictions.
+
+
+If lots of training data exists, the ensemble technique could be a good way to go. This technique divides the training data into more smaller sets and trains a model for every data set.
+The final prediction is then an average of the predictions of all the models. This technique works because if the model is highly overtrained in a certain direction, chances are that the other networks will drown out this result by the many other models.
+
+It is kind of like when someone has an off pitch in a big choir. If there are many other singers, this off-pitch will not be noticed very much.
+
+\begin{figure}[hbtp]
+\begin{center}
+\includegraphics[width = 0.75\textwidth]{./Images/early_stop.jpg} 
+\caption{A graph showing when to do an early stop. The graph shows the total loss over trained epochs. Notice that the validation starts to increase again somewhere after epoch 20.}
+\end{center}
+\end{figure}
+
+The final technique is called early stopping and is based on validating the model after every epoch and stopping the training when the validation loss, or some other criteria, is not improving anymore.
 
 \subsubsection{Deep Neural Networks}
 % Write about how Deep Neural Networks work and how it's applyed to image classification
