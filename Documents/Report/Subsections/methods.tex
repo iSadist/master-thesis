@@ -42,6 +42,12 @@ We worked very close to the project owner by sitting on desks right across him. 
 \subsection{Matlab prototype for Object Detection}
 % Write about design decisions for the Matlab prototype and what it does. 
 % Probably add some code as well.
+A purely feature based object segmentation method was implemented as a prototype in Matlab. This was done to see if a machine learning model for detecting objects could be dismissed. 
+The idea was that if one sent an image into the system, the resulting output of would be bounding box coordinates for each respective object within the image. These smaller sub-images would later be separately be classified using a deep neural networks. The bounding boxes would also be useful for user interface in the application. 
+
+First, a edge detection method was run on the entire image, to find the edges, which would serve as a good variable for the segmentation. Then, a simple threshold algorithm would binarize the image where all edge values below a certain value would become 0's, and the rest 1's. From this, one can easily find enclosed blobs, and by finding enclosed blobs containing more than a certain amount of pixels, to account for errors, one can find the objects. The bounding boxes are them found by selecting the minimal and maximal height and weight values of the blobs. 
+
+[INSERT IMAGES]
 
 \subsection{Collecting data}
 When working with machine learning, big sets of data is often required for a good resulting model.
