@@ -38,6 +38,9 @@ class Database
             nolmyraInstructions.append(Instruction(message: "Point the camera to the furniture parts", buttonText: "Start scan"))
             nolmyraInstructions.append(ScanInstruction(message: "Looking for parts...", buttonText: nil, firstItem: "Piece1", secondItem: "Piece2"))
             nolmyraInstructions.append(AssembleInstruction(message: "Put these two pieces together", buttonText: "Done"))
+            nolmyraInstructions.append(ScanInstruction(message: "Looking for next parts...", buttonText: nil, firstItem: "JoinedPieces", secondItem: "Seat"))
+            nolmyraInstructions.append(AssembleInstruction(message: "Put these two pieces together", buttonText: "Done"))
+            nolmyraInstructions.append(Instruction(message: "You are done putting together Nolmyra", buttonText: "Complete"))
             return nolmyraInstructions
         default:
             return nil
