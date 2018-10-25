@@ -108,6 +108,34 @@ class AssemblerViewController: UIViewController
             currentInstruction = furniture?.instructions?.removeFirst()
         }
     }
+
+    func connectPieces(fromScreen startPoint: CGPoint, to endPoint: CGPoint)
+    {
+        // Translate the point on screen to the point in the scene
+        let startHit = sceneView.hitTest(startPoint, types: .estimatedHorizontalPlane).first
+        let endHit = sceneView.hitTest(endPoint, types: .estimatedHorizontalPlane).first
+        
+        guard let startPosition = startHit?.worldTransform.columns.3 else { return }
+        guard let endPosition = endHit?.worldTransform.columns.3 else { return }
+        
+        // The positions in the real world
+        let startVector = SCNVector3(startPosition.x, startPosition.y, startPosition.z)
+        let endVector = SCNVector3(endPosition.x, endPosition.y, endPosition.z)
+        
+        let distance = startVector.distanceTo(endVector)
+        
+        // Create the node and add it to the scene at the starting position
+        let lineNode = GeometryFactory.makeLine(radius: 0.01, length: distance - 0.1)
+        
+        // Set the angle of the arrow to point from the first point to the second.
+        // Assuming that the arrow will lay flat on the floor and only rotate in y-axis.
+        // This is becuase the hittests only get points from a plane anyway.
+        lineNode.eulerAngles.x = Float.pi / 2
+        lineNode.eulerAngles.y = asin((endPosition.x - startPosition.x) / distance)
+        lineNode.position = startVector
+        
+        sceneView.scene.rootNode.addChildNode(lineNode)
+    }
     
     // MARK: Lifecycle events
     
@@ -125,10 +153,6 @@ class AssemblerViewController: UIViewController
         // Load the scene
         let scene = SCNScene(named: "art.scnassets/world.scn")!
         sceneView.scene = scene
-        
-        // Load the instructions for the furniture
-        let database = Database()
-        furniture!.instructions = database.getInstructions(for: furniture!)
         
         executioner.controller = self
         currentInstruction = furniture?.instructions?.removeFirst()
@@ -202,7 +226,7 @@ extension AssemblerViewController: ObjectTrackerDelegate
     func trackingDidStop() {
         print("Tracking stopped!")
         DispatchQueue.main.async {
-            self.overlayView.clearDisplay()
+//            self.overlayView.clearDisplay()
         }
     }
     
@@ -210,6 +234,9 @@ extension AssemblerViewController: ObjectTrackerDelegate
     {
         DispatchQueue.main.async {
             self.overlayView.storeVisionRects(rects: rects)
+            
+            if rects.isEmpty { return }
+            
             self.overlayView.setNeedsDisplay()
         }
     }
