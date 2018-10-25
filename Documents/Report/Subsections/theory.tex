@@ -41,6 +41,7 @@ The perceptron only has the ability to draw a single line and thus is only able 
 ReLu
 Tanh
 Sigmoid
+Softmax
 
 \subsubsection{Loss/Optimizers}
 
@@ -115,31 +116,48 @@ The final technique is called early stopping and is based on validating the mode
 \subsection{Object Detection without machine learning}
 % Write about feature based detection and segmentation
 
-Foreground/Background segmentation.
+When trying to detect objects in a still image we have looked into two main methods. One typical way is to try and look for patterns or features in the image.
+Either a specific image can be matched within the larger image or a series of features can be found.
+An example of the latter is Haar features which is used in the Viola-Jones for face detection. Using the image integral (which is the summation of pixel values in a specific region) different features can be obtained.
 
-There are methods for detecting objects in images. 
+\begin{figure}[hbtp]
+\begin{center}
+\includegraphics[width = 0.75\textwidth]{./Images/viola-jones.jpg} 
+\caption{A set of Haar features used to detect faces in the Viola-Jones method. The pixels in the white regions are summed and subtracted with the pixels in the black region. The algorithm will later decide if a specific feature has been found or not, depending on obtained value.}
+\end{center}
+\end{figure}
 
+This method is based on the fact that every face shares some basic similarities. Even objects of the same type can share some similarities.\cite{violaJones}
+\\\\
+Another way to find objects in an image is to try to classify each pixel as either background or foreground, usually referred to as Foreground/Background-segmentation. This usually requires some background knowledge of how the background usually looks like, for example, if the background is grass or a concrete floor.
+
+One of the most basic functions for separating background and foreground is the flood fill method.
+Anyone that has used Paint for Windows knows exactly what this one is. It fills a segment of similar pixels with the same color. This method works best on one backgrounds with only one color.
+Online there are many different variations but they all accomplish the same goal.\cite{floodFill}
+\\\\
 Mathematical morphology
-
-Flood fill
 
 Edge detection
 
 Histogram equalisation
-
+\\\\
 One possible way of detecting objects in an image is to use depth data, or RGB-D.
 A tool that typically comes to mind when reading about depth data is the Kinect camera
 for Xbox.
 
-How depth capture works; True depth, Dual camera depth
+On the iPhone X, depth data can be captured by either True Depth on the front camera or with the dual cameras on the back. The True Depth camera works by having a dot projector emit light dots (mainly on a face which is why this feature is found on the front camera) and picking those dots up with an infrared camera.
 
-The fact that Dual camera depth cannot be captured in real-time in an AR Scene.
+The dual camera on the back works by taking two photos and comparing those to find the pixel shifts of the same objects. The distance is calculated by (pixelShift / (pixelFocalLength * baselineInMeters)) and gives the unit in (1/meters). It is the same principal to how we humans see distance by having two eyes pointing the same direction. \cite{depthMap}
+
+However, obtaining the depth data from the dual cameras in real time is not possible since it requires too much computational power. This unfortunately makes it impossible to use in an ARScene and thus not possible for this project.\\
 
 Despite all the available methods above, object detection without machine learning is still very tricky. These methods works best when the images are in an controlled environment, typically industrial, like finding screws on a white background.
-When the environment is a more casual place tough, like recognizing furnitures indoors, the task becomes much more difficult.
+When the environment is a more casual place tough, like recognizing furnitures indoors, the task becomes much more difficult. For this reason, object detection with pure algorithms is not very common in household applications. Instead object detection with machine learning methods such as RCNN networks are much more common nowadays.
 
 \subsection{Object Detection with machine learning}
 % Write about how one can do object detection by the use of ML
+
+Big advantages with this is that classification and detection can be done in the same step. For this project that is really desirable.
 
 \subsubsection{RCNN and its different forms}
 
