@@ -226,7 +226,7 @@ extension AssemblerViewController: ObjectTrackerDelegate
     func trackingDidStop() {
         print("Tracking stopped!")
         DispatchQueue.main.async {
-//            self.overlayView.clearDisplay()
+            self.overlayView.clearDisplay()
         }
     }
     
@@ -234,9 +234,6 @@ extension AssemblerViewController: ObjectTrackerDelegate
     {
         DispatchQueue.main.async {
             self.overlayView.storeVisionRects(rects: rects)
-            
-            if rects.isEmpty { return }
-            
             self.overlayView.setNeedsDisplay()
         }
     }
