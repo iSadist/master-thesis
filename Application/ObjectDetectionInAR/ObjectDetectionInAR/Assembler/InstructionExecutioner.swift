@@ -1,3 +1,13 @@
+/*
+ The InstructionExecutioner accepts an Instruction or any of its
+ subclasses and executes it accordingly. It uses the controller
+ to reach the object tracker and object detector to be able to do
+ what it needs.
+ 
+ This class was created to seperate the controller of the ARScene
+ with the logic for executing instructions.
+ */
+
 import Foundation
 import UIKit
 
@@ -23,15 +33,12 @@ class InstructionExecutioner: ObjectDetectorDelegate
         }
     }
     
-    func getFrame() -> UIImage?
-    {
-        return nil
-    }
     
+    // Mark: - Object detector delegate
+    
+    // Called when the object detector has found some objects
     func objectsFound(objects rects: [CGRect], error: String?)
     {
-        // Called when the ObjectDetector has found some objects
-        
         var shouldConnectPieces = false
         var lastRect: CGRect = CGRect()
 

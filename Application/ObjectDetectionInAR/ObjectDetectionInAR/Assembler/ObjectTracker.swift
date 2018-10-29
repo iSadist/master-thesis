@@ -1,3 +1,15 @@
+/*
+ ObjectTracker is responsible for following a bounding box
+ of one or many objects in video. This process is started by
+ giving the bounding boxes at the setup and calling track().
+ 
+ Other classes that has the instance of ObjectTracker can
+ request cancel tracking at any time.
+ 
+ The tracking should be done on a seperate queue to avoid
+ a locked state.
+ */
+
 import Foundation
 import UIKit
 import Vision
@@ -9,6 +21,8 @@ private var millisecondsPerFrame = 1.0/framesPerSecond * 1000
 class ObjectTracker
 {
     let overlay: OverlayView
+    
+    // These properties are determined at init since no GUI operations are allowed on other queues than main
     var overlayOriginX: CGFloat = 0
     var overlayOriginY: CGFloat = 0
     var overlayWidth: CGFloat = 0
@@ -78,6 +92,7 @@ class ObjectTracker
 
             for trackingObservation in trackingObservations
             {
+                // Create the requests
                 let request = VNTrackObjectRequest(detectedObjectObservation: trackingObservation.value)
                 request.trackingLevel = .fast
                 trackingRequests.append(request)
@@ -87,6 +102,7 @@ class ObjectTracker
 
             for processedRequest in trackingRequests
             {
+                // Handle the results from the requests
                 guard let observation = processedRequest.results?.first as? VNDetectedObjectObservation else { continue }
                 
                 if observation.confidence > 0.1
@@ -99,6 +115,7 @@ class ObjectTracker
 
             delegate?.displayRects(rects: rects)
             
+            // The tracking will stop if no observation has a high confidence value
             if rects.isEmpty
             {
                 requestCancelTracking()

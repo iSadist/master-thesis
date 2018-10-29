@@ -1,3 +1,9 @@
+/*
+ OverlayView is used to be an overlay over the ARSceneView as a
+ means to display instructions to the user. These instructions
+ are in the forms of rectangles.
+ */
+
 import UIKit
 
 class OverlayView: UIView

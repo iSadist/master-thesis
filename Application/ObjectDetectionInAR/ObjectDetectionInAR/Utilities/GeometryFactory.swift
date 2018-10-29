@@ -43,7 +43,7 @@ class GeometryFactory
         let cylinderNode = SCNNode(geometry: cylinder)
         cylinderNode.position.y = cylinderLength / 2
         
-        // TODO: Place an arrow head at the end
+        // Place an arrow head at the end
         let cone = SCNCone(topRadius: CGFloat(radius / 6), bottomRadius: CGFloat(radius * 2), height: CGFloat(coneLength))
         let coneNode = SCNNode(geometry: cone)
         coneNode.position.y = cylinderLength
