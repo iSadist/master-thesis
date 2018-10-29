@@ -1,3 +1,15 @@
+/*
+ AssemblerViewController
+ 
+ This class is responsible for all interactions in the AR Scene, such as plane detection,
+ hittests, rendering virtual objects etc. It also holds the object detector and tracker
+ and sets them up in the beginning.
+ 
+ AssemblerViewController also has a furniture that is set before ViewDidLoad
+ and uses InstructionExecutioner for instruction handling, although it steps through
+ the instructions on its own.
+ */
+
 import UIKit
 import SceneKit
 import ARKit
@@ -7,7 +19,6 @@ class AssemblerViewController: UIViewController
 {
     @IBOutlet var sceneView: ARSCNView!
     @IBOutlet weak var overlayView: OverlayView!
-    @IBOutlet weak var recognitionResultLabel: UILabel!
     @IBOutlet weak var messageView: UIView!
     @IBOutlet weak var messageViewButton: UIButton!
     @IBOutlet weak var messageViewText: UITextView!
@@ -20,11 +31,8 @@ class AssemblerViewController: UIViewController
     var furniture: Furniture?
     var tracker: ObjectTracker?
     var detector: ObjectDetector?
-    var trackingRect = [CGRect]()
     var currentSnapshot: CVPixelBuffer? = nil
     var currentFrame: UIImage? = nil
-    
-    var classifier: Timer?
     
     let executioner = InstructionExecutioner()
     var currentInstruction: Instruction?
@@ -42,12 +50,13 @@ class AssemblerViewController: UIViewController
     }
 
     private var trackerQueue = DispatchQueue(label: "tracker", qos: DispatchQoS.userInitiated)
-    
+
     func loadWorldTrackingConfiguration()
     {
         let configuration = ARWorldTrackingConfiguration()
         configuration.planeDetection = [.horizontal, .vertical]
 
+        // All the objects that are tracked is contained in the Objects folder
         guard let detectingObjects = ARReferenceObject.referenceObjects(inGroupNamed: "Objects", bundle: nil) else { return }
         configuration.detectionObjects = detectingObjects
         
@@ -63,33 +72,11 @@ class AssemblerViewController: UIViewController
         sceneView.session.run(configuration)
     }
     
-    // Classify the object in the image
-    func predict(pixelBuffer: CVPixelBuffer) -> VNClassificationObservation?
+     /* Insert the bounding boxes of the objects that are
+        of interest to track and start tracking immediately.*/
+    func startTracking(on boundingBoxes: [CGRect])
     {
-        var classification: VNClassificationObservation? = nil
-        
-        guard let model = try? VNCoreMLModel(for: FurnitureNet().model) else { return nil }
-        let request = VNCoreMLRequest(model: model, completionHandler: { (finishedReq, err) in
-            
-            if let observations = finishedReq.results as? [VNClassificationObservation]
-            {
-                let maxValue = observations.max(by: {(current, next) in current.confidence < next.confidence})
-                classification = maxValue
-            }
-        })
-        try? VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:]).perform([request])
-        
-        return classification
-    }
-    
-    func addTrackingRect(rect: CGRect)
-    {
-        trackingRect.append(rect)
-    }
-    
-    func startTracking()
-    {
-        tracker = ObjectTracker(objects: trackingRect, overlay: overlayView)
+        tracker = ObjectTracker(objects: boundingBoxes, overlay: overlayView)
         tracker?.delegate = self
         trackerQueue.async{
             self.tracker?.track()
@@ -109,6 +96,10 @@ class AssemblerViewController: UIViewController
         }
     }
 
+
+     /* Draws an arrow between two point in the 3D scene by inputting the
+     points on the screen where the objects exist.
+     Only draws arrows on the detected plane. */
     func connectPieces(fromScreen startPoint: CGPoint, to endPoint: CGPoint)
     {
         // Translate the point on screen to the point in the scene
@@ -133,8 +124,29 @@ class AssemblerViewController: UIViewController
         lineNode.eulerAngles.x = Float.pi / 2
         lineNode.eulerAngles.y = asin((endPosition.x - startPosition.x) / distance)
         lineNode.position = startVector
+        lineNode.name = "connectingArrow"
         
         sceneView.scene.rootNode.addChildNode(lineNode)
+        
+    }
+    
+    func removeAllNodes()
+    {
+        for node in sceneView.scene.rootNode.childNodes
+        {
+            node.removeFromParentNode()
+        }
+    }
+    
+    func removeNode(named: String) -> Bool
+    {
+        if let node = sceneView.scene.rootNode.childNode(withName: named, recursively: false)
+        {
+            node.removeFromParentNode()
+            return true
+        }
+        
+        return false
     }
     
     // MARK: Lifecycle events
@@ -161,31 +173,20 @@ class AssemblerViewController: UIViewController
     override func viewDidAppear(_ animated: Bool)
     {
         loadWorldTrackingConfiguration()
-        
-        currentSnapshot = ImageConverter().convertImageToPixelBuffer(image: sceneView.snapshot())
 
         // Setup the object detector
         detector = ObjectDetector()
         detector?.delegate = executioner
-        
-        classifier = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { (timer) in
-            let snapshot = self.sceneView.snapshot()
-            let converter = ImageConverter()
-            guard let pixelBuffer = converter.convertImageToPixelBuffer(image: snapshot) else { return }
-            let result = self.predict(pixelBuffer: pixelBuffer)
-            self.recognitionResultLabel.text = "\(result!.identifier): \(result!.confidence * 100)%"
-        }
     }
-    
+
     override func viewWillDisappear(_ animated: Bool)
     {
         super.viewWillDisappear(animated)
         sceneView.session.pause()
         tracker?.requestCancelTracking()
         tracker = nil
-        classifier?.invalidate()
     }
-    
+
     override func didReceiveMemoryWarning()
     {
         super.didReceiveMemoryWarning()
@@ -223,13 +224,16 @@ extension AssemblerViewController: ARSCNViewDelegate
 
 extension AssemblerViewController: ObjectTrackerDelegate
 {
-    func trackingDidStop() {
+    // Called whenever Object Tracker stopped tracking
+    func trackingDidStop()
+    {
         print("Tracking stopped!")
         DispatchQueue.main.async {
             self.overlayView.clearDisplay()
         }
     }
     
+    // Called when some rects are meant to be displayed on the screen
     func displayRects(rects: [CGRect])
     {
         DispatchQueue.main.async {
@@ -238,6 +242,7 @@ extension AssemblerViewController: ObjectTrackerDelegate
         }
     }
     
+    // Called when Object Tracker 
     func getFrame() -> CVPixelBuffer?
     {
         DispatchQueue.main.async {

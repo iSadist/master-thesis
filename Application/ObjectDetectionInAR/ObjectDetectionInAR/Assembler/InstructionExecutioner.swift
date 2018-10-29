@@ -37,8 +37,6 @@ class InstructionExecutioner: ObjectDetectorDelegate
 
         for rect in rects
         {
-            controller?.addTrackingRect(rect: rect)
-            
             if shouldConnectPieces
             {
                 // For every second rect, connect with the previous one
@@ -51,7 +49,7 @@ class InstructionExecutioner: ObjectDetectorDelegate
             shouldConnectPieces = !shouldConnectPieces
         }
         
-        controller?.startTracking()
+        controller?.startTracking(on: rects)
         controller?.nextInstruction()
     }
 }

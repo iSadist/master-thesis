@@ -1,4 +1,5 @@
 import UIKit
+import Vision
 
 class ObjectDetector
 {
@@ -33,5 +34,24 @@ class ObjectDetector
         DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
             self.delegate?.objectsFound(objects: list, error: nil)
         })
+    }
+    
+    // Classify the object in the image
+    func predict(pixelBuffer: CVPixelBuffer) -> VNClassificationObservation?
+    {
+        var classification: VNClassificationObservation? = nil
+        
+        guard let model = try? VNCoreMLModel(for: FurnitureNet().model) else { return nil }
+        let request = VNCoreMLRequest(model: model, completionHandler: { (finishedReq, err) in
+            
+            if let observations = finishedReq.results as? [VNClassificationObservation]
+            {
+                let maxValue = observations.max(by: {(current, next) in current.confidence < next.confidence})
+                classification = maxValue
+            }
+        })
+        try? VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:]).perform([request])
+        
+        return classification
     }
 }
