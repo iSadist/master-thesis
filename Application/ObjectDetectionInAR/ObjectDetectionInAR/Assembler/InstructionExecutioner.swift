@@ -13,24 +13,35 @@ import UIKit
 
 class InstructionExecutioner: ObjectDetectorDelegate
 {
-    weak var controller: AssemblerViewController?
+    var delegate: InstructionExecutionerDelegate?
+    weak var tracker: ObjectTracker?
+    weak var detector: ObjectDetector?
     var instruction: Instruction?
+    
+    private var trackerQueue = DispatchQueue(label: "tracker", qos: DispatchQoS.userInitiated)
     
     init()
     {}
     
-    func executeInstruction()
+    func executeInstruction() -> Bool
     {
         if let scanInstruction = instruction as? ScanInstruction
         {
-            controller?.tracker?.requestCancelTracking()
-            controller?.detector?.findObjects(frame: UIImage(), parts: [scanInstruction.firstItem!, scanInstruction.secondItem!])
+            tracker?.requestCancelTracking()
+            guard let frame = delegate?.getFrame() else { return false }
+            detector?.findObjects(frame: frame, parts: [scanInstruction.firstItem!, scanInstruction.secondItem!])
+            
+            return true
         }
         
         if let assembleInstruction = instruction as? AssembleInstruction
         {
             // Implement function
+            
+            return true
         }
+        
+        return instruction != nil
     }
     
     
@@ -39,24 +50,23 @@ class InstructionExecutioner: ObjectDetectorDelegate
     // Called when the object detector has found some objects
     func objectsFound(objects rects: [CGRect], error: String?)
     {
-        var shouldConnectPieces = false
-        var lastRect: CGRect = CGRect()
-
-        for rect in rects
-        {
-            if shouldConnectPieces
-            {
-                // For every second rect, connect with the previous one
-                let firstMidpoint = CGPoint(x: lastRect.midX, y: lastRect.midY)
-                let secondMidpoint = CGPoint(x: rect.midX, y: rect.midY)
-                controller?.connectPieces(fromScreen: firstMidpoint, to: secondMidpoint)
-            }
-
-            lastRect = rect
-            shouldConnectPieces = !shouldConnectPieces
+        delegate?.connectParts(rects: rects)
+        startTracking(on: rects)
+        instructionComplete()
+    }
+    
+    /* Insert the bounding boxes of the objects that are
+     of interest to track and start tracking immediately.*/
+    func startTracking(on boundingBoxes: [CGRect])
+    {
+        tracker?.setObjectsToTrack(objects: boundingBoxes)
+        trackerQueue.async{
+            self.tracker?.track()
         }
-        
-        controller?.startTracking(on: rects)
-        controller?.nextInstruction()
+    }
+    
+    func instructionComplete()
+    {
+        delegate?.nextInstruction()
     }
 }

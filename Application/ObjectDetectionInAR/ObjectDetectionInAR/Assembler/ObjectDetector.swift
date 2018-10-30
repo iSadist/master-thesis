@@ -4,7 +4,7 @@ import Vision
 class ObjectDetector
 {
     var delegate: ObjectDetectorDelegate?
-    
+
     init()
     {}
     
@@ -15,11 +15,17 @@ class ObjectDetector
     func findObjects(frame: UIImage, parts: [String])
     {
         // Perform this on another DispatchQueue
-
         var list = [CGRect]()
         
         // Full method not implemented, just hardcoded to be able to design interface
         let cgImage = frame.cgImage
+
+        let imageConvert = ImageConverter()
+        guard let pixelBuffer =  imageConvert.convertImageToPixelBuffer(image: frame) else { return }
+        let predictions = detectAndClassifyObjects(pixelBuffer: (pixelBuffer))
+        let correctParts = predictions.filter {parts.contains($0.label)}.removingDuplicates()
+        
+        // TODO: -- Convert bounding boxes to UIKit
         
         let rect1 = CGRect(x: 100, y: 100, width: 100, height: 100)
         let rect2 = CGRect(x: 200, y: 400, width: 100, height: 100)
@@ -140,7 +146,7 @@ class ObjectDetector
     {
         var tempPredictions = [Prediction]()
         for prediction in predictions{
-            var tmp = prediction
+            let tmp = prediction
             tmp.boundingBox.origin.y = 1.0 - prediction.boundingBox.origin.y - prediction.boundingBox.height
             tmp.label = labels[prediction.labelIndex]
             tempPredictions.append(tmp)

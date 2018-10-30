@@ -28,7 +28,7 @@ class ObjectTracker
     var overlayWidth: CGFloat = 0
     var overlayHeight: CGFloat = 0
     
-    var objectsToTrack: [CGRect]
+    var objectsToTrack = [CGRect]()
     var cancelTracking: Bool = false
     var delegate: ObjectTrackerDelegate?
     
@@ -55,14 +55,18 @@ class ObjectTracker
         return normalizedRects
     }
     
-    init(objects: [CGRect], overlay: OverlayView)
+    init(overlay: OverlayView)
     {
-        objectsToTrack = objects
         overlayOriginX = overlay.frame.origin.x
         overlayOriginY = overlay.frame.origin.y
         overlayWidth = overlay.frame.size.width
         overlayHeight = overlay.frame.size.height
         self.overlay = overlay
+    }
+    
+    func setObjectsToTrack(objects: [CGRect])
+    {
+        objectsToTrack = objects
     }
     
     func track()

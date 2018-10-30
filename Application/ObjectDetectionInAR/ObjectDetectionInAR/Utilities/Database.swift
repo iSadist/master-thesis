@@ -36,7 +36,7 @@ class Database
         case "Nolmyra":
             var nolmyraInstructions = [Instruction]()
             nolmyraInstructions.append(Instruction(message: "Point the camera to the furniture parts", buttonText: "Start scan"))
-            nolmyraInstructions.append(ScanInstruction(message: "Looking for parts...", buttonText: nil, firstItem: "Piece1", secondItem: "Piece2"))
+            nolmyraInstructions.append(ScanInstruction(message: "Looking for parts...", buttonText: nil, firstItem: "piece1", secondItem: "piece2"))
             nolmyraInstructions.append(AssembleInstruction(message: "Put these two pieces together", buttonText: "Done"))
             nolmyraInstructions.append(ScanInstruction(message: "Looking for next parts...", buttonText: nil, firstItem: "JoinedPieces", secondItem: "Seat"))
             nolmyraInstructions.append(AssembleInstruction(message: "Put these two pieces together", buttonText: "Done"))

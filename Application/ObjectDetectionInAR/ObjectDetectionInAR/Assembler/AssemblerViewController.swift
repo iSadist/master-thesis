@@ -50,8 +50,6 @@ class AssemblerViewController: UIViewController
         }
     }
 
-    private var trackerQueue = DispatchQueue(label: "tracker", qos: DispatchQoS.userInitiated)
-
     func loadWorldTrackingConfiguration()
     {
         let configuration = ARWorldTrackingConfiguration()
@@ -72,32 +70,6 @@ class AssemblerViewController: UIViewController
             
         sceneView.session.run(configuration)
     }
-    
-
-    /* Insert the bounding boxes of the objects that are
-     of interest to track and start tracking immediately.*/
-    func startTracking(on boundingBoxes: [CGRect])
-    {
-        tracker = ObjectTracker(objects: boundingBoxes, overlay: overlayView)
-        tracker?.delegate = self
-        trackerQueue.async{
-            self.tracker?.track()
-        }
-    }
-    
-    func nextInstruction()
-    {
-        if furniture?.instructions?.isEmpty ?? true
-        {
-            currentInstruction = nil
-            tracker?.requestCancelTracking()
-        }
-        else
-        {
-            currentInstruction = furniture?.instructions?.removeFirst()
-        }
-    }
-
 
      /* Draws an arrow between two point in the 3D scene by inputting the
      points on the screen where the objects exist.
@@ -167,9 +139,6 @@ class AssemblerViewController: UIViewController
         // Load the scene
         let scene = SCNScene(named: "art.scnassets/world.scn")!
         sceneView.scene = scene
-        
-        executioner.controller = self
-        currentInstruction = furniture?.instructions?.removeFirst()
     }
     
     override func viewDidAppear(_ animated: Bool)
@@ -179,6 +148,17 @@ class AssemblerViewController: UIViewController
         // Setup the object detector
         detector = ObjectDetector()
         detector?.delegate = executioner
+        
+        // Setup the object tracker
+        tracker = ObjectTracker(overlay: overlayView)
+        tracker?.delegate = self
+        
+        // Setup instruction executioner
+        executioner.delegate = self
+        executioner.detector = detector
+        executioner.tracker = tracker
+        
+        currentInstruction = furniture?.instructions?.removeFirst()
     }
 
     override func viewWillDisappear(_ animated: Bool)
@@ -252,5 +232,45 @@ extension AssemblerViewController: ObjectTrackerDelegate
             self.currentSnapshot = converter.convertImageToPixelBuffer(image: self.sceneView.snapshot())
         }
         return currentSnapshot
+    }
+}
+
+extension AssemblerViewController: InstructionExecutionerDelegate
+{
+    func connectParts(rects: [CGRect]) {
+        var shouldConnectPieces = false
+        var lastRect: CGRect = CGRect()
+        
+        for rect in rects
+        {
+            if shouldConnectPieces
+            {
+                // For every second rect, connect with the previous one
+                let firstMidpoint = CGPoint(x: lastRect.midX, y: lastRect.midY)
+                let secondMidpoint = CGPoint(x: rect.midX, y: rect.midY)
+                connectPieces(fromScreen: firstMidpoint, to: secondMidpoint)
+            }
+            
+            lastRect = rect
+            shouldConnectPieces = !shouldConnectPieces
+        }
+    }
+    
+    func getFrame() -> UIImage?
+    {
+        return sceneView.snapshot()
+    }
+    
+    func nextInstruction()
+    {
+        if furniture?.instructions?.isEmpty ?? true
+        {
+            currentInstruction = nil
+            tracker?.requestCancelTracking()
+        }
+        else
+        {
+            currentInstruction = furniture?.instructions?.removeFirst()
+        }
     }
 }
