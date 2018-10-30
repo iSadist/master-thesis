@@ -34,6 +34,7 @@ class AssemblerViewController: UIViewController
     var currentSnapshot: CVPixelBuffer? = nil
     var currentFrame: UIImage? = nil
     
+
     let executioner = InstructionExecutioner()
     var currentInstruction: Instruction?
     {
@@ -72,8 +73,9 @@ class AssemblerViewController: UIViewController
         sceneView.session.run(configuration)
     }
     
-     /* Insert the bounding boxes of the objects that are
-        of interest to track and start tracking immediately.*/
+
+    /* Insert the bounding boxes of the objects that are
+     of interest to track and start tracking immediately.*/
     func startTracking(on boundingBoxes: [CGRect])
     {
         tracker = ObjectTracker(objects: boundingBoxes, overlay: overlayView)
