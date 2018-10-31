@@ -11,6 +11,7 @@
 		52A0B56E218863CD00161C8E /* MyDetector.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 52A0B56D218863CD00161C8E /* MyDetector.mlmodel */; };
 		52A0B5702188641A00161C8E /* FurnitureNet.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 52A0B56F2188641A00161C8E /* FurnitureNet.mlmodel */; };
 		52A0B5742188B41B00161C8E /* InstructionExecutionerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A0B5732188B41B00161C8E /* InstructionExecutionerDelegate.swift */; };
+		52A0B5762188BDC600161C8E /* ObjectRectangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A0B5752188BDC600161C8E /* ObjectRectangle.swift */; };
 		590E9FF721775EF00080100A /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590E9FF621775EF00080100A /* Database.swift */; };
 		590E9FF921785D8C0080100A /* ObjectDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590E9FF821785D8C0080100A /* ObjectDetector.swift */; };
 		590E9FFB21785EA90080100A /* ObjectDetectorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590E9FFA21785EA90080100A /* ObjectDetectorDelegate.swift */; };
@@ -63,6 +64,7 @@
 		52A0B56D218863CD00161C8E /* MyDetector.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = MyDetector.mlmodel; path = ../../../../Training/Models/MyDetector.mlmodel; sourceTree = "<group>"; };
 		52A0B56F2188641A00161C8E /* FurnitureNet.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = FurnitureNet.mlmodel; path = ../../../../Training/Models/FurnitureNet.mlmodel; sourceTree = "<group>"; };
 		52A0B5732188B41B00161C8E /* InstructionExecutionerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionExecutionerDelegate.swift; sourceTree = "<group>"; };
+		52A0B5752188BDC600161C8E /* ObjectRectangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectRectangle.swift; sourceTree = "<group>"; };
 		590E9FF621775EF00080100A /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		590E9FF821785D8C0080100A /* ObjectDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectDetector.swift; sourceTree = "<group>"; };
 		590E9FFA21785EA90080100A /* ObjectDetectorDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectDetectorDelegate.swift; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 				59C058C721621EF50052AF82 /* ImageViewController.swift */,
 				59C8EA26217FCB3A009D51CD /* Extensions.swift */,
 				52A0B5662188602F00161C8E /* Prediction.swift */,
+				52A0B5752188BDC600161C8E /* ObjectRectangle.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -399,6 +402,7 @@
 				59DFA236217A385E00FBBFF7 /* InstructionExecutioner.swift in Sources */,
 				59652B1C2164BA4600B0CC1A /* OverlayView.swift in Sources */,
 				59B80625216F896B00C28A1A /* Instruction.swift in Sources */,
+				52A0B5762188BDC600161C8E /* ObjectRectangle.swift in Sources */,
 				59DFA238217A3A0300FBBFF7 /* ScanInstruction.swift in Sources */,
 				599157A121402F4D00B3A8D7 /* ImageProcessor.swift in Sources */,
 				59F84AD5215E19ED003FB510 /* FurnitureCollectionViewCell.swift in Sources */,

@@ -4,9 +4,11 @@ import Vision
 class ObjectDetector
 {
     var delegate: ObjectDetectorDelegate?
-
-    init()
-    {}
+    let imageViewFrame: CGRect
+    init(frame: CGRect)
+    {
+        self.imageViewFrame = frame
+    }
     
     /* Find the rects of any objects in the scene
        then classify them and return the rects that
@@ -15,31 +17,18 @@ class ObjectDetector
     func findObjects(frame: UIImage, parts: [String])
     {
         // Perform this on another DispatchQueue
-        var list = [CGRect]()
-        
-        // Full method not implemented, just hardcoded to be able to design interface
-        let cgImage = frame.cgImage
-
         let imageConvert = ImageConverter()
         guard let pixelBuffer =  imageConvert.convertImageToPixelBuffer(image: frame) else { return }
         let predictions = detectAndClassifyObjects(pixelBuffer: (pixelBuffer))
         let correctParts = predictions.filter {parts.contains($0.label)}.removingDuplicates()
+        var partRectangles = [ObjectRectangle]()
         
-        // TODO: -- Convert bounding boxes to UIKit
+        for part in correctParts
+        {
+            partRectangles.append(ObjectRectangle(visionRect: part.boundingBox, frame: imageViewFrame))
+        }
         
-        let rect1 = CGRect(x: 100, y: 100, width: 100, height: 100)
-        let rect2 = CGRect(x: 200, y: 400, width: 100, height: 100)
-        
-        var object1 = cgImage?.cropping(to: rect1)
-        var object2 = cgImage?.cropping(to: rect2)
-        
-        list.append(rect1)
-        list.append(rect2)
-
-        // Fake delay of 5 seconds
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
-            self.delegate?.objectsFound(objects: list, error: nil)
-        })
+        self.delegate?.objectsFound(objects: partRectangles, error: nil)
     }
     
     // Classify the object in the image

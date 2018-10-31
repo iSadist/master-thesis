@@ -2,5 +2,5 @@ import UIKit
 
 protocol ObjectDetectorDelegate
 {
-    func objectsFound(objects rects: [CGRect], error: String?)
+    func objectsFound(objects rects: [ObjectRectangle], error: String?)
 }

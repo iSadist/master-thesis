@@ -20,51 +20,19 @@ private var millisecondsPerFrame = 1.0/framesPerSecond * 1000
 
 class ObjectTracker
 {
-    let overlay: OverlayView
-    
     // These properties are determined at init since no GUI operations are allowed on other queues than main
-    var overlayOriginX: CGFloat = 0
-    var overlayOriginY: CGFloat = 0
-    var overlayWidth: CGFloat = 0
-    var overlayHeight: CGFloat = 0
+    let viewFrame: CGRect
     
-    var objectsToTrack = [CGRect]()
+    var objectsToTrack = [ObjectRectangle]()
     var cancelTracking: Bool = false
     var delegate: ObjectTrackerDelegate?
     
-    // MARK: Computed properties
-    
-    var normalizedObjectsToTrack: [CGRect]
+    init(viewFrame: CGRect)
     {
-        var normalizedRects = [CGRect]()
-        
-        for rect in objectsToTrack
-        {
-            var normalizedRect = rect
-            
-            normalizedRect.origin.x = (normalizedRect.origin.x - overlayOriginX) / overlayWidth
-            normalizedRect.origin.y = (normalizedRect.origin.y - overlayOriginY) / overlayHeight
-            normalizedRect.size.width /= overlayWidth
-            normalizedRect.size.height /= overlayHeight
-            // Adjust to Vision.framework input requrement - origin at LLC
-            normalizedRect.origin.y = 1.0 - normalizedRect.origin.y - normalizedRect.size.height
-            
-            normalizedRects.append(normalizedRect)
-        }
-        
-        return normalizedRects
+        self.viewFrame = viewFrame
     }
     
-    init(overlay: OverlayView)
-    {
-        overlayOriginX = overlay.frame.origin.x
-        overlayOriginY = overlay.frame.origin.y
-        overlayWidth = overlay.frame.size.width
-        overlayHeight = overlay.frame.size.height
-        self.overlay = overlay
-    }
-    
-    func setObjectsToTrack(objects: [CGRect])
+    func setObjectsToTrack(objects: [ObjectRectangle])
     {
         objectsToTrack = objects
     }
@@ -74,19 +42,18 @@ class ObjectTracker
         var trackingObservations = [UUID: VNDetectedObjectObservation]()
         var trackedObjects = [UUID: CGRect]()
         let requestHandler = VNSequenceRequestHandler()
-        
-        for object in normalizedObjectsToTrack
+        for object in objectsToTrack
         {
-            let observation = VNDetectedObjectObservation(boundingBox: object)
+            let observation = VNDetectedObjectObservation(boundingBox: object.getNormalizedRect(frame: viewFrame))
             trackingObservations[observation.uuid] = observation
-            trackedObjects[observation.uuid] = object
+            trackedObjects[observation.uuid] = object.getNormalizedRect(frame: viewFrame)
         }
         
         while true
         {
             if cancelTracking { break }
             
-            var rects = [CGRect]()
+            var rects = [ObjectRectangle]()
             var trackingRequests = [VNRequest]()
             
             guard let frame = delegate?.getFrame() else {
@@ -113,11 +80,14 @@ class ObjectTracker
                 {
                     trackedObjects[observation.uuid] = observation.boundingBox
                     trackingObservations[observation.uuid] = observation
-                    rects.append(observation.boundingBox)
+                    let object = ObjectRectangle(visionRect: observation.boundingBox, frame: viewFrame)
+                    rects.append(object)
                 }
             }
 
-            delegate?.displayRects(rects: rects)
+            DispatchQueue.main.async {
+                self.delegate?.displayRects(rects: rects)
+            }
             
             // The tracking will stop if no observation has a high confidence value
             if rects.isEmpty

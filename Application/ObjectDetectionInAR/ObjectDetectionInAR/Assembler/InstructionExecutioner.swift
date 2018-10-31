@@ -48,16 +48,21 @@ class InstructionExecutioner: ObjectDetectorDelegate
     // Mark: - Object detector delegate
     
     // Called when the object detector has found some objects
-    func objectsFound(objects rects: [CGRect], error: String?)
+    func objectsFound(objects rects: [ObjectRectangle], error: String?)
     {
-        delegate?.connectParts(rects: rects)
+        var boundingBoxes = [CGRect]()
+        for rect in rects
+        {
+            boundingBoxes.append(rect.getRect())
+        }
+        delegate?.connectParts(rects: boundingBoxes)
         startTracking(on: rects)
         instructionComplete()
     }
     
     /* Insert the bounding boxes of the objects that are
      of interest to track and start tracking immediately.*/
-    func startTracking(on boundingBoxes: [CGRect])
+    func startTracking(on boundingBoxes: [ObjectRectangle])
     {
         tracker?.setObjectsToTrack(objects: boundingBoxes)
         trackerQueue.async{

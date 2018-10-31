@@ -146,11 +146,11 @@ class AssemblerViewController: UIViewController
         loadWorldTrackingConfiguration()
 
         // Setup the object detector
-        detector = ObjectDetector()
+        detector = ObjectDetector(frame: overlayView.frame)
         detector?.delegate = executioner
         
         // Setup the object tracker
-        tracker = ObjectTracker(overlay: overlayView)
+        tracker = ObjectTracker(viewFrame: overlayView.frame)
         tracker?.delegate = self
         
         // Setup instruction executioner
@@ -216,12 +216,10 @@ extension AssemblerViewController: ObjectTrackerDelegate
     }
     
     // Called when some rects are meant to be displayed on the screen
-    func displayRects(rects: [CGRect])
+    func displayRects(rects: [ObjectRectangle])
     {
-        DispatchQueue.main.async {
-            self.overlayView.storeVisionRects(rects: rects)
-            self.overlayView.setNeedsDisplay()
-        }
+        self.overlayView.rectangles = rects
+        self.overlayView.setNeedsDisplay()
     }
     
     // Called when Object Tracker 
@@ -237,7 +235,8 @@ extension AssemblerViewController: ObjectTrackerDelegate
 
 extension AssemblerViewController: InstructionExecutionerDelegate
 {
-    func connectParts(rects: [CGRect]) {
+    func connectParts(rects: [CGRect])
+    {
         var shouldConnectPieces = false
         var lastRect: CGRect = CGRect()
         
