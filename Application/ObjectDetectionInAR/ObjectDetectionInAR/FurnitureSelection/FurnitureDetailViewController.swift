@@ -9,6 +9,8 @@ class FurnitureDetailViewController: UIViewController
     
     var furniture: Furniture?
     
+    var popupVC: PopupViewController?
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -44,6 +46,18 @@ class FurnitureDetailViewController: UIViewController
         if let assembleViewController = segue.destination as? AssemblerViewController
         {
             assembleViewController.furniture = furniture
+        }
+        if let popupViewController = segue.destination as? PopupViewController
+        {
+            popupVC = popupViewController
+            popupVC?.buttonText = "Proceed"
+            popupVC?.image = UIImage(named: "previewSetup")
+            popupVC?.textViewText = "Lay the furniture parts on a clean floor with spacing between the parts. The image above shows an example on how to place them."
+            popupVC?.completeFunction = {
+                self.performSegue(withIdentifier: "ShowAssemblerViewSegue", sender: self)
+                self.popupVC?.dismiss(animated: true, completion: nil)
+            }
+
         }
     }
 }

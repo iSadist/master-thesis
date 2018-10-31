@@ -12,6 +12,7 @@
 		52A0B5702188641A00161C8E /* FurnitureNet.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 52A0B56F2188641A00161C8E /* FurnitureNet.mlmodel */; };
 		52A0B5742188B41B00161C8E /* InstructionExecutionerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A0B5732188B41B00161C8E /* InstructionExecutionerDelegate.swift */; };
 		52A0B5762188BDC600161C8E /* ObjectRectangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A0B5752188BDC600161C8E /* ObjectRectangle.swift */; };
+		52A0B57A2189F28B00161C8E /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A0B5792189F28B00161C8E /* PopupViewController.swift */; };
 		590E9FF721775EF00080100A /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590E9FF621775EF00080100A /* Database.swift */; };
 		590E9FF921785D8C0080100A /* ObjectDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590E9FF821785D8C0080100A /* ObjectDetector.swift */; };
 		590E9FFB21785EA90080100A /* ObjectDetectorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590E9FFA21785EA90080100A /* ObjectDetectorDelegate.swift */; };
@@ -65,6 +66,7 @@
 		52A0B56F2188641A00161C8E /* FurnitureNet.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = FurnitureNet.mlmodel; path = ../../../../Training/Models/FurnitureNet.mlmodel; sourceTree = "<group>"; };
 		52A0B5732188B41B00161C8E /* InstructionExecutionerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionExecutionerDelegate.swift; sourceTree = "<group>"; };
 		52A0B5752188BDC600161C8E /* ObjectRectangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectRectangle.swift; sourceTree = "<group>"; };
+		52A0B5792189F28B00161C8E /* PopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
 		590E9FF621775EF00080100A /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		590E9FF821785D8C0080100A /* ObjectDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectDetector.swift; sourceTree = "<group>"; };
 		590E9FFA21785EA90080100A /* ObjectDetectorDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectDetectorDelegate.swift; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 		594FE2FE217DF0CA000D5068 /* FurnitureSelection */ = {
 			isa = PBXGroup;
 			children = (
+				52A0B5792189F28B00161C8E /* PopupViewController.swift */,
 				59C058C9216221D40052AF82 /* BarcodeScannerViewController.swift */,
 				59F84AD2215E1649003FB510 /* FurnitureSelectionViewController.swift */,
 				59F84AD8215E1E50003FB510 /* FurnitureDetailViewController.swift */,
@@ -396,6 +399,7 @@
 				52A0B56E218863CD00161C8E /* MyDetector.mlmodel in Sources */,
 				598D526D215149BE00DD307E /* ImageConverter.swift in Sources */,
 				E1ED297520BCA23B007DBE66 /* AssemblerViewController.swift in Sources */,
+				52A0B57A2189F28B00161C8E /* PopupViewController.swift in Sources */,
 				E1ED297120BCA23B007DBE66 /* AppDelegate.swift in Sources */,
 				59F84AD7215E1A5D003FB510 /* Furniture.swift in Sources */,
 				59DFA23C217A555500FBBFF7 /* AssembleIntruction.swift in Sources */,
