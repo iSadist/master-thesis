@@ -1,10 +1,52 @@
 \section{Theory}
 
 \subsection{How does Augmented Reality work?}
+There are different types of augmented reality. Some of those are marker-based, location-based, projection-based and superimposed-based AR.
+
+\textbf{Marker-based}\\
+
+\textbf{Location-based}\\
+
+\textbf{Projection-based}\\
+
+\textbf{Superimposed-based}\\
+
+Even screens on fighter jets are a form of AR.
+
+In this paper, when we mention AR, we are talking about Superimposed-based AR.
 
 \subsubsection{History of AR}
 
+\textbf{1968}
+The Sword of Damocles - The first mounted headset\\
+
+\textbf{1975}
+Myron Krueger - Videoplace. Using cameras to interact with a digital world with shadows.
+\cite{videoplace}\\
+
+\textbf{1990}
+The first time the term "Augmented Reality" was used by the Boeing researcher Tom Caudell.\\
+
+\textbf{2009}
+AR comes to the web in the form of an open source toolkit called ARToolKit.\\
+
+\textbf{2017}
+Apple launches AR Kit and Google launches AR Core.\\
+
 \subsubsection{S.L.A.M.}
+S.L.A.M (Simultaneous Localization and Mapping) is a way for a machine to get to know the environment that it is in. It registers features and maps them to its surroundings. S.L.A.M is about having the map of the environment and knowing where the robot is in that map.
+The problem with this is that a map is needed for knowing where you are, and you have to know where you are to be able to create a map. That is why S.L.A.M is doing this at the same time, hence 'Simultaneous'. The system is used in autonomous robots, but also valuable in Augmented Reality. \cite{slam}
+
+iPhone X does this by tracking multiple reference points in space and from them building a 3D model of the surroundings using a form of S.L.A.M technique.
+This is accomplished by keeping a map of the features while keeping track of the path the observer is taking. A number of 
+hardware components make this task possible, including gyro, accelerometer and a compass. \cite{iphoneslam}
+
+\begin{figure}[hbtp]
+\begin{center}
+\includegraphics[width = 0.75\textwidth]{./Images/slam-map.jpg} 
+\caption{A robot performing S.L.A.M in an environment and the 3D model created.}
+\end{center}
+\end{figure}
 
 \subsubsection{Depth tracking}
 
@@ -12,6 +54,11 @@
 
 \subsubsection{Other inputs}
 Compass, Gyroscope, Accelerometer  etc.
+
+\subsubsection{How does ARKit work?}
+ARScene
+ARSession
+Etc.
 
 \subsection{What Machine Learning methods are there?}
 There exists many different machine learning techniques out there today. Due to its high effectiveness and relevance, for this report we are going to focus on the highly popular method of artificial neural networks.
