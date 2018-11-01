@@ -206,8 +206,33 @@ When the environment is a more casual place tough, like recognizing furnitures i
 
 Big advantages with this is that classification and detection can be done in the same
  step. For this project that is really desirable.
+ 
+ \subsubsection{Convolutional Neural Networks}
+ 
+ The convolutional layers, kernel size, stride.
+ 
+ Pooling layers.
+ 
+ Flatten layer.
 
 \subsubsection{RCNN and its different forms}
+
+How to calculate loss in RCNN
+
+Selective search for detecting regions of interest (RoI)
+
+Fast R-CNN
+" reduce the time consumption related to the high number of models necessary to analyse all region proposals."
+
+Instead of having many CNNs for each region, one CNN is applied to the whole image.
+
+Faster R-CNN
+Segmentation is slow
+Regional proposal network (RPN) is used instead
+
+Mask R-CNN
+Outside our scope, but something that can be used to improve object tracking.
+Although, then an object tracking algorithm that tracks on an outline is required.
 
 \subsubsection{YOLO}
 YOLO, or You Only Look Once, is a one stage detector approach to object detection and
