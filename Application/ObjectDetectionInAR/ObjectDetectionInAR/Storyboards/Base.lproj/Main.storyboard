@@ -304,7 +304,6 @@
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
                                 <state key="normal" title="Let's assemble!"/>
                                 <connections>
-                                    <action selector="onAssembleButtonTapped:" destination="l0C-mi-Syw" eventType="touchUpInside" id="hfE-71-wvn"/>
                                     <segue destination="QSm-kB-tWP" kind="presentation" id="g1c-oz-6Ve"/>
                                 </connections>
                             </button>
@@ -415,8 +414,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="3drotate" width="50" height="50"/>
-        <image name="barcode-scanner" width="50" height="50"/>
-        <image name="build_man" width="590" height="409"/>
+        <image name="3drotate" width="37.5" height="37.5"/>
+        <image name="barcode-scanner" width="37.5" height="37.5"/>
+        <image name="build_man" width="295" height="204.5"/>
     </resources>
 </document>

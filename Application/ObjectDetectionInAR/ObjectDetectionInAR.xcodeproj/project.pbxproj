@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		52A0B5672188602F00161C8E /* Prediction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A0B5662188602F00161C8E /* Prediction.swift */; };
-		52A0B56E218863CD00161C8E /* MyDetector.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 52A0B56D218863CD00161C8E /* MyDetector.mlmodel */; };
-		52A0B5702188641A00161C8E /* FurnitureNet.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 52A0B56F2188641A00161C8E /* FurnitureNet.mlmodel */; };
 		52A0B5742188B41B00161C8E /* InstructionExecutionerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A0B5732188B41B00161C8E /* InstructionExecutionerDelegate.swift */; };
 		52A0B5762188BDC600161C8E /* ObjectRectangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A0B5752188BDC600161C8E /* ObjectRectangle.swift */; };
 		52A0B57A2189F28B00161C8E /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A0B5792189F28B00161C8E /* PopupViewController.swift */; };
@@ -27,6 +25,7 @@
 		59C058C821621EF50052AF82 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C058C721621EF50052AF82 /* ImageViewController.swift */; };
 		59C058CA216221D40052AF82 /* BarcodeScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C058C9216221D40052AF82 /* BarcodeScannerViewController.swift */; };
 		59C8EA27217FCB3A009D51CD /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C8EA26217FCB3A009D51CD /* Extensions.swift */; };
+		59D310B9218B1D8E005069A6 /* MyDetector.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 59D310B8218B1D8E005069A6 /* MyDetector.mlmodel */; };
 		59DFA236217A385E00FBBFF7 /* InstructionExecutioner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DFA235217A385E00FBBFF7 /* InstructionExecutioner.swift */; };
 		59DFA238217A3A0300FBBFF7 /* ScanInstruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DFA237217A3A0300FBBFF7 /* ScanInstruction.swift */; };
 		59DFA23C217A555500FBBFF7 /* AssembleIntruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DFA23B217A555400FBBFF7 /* AssembleIntruction.swift */; };
@@ -62,8 +61,6 @@
 
 /* Begin PBXFileReference section */
 		52A0B5662188602F00161C8E /* Prediction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prediction.swift; sourceTree = "<group>"; };
-		52A0B56D218863CD00161C8E /* MyDetector.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = MyDetector.mlmodel; path = ../../../../Training/Models/MyDetector.mlmodel; sourceTree = "<group>"; };
-		52A0B56F2188641A00161C8E /* FurnitureNet.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = FurnitureNet.mlmodel; path = ../../../../Training/Models/FurnitureNet.mlmodel; sourceTree = "<group>"; };
 		52A0B5732188B41B00161C8E /* InstructionExecutionerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionExecutionerDelegate.swift; sourceTree = "<group>"; };
 		52A0B5752188BDC600161C8E /* ObjectRectangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectRectangle.swift; sourceTree = "<group>"; };
 		52A0B5792189F28B00161C8E /* PopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
@@ -81,6 +78,7 @@
 		59C058C721621EF50052AF82 /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
 		59C058C9216221D40052AF82 /* BarcodeScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeScannerViewController.swift; sourceTree = "<group>"; };
 		59C8EA26217FCB3A009D51CD /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		59D310B8218B1D8E005069A6 /* MyDetector.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = MyDetector.mlmodel; path = ../../../../Training/Models/MyDetector.mlmodel; sourceTree = "<group>"; };
 		59DFA235217A385E00FBBFF7 /* InstructionExecutioner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionExecutioner.swift; sourceTree = "<group>"; };
 		59DFA237217A3A0300FBBFF7 /* ScanInstruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanInstruction.swift; sourceTree = "<group>"; };
 		59DFA23B217A555400FBBFF7 /* AssembleIntruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssembleIntruction.swift; sourceTree = "<group>"; };
@@ -131,8 +129,7 @@
 		52A0B56C218863A900161C8E /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				52A0B56F2188641A00161C8E /* FurnitureNet.mlmodel */,
-				52A0B56D218863CD00161C8E /* MyDetector.mlmodel */,
+				59D310B8218B1D8E005069A6 /* MyDetector.mlmodel */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -396,7 +393,6 @@
 			files = (
 				59652B12216360BD00B0CC1A /* GeometryFactory.swift in Sources */,
 				59F84ADB215E77A5003FB510 /* FurnitureInspecterViewController.swift in Sources */,
-				52A0B56E218863CD00161C8E /* MyDetector.mlmodel in Sources */,
 				598D526D215149BE00DD307E /* ImageConverter.swift in Sources */,
 				E1ED297520BCA23B007DBE66 /* AssemblerViewController.swift in Sources */,
 				52A0B57A2189F28B00161C8E /* PopupViewController.swift in Sources */,
@@ -414,9 +410,9 @@
 				59652B1821638DC600B0CC1A /* ObjectTracker.swift in Sources */,
 				594D8D44216749F4002F9CA3 /* ObjectTrackerDelegate.swift in Sources */,
 				590E9FFB21785EA90080100A /* ObjectDetectorDelegate.swift in Sources */,
-				52A0B5702188641A00161C8E /* FurnitureNet.mlmodel in Sources */,
 				592DC1BE213FEF1A00E29665 /* SamplePhotoViewController.swift in Sources */,
 				59C058CA216221D40052AF82 /* BarcodeScannerViewController.swift in Sources */,
+				59D310B9218B1D8E005069A6 /* MyDetector.mlmodel in Sources */,
 				59C8EA27217FCB3A009D51CD /* Extensions.swift in Sources */,
 				59F84AD9215E1E50003FB510 /* FurnitureDetailViewController.swift in Sources */,
 				59C058C821621EF50052AF82 /* ImageViewController.swift in Sources */,
@@ -596,7 +592,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = PVD4LXTWAW;
+				DEVELOPMENT_TEAM = Q9L559MT2U;
 				INFOPLIST_FILE = ObjectDetectionInAR/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -617,7 +613,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = PVD4LXTWAW;
+				DEVELOPMENT_TEAM = Q9L559MT2U;
 				INFOPLIST_FILE = ObjectDetectionInAR/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
