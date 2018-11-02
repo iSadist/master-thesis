@@ -3,6 +3,7 @@ import UIKit
 
 class PopupViewController: UIViewController
 {
+    @IBOutlet weak var popupView: UIView!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var button: UIButton!
@@ -19,7 +20,7 @@ class PopupViewController: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
-
+        popupView.layer.cornerRadius = 25
         imageView.image = image
         button.setTitle(buttonText, for: .normal)
         textView.text = textViewText        

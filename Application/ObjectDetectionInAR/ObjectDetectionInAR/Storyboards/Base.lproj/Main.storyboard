@@ -395,7 +395,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="0.69679797535211263" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.75203565140845074" alpha="0.702849911971831" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="uqU-Bh-VKk" firstAttribute="centerX" secondItem="tKh-pW-yiP" secondAttribute="centerX" id="7Sq-vy-s1B"/>
                             <constraint firstItem="uqU-Bh-VKk" firstAttribute="centerY" secondItem="tKh-pW-yiP" secondAttribute="centerY" id="DJ8-dV-7Cu"/>
@@ -405,6 +405,7 @@
                     <connections>
                         <outlet property="button" destination="tKY-hO-EJ5" id="bIp-Gu-unj"/>
                         <outlet property="imageView" destination="qe6-ol-Gem" id="Eeu-RX-1nT"/>
+                        <outlet property="popupView" destination="uqU-Bh-VKk" id="IcH-fc-pJK"/>
                         <outlet property="textView" destination="vVk-r9-xqN" id="wf6-gW-ZLp"/>
                     </connections>
                 </viewController>
