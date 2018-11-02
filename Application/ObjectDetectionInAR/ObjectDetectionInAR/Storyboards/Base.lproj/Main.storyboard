@@ -359,13 +359,6 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uqU-Bh-VKk">
                                 <rect key="frame" x="63.666666666666657" y="135.66666666666663" width="247.99999999999997" height="541"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tKY-hO-EJ5">
-                                        <rect key="frame" x="87" y="491" width="74" height="30"/>
-                                        <state key="normal" title="ButtonText"/>
-                                        <connections>
-                                            <action selector="proceedButton:" destination="QSm-kB-tWP" eventType="touchUpInside" id="iy2-af-S0w"/>
-                                        </connections>
-                                    </button>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="PopoverText" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vVk-r9-xqN">
                                         <rect key="frame" x="20" y="265.33333333333337" width="208" height="217.66666666666663"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -378,24 +371,42 @@
                                             <constraint firstAttribute="width" secondItem="qe6-ol-Gem" secondAttribute="height" multiplier="248:263" id="ueY-Rv-waJ"/>
                                         </constraints>
                                     </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cIe-J7-jzl">
+                                        <rect key="frame" x="20" y="491" width="104" height="30"/>
+                                        <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="secondaryButtonTapped:" destination="QSm-kB-tWP" eventType="touchUpInside" id="YzV-ex-qJU"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tKY-hO-EJ5">
+                                        <rect key="frame" x="124" y="491" width="104" height="30"/>
+                                        <state key="normal" title="ButtonText"/>
+                                        <connections>
+                                            <action selector="proceedButton:" destination="QSm-kB-tWP" eventType="touchUpInside" id="iy2-af-S0w"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="tKY-hO-EJ5" secondAttribute="bottom" constant="20" symbolic="YES" id="Z1m-sK-OXH"/>
-                                    <constraint firstItem="tKY-hO-EJ5" firstAttribute="top" secondItem="vVk-r9-xqN" secondAttribute="bottom" constant="8" symbolic="YES" id="dEa-AW-6CD"/>
+                                    <constraint firstAttribute="trailing" secondItem="tKY-hO-EJ5" secondAttribute="trailing" constant="19.999999999999972" id="Eah-By-huo"/>
+                                    <constraint firstItem="tKY-hO-EJ5" firstAttribute="leading" secondItem="cIe-J7-jzl" secondAttribute="trailing" id="LQJ-ou-cN4"/>
+                                    <constraint firstItem="cIe-J7-jzl" firstAttribute="width" secondItem="tKY-hO-EJ5" secondAttribute="width" id="NRg-VY-oQI"/>
+                                    <constraint firstItem="cIe-J7-jzl" firstAttribute="leading" secondItem="uqU-Bh-VKk" secondAttribute="leading" constant="20" id="WC4-og-S0c"/>
+                                    <constraint firstAttribute="bottom" secondItem="cIe-J7-jzl" secondAttribute="bottom" constant="20" id="ZEf-Ht-CfU"/>
                                     <constraint firstAttribute="trailing" secondItem="qe6-ol-Gem" secondAttribute="trailing" constant="20" symbolic="YES" id="dcK-c1-E5O"/>
+                                    <constraint firstAttribute="bottom" secondItem="tKY-hO-EJ5" secondAttribute="bottom" constant="20" id="e39-Pj-vHg"/>
                                     <constraint firstAttribute="height" constant="541" id="fJN-p2-yav"/>
                                     <constraint firstAttribute="width" constant="248" id="jdv-Wb-fYB"/>
                                     <constraint firstItem="qe6-ol-Gem" firstAttribute="top" secondItem="uqU-Bh-VKk" secondAttribute="top" constant="37" id="kOf-VB-CUW"/>
                                     <constraint firstItem="qe6-ol-Gem" firstAttribute="leading" secondItem="uqU-Bh-VKk" secondAttribute="leading" constant="20" symbolic="YES" id="l0N-W2-7ep"/>
-                                    <constraint firstItem="tKY-hO-EJ5" firstAttribute="centerX" secondItem="uqU-Bh-VKk" secondAttribute="centerX" id="qb3-cg-sf7"/>
+                                    <constraint firstItem="tKY-hO-EJ5" firstAttribute="top" secondItem="vVk-r9-xqN" secondAttribute="bottom" constant="8" symbolic="YES" id="mMk-ah-jlQ"/>
                                     <constraint firstItem="vVk-r9-xqN" firstAttribute="top" secondItem="qe6-ol-Gem" secondAttribute="bottom" constant="8" symbolic="YES" id="rHq-rb-HZ2"/>
                                     <constraint firstItem="vVk-r9-xqN" firstAttribute="leading" secondItem="uqU-Bh-VKk" secondAttribute="leading" constant="20" symbolic="YES" id="uwP-UP-h41"/>
                                     <constraint firstAttribute="trailing" secondItem="vVk-r9-xqN" secondAttribute="trailing" constant="20" symbolic="YES" id="yLB-1N-EMT"/>
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="0.75203565140845074" alpha="0.702849911971831" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.5" alpha="0.702849911971831" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="uqU-Bh-VKk" firstAttribute="centerX" secondItem="tKh-pW-yiP" secondAttribute="centerX" id="7Sq-vy-s1B"/>
                             <constraint firstItem="uqU-Bh-VKk" firstAttribute="centerY" secondItem="tKh-pW-yiP" secondAttribute="centerY" id="DJ8-dV-7Cu"/>
@@ -403,9 +414,10 @@
                         <viewLayoutGuide key="safeArea" id="z8k-uZ-UcD"/>
                     </view>
                     <connections>
-                        <outlet property="button" destination="tKY-hO-EJ5" id="bIp-Gu-unj"/>
                         <outlet property="imageView" destination="qe6-ol-Gem" id="Eeu-RX-1nT"/>
                         <outlet property="popupView" destination="uqU-Bh-VKk" id="IcH-fc-pJK"/>
+                        <outlet property="primaryButton" destination="tKY-hO-EJ5" id="t9d-ra-h2z"/>
+                        <outlet property="secondaryButton" destination="cIe-J7-jzl" id="Xix-Fu-ull"/>
                         <outlet property="textView" destination="vVk-r9-xqN" id="wf6-gW-ZLp"/>
                     </connections>
                 </viewController>
