@@ -81,14 +81,27 @@ A bias also exists in every node which is not based on any input. The bias funct
 
 The perceptron only has the ability to draw a single line and thus is only able to split simple data sets.
 
-*Formula for the output of the perceptron*
+The output of the perceptron is described by the following formula:
+
+\[ y = b + \displaystyle\sum_{i=1}^{n} x_i \cdot w_i \]
+
+where b is the bias value, x is the input, w is the weight for that input and n is the number of inputs.
 
 \subsubsection{Activation functions}
 
-ReLu
-Tanh
-Sigmoid
-Softmax
+The activation function,  $ \phi (v_{i}) $ , takes the sum of all the inputs from a node as input and passes them through a function before giving an output. This is beneficial when for instance the output should be kept in a range between 0 and 1, or perhaps when negative values don't make sense.
+
+Usually, activation functions are attributed to layers instead of individual nodes.
+
+The most common of these functions are \textbf{ReLu}, \textbf{Tanh}, \textbf{Sigmoid} and \textbf{Softmax}.
+
+ReLu is described as $ f(x) = max(0, x)$ and is a good option when negative values should be ignored or don't make sense. Problems with ReLu?
+
+Tanh is the tangens hyperbolicus function and is used to output values either as -1 or 1 like a binary operator. Unlke a binary operator, tanh's derivative is always defined which makes back propagation possible.
+
+Sigmoid  is described as $\frac{e^x}{1+e^x}$ and works like the Tanh function but keeps the values between 0 and 1 and sets y(0) = 0.5 instead.
+
+Softmax  is described as $  $
 
 \subsubsection{Loss/Optimizers}
 
