@@ -25,8 +25,6 @@ class OverlayView: UIView
         {
             context.stroke(rectangle.getRect())
         }
-        
-        rectangles.removeAll()
     }
 
     func clearDisplay()

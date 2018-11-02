@@ -39,12 +39,14 @@ class GeometryFactory
         
         // Make the line segment
         let cylinder = SCNCylinder(radius: CGFloat(radius), height: CGFloat(cylinderLength))
-        cylinder.firstMaterial?.diffuse.contents = UIColor.blue
+        cylinder.firstMaterial?.diffuse.contents = UIImage(named: "light_wood.jpg")
         let cylinderNode = SCNNode(geometry: cylinder)
         cylinderNode.position.y = cylinderLength / 2
         
         // Place an arrow head at the end
         let cone = SCNCone(topRadius: CGFloat(radius / 6), bottomRadius: CGFloat(radius * 2), height: CGFloat(coneLength))
+        cone.firstMaterial?.diffuse.contents = UIImage(named: "metal.jpg")
+        cone.firstMaterial?.metalness.contents = 0.5
         let coneNode = SCNNode(geometry: cone)
         coneNode.position.y = cylinderLength
         
