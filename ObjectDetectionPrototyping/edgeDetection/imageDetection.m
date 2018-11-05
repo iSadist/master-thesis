@@ -2,7 +2,7 @@ clear all
 close all
 
 %% Load image 
-im1  = imread('im3.jpg');
+im1  = imread('im1.jpg');
 
 %% Histogram equalization
 
@@ -21,10 +21,10 @@ g = sqrt(imfilter(grayIm1, fspecial('prewitt')').^2 + imfilter(grayIm1, fspecial
 g = g/max(g(:));
 im = uint8(255 * cat(3, C, g, g));
 figure(2)
-imshow(im)
+imshow(g)
 
-bw1 = ~imbinarize(C,0.05);
-bw2 = bwareaopen(bw1,100);
+bw1 = ~imbinarize(C,'adaptive');
+bw2 = bwareaopen(bw1,400,8);
 figure(3)
 hold on
 imshow(bw2)

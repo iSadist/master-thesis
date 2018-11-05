@@ -45,9 +45,20 @@ We worked very close to the project owner by sitting on desks right across him. 
 A purely feature based object segmentation method was implemented as a prototype in Matlab. This was done to see if a machine learning model for detecting objects could be dismissed. 
 The idea was that if one sent an image into the system, the resulting output of would be bounding box coordinates for each respective object within the image. These smaller sub-images would later be separately be classified using a deep neural networks. The bounding boxes would also be useful for user interface in the application. 
 
-First, a edge detection method was run on the entire image, to find the edges, which would serve as a good variable for the segmentation. Then, a simple threshold algorithm would binarize the image where all edge values below a certain value would become 0's, and the rest 1's. From this, one can easily find enclosed blobs, and by finding enclosed blobs containing more than a certain amount of pixels, to account for errors, one can find the objects. The bounding boxes are them found by selecting the minimal and maximal height and weight values of the blobs. 
+First, a edge detection method was run on the entire image, to find the edges, which would serve as a good variable for the segmentation. Then, Bradley's threshold algorithm \cite{Bradley} would binarize the image. Bradley's method is locally adaptive and computes the threshold value for each pixel by looking at the mean intensity of a neighborhood of pixels surrounding it.  From this, one can find enclosed blobs, and by finding enclosed blobs containing more than a certain amount of pixels, to remove noisy errors, one can find the objects. The bounding boxes are them found by selecting the minimal and maximal height and weight values of the blobs. See figure \ref{fig:matlabImages} for graphical representation.
 
-[INSERT IMAGES]
+\begin{figure}[hbtp]
+\begin{center}
+\includegraphics[width = 0.4\textwidth]{./Images/matlabImage1.png}
+\includegraphics[width = 0.4\textwidth]{./Images/matlabImage2.png}
+\includegraphics[width = 0.4\textwidth]{./Images/matlabImage3.png} 
+\includegraphics[width = 0.4\textwidth]{./Images/matlabImage4.png} 
+\caption{Images showing the results from doing object detection in matlab. Top left image shows the original image. The top left image shows the result from running edge detection on the original image. Bottom left image shows the the result after  binarizing the top right image. the bottom left image shows the generated bounding box superimposed on the original image}
+\label{fig:matlabImages}
+\end{center}
+\end{figure}
+
+This method did however not end up being useful since its performance varied drastically depending on the input image and variables needed to be modified to fit every image. Thus, this method of segmenting out object areas was deemed not viable for this project.
 
 \subsection{Collecting data}
 When working with machine learning, big sets of data is often required for a good resulting model.
