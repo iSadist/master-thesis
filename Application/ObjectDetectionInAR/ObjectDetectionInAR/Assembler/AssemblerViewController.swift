@@ -34,6 +34,9 @@ class AssemblerViewController: UIViewController
     var currentSnapshot: CVPixelBuffer? = nil
     var currentFrame: UIImage? = nil
     
+    let metalDevice = MTLCreateSystemDefaultDevice()
+    
+    var planeHasBeenDetected: Bool = false
 
     let executioner = InstructionExecutioner()
     var currentInstruction: Instruction?
@@ -187,20 +190,42 @@ class AssemblerViewController: UIViewController
 
 extension AssemblerViewController: ARSCNViewDelegate
 {
-    func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode?
+    func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor)
     {
-        let node = SCNNode()
-        
         if let objectAnchor = anchor as? ARObjectAnchor
         {
             let objectName = objectAnchor.referenceObject.name!
-            print(objectName)
             let textNode = GeometryFactory.makeText(text: objectName)
             node.addChildNode(textNode)
-            return node
         }
-        
-        return node
+        else if let planeAnchor = anchor as? ARPlaneAnchor
+        {
+//            let plane = SCNPlane(width: CGFloat(planeAnchor.extent.x), height: CGFloat(planeAnchor.extent.z))
+            
+            let planeGeometry = ARSCNPlaneGeometry(device: metalDevice!)
+            planeGeometry?.update(from: planeAnchor.geometry)
+            
+            let planeNode = SCNNode(geometry: planeGeometry)
+            planeNode.opacity = 0.5
+            node.addChildNode(planeNode)
+        }
+    }
+    
+    func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor)
+    {
+        if let planeAnchor = anchor as? ARPlaneAnchor
+        {
+            node.enumerateChildNodes { (childNode, _) in
+                childNode.removeFromParentNode()
+            }
+            
+            let planeGeometry = ARSCNPlaneGeometry(device: metalDevice!)
+            planeGeometry?.update(from: planeAnchor.geometry)
+            
+            let planeNode = SCNNode(geometry: planeGeometry)
+            planeNode.opacity = 0.5
+            node.addChildNode(planeNode)
+        }
     }
 }
 
