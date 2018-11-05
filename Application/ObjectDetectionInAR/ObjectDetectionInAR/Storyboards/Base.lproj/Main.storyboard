@@ -176,13 +176,41 @@
                                 <rect key="frame" x="0.0" y="88" width="375" height="724"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hzp-01-Q2m">
+                                <rect key="frame" x="0.0" y="87.999999999999986" width="375" height="224.66666666666663"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Point the camera at the barcode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BZS-h5-oRo">
+                                        <rect key="frame" x="60.000000000000014" y="102" width="255.33333333333337" height="20.333333333333329"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.096280809859154923" alpha="0.79962588028169013" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="BZS-h5-oRo" firstAttribute="centerX" secondItem="hzp-01-Q2m" secondAttribute="centerX" id="Fc7-zl-Njs"/>
+                                    <constraint firstItem="BZS-h5-oRo" firstAttribute="centerY" secondItem="hzp-01-Q2m" secondAttribute="centerY" id="MYg-j0-DlK"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xDu-ow-Ty8">
+                                <rect key="frame" x="0.0" y="462.66666666666674" width="375" height="349.33333333333326"/>
+                                <color key="backgroundColor" white="0.10029709507042253" alpha="0.80196412852112675" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="HmP-pH-MGu" firstAttribute="trailing" secondItem="rag-cd-4r8" secondAttribute="trailing" id="2sP-FQ-0lE"/>
                             <constraint firstItem="HmP-pH-MGu" firstAttribute="top" secondItem="rag-cd-4r8" secondAttribute="top" id="3yp-ws-bpS"/>
+                            <constraint firstItem="hzp-01-Q2m" firstAttribute="height" secondItem="xDu-ow-Ty8" secondAttribute="height" constant="-125" id="G7w-vh-fui"/>
+                            <constraint firstItem="xDu-ow-Ty8" firstAttribute="leading" secondItem="rag-cd-4r8" secondAttribute="leading" id="IDz-Ux-wK5"/>
+                            <constraint firstItem="rag-cd-4r8" firstAttribute="trailing" secondItem="hzp-01-Q2m" secondAttribute="trailing" id="NxE-Zo-sbR"/>
                             <constraint firstItem="HmP-pH-MGu" firstAttribute="leading" secondItem="rag-cd-4r8" secondAttribute="leading" id="aDF-bm-wg8"/>
+                            <constraint firstItem="rag-cd-4r8" firstAttribute="trailing" secondItem="xDu-ow-Ty8" secondAttribute="trailing" id="cbm-zk-I1g"/>
+                            <constraint firstItem="xDu-ow-Ty8" firstAttribute="top" secondItem="hzp-01-Q2m" secondAttribute="bottom" constant="150" id="hPy-cR-K8M"/>
+                            <constraint firstItem="hzp-01-Q2m" firstAttribute="top" secondItem="rag-cd-4r8" secondAttribute="top" id="pNF-Qf-7vj"/>
+                            <constraint firstItem="hzp-01-Q2m" firstAttribute="leading" secondItem="rag-cd-4r8" secondAttribute="leading" id="sf5-kz-kdt"/>
                             <constraint firstItem="HmP-pH-MGu" firstAttribute="bottom" secondItem="cXJ-h0-MDd" secondAttribute="bottom" id="xAP-6N-bBx"/>
+                            <constraint firstAttribute="bottom" secondItem="xDu-ow-Ty8" secondAttribute="bottom" id="yVG-dc-Ajf"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="rag-cd-4r8"/>
                     </view>
