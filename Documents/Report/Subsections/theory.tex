@@ -48,17 +48,43 @@ hardware components make this task possible, including gyro, accelerometer and a
 \end{center}
 \end{figure}
 
-\subsubsection{Depth tracking}
-
 \subsubsection{Cameras}
 
 \subsubsection{Other inputs}
 Compass, Gyroscope, Accelerometer  etc.
 
 \subsubsection{How does ARKit work?}
-ARScene
-ARSession
-Etc.
+ARKit works similar to SceneKit were a scene (which is basically a 3D environment in which nodes containing 3D models (geometry) can be rendered) is loaded at start up and interacted with.
+An ARScene is contained inside an ARSCNView (AR Scene View) which also has a ARSession
+that that manages the motion tracking and camera image processing. For an ARScene to work, it must have a running ARSession.
+The session is started with configuration (ARConfiguration). This configuration can be of many kinds, the most common ones begin ARWorldTrackingConfiguration and ARFaceTrackingConfigurations. For this project, ARWorldTrackingConfiguration will be used since the face tracking one uses the front camera.
+
+Below, an example of how to setup a configuration and running a session is given:
+
+\lstinputlisting[language=swift,firstline=55,lastline=74]{../../Application/ObjectDetectionInAR/ObjectDetectionInAR/Assembler/AssemblerViewController.swift}
+
+But before a session can be started, an ARScene must exists and be loaded. The ARScene is a regular .scn file that has the starting nodes that together form the starting
+environment the user will interact with. An example of how a scene like that looks like is shown in figure \ref{fig:3dsceneImage}.
+
+\begin{figure}[hbtp]
+\begin{center}
+\includegraphics[width = 0.75\textwidth]{./Images/3dscene.jpg} 
+\caption{An example of a 3D scene created in XCode with a camera, a plane, directional light and three geometry nodes.}
+\label{fig:3dsceneImage}
+\end{center}
+\end{figure}
+
+To load a scene, a new .scn file must be created in the art.scnassets folder and fetched like below.
+\lstinputlisting[language=swift,firstline=154,lastline=156]{../../Application/ObjectDetectionInAR/ObjectDetectionInAR/Assembler/AssemblerViewController.swift}
+
+When ARScene detects objects, images, planes etc. it calls the renderer function. This function can be implemented by setting the ViewController to conform to the ARSCNViewDelegate. ARScene adds an anchor and a node for the place where it detected it, and this can be used inside the function to render new nodes or other logic.
+
+\lstinputlisting[language=swift,firstline=215,lastline=230]{../../Application/ObjectDetectionInAR/ObjectDetectionInAR/Assembler/AssemblerViewController.swift}
+
+If nodes need to be rendered outside of this function it can be done by accessing the
+scenes root node.
+
+\lstinputlisting[language=swift,firstline=105,lastline=105]{../../Application/ObjectDetectionInAR/ObjectDetectionInAR/Assembler/AssemblerViewController.swift}
 
 \subsection{What Machine Learning methods are there?}
 There exists many different machine learning techniques out there today. Due to its high effectiveness and relevance, for this report we are going to focus on the highly popular method of artificial neural networks.
@@ -77,7 +103,7 @@ After that it passes that sum through an activation function. This activation fu
 \end{center}
 \end{figure}
 
-A bias also exists in every node which is not based on any input. The bias function in the perceptron is similar to what the m in y = kx + m does. It gives the function the ability to move up and down in the graph for more possibilities of splitting the data set. The bias is usually disregarded when illustrating the perceptron.
+A bias also exists in every node which is not based on any input. The bias function in the perceptron is similar to what the m in $y = kx + m$ does. It gives the function the ability to move up and down in the graph for more possibilities of splitting the data set. The bias is usually disregarded when illustrating the perceptron.
 
 The perceptron only has the ability to draw a single line and thus is only able to split simple data sets.
 
@@ -90,18 +116,21 @@ where b is the bias value, x is the input, w is the weight for that input and n 
 \subsubsection{Activation functions}
 
 The activation function,  $ \phi (v_{i}) $ , takes the sum of all the inputs from a node as input and passes them through a function before giving an output. This is beneficial when for instance the output should be kept in a range between 0 and 1, or perhaps when negative values don't make sense.
-
 Usually, activation functions are attributed to layers instead of individual nodes.
 
 The most common of these functions are \textbf{ReLu}, \textbf{Tanh}, \textbf{Sigmoid} and \textbf{Softmax}.
 
-ReLu is described as $ f(x) = max(0, x)$ and is a good option when negative values should be ignored or don't make sense. Problems with ReLu?
+\textbf{ReLu} is described as
+\[f(x) = max(0, x)\]
+and is a good option when negative values should be ignored or don't make sense. Problems with ReLu?
 
-Tanh is the tangens hyperbolicus function and is used to output values either as -1 or 1 like a binary operator. Unlke a binary operator, tanh's derivative is always defined which makes back propagation possible.
+\textbf{Tanh} is the tangens hyperbolicus function and is used to output values either as -1 or 1 like a binary operator. Unlke a binary operator, tanh's derivative is always defined which makes back propagation possible.
 
-Sigmoid  is described as $\frac{e^x}{1+e^x}$ and works like the Tanh function but keeps the values between 0 and 1 and sets y(0) = 0.5 instead.
+\textbf{Sigmoid} is described as 
+\[\frac{e^x}{1+e^x}\]
+and works like the Tanh function but keeps the values between 0 and 1 and sets y(0) = 0.5 instead.
 
-Softmax  is described as $  $
+Softmax is a little bit more complex. It is described as $  $
 
 \subsubsection{Loss/Optimizers}
 
