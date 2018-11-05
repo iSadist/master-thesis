@@ -26,6 +26,9 @@
 		59C058CA216221D40052AF82 /* BarcodeScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C058C9216221D40052AF82 /* BarcodeScannerViewController.swift */; };
 		59C8EA27217FCB3A009D51CD /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C8EA26217FCB3A009D51CD /* Extensions.swift */; };
 		59D310B9218B1D8E005069A6 /* MyDetector.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 59D310B8218B1D8E005069A6 /* MyDetector.mlmodel */; };
+		59D310BB21903B45005069A6 /* AssemblerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D310BA21903B45005069A6 /* AssemblerModel.swift */; };
+		59D310BD21903B61005069A6 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D310BC21903B61005069A6 /* Model.swift */; };
+		59D310C1219043FD005069A6 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D310C0219043FD005069A6 /* Errors.swift */; };
 		59DFA236217A385E00FBBFF7 /* InstructionExecutioner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DFA235217A385E00FBBFF7 /* InstructionExecutioner.swift */; };
 		59DFA238217A3A0300FBBFF7 /* ScanInstruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DFA237217A3A0300FBBFF7 /* ScanInstruction.swift */; };
 		59DFA23C217A555500FBBFF7 /* AssembleIntruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DFA23B217A555400FBBFF7 /* AssembleIntruction.swift */; };
@@ -79,6 +82,9 @@
 		59C058C9216221D40052AF82 /* BarcodeScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeScannerViewController.swift; sourceTree = "<group>"; };
 		59C8EA26217FCB3A009D51CD /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		59D310B8218B1D8E005069A6 /* MyDetector.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = MyDetector.mlmodel; path = ../../../../Training/Models/MyDetector.mlmodel; sourceTree = "<group>"; };
+		59D310BA21903B45005069A6 /* AssemblerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssemblerModel.swift; sourceTree = "<group>"; };
+		59D310BC21903B61005069A6 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		59D310C0219043FD005069A6 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		59DFA235217A385E00FBBFF7 /* InstructionExecutioner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionExecutioner.swift; sourceTree = "<group>"; };
 		59DFA237217A3A0300FBBFF7 /* ScanInstruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanInstruction.swift; sourceTree = "<group>"; };
 		59DFA23B217A555400FBBFF7 /* AssembleIntruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssembleIntruction.swift; sourceTree = "<group>"; };
@@ -152,6 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				E1ED297420BCA23B007DBE66 /* AssemblerViewController.swift */,
+				59D310BA21903B45005069A6 /* AssemblerModel.swift */,
 				59652B1B2164BA4600B0CC1A /* OverlayView.swift */,
 				59DFA235217A385E00FBBFF7 /* InstructionExecutioner.swift */,
 				59652B1721638DC600B0CC1A /* ObjectTracker.swift */,
@@ -172,6 +179,7 @@
 				59C8EA26217FCB3A009D51CD /* Extensions.swift */,
 				52A0B5662188602F00161C8E /* Prediction.swift */,
 				52A0B5752188BDC600161C8E /* ObjectRectangle.swift */,
+				59D310C0219043FD005069A6 /* Errors.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -182,6 +190,7 @@
 				594D8D43216749F4002F9CA3 /* ObjectTrackerDelegate.swift */,
 				590E9FFA21785EA90080100A /* ObjectDetectorDelegate.swift */,
 				52A0B5732188B41B00161C8E /* InstructionExecutionerDelegate.swift */,
+				59D310BC21903B61005069A6 /* Model.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -395,6 +404,7 @@
 				59F84ADB215E77A5003FB510 /* FurnitureInspecterViewController.swift in Sources */,
 				598D526D215149BE00DD307E /* ImageConverter.swift in Sources */,
 				E1ED297520BCA23B007DBE66 /* AssemblerViewController.swift in Sources */,
+				59D310C1219043FD005069A6 /* Errors.swift in Sources */,
 				52A0B57A2189F28B00161C8E /* PopupViewController.swift in Sources */,
 				E1ED297120BCA23B007DBE66 /* AppDelegate.swift in Sources */,
 				59F84AD7215E1A5D003FB510 /* Furniture.swift in Sources */,
@@ -407,8 +417,10 @@
 				599157A121402F4D00B3A8D7 /* ImageProcessor.swift in Sources */,
 				59F84AD5215E19ED003FB510 /* FurnitureCollectionViewCell.swift in Sources */,
 				590E9FF921785D8C0080100A /* ObjectDetector.swift in Sources */,
+				59D310BD21903B61005069A6 /* Model.swift in Sources */,
 				59652B1821638DC600B0CC1A /* ObjectTracker.swift in Sources */,
 				594D8D44216749F4002F9CA3 /* ObjectTrackerDelegate.swift in Sources */,
+				59D310BB21903B45005069A6 /* AssemblerModel.swift in Sources */,
 				590E9FFB21785EA90080100A /* ObjectDetectorDelegate.swift in Sources */,
 				592DC1BE213FEF1A00E29665 /* SamplePhotoViewController.swift in Sources */,
 				59C058CA216221D40052AF82 /* BarcodeScannerViewController.swift in Sources */,

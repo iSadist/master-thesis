@@ -18,30 +18,31 @@ class InstructionExecutioner: ObjectDetectorDelegate
     weak var detector: ObjectDetector?
     var instruction: Instruction?
     
+    var attempts = 0
+    
     private var trackerQueue = DispatchQueue(label: "tracker", qos: DispatchQoS.userInitiated)
+    private var objectQueue = DispatchQueue(label: "detector", qos: DispatchQoS.userInitiated)
     
-    init()
-    {}
-    
-    func executeInstruction() -> Bool
+    // Function is meant to be called async wise
+    func executeInstruction()
     {
+        attempts += 1
+        
         if let scanInstruction = instruction as? ScanInstruction
         {
-            tracker?.requestCancelTracking()
-            guard let frame = delegate?.getFrame() else { return false }
-            detector?.findObjects(frame: frame, parts: [scanInstruction.firstItem!, scanInstruction.secondItem!])
-            
-            return true
+            guard let frame = delegate?.getFrame() else { return }
+            let imageConvert = ImageConverter()
+            guard let pixelBuffer =  imageConvert.convertImageToPixelBuffer(image: frame) else { return }
+            objectQueue.async {
+                self.detector?.findObjects(pixelBuffer: pixelBuffer, parts: [scanInstruction.firstItem!, scanInstruction.secondItem!])
+            }
         }
         
         if let assembleInstruction = instruction as? AssembleInstruction
         {
             // Implement function
             
-            return true
         }
-        
-        return instruction != nil
     }
     
     
@@ -60,18 +61,32 @@ class InstructionExecutioner: ObjectDetectorDelegate
         instructionComplete()
     }
     
+    func couldNotFindObjects()
+    {
+        // Handle error
+        guard attempts < 20 else
+        {
+            attempts = 0
+            self.delegate?.instructionCompleted(error: InstructionExecutionError.FailedAttempts)
+            return
+        }
+        
+        print("Could not find objects. Trying again...")
+        executeInstruction()
+    }
+    
     /* Insert the bounding boxes of the objects that are
      of interest to track and start tracking immediately.*/
     func startTracking(on boundingBoxes: [ObjectRectangle])
     {
         tracker?.setObjectsToTrack(objects: boundingBoxes)
-        trackerQueue.async{
+        trackerQueue.async {
             self.tracker?.track()
         }
     }
     
     func instructionComplete()
     {
-        delegate?.nextInstruction()
+        delegate?.instructionCompleted(error: nil)
     }
 }

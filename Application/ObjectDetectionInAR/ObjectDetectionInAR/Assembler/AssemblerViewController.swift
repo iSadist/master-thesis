@@ -35,8 +35,7 @@ class AssemblerViewController: UIViewController
     var currentFrame: UIImage? = nil
     
     let metalDevice = MTLCreateSystemDefaultDevice()
-    
-    var planeHasBeenDetected: Bool = false
+    var model = AssemblerModel()
 
     let executioner = InstructionExecutioner()
     var currentInstruction: Instruction?
@@ -126,6 +125,19 @@ class AssemblerViewController: UIViewController
         return false
     }
     
+    func nextInstruction()
+    {
+        if furniture?.instructions?.isEmpty ?? true
+        {
+            currentInstruction = nil
+            tracker?.requestCancelTracking()
+        }
+        else
+        {
+            currentInstruction = furniture?.instructions?.removeFirst()
+        }
+    }
+    
     // MARK: Lifecycle events
     
     override func viewDidLoad()
@@ -184,7 +196,20 @@ class AssemblerViewController: UIViewController
     
     @IBAction func messageViewButtonTapped(_ sender: UIButton)
     {
-        nextInstruction()
+        if model.instructionHasFailed
+        {
+            // Execute the same instruction that failed last time
+            model.instructionHasFailed = false
+            executioner.executeInstruction()
+            
+            // Hide the button again to not complete an instruction
+            // while not ready
+            messageViewButton.isHidden = true
+        }
+        else
+        {
+            nextInstruction()
+        }
     }
 }
 
@@ -201,13 +226,7 @@ extension AssemblerViewController: ARSCNViewDelegate
         else if let planeAnchor = anchor as? ARPlaneAnchor
         {
 //            let plane = SCNPlane(width: CGFloat(planeAnchor.extent.x), height: CGFloat(planeAnchor.extent.z))
-            
-            let planeGeometry = ARSCNPlaneGeometry(device: metalDevice!)
-            planeGeometry?.update(from: planeAnchor.geometry)
-            
-            let planeNode = SCNNode(geometry: planeGeometry)
-            planeNode.opacity = 0.5
-            node.addChildNode(planeNode)
+            node.addChildNode(GeometryFactory.createPlane(planeAnchor: planeAnchor, metalDevice: metalDevice!))
         }
     }
     
@@ -218,13 +237,7 @@ extension AssemblerViewController: ARSCNViewDelegate
             node.enumerateChildNodes { (childNode, _) in
                 childNode.removeFromParentNode()
             }
-            
-            let planeGeometry = ARSCNPlaneGeometry(device: metalDevice!)
-            planeGeometry?.update(from: planeAnchor.geometry)
-            
-            let planeNode = SCNNode(geometry: planeGeometry)
-            planeNode.opacity = 0.5
-            node.addChildNode(planeNode)
+            node.addChildNode(GeometryFactory.createPlane(planeAnchor: planeAnchor, metalDevice: metalDevice!))
         }
     }
 }
@@ -260,6 +273,22 @@ extension AssemblerViewController: ObjectTrackerDelegate
 
 extension AssemblerViewController: InstructionExecutionerDelegate
 {
+    func instructionCompleted(error: Error?)
+    {
+        if error == nil
+        {
+            nextInstruction()
+        }
+        else
+        {
+            // Handle error
+            print("Instruction unable to complete")
+            messageViewButton.setTitle("Re-execute instruction", for: .normal)
+            messageViewButton.isHidden = false
+            model.instructionHasFailed = true
+        }
+    }
+    
     func connectParts(rects: [CGRect])
     {
         var shouldConnectPieces = false
@@ -283,18 +312,5 @@ extension AssemblerViewController: InstructionExecutionerDelegate
     func getFrame() -> UIImage?
     {
         return sceneView.snapshot()
-    }
-    
-    func nextInstruction()
-    {
-        if furniture?.instructions?.isEmpty ?? true
-        {
-            currentInstruction = nil
-            tracker?.requestCancelTracking()
-        }
-        else
-        {
-            currentInstruction = furniture?.instructions?.removeFirst()
-        }
     }
 }

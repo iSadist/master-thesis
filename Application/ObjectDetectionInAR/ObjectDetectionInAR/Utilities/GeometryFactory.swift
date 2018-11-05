@@ -1,4 +1,5 @@
 import SceneKit
+import ARKit
 
 class GeometryFactory
 {
@@ -54,5 +55,16 @@ class GeometryFactory
         node.addChildNode(cylinderNode)
         node.addChildNode(coneNode)
         return node
+    }
+    
+    static func createPlane(planeAnchor: ARPlaneAnchor, metalDevice: MTLDevice) -> SCNNode
+    {
+        let planeGeometry = ARSCNPlaneGeometry(device: metalDevice)
+        planeGeometry?.update(from: planeAnchor.geometry)
+        
+        let planeNode = SCNNode(geometry: planeGeometry)
+        planeNode.opacity = 0.1
+        
+        return planeNode
     }
 }

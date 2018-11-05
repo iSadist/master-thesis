@@ -3,6 +3,6 @@ import UIKit
 protocol InstructionExecutionerDelegate
 {
     func getFrame() -> UIImage?
-    func nextInstruction()
+    func instructionCompleted(error: Error?)
     func connectParts(rects: [CGRect])
 }

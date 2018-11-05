@@ -13,12 +13,11 @@ class ObjectDetector
     /* Find the rects of any objects in the scene
        then classify them and return the rects that
        are interesting.
+       Function is meant to be called async wise.
+       Must return on main thread.
     */
-    func findObjects(frame: UIImage, parts: [String])
+    func findObjects(pixelBuffer: CVPixelBuffer, parts: [String])
     {
-        // Perform this on another DispatchQueue
-        let imageConvert = ImageConverter()
-        guard let pixelBuffer =  imageConvert.convertImageToPixelBuffer(image: frame) else { return }
         let predictions = detectAndClassifyObjects(pixelBuffer: (pixelBuffer))
         let correctParts = predictions.filter {parts.contains($0.label)}.removingDuplicates()
         var partRectangles = [ObjectRectangle]()
@@ -28,7 +27,18 @@ class ObjectDetector
             partRectangles.append(ObjectRectangle(visionRect: part.boundingBox, frame: imageViewFrame))
         }
         
-        self.delegate?.objectsFound(objects: partRectangles, error: nil)
+        if partRectangles.count == parts.count
+        {
+            DispatchQueue.main.async {
+                self.delegate?.objectsFound(objects: partRectangles, error: nil)
+            }
+        }
+        else
+        {
+            DispatchQueue.main.async {
+                self.delegate?.couldNotFindObjects()                
+            }
+        }
     }
     
     // Classify the object in the image
