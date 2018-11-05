@@ -29,6 +29,7 @@ class PopupViewController: UIViewController
         super.viewDidLoad()
         popupView.layer.cornerRadius = 25
         imageView.image = image
+        imageView.layer.cornerRadius = 20
         primaryButton.setTitle(primaryButtonText, for: .normal)
         secondaryButton.setTitle(secondaryButtonText, for: .normal)
         textView.text = textViewText        

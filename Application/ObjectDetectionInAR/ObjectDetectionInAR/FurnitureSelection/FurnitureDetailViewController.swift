@@ -50,10 +50,10 @@ class FurnitureDetailViewController: UIViewController
         if let popupViewController = segue.destination as? PopupViewController
         {
             popupVC = popupViewController
-            popupVC?.primaryButtonText = "Proceed"
+            popupVC?.primaryButtonText = "Start"
             popupVC?.secondaryButtonText = "Cancel"
             popupVC?.image = UIImage(named: "previewSetup")
-            popupVC?.textViewText = "Lay the furniture parts on a clean floor with spacing between the parts. The image above shows an example on how to place them."
+            popupVC?.textViewText = "Lay the furniture parts on a clean floor with spacing between the parts."
             popupVC?.completeFunction = {
                 self.performSegue(withIdentifier: "ShowAssemblerViewSegue", sender: self)
                 self.popupVC?.dismiss(animated: true, completion: nil)

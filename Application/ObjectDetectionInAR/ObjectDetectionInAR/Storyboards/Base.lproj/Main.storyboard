@@ -390,7 +390,7 @@
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="PopoverText" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vVk-r9-xqN">
                                         <rect key="frame" x="20" y="265.33333333333337" width="208" height="217.66666666666663"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="18"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qe6-ol-Gem">
@@ -401,14 +401,19 @@
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cIe-J7-jzl">
                                         <rect key="frame" x="20" y="491" width="104" height="30"/>
-                                        <state key="normal" title="Button"/>
+                                        <state key="normal" title="Button">
+                                            <color key="titleColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
                                         <connections>
                                             <action selector="secondaryButtonTapped:" destination="QSm-kB-tWP" eventType="touchUpInside" id="YzV-ex-qJU"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tKY-hO-EJ5">
                                         <rect key="frame" x="124" y="491" width="104" height="30"/>
-                                        <state key="normal" title="ButtonText"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title="ButtonText">
+                                            <color key="titleColor" red="0.24392055457746473" green="0.90352490242957739" blue="0.24251760563380281" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
                                         <connections>
                                             <action selector="proceedButton:" destination="QSm-kB-tWP" eventType="touchUpInside" id="iy2-af-S0w"/>
                                         </connections>
