@@ -74,4 +74,12 @@ class GeometryFactory
         
         return planeNode
     }
+
+    static func makeSeat() -> SCNNode
+    {
+        let node = SCNNode()
+        let seatNode = SCNScene(named: "art.scnassets/nolmyraSeat.scn")?.rootNode.childNode(withName: "seat", recursively: false)
+        node.addChildNode(seatNode!)
+        return node
+    }
 }
