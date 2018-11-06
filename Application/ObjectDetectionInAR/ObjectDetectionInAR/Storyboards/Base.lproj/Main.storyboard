@@ -394,22 +394,22 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uqU-Bh-VKk">
-                                <rect key="frame" x="63.666666666666657" y="135.66666666666663" width="247.99999999999997" height="541"/>
+                                <rect key="frame" x="63.666666666666657" y="181" width="247.99999999999997" height="450"/>
                                 <subviews>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="PopoverText" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vVk-r9-xqN">
-                                        <rect key="frame" x="20" y="265.33333333333337" width="208" height="217.66666666666663"/>
+                                        <rect key="frame" x="20" y="265.66666666666669" width="208" height="126.33333333333331"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="18"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qe6-ol-Gem">
-                                        <rect key="frame" x="20" y="37.000000000000014" width="208" height="220.33333333333337"/>
+                                        <rect key="frame" x="20" y="36.999999999999986" width="208" height="220.66666666666663"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="qe6-ol-Gem" secondAttribute="height" multiplier="248:263" id="ueY-Rv-waJ"/>
                                         </constraints>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cIe-J7-jzl">
-                                        <rect key="frame" x="20" y="491" width="104" height="30"/>
+                                        <rect key="frame" x="20" y="400" width="104" height="30"/>
                                         <state key="normal" title="Button">
                                             <color key="titleColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
@@ -418,7 +418,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tKY-hO-EJ5">
-                                        <rect key="frame" x="124" y="491" width="104" height="30"/>
+                                        <rect key="frame" x="124" y="400" width="104" height="30"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal" title="ButtonText">
                                             <color key="titleColor" red="0.24392055457746473" green="0.90352490242957739" blue="0.24251760563380281" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -437,7 +437,7 @@
                                     <constraint firstAttribute="bottom" secondItem="cIe-J7-jzl" secondAttribute="bottom" constant="20" id="ZEf-Ht-CfU"/>
                                     <constraint firstAttribute="trailing" secondItem="qe6-ol-Gem" secondAttribute="trailing" constant="20" symbolic="YES" id="dcK-c1-E5O"/>
                                     <constraint firstAttribute="bottom" secondItem="tKY-hO-EJ5" secondAttribute="bottom" constant="20" id="e39-Pj-vHg"/>
-                                    <constraint firstAttribute="height" constant="541" id="fJN-p2-yav"/>
+                                    <constraint firstAttribute="height" constant="450" id="fJN-p2-yav"/>
                                     <constraint firstAttribute="width" constant="248" id="jdv-Wb-fYB"/>
                                     <constraint firstItem="qe6-ol-Gem" firstAttribute="top" secondItem="uqU-Bh-VKk" secondAttribute="top" constant="37" id="kOf-VB-CUW"/>
                                     <constraint firstItem="qe6-ol-Gem" firstAttribute="leading" secondItem="uqU-Bh-VKk" secondAttribute="leading" constant="20" symbolic="YES" id="l0N-W2-7ep"/>
