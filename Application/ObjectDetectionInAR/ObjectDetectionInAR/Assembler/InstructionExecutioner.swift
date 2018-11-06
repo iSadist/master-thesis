@@ -45,7 +45,6 @@ class InstructionExecutioner: ObjectDetectorDelegate
         }
     }
     
-    
     // Mark: - Object detector delegate
     
     // Called when the object detector has found some objects
@@ -56,7 +55,7 @@ class InstructionExecutioner: ObjectDetectorDelegate
         {
             boundingBoxes.append(rect.getRect())
         }
-        delegate?.connectParts(rects: boundingBoxes)
+        delegate?.connectParts(rects: boundingBoxes, with: "Put the pieces together")
         startTracking(on: rects)
         instructionComplete()
     }

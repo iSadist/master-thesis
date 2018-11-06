@@ -103,7 +103,6 @@ class AssemblerViewController: UIViewController
         lineNode.name = "connectingArrow"
         
         sceneView.scene.rootNode.addChildNode(lineNode)
-        
     }
     
     func removeAllNodes()
@@ -307,6 +306,20 @@ extension AssemblerViewController: InstructionExecutionerDelegate
             lastRect = rect
             shouldConnectPieces = !shouldConnectPieces
         }
+    }
+    
+    func connectParts(rects: [CGRect], with message: String)
+    {
+        self.connectParts(rects: rects)
+        let node = GeometryFactory.makeText(text: message)
+        
+        // Figure out where to render the text
+        let renderPoint = CGPoint(x: rects.first!.midX, y: rects.first!.midY)
+        let worldPoint = self.sceneView.hitTest(renderPoint, types: .existingPlane).first?.worldTransform.columns.3
+        let vector = SCNVector3(worldPoint!.x, worldPoint!.y, worldPoint!.z)
+        
+        node.position = vector
+        self.sceneView.scene.rootNode.addChildNode(node)
     }
     
     func getFrame() -> UIImage?
