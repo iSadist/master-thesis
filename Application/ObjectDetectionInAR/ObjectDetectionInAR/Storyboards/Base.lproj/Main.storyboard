@@ -334,21 +334,21 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="wKl-Jm-yaw">
-                                <rect key="frame" x="20" y="360.33333333333331" width="335" height="208.66666666666669"/>
+                                <rect key="frame" x="20" y="360.33333333333331" width="335" height="239.66666666666669"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="build_man" translatesAutoresizingMaskIntoConstraints="NO" id="rjU-Jj-Sbi">
-                                <rect key="frame" x="20" y="577" width="245" height="145"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="build_man2" translatesAutoresizingMaskIntoConstraints="NO" id="rjU-Jj-Sbi">
+                                <rect key="frame" x="20" y="608" width="245" height="145"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="rjU-Jj-Sbi" secondAttribute="height" multiplier="49:29" id="d1g-Pk-B6A"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5BQ-AT-Vgj">
-                                <rect key="frame" x="110" y="730" width="155" height="38"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
+                            <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="5BQ-AT-Vgj">
+                                <rect key="frame" x="150" y="663.66666666666663" width="100" height="34"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <state key="normal" title="Let's assemble!"/>
                                 <connections>
                                     <segue destination="QSm-kB-tWP" kind="presentation" id="g1c-oz-6Ve"/>
@@ -359,20 +359,21 @@
                         <constraints>
                             <constraint firstItem="wKl-Jm-yaw" firstAttribute="leading" secondItem="Dso-KU-2tY" secondAttribute="leading" constant="20" id="18i-gd-eyi"/>
                             <constraint firstItem="uvK-T8-ZV9" firstAttribute="centerY" secondItem="QdE-EO-VKe" secondAttribute="centerY" id="5FU-lj-ntC"/>
-                            <constraint firstItem="Dso-KU-2tY" firstAttribute="bottom" secondItem="5BQ-AT-Vgj" secondAttribute="bottom" constant="10" id="Dta-oH-8Y3"/>
                             <constraint firstItem="mOd-th-49W" firstAttribute="leading" secondItem="Dso-KU-2tY" secondAttribute="leading" constant="10" id="F0f-ll-Mf2"/>
+                            <constraint firstItem="Dso-KU-2tY" firstAttribute="bottom" secondItem="rjU-Jj-Sbi" secondAttribute="bottom" constant="25" id="HCK-Cu-Ya3"/>
+                            <constraint firstItem="5BQ-AT-Vgj" firstAttribute="centerY" secondItem="rjU-Jj-Sbi" secondAttribute="centerY" id="HKI-mV-W6J"/>
                             <constraint firstItem="Dso-KU-2tY" firstAttribute="trailing" secondItem="uvK-T8-ZV9" secondAttribute="trailing" constant="10" id="Hje-E6-han"/>
                             <constraint firstItem="rjU-Jj-Sbi" firstAttribute="leading" secondItem="Dso-KU-2tY" secondAttribute="leading" constant="20" id="MTX-al-8v9"/>
                             <constraint firstItem="QdE-EO-VKe" firstAttribute="top" secondItem="mOd-th-49W" secondAttribute="bottom" constant="25" id="Pq2-j9-kec"/>
                             <constraint firstItem="uvK-T8-ZV9" firstAttribute="leading" secondItem="QdE-EO-VKe" secondAttribute="trailing" constant="8" symbolic="YES" id="Qph-Yn-2Ix"/>
                             <constraint firstItem="wKl-Jm-yaw" firstAttribute="top" secondItem="QdE-EO-VKe" secondAttribute="bottom" constant="8" symbolic="YES" id="cGP-fd-17O"/>
+                            <constraint firstItem="5BQ-AT-Vgj" firstAttribute="trailing" secondItem="rjU-Jj-Sbi" secondAttribute="trailing" constant="-15" id="eAF-Cf-GR1"/>
                             <constraint firstItem="QdE-EO-VKe" firstAttribute="leading" secondItem="Dso-KU-2tY" secondAttribute="leading" constant="20" id="hq9-bK-nIt"/>
                             <constraint firstItem="Dso-KU-2tY" firstAttribute="trailing" secondItem="rjU-Jj-Sbi" secondAttribute="trailing" constant="110" id="lAH-E4-DrQ"/>
                             <constraint firstItem="Dso-KU-2tY" firstAttribute="trailing" secondItem="wKl-Jm-yaw" secondAttribute="trailing" constant="20" id="lYj-u1-Ydb"/>
+                            <constraint firstItem="5BQ-AT-Vgj" firstAttribute="leading" secondItem="rjU-Jj-Sbi" secondAttribute="leading" constant="130" id="m6v-wY-8sp"/>
                             <constraint firstItem="rjU-Jj-Sbi" firstAttribute="top" secondItem="wKl-Jm-yaw" secondAttribute="bottom" constant="8" symbolic="YES" id="oQj-8A-Kld"/>
-                            <constraint firstItem="5BQ-AT-Vgj" firstAttribute="centerX" secondItem="Dso-KU-2tY" secondAttribute="centerX" id="pbi-eW-mZ1"/>
                             <constraint firstItem="mOd-th-49W" firstAttribute="top" secondItem="Dso-KU-2tY" secondAttribute="top" constant="10" id="ugF-CQ-7YC"/>
-                            <constraint firstItem="5BQ-AT-Vgj" firstAttribute="top" secondItem="rjU-Jj-Sbi" secondAttribute="bottom" constant="8" symbolic="YES" id="zma-EP-45h"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Dso-KU-2tY"/>
                     </view>
@@ -481,7 +482,7 @@
     <resources>
         <image name="3drotate" width="37.5" height="37.5"/>
         <image name="barcode-scanner" width="37.5" height="37.5"/>
-        <image name="build_man" width="295" height="204.5"/>
+        <image name="build_man2" width="299" height="209"/>
         <image name="no-icon" width="37.5" height="37.5"/>
     </resources>
 </document>
