@@ -1,0 +1,30 @@
+// Classify the object in the image
+func predict(pixelBuffer: CVPixelBuffer) -> VNClassificationObservation?
+{
+    var classification: VNClassificationObservation? = nil
+
+    guard let model = try? VNCoreMLModel(for: TuriNet().model) else { return nil }
+    let request = VNCoreMLRequest(model: model, completionHandler: { (finishedReq, err) in
+        if let results = finishedReq.results as? [VNRecognizedObjectObservation]
+        {
+            var rects = [CGRect]()
+
+            for result in results
+            {
+                guard let label = result.labels.first else { return }
+                print("Object: \(label.identifier) Confidence: \(label.confidence) , Bounding box: \(result.boundingBox)")
+                rects.append(result.boundingBox)
+            }
+            let testRect = CGRect(x: 0.5, y: 0.5, width: 0.2, height: 0.2)
+            rects.append(testRect)
+            self.overlayView.visionRects = rects
+            self.overlayView.setNeedsDisplay()
+
+         //   let maxValue = observations.max(by: {(current, next) in current.confidence < next.confidence})
+//                classification = maxValue
+        }
+    })
+    try? VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:]).perform([request])
+
+    return classification
+}
