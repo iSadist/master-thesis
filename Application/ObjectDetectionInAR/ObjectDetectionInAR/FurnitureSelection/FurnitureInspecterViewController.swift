@@ -12,6 +12,10 @@ class FurnitureInspecterViewController: UIViewController
     var cameraNode: SCNNode?
     var furniture: Furniture?
     
+    var cameraDistance: Float = 5.0
+    var cameraAngle: Float = 0.0
+    var cameraHeight: Float = 0.634
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -29,20 +33,28 @@ class FurnitureInspecterViewController: UIViewController
         }
         
         cameraNode = scene?.rootNode.childNode(withName: "camera", recursively: false)
-        cameraNode?.constraints = [SCNLookAtConstraint(target: modelNode)]
         sceneView.scene = scene
     }
 
     @IBAction func panGesture(_ sender: UIPanGestureRecognizer)
     {
         let velocity = sender.velocity(in: sceneView)
-        modelNode?.runAction(SCNAction.rotateBy(x: 0, y: velocity.x * panSpeedRatio, z: 0, duration: 0.1))
+        cameraAngle += Float(velocity.x * panSpeedRatio)
+        updateCameraPosition()
     }
 
     @IBAction func pinchGesture(_ sender: UIPinchGestureRecognizer)
     {
-        let vector = SCNVector3(0, 0, sender.velocity * pinchSpeedRatio)
-        let action = SCNAction.move(by: vector, duration: 0.1)
-        modelNode?.runAction(action)
+        cameraDistance += Float(sender.velocity * pinchSpeedRatio)
+        updateCameraPosition()
+    }
+    
+    func updateCameraPosition()
+    {
+        // Using cylindrical coordinates
+        let newPosition = SCNVector3(x: cameraDistance*cos(cameraAngle), y: cameraHeight, z: cameraDistance*sin(cameraAngle))
+
+        cameraNode?.position = newPosition
+        cameraNode?.look(at: modelNode!.position, up: SCNVector3(0, 1, 0), localFront: SCNVector3(0, 0, -1))
     }
 }
