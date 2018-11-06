@@ -36,12 +36,12 @@ class FurnitureInspecterViewController: UIViewController
     @IBAction func panGesture(_ sender: UIPanGestureRecognizer)
     {
         let velocity = sender.velocity(in: sceneView)
-        modelNode?.runAction(SCNAction.rotateBy(x: -velocity.y * pinchSpeedRatio, y: velocity.x * pinchSpeedRatio, z: 0, duration: 0.1))
+        modelNode?.runAction(SCNAction.rotateBy(x: 0, y: velocity.x * panSpeedRatio, z: 0, duration: 0.1))
     }
 
     @IBAction func pinchGesture(_ sender: UIPinchGestureRecognizer)
     {
-        let vector = SCNVector3(0, 0, sender.velocity * panSpeedRatio)
+        let vector = SCNVector3(0, 0, sender.velocity * pinchSpeedRatio)
         let action = SCNAction.move(by: vector, duration: 0.1)
         modelNode?.runAction(action)
     }
