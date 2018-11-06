@@ -200,10 +200,11 @@ class AssemblerViewController: UIViewController
             // Execute the same instruction that failed last time
             model.instructionHasFailed = false
             executioner.executeInstruction()
-            
+
             // Hide the button again to not complete an instruction
             // while not ready
             messageViewButton.isHidden = true
+            messageViewText.text = currentInstruction?.message
         }
         else
         {
@@ -282,7 +283,8 @@ extension AssemblerViewController: InstructionExecutionerDelegate
         {
             // Handle error
             print("Instruction unable to complete")
-            messageViewButton.setTitle("Re-execute instruction", for: .normal)
+            messageViewText.text = "Failed to complete instruction..."
+            messageViewButton.setTitle("Try again?", for: .normal)
             messageViewButton.isHidden = false
             model.instructionHasFailed = true
         }
