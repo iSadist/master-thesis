@@ -2,9 +2,9 @@ import UIKit
 
 class FurnitureSelectionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate
 {
-    
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var emptyCollectionMessageLabel: UILabel!
     
     var collection: [Furniture]?
     var filteredCollection: [Furniture]?
@@ -31,7 +31,9 @@ class FurnitureSelectionViewController: UIViewController, UICollectionViewDelega
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
-        return filteredCollection!.count
+        let amount = filteredCollection!.count
+        emptyCollectionMessageLabel.isHidden = amount == 0
+        return amount
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
