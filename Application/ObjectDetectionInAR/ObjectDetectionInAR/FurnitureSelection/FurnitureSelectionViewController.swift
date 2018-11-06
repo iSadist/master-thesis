@@ -5,6 +5,7 @@ class FurnitureSelectionViewController: UIViewController, UICollectionViewDelega
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var emptyCollectionMessageLabel: UILabel!
+    @IBOutlet weak var emptyCollectionImageView: UIImageView!
     
     var collection: [Furniture]?
     var filteredCollection: [Furniture]?
@@ -32,7 +33,8 @@ class FurnitureSelectionViewController: UIViewController, UICollectionViewDelega
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
         let amount = filteredCollection!.count
-        emptyCollectionMessageLabel.isHidden = amount == 0
+        emptyCollectionMessageLabel.isHidden = amount != 0
+        emptyCollectionImageView.isHidden = amount != 0
         return amount
     }
     

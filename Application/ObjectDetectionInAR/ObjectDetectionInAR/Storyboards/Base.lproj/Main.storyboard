@@ -134,21 +134,30 @@
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No furniture found with that name or id" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ia1-aW-kuM">
-                                <rect key="frame" x="39.333333333333343" y="423" width="296.66666666666663" height="20.333333333333314"/>
+                                <rect key="frame" x="39.333333333333343" y="294" width="296.66666666666663" height="20.333333333333314"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="no-icon" translatesAutoresizingMaskIntoConstraints="NO" id="UZb-0e-Fcr">
+                                <rect key="frame" x="167.66666666666666" y="244" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="UZb-0e-Fcr" secondAttribute="height" multiplier="1:1" id="TxL-zd-EPG"/>
+                                    <constraint firstAttribute="width" constant="40" id="pfF-ph-hKh"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="5iX-24-qc9" firstAttribute="top" secondItem="qZO-4D-mn9" secondAttribute="bottom" constant="10" id="1S0-h1-6gZ"/>
                             <constraint firstItem="Ia1-aW-kuM" firstAttribute="centerX" secondItem="kyw-7r-NJ0" secondAttribute="centerX" id="4Yn-Ca-S4h"/>
                             <constraint firstItem="kyw-7r-NJ0" firstAttribute="trailing" secondItem="qZO-4D-mn9" secondAttribute="trailing" id="8oE-Sx-Vjt"/>
+                            <constraint firstItem="UZb-0e-Fcr" firstAttribute="bottom" secondItem="Ia1-aW-kuM" secondAttribute="top" constant="-10" id="Kr6-E1-hxK"/>
                             <constraint firstItem="5iX-24-qc9" firstAttribute="leading" secondItem="kyw-7r-NJ0" secondAttribute="leading" id="NCs-7D-BJ6"/>
+                            <constraint firstItem="UZb-0e-Fcr" firstAttribute="centerX" secondItem="kyw-7r-NJ0" secondAttribute="centerX" id="NxA-NL-We8"/>
                             <constraint firstItem="kyw-7r-NJ0" firstAttribute="trailing" secondItem="5iX-24-qc9" secondAttribute="trailing" id="Qwr-QO-QWY"/>
                             <constraint firstAttribute="bottom" secondItem="5iX-24-qc9" secondAttribute="bottom" id="TgN-y7-vUP"/>
-                            <constraint firstItem="Ia1-aW-kuM" firstAttribute="centerY" secondItem="kyw-7r-NJ0" secondAttribute="centerY" id="cTK-VE-8sW"/>
+                            <constraint firstItem="Ia1-aW-kuM" firstAttribute="top" secondItem="qZO-4D-mn9" secondAttribute="bottom" constant="150" id="iGG-8y-RuT"/>
                             <constraint firstItem="qZO-4D-mn9" firstAttribute="top" secondItem="kyw-7r-NJ0" secondAttribute="top" id="iz0-vA-WqH"/>
                             <constraint firstItem="qZO-4D-mn9" firstAttribute="leading" secondItem="kyw-7r-NJ0" secondAttribute="leading" id="pSE-EJ-5cN"/>
                         </constraints>
@@ -164,6 +173,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="5iX-24-qc9" id="w9f-mK-qIz"/>
+                        <outlet property="emptyCollectionImageView" destination="UZb-0e-Fcr" id="IKY-xo-wNT"/>
                         <outlet property="emptyCollectionMessageLabel" destination="Ia1-aW-kuM" id="bV5-Mh-oGM"/>
                         <outlet property="searchBar" destination="qZO-4D-mn9" id="YIK-2G-Y3u"/>
                         <segue destination="l0C-mi-Syw" kind="show" identifier="ShowFurnitureDetailSegue" id="NXL-b0-DXr"/>
@@ -472,5 +482,6 @@
         <image name="3drotate" width="37.5" height="37.5"/>
         <image name="barcode-scanner" width="37.5" height="37.5"/>
         <image name="build_man" width="295" height="204.5"/>
+        <image name="no-icon" width="37.5" height="37.5"/>
     </resources>
 </document>
