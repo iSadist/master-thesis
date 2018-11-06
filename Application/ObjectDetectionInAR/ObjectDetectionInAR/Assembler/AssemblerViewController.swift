@@ -321,6 +321,7 @@ extension AssemblerViewController: InstructionExecutionerDelegate
         let vector = SCNVector3(worldPoint!.x, worldPoint!.y, worldPoint!.z)
         
         node.position = vector
+        node.constraints = [SCNBillboardConstraint()]
         self.sceneView.scene.rootNode.addChildNode(node)
     }
     

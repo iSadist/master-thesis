@@ -28,8 +28,15 @@ class GeometryFactory
     static func makeText(text: String) -> SCNNode
     {
         let geometry = SCNText(string: text, extrusionDepth: 5)
-        let node = SCNNode(geometry: geometry)
-        node.scale = SCNVector3(x: 0.005, y: 0.005, z: 0.005)
+        
+        let width = geometry.boundingBox.max.x * 0.005
+        
+        let textNode = SCNNode(geometry: geometry)
+        textNode.scale = SCNVector3(x: 0.005, y: 0.005, z: 0.005)
+        textNode.position.x = -width / 2
+        
+        let node = SCNNode()
+        node.addChildNode(textNode)
         return node
     }
     
