@@ -304,6 +304,8 @@ Although, then an object tracking algorithm that tracks on an outline is require
 YOLO, or You Only Look Once, is a one stage detector approach to object detection and
  recognition \cite{YOLO1}. It takes an image and predicts both bounding boxes and the probabilities of the classes being within these bounding boxes in one run, hence its name. It was designed to be fast and usable in real-time scenarios. Since YOLO sees the entire image during training and testing, it receives contextual information about the classes and reduces error with matching background patches for objects. 
  
+ The architecture for \textit{YOLO} consist mainly as a convolutional neural network, with 24 convolutional layers and two fully connected layers. There was also a smaller neural network trained called \textit{Fast YOLO} trained which were only 9 layers which was designed to create an even faster system for object detection. 
+ 
  The system first divides the input image into an  $S \times S$  grid, where each cell predicts $B$ amount of bounding boxes respectively confidence scores for the boxes. Each bounding box prediction consist of 5 separate predictions: the \textit{x, y} coordinates, represented as their position relative to the the grid cell, width and height relative to the entire image and a confidence value. The confidence values are there to reflect how certain the model is that there exists an object within the box, i.e. ideally, confidence should be zero when no object, and the intersection over union between ground truth and the predicted box if there is. Each grid cell also predicts $C$ probabilities for each class, conditioned that there's an object within the boxes. 
  
  Intersection over union, also known as the Jaccard index, is a way of measuring similarity between sets. It can be written as 
@@ -317,13 +319,38 @@ IOU(A,B) =  \frac{|A\cap B |}{|A\cup B|} =\frac{|A\cap B|}{|A| + |B| - |A \cap B
 \begin{figure}[hbtp]
 \begin{center}
 \includegraphics[width = 0.75\textwidth]{./Images/YOLO_stages.PNG} 
-\caption{The stages of YOLO. First dives into $S \times S$ grid. Separately predicts bounding boxes with respective confidence, as well as class probability. Then, combines the two to form the final predictions. Image taken from \url{https://arxiv.org/pdf/1506.02640.pdf} YOLO1.}
+\caption{The stages of YOLO. First dives into $S \times S$ grid. Separately predicts bounding boxes with respective confidence, as well as class probability. Then, combines the two to form the final predictions. Image taken from \cite{YOLO1}.}
 \label{fig:YOLO_stages}
 \end{center}
 \end{figure}
-[SKRIVA OM UPPDATERADE VERSIONERNA]
-\url{https://arxiv.org/pdf/1612.08242.pdf} YOLO2
-\url{https://arxiv.org/pdf/1804.02767.pdf} YOLO3
+
+Comparisons done by the team working on \textit{YOLO} found that, compared to other real-time systems at the time, both \textit{Fast YOLO} and \textit{YOLO} outperformed them all with \textit{Fast YOLO} being the fastest, but \textit{YOLO} being more accurate on the \textit{PASCAL VOC} data sets \cite{PASCAL}.
+
+Throughout the years Redmon et al. has been working on updating the design pattern of the 
+YOLO network. First in 2016 when they introduced \textit{YOLOv2} and then April 2018 with \textit{YOLOv3} \cite{YOLO2}\cite{YOLO3}. \textit{YOLOv2} added a few concepts to the system to make it even more fast and accurate than the earlier iteration. It removed the fully connected layers and is was now possible to train on several different input image resolutions and it could now also predict many more bounding boxes than its predecessor. \textit{YOLOv3} added some changes which improved its ability to detect small objects, with the trade off of having a bit worse performance when finding larger sized objects.  
+
+\subsection{mean Average Precision}
+Metrics for object detection
+\url{https://github.com/rafaelpadilla/Object-Detection-Metrics}
+
+mAP (mean Average Precision) for Object Detection
+\url{https://medium.com/@jonathan_hui/map-mean-average-precision-for-object-detection-45c121a31173}
+
+The PASCAL Visual Object Classes (VOC) Challenge
+\url{http://homepages.inf.ed.ac.uk/ckiw/postscript/ijcv_voc09.pdf}
+
+COCO Detection Evaluation
+\url{http://cocodataset.org/#detection-eval}
+
+[VARFÖR INTE "VANLIGA" METRICS?]
+
+[PRECISION]
+
+[RECALL]
+
+[IOU]
+
+
 \subsection{Object recognition with machine learning}
 
 
