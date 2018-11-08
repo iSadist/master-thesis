@@ -147,11 +147,18 @@ and is a good option when negative values should be ignored or don't make sense.
 \[\frac{e^x}{1+e^x}\]
 and works like the Tanh function but keeps the values between 0 and 1 and sets y(0) = 0.5 instead.
 
-Softmax is a little bit more complex. It is described as $  $
+Softmax is a little bit more complex. It is described as $  $ !INCOMPLETE!
 
 \subsubsection{Loss/Optimizers}
+When training the model using backpropagation, the model will at first make a guess to what the right answer or value is based on the random initial weigh values. In the beginning, the model is usually mostly wrong and it is then important to know how wrong it was and in what direction it should go.
 
-Mean squared
+For this, the model uses a loss function to calculate that error. For different applications the loss function can be different.
+One way to calculate the error is to simply take the predicted value and subtract it with the correct value, $ error = y_p - y_c $.
+
+Sometimes the sign of the error is not important. Then the absolute error can be calculated instead. $error = |y_p - y_c| $
+
+Another approach is the \textbf{mean squared error} which squares the difference and takes the mean value over a few predictions.
+\[Error = \frac{1}{n} \cdot \displaystyle\sum_{i=1}^{n} (y_p - y_c)^{2} \]
 
 SGD
 Adam
