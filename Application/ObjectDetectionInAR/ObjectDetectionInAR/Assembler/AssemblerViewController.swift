@@ -29,8 +29,6 @@ class AssemblerViewController: UIViewController
     
     let trackingImageURLs: [String] = [] // Images that will be tracked
     var furniture: Furniture?
-    var tracker: ObjectTracker?
-    var detector: ObjectDetector?
     let executioner = InstructionExecutioner()
     var currentSnapshot: CVPixelBuffer? = nil
     var currentFrame: UIImage? = nil
@@ -133,12 +131,12 @@ class AssemblerViewController: UIViewController
         loadWorldTrackingConfiguration()
 
         // Setup the object detector
-        detector = ObjectDetector(frame: overlayView.frame)
-        detector?.delegate = executioner
+        let detector = ObjectDetector(frame: overlayView.frame)
+        detector.delegate = executioner
         
         // Setup the object tracker
-        tracker = ObjectTracker(viewFrame: overlayView.frame)
-        tracker?.delegate = self
+        let tracker = ObjectTracker(viewFrame: overlayView.frame)
+        tracker.delegate = self
         
         // Setup instruction executioner
         executioner.delegate = self
@@ -152,15 +150,13 @@ class AssemblerViewController: UIViewController
     {
         super.viewWillDisappear(animated)
         sceneView.session.pause()
-        tracker?.requestCancelTracking()
-        tracker = nil
+        executioner.tracker?.requestCancelTracking()
     }
 
     override func didReceiveMemoryWarning()
     {
         super.didReceiveMemoryWarning()
-        tracker?.requestCancelTracking()
-        tracker = nil
+        executioner.tracker?.requestCancelTracking()
         print("Memory is full!")
     }
     

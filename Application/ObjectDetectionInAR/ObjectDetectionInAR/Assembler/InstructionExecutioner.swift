@@ -53,7 +53,7 @@ class InstructionExecutioner: ObjectDetectorDelegate
         
         if let assembleInstruction = currentInstruction as? AssembleInstruction
         {
-            //
+            
         }
     }
     
