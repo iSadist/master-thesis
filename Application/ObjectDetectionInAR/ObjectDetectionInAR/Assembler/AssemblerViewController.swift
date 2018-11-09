@@ -89,6 +89,41 @@ class AssemblerViewController: UIViewController
         sceneView.scene.rootNode.addChildNode(lineNode)
     }
     
+    func connectParts(rects: [CGRect])
+    {
+        var shouldConnectPieces = false
+        var lastRect: CGRect = CGRect()
+        
+        for rect in rects
+        {
+            if shouldConnectPieces
+            {
+                // For every second rect, connect with the previous one
+                let firstMidpoint = CGPoint(x: lastRect.midX, y: lastRect.midY)
+                let secondMidpoint = CGPoint(x: rect.midX, y: rect.midY)
+                connectPieces(fromScreen: firstMidpoint, to: secondMidpoint)
+            }
+            
+            lastRect = rect
+            shouldConnectPieces = !shouldConnectPieces
+        }
+    }
+    
+    func connectParts(rects: [CGRect], with message: String)
+    {
+        self.connectParts(rects: rects)
+        let node = GeometryFactory.makeText(text: message)
+        
+        // Figure out where to render the text
+        let renderPoint = CGPoint(x: rects.first!.midX, y: rects.first!.midY)
+        let worldPoint = self.sceneView.hitTest(renderPoint, types: .existingPlane).first?.worldTransform.columns.3
+        let vector = SCNVector3(worldPoint!.x, worldPoint!.y, worldPoint!.z)
+        
+        node.position = vector
+        node.constraints = [SCNBillboardConstraint()]
+        self.sceneView.scene.rootNode.addChildNode(node)
+    }
+    
     func removeAllNodes()
     {
         for node in sceneView.scene.rootNode.childNodes
@@ -215,7 +250,21 @@ extension AssemblerViewController: ObjectTrackerDelegate
     // Called when the Object tracker outputs new rects for the tracked objects
     func trackedRects(rects: [ObjectRectangle])
     {
+        for node in self.sceneView.scene.rootNode.childNodes
+        {
+            node.removeFromParentNode()
+        }
         model.objectsOnScreen = rects
+        
+        // Put the bounding box rects in the rectangles list
+        // and connect them
+        var rectangles = [CGRect]()
+        for objectRect in rects
+        {
+            rectangles.append(objectRect.getRect())
+        }
+        
+        connectParts(rects: rectangles)
     }
     
     // Called whenever Object Tracker stopped tracking
@@ -259,41 +308,6 @@ extension AssemblerViewController: InstructionExecutionerDelegate
     func instructionCompleted()
     {
         executioner.nextInstruction()
-    }
-    
-    func connectParts(rects: [CGRect])
-    {
-        var shouldConnectPieces = false
-        var lastRect: CGRect = CGRect()
-        
-        for rect in rects
-        {
-            if shouldConnectPieces
-            {
-                // For every second rect, connect with the previous one
-                let firstMidpoint = CGPoint(x: lastRect.midX, y: lastRect.midY)
-                let secondMidpoint = CGPoint(x: rect.midX, y: rect.midY)
-                connectPieces(fromScreen: firstMidpoint, to: secondMidpoint)
-            }
-            
-            lastRect = rect
-            shouldConnectPieces = !shouldConnectPieces
-        }
-    }
-    
-    func connectParts(rects: [CGRect], with message: String)
-    {
-        self.connectParts(rects: rects)
-        let node = GeometryFactory.makeText(text: message)
-        
-        // Figure out where to render the text
-        let renderPoint = CGPoint(x: rects.first!.midX, y: rects.first!.midY)
-        let worldPoint = self.sceneView.hitTest(renderPoint, types: .existingPlane).first?.worldTransform.columns.3
-        let vector = SCNVector3(worldPoint!.x, worldPoint!.y, worldPoint!.z)
-        
-        node.position = vector
-        node.constraints = [SCNBillboardConstraint()]
-        self.sceneView.scene.rootNode.addChildNode(node)
     }
     
     func getFrame() -> UIImage?

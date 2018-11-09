@@ -14,8 +14,8 @@ import UIKit
 class InstructionExecutioner: ObjectDetectorDelegate
 {
     var delegate: InstructionExecutionerDelegate?
-    weak var tracker: ObjectTracker?
-    weak var detector: ObjectDetector?
+    var tracker: ObjectTracker?
+    var detector: ObjectDetector?
 
     var instructions: [Instruction]?
     var currentInstruction: Instruction?
@@ -34,8 +34,7 @@ class InstructionExecutioner: ObjectDetectorDelegate
     var isInstructionComplete: Bool = false
     
     private var trackerQueue = DispatchQueue(label: "tracker", qos: DispatchQoS.userInitiated)
-    private var objectQueue = DispatchQueue(label: "detector", qos: DispatchQoS.userInitiated)
-    private var assembleQueue = DispatchQueue(label: "assemble", qos: DispatchQoS.userInitiated)
+    private var workerQueue = DispatchQueue(label: "worker", qos: DispatchQoS.userInitiated)
     
     func executeInstruction()
     {
@@ -46,7 +45,7 @@ class InstructionExecutioner: ObjectDetectorDelegate
             guard let frame = delegate?.getFrame() else { return }
             let imageConvert = ImageConverter()
             guard let pixelBuffer =  imageConvert.convertImageToPixelBuffer(image: frame) else { return }
-            objectQueue.async {
+            workerQueue.async {
                 self.detector?.findObjects(pixelBuffer: pixelBuffer, parts: [scanInstruction.firstItem!, scanInstruction.secondItem!])
             }
         }
@@ -80,7 +79,6 @@ class InstructionExecutioner: ObjectDetectorDelegate
         {
             boundingBoxes.append(rect.getRect())
         }
-        delegate?.connectParts(rects: boundingBoxes, with: "Put the pieces together")
         startTracking(on: rects)
         instructionComplete()
     }
