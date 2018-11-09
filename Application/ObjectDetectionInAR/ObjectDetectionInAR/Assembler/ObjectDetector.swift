@@ -46,7 +46,7 @@ class ObjectDetector
     private func detectAndClassifyObjects(pixelBuffer: CVPixelBuffer) -> [Prediction]
     {
         var predictions: [Prediction] = []
-        let mlmodel = MyDetector()
+        let mlmodel = NolmyraNet()
         let userDefined: [String: String] = mlmodel.model.modelDescription.metadata[MLModelMetadataKey.creatorDefinedKey]! as! [String : String]
         let labels = userDefined["classes"]!.components(separatedBy: ",")
         let nmsThreshold = Float(userDefined["non_maximum_suppression_threshold"]!) ?? 0.5
