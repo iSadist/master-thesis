@@ -16,19 +16,32 @@ class InstructionExecutioner: ObjectDetectorDelegate
     var delegate: InstructionExecutionerDelegate?
     weak var tracker: ObjectTracker?
     weak var detector: ObjectDetector?
-    var instruction: Instruction?
+
+    var instructions: [Instruction]?
+    var currentInstruction: Instruction?
+    {
+        willSet
+        {
+            delegate?.newInstructionSet(newValue)
+        }
+        didSet
+        {
+            executeInstruction()
+        }
+    }
     
     var attempts = 0
+    var isInstructionComplete: Bool = false
     
     private var trackerQueue = DispatchQueue(label: "tracker", qos: DispatchQoS.userInitiated)
     private var objectQueue = DispatchQueue(label: "detector", qos: DispatchQoS.userInitiated)
+    private var assembleQueue = DispatchQueue(label: "assemble", qos: DispatchQoS.userInitiated)
     
-    // Function is meant to be called async wise
     func executeInstruction()
     {
         attempts += 1
         
-        if let scanInstruction = instruction as? ScanInstruction
+        if let scanInstruction = currentInstruction as? ScanInstruction
         {
             guard let frame = delegate?.getFrame() else { return }
             let imageConvert = ImageConverter()
@@ -38,10 +51,22 @@ class InstructionExecutioner: ObjectDetectorDelegate
             }
         }
         
-        if let assembleInstruction = instruction as? AssembleInstruction
+        if let assembleInstruction = currentInstruction as? AssembleInstruction
         {
-            // Implement function
-            
+            //
+        }
+    }
+    
+    func nextInstruction()
+    {
+        if instructions?.isEmpty ?? true
+        {
+            currentInstruction = nil
+            tracker?.requestCancelTracking()
+        }
+        else
+        {
+            currentInstruction = instructions?.removeFirst()
         }
     }
     
@@ -66,7 +91,7 @@ class InstructionExecutioner: ObjectDetectorDelegate
         guard attempts < 20 else
         {
             attempts = 0
-            self.delegate?.instructionCompleted(error: InstructionExecutionError.FailedAttempts)
+            self.delegate?.instructionFailed(error: InstructionExecutionError.FailedAttempts)
             return
         }
         
@@ -86,6 +111,6 @@ class InstructionExecutioner: ObjectDetectorDelegate
     
     func instructionComplete()
     {
-        delegate?.instructionCompleted(error: nil)
+        delegate?.instructionCompleted()
     }
 }

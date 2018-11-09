@@ -31,26 +31,12 @@ class AssemblerViewController: UIViewController
     var furniture: Furniture?
     var tracker: ObjectTracker?
     var detector: ObjectDetector?
+    let executioner = InstructionExecutioner()
     var currentSnapshot: CVPixelBuffer? = nil
     var currentFrame: UIImage? = nil
     
     let metalDevice = MTLCreateSystemDefaultDevice()
     var model = AssemblerModel()
-
-    let executioner = InstructionExecutioner()
-    var currentInstruction: Instruction?
-    {
-        willSet
-        {
-            messageViewText.text = newValue?.message
-            messageViewButton.setTitle(newValue?.buttonText, for: .normal)
-            messageViewButton.isHidden = newValue?.buttonText == nil
-            messageView.isHidden = newValue == nil
-            
-            executioner.instruction = newValue
-            executioner.executeInstruction()
-        }
-    }
 
     func loadWorldTrackingConfiguration()
     {
@@ -124,19 +110,6 @@ class AssemblerViewController: UIViewController
         return false
     }
     
-    func nextInstruction()
-    {
-        if furniture?.instructions?.isEmpty ?? true
-        {
-            currentInstruction = nil
-            tracker?.requestCancelTracking()
-        }
-        else
-        {
-            currentInstruction = furniture?.instructions?.removeFirst()
-        }
-    }
-    
     // MARK: Lifecycle events
     
     override func viewDidLoad()
@@ -171,8 +144,8 @@ class AssemblerViewController: UIViewController
         executioner.delegate = self
         executioner.detector = detector
         executioner.tracker = tracker
-        
-        currentInstruction = furniture?.instructions?.removeFirst()
+        executioner.instructions = furniture?.instructions
+        executioner.nextInstruction()
     }
 
     override func viewWillDisappear(_ animated: Bool)
@@ -204,11 +177,11 @@ class AssemblerViewController: UIViewController
             // Hide the button again to not complete an instruction
             // while not ready
             messageViewButton.isHidden = true
-            messageViewText.text = currentInstruction?.message
+            messageViewText.text = executioner.currentInstruction?.message
         }
         else
         {
-            nextInstruction()
+            executioner.nextInstruction()
         }
     }
 }
@@ -225,7 +198,6 @@ extension AssemblerViewController: ARSCNViewDelegate
         }
         else if let planeAnchor = anchor as? ARPlaneAnchor
         {
-//            let plane = SCNPlane(width: CGFloat(planeAnchor.extent.x), height: CGFloat(planeAnchor.extent.z))
             node.addChildNode(GeometryFactory.createPlane(planeAnchor: planeAnchor, metalDevice: metalDevice!))
         }
     }
@@ -244,6 +216,12 @@ extension AssemblerViewController: ARSCNViewDelegate
 
 extension AssemblerViewController: ObjectTrackerDelegate
 {
+    // Called when the Object tracker outputs new rects for the tracked objects
+    func trackedRects(rects: [ObjectRectangle])
+    {
+        model.objectsOnScreen = rects
+    }
+    
     // Called whenever Object Tracker stopped tracking
     func trackingDidStop()
     {
@@ -251,13 +229,6 @@ extension AssemblerViewController: ObjectTrackerDelegate
         DispatchQueue.main.async {
             self.overlayView.clearDisplay()
         }
-    }
-    
-    // Called when some rects are meant to be displayed on the screen
-    func displayRects(rects: [ObjectRectangle])
-    {
-        self.overlayView.rectangles = rects
-        self.overlayView.setNeedsDisplay()
     }
     
     // Called when Object Tracker 
@@ -273,21 +244,25 @@ extension AssemblerViewController: ObjectTrackerDelegate
 
 extension AssemblerViewController: InstructionExecutionerDelegate
 {
-    func instructionCompleted(error: Error?)
+    func instructionFailed(error: Error?) {
+        print("Instruction unable to complete")
+        messageViewText.text = "Failed to complete instruction..."
+        messageViewButton.setTitle("Try again?", for: .normal)
+        messageViewButton.isHidden = false
+        model.instructionHasFailed = true
+    }
+    
+    func newInstructionSet(_ instruction: Instruction?)
     {
-        if error == nil
-        {
-            nextInstruction()
-        }
-        else
-        {
-            // Handle error
-            print("Instruction unable to complete")
-            messageViewText.text = "Failed to complete instruction..."
-            messageViewButton.setTitle("Try again?", for: .normal)
-            messageViewButton.isHidden = false
-            model.instructionHasFailed = true
-        }
+        messageViewText.text = instruction?.message
+        messageViewButton.setTitle(instruction?.buttonText, for: .normal)
+        messageViewButton.isHidden = instruction?.buttonText == nil
+        messageView.isHidden = instruction == nil
+    }
+    
+    func instructionCompleted()
+    {
+        executioner.nextInstruction()
     }
     
     func connectParts(rects: [CGRect])

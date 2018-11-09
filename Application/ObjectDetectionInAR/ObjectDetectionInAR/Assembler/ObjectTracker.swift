@@ -86,7 +86,7 @@ class ObjectTracker
             }
 
             DispatchQueue.main.async {
-                self.delegate?.displayRects(rects: rects)
+                self.delegate?.trackedRects(rects: rects)
             }
             
             // The tracking will stop if no observation has a high confidence value
