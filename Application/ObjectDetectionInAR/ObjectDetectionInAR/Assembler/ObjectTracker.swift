@@ -39,6 +39,8 @@ class ObjectTracker
     
     func track()
     {
+        cancelTracking = false
+        
         var trackingObservations = [UUID: VNDetectedObjectObservation]()
         var trackedObjects = [UUID: CGRect]()
         let requestHandler = VNSequenceRequestHandler()
@@ -92,6 +94,7 @@ class ObjectTracker
             // The tracking will stop if no observation has a high confidence value
             if rects.isEmpty
             {
+                print("Lost tracking due to low confidence")
                 requestCancelTracking()
             }
 
