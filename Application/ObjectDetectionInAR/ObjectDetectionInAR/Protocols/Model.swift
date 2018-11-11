@@ -10,5 +10,5 @@ import Foundation
 
 protocol Model
 {
-    func isValid()
+    func isValid() -> Bool
 }

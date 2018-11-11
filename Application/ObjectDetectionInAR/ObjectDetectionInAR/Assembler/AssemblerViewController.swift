@@ -22,6 +22,7 @@ class AssemblerViewController: UIViewController
     @IBOutlet weak var messageView: UIView!
     @IBOutlet weak var messageViewButton: UIButton!
     @IBOutlet weak var messageViewText: UITextView!
+    @IBOutlet weak var errorMessageLabel: UILabel!
     
     override var prefersStatusBarHidden: Bool { return true }
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask { return .portrait }
@@ -143,6 +144,12 @@ class AssemblerViewController: UIViewController
         return false
     }
     
+    func modelUpdated()
+    {
+        messageViewButton.isEnabled = model.isValid()
+        errorMessageLabel.isHidden = model.isValid()
+    }
+    
     // MARK: Lifecycle events
     
     override func viewDidLoad()
@@ -150,6 +157,7 @@ class AssemblerViewController: UIViewController
         super.viewDidLoad()
         sceneView.delegate = self
         messageView.layer.cornerRadius = 25
+        model.callback = modelUpdated
         
 //        Show statistics such as fps and timing information
 //        sceneView.showsStatistics = true
@@ -230,6 +238,7 @@ extension AssemblerViewController: ARSCNViewDelegate
         else if let planeAnchor = anchor as? ARPlaneAnchor
         {
             node.addChildNode(GeometryFactory.createPlane(planeAnchor: planeAnchor, metalDevice: metalDevice!))
+            model.numberOfPlanesDetected += 1
         }
     }
     
@@ -241,6 +250,14 @@ extension AssemblerViewController: ARSCNViewDelegate
                 childNode.removeFromParentNode()
             }
             node.addChildNode(GeometryFactory.createPlane(planeAnchor: planeAnchor, metalDevice: metalDevice!))
+        }
+    }
+    
+    func renderer(_ renderer: SCNSceneRenderer, didRemove node: SCNNode, for anchor: ARAnchor)
+    {
+        if let planeAnchor = anchor as? ARPlaneAnchor
+        {
+            model.numberOfPlanesDetected -= 1
         }
     }
 }
