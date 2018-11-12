@@ -202,6 +202,8 @@ L1 simply adds the weights size multiplied with an l1 term that is chosen by the
 The other, L2, is to do the same but in this case square that value. This has the effect of making values over 1 even bigger and values less than 1 smaller.
 In that way, it doesn't affect the loss as much as L1 when not being overtrained. L2 is also called weight decay and is the more common method of the two.
 
+Another way to keep the values between 0 and 1 is to normalize the input to every layer. In Tensorflow, this can be done with the BatchNormalization layer.
+
 One important thing to point out is that all these methods mentioned so far are only active during training and is not doing anything when making real predictions.
 
 
