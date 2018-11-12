@@ -1,3 +1,7 @@
+/*
+ A generic class for a view controller with a video stream.
+ */
+
 import AVFoundation
 import UIKit
 

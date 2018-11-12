@@ -1,3 +1,9 @@
+/*
+ The assemble instruction is when the app has located two pieces
+ and continues to track them until the user has put them together
+ and is ready for the next step.
+ */
+
 import Foundation
 
 class AssembleInstruction: Instruction

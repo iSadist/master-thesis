@@ -1,3 +1,8 @@
+/*
+ The object rectangle is a class that keeps a rectangle
+ and can convert it from and to a regular or normalised coordinate system.
+ */
+
 import Foundation
 import UIKit
 

@@ -1,3 +1,8 @@
+/*
+ The database class provides information to the whole app about the furnitures.
+ The database is supposed to make calls to fetch that information.
+ */
+
 import Foundation
 import UIKit
 

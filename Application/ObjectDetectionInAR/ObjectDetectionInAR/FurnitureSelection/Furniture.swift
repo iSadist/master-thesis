@@ -1,3 +1,7 @@
+/*
+ A description of a furniture.
+ */
+
 import Foundation
 import UIKit
 

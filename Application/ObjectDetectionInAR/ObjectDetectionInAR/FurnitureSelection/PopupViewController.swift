@@ -1,3 +1,6 @@
+/*
+ The popup view is a generic view with an image, text and two buttons.
+ */
 
 import UIKit
 

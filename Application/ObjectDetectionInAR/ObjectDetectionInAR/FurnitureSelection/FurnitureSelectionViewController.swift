@@ -1,3 +1,7 @@
+/*
+ The selection view presents all the furnitures that can be assembled.
+ */
+
 import UIKit
 
 class FurnitureSelectionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate

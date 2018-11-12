@@ -1,3 +1,7 @@
+/*
+ A class for collecting code that creates nodes with specific geometry
+ */
+
 import SceneKit
 import ARKit
 

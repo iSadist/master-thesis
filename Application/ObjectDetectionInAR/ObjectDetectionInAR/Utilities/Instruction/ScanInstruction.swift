@@ -1,3 +1,7 @@
+/*
+ The scan instruction is when the app is looking for specific parts
+ */
+
 import Foundation
 
 class ScanInstruction: Instruction

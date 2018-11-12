@@ -1,3 +1,10 @@
+/*
+ A 3D model of the furniture can be inspected with the users
+ control to rotate the furiture around.
+ 
+ The 3D models are imported from the art.scassets folder
+ */
+
 import UIKit
 import SceneKit
 

@@ -1,3 +1,8 @@
+/*
+ An instruction is a message to the user on how to
+ put together the furniture in the current step.
+ */
+
 import Foundation
 
 class Instruction

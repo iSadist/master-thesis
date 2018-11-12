@@ -1,10 +1,16 @@
+/*
+ The object detector is responsible for finding objects in
+ an image pixel buffer and output those objects through its
+ delegate.
+ */
+
 import UIKit
 import Vision
 
 class ObjectDetector
 {
     var delegate: ObjectDetectorDelegate?
-    let imageViewFrame: CGRect
+    let imageViewFrame: CGRect // The frame in which the image consists
     init(frame: CGRect)
     {
         self.imageViewFrame = frame

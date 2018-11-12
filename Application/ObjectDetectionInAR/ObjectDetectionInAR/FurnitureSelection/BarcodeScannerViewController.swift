@@ -1,3 +1,9 @@
+/*
+ Class responsible for detecting barcodes in images taken
+ within a set interval. When a barcode is detected, the
+ payload is set and unwinds to the previous controller.
+ */
+
 import AVFoundation
 import UIKit
 import Vision

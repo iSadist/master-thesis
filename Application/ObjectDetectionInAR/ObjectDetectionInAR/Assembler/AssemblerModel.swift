@@ -1,3 +1,7 @@
+/*
+ The assembler model is the model of the Model View Controller
+ */
+
 import ARKit
 
 class AssemblerModel: Model

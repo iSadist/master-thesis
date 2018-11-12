@@ -1,3 +1,8 @@
+/*
+ The detail view is a view for the user to make sure that
+ the correct furniture has been selected.
+ */
+
 import UIKit
 
 class FurnitureDetailViewController: UIViewController
