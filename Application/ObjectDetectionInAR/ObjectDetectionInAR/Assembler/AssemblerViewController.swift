@@ -15,6 +15,8 @@ import SceneKit
 import ARKit
 import Vision
 
+private var CONNECTING_ARROW = "connectingArrow"
+
 class AssemblerViewController: UIViewController
 {
     @IBOutlet var sceneView: ARSCNView!
@@ -73,20 +75,25 @@ class AssemblerViewController: UIViewController
         let startVector = SCNVector3(startPosition.x, startPosition.y, startPosition.z)
         let endVector = SCNVector3(endPosition.x, endPosition.y, endPosition.z)
         
-        let distance = startVector.distanceTo(endVector)
+        let existingArrow = moveExistingConnectingArrow(newPosition: startVector)
         
-        // Create the node and add it to the scene at the starting position
-        let lineNode = GeometryFactory.makeLine(radius: 0.01, length: distance - 0.1)
-        
-        // Set the angle of the arrow to point from the first point to the second.
-        // Assuming that the arrow will lay flat on the floor and only rotate in y-axis.
-        // This is becuase the hittests only get points from a plane anyway.
-        lineNode.eulerAngles.x = Float.pi / 2
-        lineNode.eulerAngles.y = asin((endPosition.x - startPosition.x) / distance)
-        lineNode.position = startVector
-        lineNode.name = "connectingArrow"
-        
-        sceneView.scene.rootNode.addChildNode(lineNode)
+        if existingArrow == nil
+        {
+            let distance = startVector.distanceTo(endVector)
+            
+            // Create the node and add it to the scene at the starting position
+            let lineNode = GeometryFactory.makeLine(radius: 0.01, length: distance)
+            
+            // Set the angle of the arrow to point from the first point to the second.
+            // Assuming that the arrow will lay flat on the floor and only rotate in y-axis.
+            // This is becuase the hittests only get points from a plane anyway.
+            lineNode.eulerAngles.x = Float.pi / 2
+            lineNode.eulerAngles.y = asin((endPosition.x - startPosition.x) / distance)
+            lineNode.position = startVector
+            lineNode.name = CONNECTING_ARROW
+            
+            sceneView.scene.rootNode.addChildNode(lineNode)
+        }
     }
     
     func connectParts(rects: [CGRect])
@@ -122,6 +129,17 @@ class AssemblerViewController: UIViewController
         node.position = vector
         node.constraints = [SCNBillboardConstraint()]
         self.sceneView.scene.rootNode.addChildNode(node)
+    }
+    
+    func moveExistingConnectingArrow(newPosition: SCNVector3) -> SCNNode?
+    {
+        if let arrowNode = sceneView.scene.rootNode.childNode(withName: CONNECTING_ARROW, recursively: true)
+        {
+            arrowNode.runAction(SCNAction.move(to: newPosition, duration: 0.1))
+            return arrowNode
+        }
+        
+        return nil
     }
     
     func removeAllNodes()
@@ -298,11 +316,6 @@ extension AssemblerViewController: ObjectTrackerDelegate
     func trackedRects(rects: [ObjectRectangle])
     {
         model.lostTracking = false
-        for node in self.sceneView.scene.rootNode.childNodes
-        {
-            node.removeFromParentNode()
-        }
-        
         model.objectsOnScreen = rects
         
         // Put the bounding box rects in the rectangles list
@@ -337,11 +350,7 @@ extension AssemblerViewController: ObjectTrackerDelegate
     // Called when Object Tracker 
     func getFrame() -> CVPixelBuffer?
     {
-        DispatchQueue.main.async {
-            let converter = ImageConverter()
-            self.currentSnapshot = converter.convertImageToPixelBuffer(image: self.sceneView.snapshot())
-        }
-        return currentSnapshot
+        return sceneView.session.currentFrame?.capturedImage
     }
 }
 
