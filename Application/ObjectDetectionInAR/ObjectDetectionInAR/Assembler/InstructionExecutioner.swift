@@ -86,6 +86,11 @@ class InstructionExecutioner: ObjectDetectorDelegate
     func startTracking(on boundingBoxes: [ObjectRectangle])
     {
         tracker?.requestCancelTracking()
+        for boundingBox in boundingBoxes
+        {
+            boundingBox.addPadding()
+        }
+        
         tracker?.setObjectsToTrack(objects: boundingBoxes)
         trackerQueue.async {
             self.tracker?.track()

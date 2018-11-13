@@ -10,6 +10,7 @@ class ObjectRectangle
 {
     private var rectangle: CGRect = CGRect()
     private var frame: CGRect?
+    private let paddingPercentage : CGFloat = 0.08
     var name: String?
     
     init(rectangle: CGRect)
@@ -31,6 +32,17 @@ class ObjectRectangle
     func getRect() -> CGRect
     {
         return rectangle
+    }
+    
+    func addPadding()
+    {
+        let widthToMove = rectangle.width * paddingPercentage
+        let heigthToMove = rectangle.height * paddingPercentage
+        let newXOrigin = rectangle.origin.x - widthToMove/2.0
+        let newYOrigin = rectangle.origin.y + heigthToMove/2.0
+        let newWidth = rectangle.width + widthToMove
+        let newHeigth = rectangle.height + heigthToMove
+        rectangle = CGRect(x: newXOrigin, y: newYOrigin, width: newWidth, height: newHeigth)
     }
     
     private func translateFromNormalizedRect(normalized rect: CGRect, frame: CGRect) -> CGRect
