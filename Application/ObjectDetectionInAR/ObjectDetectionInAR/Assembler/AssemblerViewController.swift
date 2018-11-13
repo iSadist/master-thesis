@@ -22,6 +22,7 @@ class AssemblerViewController: UIViewController
     @IBOutlet weak var messageView: UIView!
     @IBOutlet weak var messageViewButton: UIButton!
     @IBOutlet weak var messageViewText: UITextView!
+    @IBOutlet weak var detectedPlanesProgressBar: UIProgressView!
     
     override var prefersStatusBarHidden: Bool { return true }
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask { return .portrait }
@@ -50,9 +51,9 @@ class AssemblerViewController: UIViewController
 //            let referenceImage = ARReferenceImage(image, orientation: CGImagePropertyOrientation.up, physicalWidth: 0.3)
 //            configuration.detectionImages.insert(referenceImage)
 //        }
-//            
+//
 //        configuration.maximumNumberOfTrackedImages = trackingImageURLs.count
-            
+        
         sceneView.session.run(configuration)
     }
 
@@ -165,6 +166,13 @@ class AssemblerViewController: UIViewController
     func modelUpdate()
     {
         updateMessageView(executioner.currentInstruction)
+        updateProgressBar()
+    }
+    
+    func updateProgressBar()
+    {
+        detectedPlanesProgressBar.progress = model.detectedPlaneProgress
+        detectedPlanesProgressBar.isHidden = model.detectedPlaneProgress >= 1.0
     }
     
     // MARK: Lifecycle events
@@ -259,6 +267,7 @@ extension AssemblerViewController: ARSCNViewDelegate
         {
             node.addChildNode(GeometryFactory.createPlane(planeAnchor: planeAnchor, metalDevice: metalDevice!))
             model.numberOfPlanesDetected += 1
+            model.summedPlaneAreas = planeAnchor.extent.x * planeAnchor.extent.z
         }
     }
     
@@ -270,6 +279,7 @@ extension AssemblerViewController: ARSCNViewDelegate
                 childNode.removeFromParentNode()
             }
             node.addChildNode(GeometryFactory.createPlane(planeAnchor: planeAnchor, metalDevice: metalDevice!))
+            model.summedPlaneAreas = planeAnchor.extent.x * planeAnchor.extent.z
         }
     }
     

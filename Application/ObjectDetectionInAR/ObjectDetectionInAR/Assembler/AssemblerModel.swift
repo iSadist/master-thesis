@@ -6,7 +6,6 @@ import ARKit
 
 class AssemblerModel: Model
 {
-    var detectedPlaneNodes: [SCNNode]
     var objectsOnScreen: [ObjectRectangle]
     var instructionHasFailed: Bool
     var lostTracking: Bool
@@ -29,6 +28,21 @@ class AssemblerModel: Model
         }
     }
     
+    var summedPlaneAreas: Float
+    {
+        didSet
+        {
+            DispatchQueue.main.async {
+                self.callback()
+            }
+        }
+    }
+    
+    var detectedPlaneProgress: Float
+    {
+        return summedPlaneAreas / 4.0
+    }
+    
     var callback =
     {
         print("Callback function has not been implemented")
@@ -39,12 +53,12 @@ class AssemblerModel: Model
         instructionHasFailed = false
         lostTracking = false
         numberOfPlanesDetected = 0
-        detectedPlaneNodes = []
         objectsOnScreen = []
+        summedPlaneAreas = 0.0
     }
     
     func isValid() -> Bool
     {
-        return numberOfPlanesDetected > 0
+        return numberOfPlanesDetected > 0 && detectedPlaneProgress >= 1.0
     }
 }

@@ -39,15 +39,21 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
+                                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.01" translatesAutoresizingMaskIntoConstraints="NO" id="6du-kA-6Dd">
+                                        <rect key="frame" x="20" y="61.666666666666629" width="285" height="2"/>
+                                    </progressView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.89980377053990601" alpha="0.84999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="EO1-me-qzt" firstAttribute="top" secondItem="Nj7-bF-yoU" secondAttribute="top" constant="20" symbolic="YES" id="EDw-Zy-2R5"/>
                                     <constraint firstAttribute="height" constant="125" id="FLs-eJ-3s4"/>
+                                    <constraint firstItem="6du-kA-6Dd" firstAttribute="centerY" secondItem="Nj7-bF-yoU" secondAttribute="centerY" id="Hve-43-gzW"/>
                                     <constraint firstItem="iDV-o0-qqo" firstAttribute="centerX" secondItem="Nj7-bF-yoU" secondAttribute="centerX" id="QtP-ln-thg"/>
                                     <constraint firstAttribute="bottom" secondItem="iDV-o0-qqo" secondAttribute="bottom" constant="20" id="k8a-hb-jgf"/>
+                                    <constraint firstAttribute="trailing" secondItem="6du-kA-6Dd" secondAttribute="trailing" constant="20" symbolic="YES" id="q48-qw-KAz"/>
                                     <constraint firstAttribute="trailing" secondItem="EO1-me-qzt" secondAttribute="trailing" constant="20" symbolic="YES" id="qdf-4k-iDF"/>
                                     <constraint firstItem="iDV-o0-qqo" firstAttribute="top" secondItem="EO1-me-qzt" secondAttribute="bottom" constant="8" symbolic="YES" id="v8g-rJ-cqk"/>
+                                    <constraint firstItem="6du-kA-6Dd" firstAttribute="leading" secondItem="Nj7-bF-yoU" secondAttribute="leading" constant="20" symbolic="YES" id="vvp-OI-Fc0"/>
                                     <constraint firstItem="EO1-me-qzt" firstAttribute="leading" secondItem="Nj7-bF-yoU" secondAttribute="leading" constant="20" symbolic="YES" id="wo3-qi-wh7"/>
                                 </constraints>
                             </view>
@@ -66,6 +72,7 @@
                         <viewLayoutGuide key="safeArea" id="dKC-5Y-GCf"/>
                     </view>
                     <connections>
+                        <outlet property="detectedPlanesProgressBar" destination="6du-kA-6Dd" id="F8c-kg-O35"/>
                         <outlet property="messageView" destination="Nj7-bF-yoU" id="1II-NI-soC"/>
                         <outlet property="messageViewButton" destination="iDV-o0-qqo" id="9ug-t0-FDR"/>
                         <outlet property="messageViewText" destination="EO1-me-qzt" id="0sD-pf-Zke"/>
