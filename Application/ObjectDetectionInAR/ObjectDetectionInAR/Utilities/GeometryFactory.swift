@@ -74,7 +74,7 @@ class GeometryFactory
         planeGeometry?.update(from: planeAnchor.geometry)
         
         let planeNode = SCNNode(geometry: planeGeometry)
-        planeNode.opacity = 0.1
+        planeNode.opacity = 0.03
         
         return planeNode
     }

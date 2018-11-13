@@ -22,7 +22,6 @@ class AssemblerViewController: UIViewController
     @IBOutlet weak var messageView: UIView!
     @IBOutlet weak var messageViewButton: UIButton!
     @IBOutlet weak var messageViewText: UITextView!
-    @IBOutlet weak var errorMessageLabel: UILabel!
     
     override var prefersStatusBarHidden: Bool { return true }
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask { return .portrait }
@@ -147,7 +146,8 @@ class AssemblerViewController: UIViewController
     func updateView()
     {
         messageViewButton.isEnabled = model.isValid()
-        errorMessageLabel.isHidden = model.isValid()
+        messageViewButton.isHidden = !model.isValid()
+        messageViewText.text = model.isValid() ? executioner.currentInstruction?.message : "Detecting the floor..."
     }
     
     // MARK: Lifecycle events
@@ -187,6 +187,8 @@ class AssemblerViewController: UIViewController
         executioner.tracker = tracker
         executioner.instructions = furniture?.instructions
         executioner.nextInstruction()
+        
+        updateView()
     }
 
     override func viewWillDisappear(_ animated: Bool)

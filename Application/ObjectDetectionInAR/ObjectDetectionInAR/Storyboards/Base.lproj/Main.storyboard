@@ -19,20 +19,8 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9R9-Pn-61C" customClass="OverlayView" customModule="ObjectDetectionInAR" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Waiting for planes to be detected" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0ye-lX-gkg">
-                                        <rect key="frame" x="60.666666666666657" y="395.66666666666669" width="253.99999999999997" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <gestureRecognizers/>
-                                <constraints>
-                                    <constraint firstItem="0ye-lX-gkg" firstAttribute="centerX" secondItem="9R9-Pn-61C" secondAttribute="centerX" id="CGM-jB-kQM"/>
-                                    <constraint firstItem="0ye-lX-gkg" firstAttribute="centerY" secondItem="9R9-Pn-61C" secondAttribute="centerY" id="Yhh-33-kLp"/>
-                                </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nj7-bF-yoU">
                                 <rect key="frame" x="25" y="653" width="325" height="125"/>
@@ -78,7 +66,6 @@
                         <viewLayoutGuide key="safeArea" id="dKC-5Y-GCf"/>
                     </view>
                     <connections>
-                        <outlet property="errorMessageLabel" destination="0ye-lX-gkg" id="XH7-zh-Yqh"/>
                         <outlet property="messageView" destination="Nj7-bF-yoU" id="1II-NI-soC"/>
                         <outlet property="messageViewButton" destination="iDV-o0-qqo" id="9ug-t0-FDR"/>
                         <outlet property="messageViewText" destination="EO1-me-qzt" id="0sD-pf-Zke"/>
