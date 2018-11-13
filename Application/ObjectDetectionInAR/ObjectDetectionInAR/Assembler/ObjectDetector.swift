@@ -25,25 +25,18 @@ class ObjectDetector
     func findObjects(pixelBuffer: CVPixelBuffer, parts: [String])
     {
         let predictions = detectAndClassifyObjects(pixelBuffer: (pixelBuffer))
-        let correctParts = predictions.filter {parts.contains($0.label)}.removingDuplicates()
+        let correctParts = predictions.filter {parts.contains($0.label)}.removingDuplicates().sorted { $0.label < $1.label }
         var partRectangles = [ObjectRectangle]()
         
         for part in correctParts
         {
-            partRectangles.append(ObjectRectangle(visionRect: part.boundingBox, frame: imageViewFrame))
+            let object = ObjectRectangle(visionRect: part.boundingBox, frame: imageViewFrame)
+            object.name = part.label
+            partRectangles.append(object)
         }
         
-        if partRectangles.count == parts.count
-        {
-            DispatchQueue.main.async {
-                self.delegate?.objectsFound(objects: partRectangles, error: nil)
-            }
-        }
-        else
-        {
-            DispatchQueue.main.async {
-                self.delegate?.couldNotFindObjects()                
-            }
+        DispatchQueue.main.async {
+            self.delegate?.objectsFound(objects: partRectangles, error: nil)
         }
     }
     

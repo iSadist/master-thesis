@@ -10,11 +10,13 @@ class AssembleInstruction: Instruction
 {
     var firstItem: String?
     var secondItem: String?
+    var assembledItem: String?
 
-    init(message: String, buttonText: String?, firstItem: String, secondItem: String)
+    init(message: String, buttonText: String?, firstItem: String, secondItem: String, assembledItem: String)
     {
         super.init(message: message, buttonText: buttonText)
         self.firstItem = firstItem
         self.secondItem = secondItem
+        self.assembledItem = assembledItem
     }
 }

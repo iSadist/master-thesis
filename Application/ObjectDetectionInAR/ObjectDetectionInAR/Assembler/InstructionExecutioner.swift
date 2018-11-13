@@ -33,6 +33,7 @@ class InstructionExecutioner: ObjectDetectorDelegate
     var isInstructionComplete: Bool = false
     var repeatTimer: Timer?
     let repeatTimeIntervalInSeconds: Int = 1
+    let totalAttemptsBeforeCancel: Int = 20
     private let trackerQueue = DispatchQueue(label: "tracker", qos: DispatchQoS.userInitiated)
     private let workerQueue = DispatchQueue(label: "worker", qos: DispatchQoS.userInitiated)
     
@@ -49,7 +50,7 @@ class InstructionExecutioner: ObjectDetectorDelegate
         {
             repeatTimer = Timer.scheduledTimer(withTimeInterval: TimeInterval(repeatTimeIntervalInSeconds), repeats: true, block: {_ in
                 print("Assemble instruction...")
-                self.detectAndTrackObjects(objects: [assembleInstruction.firstItem!, assembleInstruction.secondItem!])
+                self.detectAndTrackObjects(objects: [assembleInstruction.firstItem!, assembleInstruction.secondItem!, assembleInstruction.assembledItem!])
             })
             repeatTimer?.fire()
         }
@@ -104,35 +105,41 @@ class InstructionExecutioner: ObjectDetectorDelegate
     {
         if currentInstruction is ScanInstruction
         {
-            startTracking(on: rects)
-            instructionComplete()
+            // We expect two objects to be found when scan instruction
+            if rects.count != 2
+            {
+                // Handle error
+                guard attempts < totalAttemptsBeforeCancel else
+                {
+                    attempts = 0
+                    self.delegate?.instructionFailed(error: InstructionExecutionError.FailedAttempts)
+                    return
+                }
+                
+                print("Could not find objects. Trying again...")
+                executeInstruction()
+            }
+            else
+            {
+                startTracking(on: rects)
+                instructionComplete()
+            }
         }
         
-        if currentInstruction is AssembleInstruction
+        if let assembleInstruction = currentInstruction as? AssembleInstruction
         {
-            startTracking(on: rects)
-        }
-    }
-    
-    func couldNotFindObjects()
-    {
-        if currentInstruction is ScanInstruction
-        {
-            // Handle error
-            guard attempts < 20 else
-            {
-                attempts = 0
-                self.delegate?.instructionFailed(error: InstructionExecutionError.FailedAttempts)
-                return
+            let isAssembled = rects.contains { (rectangle) -> Bool in
+                return rectangle.name == assembleInstruction.assembledItem
             }
             
-            print("Could not find objects. Trying again...")
-            executeInstruction()
-        }
-        
-        if currentInstruction is AssembleInstruction
-        {
-            
+            if isAssembled
+            {
+                instructionComplete()
+            }
+            else if rects.count == 2
+            {
+                startTracking(on: rects)
+            }
         }
     }
 }

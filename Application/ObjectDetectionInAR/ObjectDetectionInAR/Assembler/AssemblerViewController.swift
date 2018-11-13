@@ -194,6 +194,7 @@ class AssemblerViewController: UIViewController
         super.viewWillDisappear(animated)
         sceneView.session.pause()
         executioner.tracker?.requestCancelTracking()
+        executioner.repeatTimer?.invalidate()
     }
 
     override func didReceiveMemoryWarning()

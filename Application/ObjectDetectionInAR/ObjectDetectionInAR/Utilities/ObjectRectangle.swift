@@ -10,6 +10,7 @@ class ObjectRectangle
 {
     private var rectangle: CGRect = CGRect()
     private var frame: CGRect?
+    var name: String?
     
     init(rectangle: CGRect)
     {
