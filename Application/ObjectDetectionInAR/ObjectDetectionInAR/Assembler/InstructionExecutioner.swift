@@ -49,7 +49,6 @@ class InstructionExecutioner: ObjectDetectorDelegate
         if let assembleInstruction = currentInstruction as? AssembleInstruction
         {
             repeatTimer = Timer.scheduledTimer(withTimeInterval: TimeInterval(repeatTimeIntervalInSeconds), repeats: true, block: {_ in
-                print("Assemble instruction...")
                 self.detectAndTrackObjects(objects: [assembleInstruction.firstItem!, assembleInstruction.secondItem!, assembleInstruction.assembledItem!])
             })
             repeatTimer?.fire()
@@ -117,7 +116,7 @@ class InstructionExecutioner: ObjectDetectorDelegate
                 guard attempts < totalAttemptsBeforeCancel else
                 {
                     attempts = 0
-                    self.delegate?.instructionFailed(error: InstructionExecutionError.FailedAttempts)
+                    self.delegate?.instructionFailed(currentInstruction, error: InstructionExecutionError.FailedAttempts)
                     return
                 }
                 

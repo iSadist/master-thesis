@@ -143,11 +143,29 @@ class AssemblerViewController: UIViewController
         return false
     }
     
-    func updateView()
+    func updateMessageView(_ instruction: Instruction?)
     {
         messageViewButton.isEnabled = model.isValid()
-        messageViewButton.isHidden = !model.isValid()
-        messageViewText.text = model.isValid() ? executioner.currentInstruction?.message : "Detecting the floor..."
+        messageViewButton.isHidden = !model.isValid() || instruction?.buttonText == nil
+        messageViewText.text = model.isValid() ? instruction?.message : "Detecting the floor..."
+        messageViewButton.setTitle(instruction?.buttonText, for: .normal)
+        
+        if model.lostTracking
+        {
+            messageViewButton.isEnabled = false
+            messageViewText.text = "Tracking has been lost. Attempting to find them again..."
+        }
+        else if model.instructionHasFailed
+        {
+            messageViewText.text = "Failed to complete instruction..."
+            messageViewButton.setTitle("Try again?", for: .normal)
+            messageViewButton.isHidden = false
+        }
+    }
+    
+    func modelUpdate()
+    {
+        updateMessageView(executioner.currentInstruction)
     }
     
     // MARK: Lifecycle events
@@ -157,7 +175,7 @@ class AssemblerViewController: UIViewController
         super.viewDidLoad()
         sceneView.delegate = self
         messageView.layer.cornerRadius = 25
-        model.callback = updateView
+        model.callback = modelUpdate
         
 //        Show statistics such as fps and timing information
 //        sceneView.showsStatistics = true
@@ -188,7 +206,7 @@ class AssemblerViewController: UIViewController
         executioner.instructions = furniture?.instructions
         executioner.nextInstruction()
         
-        updateView()
+        updateMessageView(executioner.currentInstruction)
     }
 
     override func viewWillDisappear(_ animated: Bool)
@@ -258,7 +276,7 @@ extension AssemblerViewController: ARSCNViewDelegate
     
     func renderer(_ renderer: SCNSceneRenderer, didRemove node: SCNNode, for anchor: ARAnchor)
     {
-        if let planeAnchor = anchor as? ARPlaneAnchor
+        if anchor is ARPlaneAnchor
         {
             model.numberOfPlanesDetected -= 1
         }
@@ -270,10 +288,12 @@ extension AssemblerViewController: ObjectTrackerDelegate
     // Called when the Object tracker outputs new rects for the tracked objects
     func trackedRects(rects: [ObjectRectangle])
     {
+        model.lostTracking = false
         for node in self.sceneView.scene.rootNode.childNodes
         {
             node.removeFromParentNode()
         }
+        
         model.objectsOnScreen = rects
         
         // Put the bounding box rects in the rectangles list
@@ -289,15 +309,20 @@ extension AssemblerViewController: ObjectTrackerDelegate
             overlayView.setNeedsDisplay()
         }
         connectParts(rects: rectangles)
+        updateMessageView(executioner.currentInstruction)
     }
     
     // Called whenever Object Tracker stopped tracking
     func trackingDidStop()
     {
-        print("Tracking stopped!")
-        DispatchQueue.main.async {
-            self.overlayView.clearDisplay()
-        }
+        self.overlayView.clearDisplay()
+    }
+    
+    func trackingLost()
+    {
+        print("Lost tracking due to low confidence")
+        model.lostTracking = true
+        updateMessageView(executioner.currentInstruction)
     }
     
     // Called when Object Tracker 
@@ -313,20 +338,15 @@ extension AssemblerViewController: ObjectTrackerDelegate
 
 extension AssemblerViewController: InstructionExecutionerDelegate
 {
-    func instructionFailed(error: Error?) {
+    func instructionFailed(_ instruction: Instruction?, error: Error?) {
         print("Instruction unable to complete")
-        messageViewText.text = "Failed to complete instruction..."
-        messageViewButton.setTitle("Try again?", for: .normal)
-        messageViewButton.isHidden = false
         model.instructionHasFailed = true
+        updateMessageView(instruction)
     }
     
     func newInstructionSet(_ instruction: Instruction?)
     {
-        messageViewText.text = instruction?.message
-        messageViewButton.setTitle(instruction?.buttonText, for: .normal)
-        messageViewButton.isHidden = instruction?.buttonText == nil
-        messageView.isHidden = instruction == nil
+        updateMessageView(instruction)
     }
     
     func instructionCompleted()

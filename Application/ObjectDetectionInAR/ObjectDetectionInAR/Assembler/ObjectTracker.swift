@@ -16,7 +16,8 @@ import Vision
 import ARKit
 
 private let framesPerSecond = 15.0 // Best performance is between 10 and 30
-private var millisecondsPerFrame = 1.0/framesPerSecond * 1000
+private let millisecondsPerFrame = 1.0/framesPerSecond * 1000
+private let confidenceThreshold: Float = 0.2
 
 class ObjectTracker
 {
@@ -78,7 +79,7 @@ class ObjectTracker
                 // Handle the results from the requests
                 guard let observation = processedRequest.results?.first as? VNDetectedObjectObservation else { continue }
                 
-                if observation.confidence > 0.1
+                if observation.confidence > confidenceThreshold
                 {
                     trackedObjects[observation.uuid] = observation.boundingBox
                     trackingObservations[observation.uuid] = observation
@@ -94,14 +95,18 @@ class ObjectTracker
             // The tracking will stop if no observation has a high confidence value
             if rects.isEmpty
             {
-                print("Lost tracking due to low confidence")
-                requestCancelTracking()
+                DispatchQueue.main.async {
+                    self.requestCancelTracking()
+                    self.delegate?.trackingLost()
+                }
             }
 
             usleep(useconds_t(millisecondsPerFrame * 1000))
         }
         
-        delegate?.trackingDidStop()
+        DispatchQueue.main.async {
+            self.delegate?.trackingDidStop()
+        }
     }
     
     func requestCancelTracking()
