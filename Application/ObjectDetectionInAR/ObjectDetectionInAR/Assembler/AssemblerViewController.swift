@@ -144,7 +144,7 @@ class AssemblerViewController: UIViewController
         return false
     }
     
-    func modelUpdated()
+    func updateView()
     {
         messageViewButton.isEnabled = model.isValid()
         errorMessageLabel.isHidden = model.isValid()
@@ -157,7 +157,7 @@ class AssemblerViewController: UIViewController
         super.viewDidLoad()
         sceneView.delegate = self
         messageView.layer.cornerRadius = 25
-        model.callback = modelUpdated
+        model.callback = updateView
         
 //        Show statistics such as fps and timing information
 //        sceneView.showsStatistics = true
