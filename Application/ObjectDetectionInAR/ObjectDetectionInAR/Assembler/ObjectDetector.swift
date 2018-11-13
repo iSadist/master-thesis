@@ -25,9 +25,12 @@ class ObjectDetector
     func findObjects(pixelBuffer: CVPixelBuffer, parts: [String])
     {
         let predictions = detectAndClassifyObjects(pixelBuffer: (pixelBuffer))
-        for prediction in predictions
+        if DEBUG
         {
-            print(prediction.label)
+            for prediction in predictions
+            {
+                print("Found object \(prediction.label)")
+            }
         }
         let correctParts = predictions.filter {parts.contains($0.label)}.removingDuplicates().sorted { $0.label < $1.label }
         var partRectangles = [ObjectRectangle]()

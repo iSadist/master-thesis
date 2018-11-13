@@ -283,7 +283,11 @@ extension AssemblerViewController: ObjectTrackerDelegate
         {
             rectangles.append(objectRect.getRect())
         }
-        
+        if DEBUG
+        {
+            overlayView.rectangles = rects
+            overlayView.setNeedsDisplay()
+        }
         connectParts(rects: rectangles)
     }
     

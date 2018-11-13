@@ -11,6 +11,7 @@
 		52A0B5742188B41B00161C8E /* InstructionExecutionerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A0B5732188B41B00161C8E /* InstructionExecutionerDelegate.swift */; };
 		52A0B5762188BDC600161C8E /* ObjectRectangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A0B5752188BDC600161C8E /* ObjectRectangle.swift */; };
 		52A0B57A2189F28B00161C8E /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A0B5792189F28B00161C8E /* PopupViewController.swift */; };
+		52A0B580219AEC8900161C8E /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A0B57F219AEC8900161C8E /* GlobalVariables.swift */; };
 		5906999A2195D8610016800A /* NolmyraNet.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 590699992195D8610016800A /* NolmyraNet.mlmodel */; };
 		590E9FF721775EF00080100A /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590E9FF621775EF00080100A /* Database.swift */; };
 		590E9FF921785D8C0080100A /* ObjectDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590E9FF821785D8C0080100A /* ObjectDetector.swift */; };
@@ -67,6 +68,7 @@
 		52A0B5732188B41B00161C8E /* InstructionExecutionerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionExecutionerDelegate.swift; sourceTree = "<group>"; };
 		52A0B5752188BDC600161C8E /* ObjectRectangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectRectangle.swift; sourceTree = "<group>"; };
 		52A0B5792189F28B00161C8E /* PopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
+		52A0B57F219AEC8900161C8E /* GlobalVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalVariables.swift; sourceTree = "<group>"; };
 		590699992195D8610016800A /* NolmyraNet.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = NolmyraNet.mlmodel; path = ../../../../NolmyraNet.mlmodel; sourceTree = "<group>"; };
 		590E9FF621775EF00080100A /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		590E9FF821785D8C0080100A /* ObjectDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectDetector.swift; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 				52A0B5662188602F00161C8E /* Prediction.swift */,
 				52A0B5752188BDC600161C8E /* ObjectRectangle.swift */,
 				59D310C0219043FD005069A6 /* Errors.swift */,
+				52A0B57F219AEC8900161C8E /* GlobalVariables.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -406,6 +409,7 @@
 				E1ED297520BCA23B007DBE66 /* AssemblerViewController.swift in Sources */,
 				59D310C1219043FD005069A6 /* Errors.swift in Sources */,
 				52A0B57A2189F28B00161C8E /* PopupViewController.swift in Sources */,
+				52A0B580219AEC8900161C8E /* GlobalVariables.swift in Sources */,
 				E1ED297120BCA23B007DBE66 /* AppDelegate.swift in Sources */,
 				59F84AD7215E1A5D003FB510 /* Furniture.swift in Sources */,
 				59DFA23C217A555500FBBFF7 /* AssembleIntruction.swift in Sources */,
@@ -604,7 +608,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Q9L559MT2U;
+				DEVELOPMENT_TEAM = PVD4LXTWAW;
 				INFOPLIST_FILE = ObjectDetectionInAR/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -625,7 +629,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Q9L559MT2U;
+				DEVELOPMENT_TEAM = PVD4LXTWAW;
 				INFOPLIST_FILE = ObjectDetectionInAR/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
