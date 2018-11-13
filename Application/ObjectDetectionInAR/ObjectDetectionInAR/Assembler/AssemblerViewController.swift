@@ -27,7 +27,6 @@ class AssemblerViewController: UIViewController
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask { return .portrait }
     override var shouldAutorotate: Bool { return false }
     
-    let trackingImageURLs: [String] = [] // Images that will be tracked
     var furniture: Furniture?
     let executioner = InstructionExecutioner()
     var currentSnapshot: CVPixelBuffer? = nil
@@ -42,17 +41,17 @@ class AssemblerViewController: UIViewController
         configuration.planeDetection = [.horizontal, .vertical]
 
         // All the objects that are tracked is contained in the Objects folder
-        guard let detectingObjects = ARReferenceObject.referenceObjects(inGroupNamed: "Objects", bundle: nil) else { return }
-        configuration.detectionObjects = detectingObjects
+//        guard let detectingObjects = ARReferenceObject.referenceObjects(inGroupNamed: "Objects", bundle: nil) else { return }
+//        configuration.detectionObjects = detectingObjects
         
-        for imageURL in trackingImageURLs
-        {
-            guard let image: CGImage = UIImage(named: imageURL)?.cgImage else { return }
-            let referenceImage = ARReferenceImage(image, orientation: CGImagePropertyOrientation.up, physicalWidth: 0.3)
-            configuration.detectionImages.insert(referenceImage)
-        }
-            
-        configuration.maximumNumberOfTrackedImages = trackingImageURLs.count
+//        for imageURL in trackingImageURLs
+//        {
+//            guard let image: CGImage = UIImage(named: imageURL)?.cgImage else { return }
+//            let referenceImage = ARReferenceImage(image, orientation: CGImagePropertyOrientation.up, physicalWidth: 0.3)
+//            configuration.detectionImages.insert(referenceImage)
+//        }
+//            
+//        configuration.maximumNumberOfTrackedImages = trackingImageURLs.count
             
         sceneView.session.run(configuration)
     }
