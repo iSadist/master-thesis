@@ -13,7 +13,9 @@ class AssemblerModel: Model
     {
         didSet
         {
-            callback()
+            DispatchQueue.main.async {
+                self.callback()
+            }
         }
     }
     
