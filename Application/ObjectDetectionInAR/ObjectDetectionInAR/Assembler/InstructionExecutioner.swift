@@ -72,11 +72,9 @@ class InstructionExecutioner: ObjectDetectorDelegate
     
     func detectAndTrackObjects(objects: [String])
     {
-        guard let frame = delegate?.getFrame() else { return }
-        let imageConvert = ImageConverter()
-        guard let pixelBuffer =  imageConvert.convertImageToPixelBuffer(image: frame) else { return }
+        guard let frame = delegate?.getPixelBuffer() else { return }
         workerQueue.async {
-            self.detector?.findObjects(pixelBuffer: pixelBuffer, parts: objects)
+            self.detector?.findObjects(pixelBuffer: frame, parts: objects)
         }
     }
     

@@ -372,8 +372,8 @@ extension AssemblerViewController: InstructionExecutionerDelegate
         executioner.nextInstruction()
     }
     
-    func getFrame() -> UIImage?
+    func getPixelBuffer() -> CVPixelBuffer?
     {
-        return sceneView.snapshot()
+        return sceneView.session.currentFrame?.capturedImage
     }
 }
