@@ -15,8 +15,6 @@ import SceneKit
 import ARKit
 import Vision
 
-private var CONNECTING_ARROW = "connectingArrow"
-
 class AssemblerViewController: UIViewController
 {
     @IBOutlet var sceneView: ARSCNView!
@@ -75,6 +73,19 @@ class AssemblerViewController: UIViewController
         }
         
         return nil
+    }
+    
+    func addFurniture(part: String, position: SCNVector3)
+    {
+        let node = GeometryFactory.makeFurniturePart(name: part)
+        addNode(node, position, part)
+    }
+    
+    func addNode(_ node: SCNNode, _ position: SCNVector3, _ name: String)
+    {
+        node.position = position
+        node.name = name
+        sceneView.scene.rootNode.addChildNode(node)
     }
     
     func removeAllNodes()
@@ -249,6 +260,18 @@ extension AssemblerViewController: InstructionExecutionerDelegate
     func instructionCompleted()
     {
         executioner.nextInstruction()
+    }
+    
+    func instructionCompleted(andFound objects: [ObjectRectangle])
+    {
+        for object in objects
+        {
+            let rectangle = object.getRect()
+            let screenPoint = CGPoint(x: rectangle.midX, y: rectangle.midY)
+            guard let worldPosition = translateToWorldPoint(from: screenPoint) else { return }
+            
+            addFurniture(part: object.name!, position: worldPosition)
+        }
     }
     
     func getPixelBuffer() -> CVPixelBuffer?

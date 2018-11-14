@@ -86,4 +86,36 @@ class GeometryFactory
         node.addChildNode(seatNode!)
         return node
     }
+    
+    static func makeFurniturePart(name: String) -> SCNNode
+    {
+        var node: SCNNode
+        
+        switch name
+        {
+        case NOLMYRA_PIECE1:
+            node = (SCNScene(named: "art.scnassets/nolmyraPiece1.scn")?.rootNode.childNode(withName: NOLMYRA_PIECE1, recursively: false))!
+            break
+        case NOLMYRA_PIECE2:
+            node = (SCNScene(named: "art.scnassets/nolmyraPiece2.scn")?.rootNode.childNode(withName: NOLMYRA_PIECE2, recursively: false))!
+            break
+        case NOLMYRA_CONJOINED_PIECE1:
+            node = (SCNScene(named: "art.scnassets/nolmyraConjoinedPiece1.scn")?.rootNode.childNode(withName: NOLMYRA_CONJOINED_PIECE1, recursively: false))!
+            break
+        case NOLMYRA_CONJOINED_PIECE2:
+            node = (SCNScene(named: "art.scnassets/nolmyraConjoinedPiece2.scn")?.rootNode.childNode(withName: NOLMYRA_CONJOINED_PIECE2, recursively: false))!
+            break
+        case NOLMYRA_CONJOINED_PIECE3:
+            node = (SCNScene(named: "art.scnassets/nolmyraConjoinedPiece3.scn")?.rootNode.childNode(withName: NOLMYRA_CONJOINED_PIECE3, recursively: false))!
+            break
+        case NOLMYRA_SEAT:
+            node = (SCNScene(named: "art.scnassets/nolmyraSeat.scn")?.rootNode.childNode(withName: NOLMYRA_SEAT, recursively: false))!
+            break
+        default:
+            node = SCNNode()
+            break
+        }
+        
+        return node
+    }
 }

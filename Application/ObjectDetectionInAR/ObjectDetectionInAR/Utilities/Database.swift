@@ -41,14 +41,14 @@ class Database
         case "Nolmyra":
             var nolmyraInstructions = [Instruction]()
             nolmyraInstructions.append(Instruction(message: "Point the camera to the furniture parts", buttonText: "Start scan"))
-            nolmyraInstructions.append(ScanInstruction(message: "Looking for the leg and the bridge piece", buttonText: nil, firstItem: "piece1", secondItem: "piece2"))
-            nolmyraInstructions.append(AssembleInstruction(message: "Put these two pieces together", buttonText: "Done", firstItem: "piece1", secondItem: "piece2", assembledItem: "conjoinedPiece1"))
-            nolmyraInstructions.append(ScanInstruction(message: "Looking for the last piece and the other bridge piece", buttonText: nil, firstItem: "conjoinedPiece1", secondItem: "piece1"))
-            nolmyraInstructions.append(AssembleInstruction(message: "Put these two pieces together", buttonText: "Done", firstItem: "conjoinedPiece1", secondItem: "piece1", assembledItem: "conjoinedPiece2"))
-            nolmyraInstructions.append(ScanInstruction(message: "Looking for the last piece and the other leg piece", buttonText: nil, firstItem: "conjoinedPiece2", secondItem: "piece2"))
-            nolmyraInstructions.append(AssembleInstruction(message: "Put these two pieces together", buttonText: "Done", firstItem: "conjoinedPiece2", secondItem: "piece2", assembledItem: "conjoinedPiece3"))
-            nolmyraInstructions.append(ScanInstruction(message: "Looking for the last piece and the seat", buttonText: nil, firstItem: "conjoinedPiece3", secondItem: "seat"))
-            nolmyraInstructions.append(AssembleInstruction(message: "Put these two pieces together", buttonText: "Done", firstItem: "conjoinedPiece3", secondItem: "seat", assembledItem: "nolmyra"))
+            nolmyraInstructions.append(ScanInstruction(message: "Looking for the leg and the bridge piece", buttonText: nil, firstItem: NOLMYRA_PIECE1, secondItem: NOLMYRA_PIECE2))
+            nolmyraInstructions.append(AssembleInstruction(message: "Put these two pieces together", buttonText: "Done", firstItem: NOLMYRA_PIECE1, secondItem: NOLMYRA_PIECE2, assembledItem: NOLMYRA_CONJOINED_PIECE1))
+            nolmyraInstructions.append(ScanInstruction(message: "Looking for the last piece and the other bridge piece", buttonText: nil, firstItem: NOLMYRA_CONJOINED_PIECE1, secondItem: NOLMYRA_PIECE1))
+            nolmyraInstructions.append(AssembleInstruction(message: "Put these two pieces together", buttonText: "Done", firstItem: NOLMYRA_CONJOINED_PIECE1, secondItem: NOLMYRA_PIECE1, assembledItem: NOLMYRA_CONJOINED_PIECE2))
+            nolmyraInstructions.append(ScanInstruction(message: "Looking for the last piece and the other leg piece", buttonText: nil, firstItem: NOLMYRA_CONJOINED_PIECE2, secondItem: NOLMYRA_PIECE2))
+            nolmyraInstructions.append(AssembleInstruction(message: "Put these two pieces together", buttonText: "Done", firstItem: NOLMYRA_CONJOINED_PIECE2, secondItem: NOLMYRA_PIECE2, assembledItem: NOLMYRA_CONJOINED_PIECE3))
+            nolmyraInstructions.append(ScanInstruction(message: "Looking for the last piece and the seat", buttonText: nil, firstItem: NOLMYRA_CONJOINED_PIECE3, secondItem: NOLMYRA_SEAT))
+            nolmyraInstructions.append(AssembleInstruction(message: "Put these two pieces together", buttonText: "Done", firstItem: NOLMYRA_CONJOINED_PIECE3, secondItem: NOLMYRA_SEAT, assembledItem: "nolmyra"))
             nolmyraInstructions.append(Instruction(message: "You are done putting together Nolmyra", buttonText: "Complete"))
             return nolmyraInstructions
         default:

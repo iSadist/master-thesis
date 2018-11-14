@@ -105,7 +105,7 @@ class InstructionExecutioner: ObjectDetectorDelegate
             else
             {
                 // Decide what to do when objects have been found
-                instructionComplete()
+                delegate?.instructionCompleted(andFound: rects)
             }
         }
         
@@ -117,7 +117,8 @@ class InstructionExecutioner: ObjectDetectorDelegate
             
             if isAssembled
             {
-                instructionComplete()
+                repeatTimer?.invalidate()
+                delegate?.instructionCompleted()
             }
             else if rects.count == 2
             {
