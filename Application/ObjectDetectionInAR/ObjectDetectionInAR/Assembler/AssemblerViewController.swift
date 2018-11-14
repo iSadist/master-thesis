@@ -58,85 +58,20 @@ class AssemblerViewController: UIViewController
         
         sceneView.session.run(configuration)
     }
-
-     /* Draws an arrow between two point in the 3D scene by inputting the
-     points on the screen where the objects exist.
-     Only draws arrows on the detected plane. */
-    func connectPieces(fromScreen startPoint: CGPoint, to endPoint: CGPoint)
+    
+    func translateToWorldPoint(from screenPoint: CGPoint) -> SCNVector3?
     {
-        // Translate the point on screen to the point in the scene
-        let startHit = sceneView.hitTest(startPoint, types: .estimatedHorizontalPlane).first
-        let endHit = sceneView.hitTest(endPoint, types: .estimatedHorizontalPlane).first
-        
-        guard let startPosition = startHit?.worldTransform.columns.3 else { return }
-        guard let endPosition = endHit?.worldTransform.columns.3 else { return }
-        
-        // The positions in the real world
-        let startVector = SCNVector3(startPosition.x, startPosition.y, startPosition.z)
-        let endVector = SCNVector3(endPosition.x, endPosition.y, endPosition.z)
-        
-        let existingArrow = moveExistingConnectingArrow(newPosition: startVector)
-        
-        if existingArrow == nil
-        {
-            let distance = startVector.distanceTo(endVector)
-            
-            // Create the node and add it to the scene at the starting position
-            let lineNode = GeometryFactory.makeLine(radius: 0.01, length: distance)
-            
-            // Set the angle of the arrow to point from the first point to the second.
-            // Assuming that the arrow will lay flat on the floor and only rotate in y-axis.
-            // This is becuase the hittests only get points from a plane anyway.
-            lineNode.eulerAngles.x = Float.pi / 2
-            lineNode.eulerAngles.y = asin((endPosition.x - startPosition.x) / distance)
-            lineNode.position = startVector
-            lineNode.name = CONNECTING_ARROW
-            
-            sceneView.scene.rootNode.addChildNode(lineNode)
-        }
+        let hitResult = sceneView.hitTest(screenPoint, types: .estimatedHorizontalPlane).first
+        guard let position = hitResult?.worldTransform.columns.3 else { return nil }
+        return SCNVector3(position.x, position.y, position.z)
     }
     
-    func connectParts(rects: [CGRect])
+    func moveExistingNode(to newPosition: SCNVector3, name: String) -> SCNNode?
     {
-        var shouldConnectPieces = false
-        var lastRect: CGRect = CGRect()
-        
-        for rect in rects
+        if let node = sceneView.scene.rootNode.childNode(withName: name, recursively: true)
         {
-            if shouldConnectPieces
-            {
-                // For every second rect, connect with the previous one
-                let firstMidpoint = CGPoint(x: lastRect.midX, y: lastRect.midY)
-                let secondMidpoint = CGPoint(x: rect.midX, y: rect.midY)
-                connectPieces(fromScreen: firstMidpoint, to: secondMidpoint)
-            }
-            
-            lastRect = rect
-            shouldConnectPieces = !shouldConnectPieces
-        }
-    }
-    
-    func connectParts(rects: [CGRect], with message: String)
-    {
-        self.connectParts(rects: rects)
-        let node = GeometryFactory.makeText(text: message)
-        
-        // Figure out where to render the text
-        let renderPoint = CGPoint(x: rects.first!.midX, y: rects.first!.midY)
-        let worldPoint = self.sceneView.hitTest(renderPoint, types: .existingPlane).first?.worldTransform.columns.3
-        let vector = SCNVector3(worldPoint!.x, worldPoint!.y, worldPoint!.z)
-        
-        node.position = vector
-        node.constraints = [SCNBillboardConstraint()]
-        self.sceneView.scene.rootNode.addChildNode(node)
-    }
-    
-    func moveExistingConnectingArrow(newPosition: SCNVector3) -> SCNNode?
-    {
-        if let arrowNode = sceneView.scene.rootNode.childNode(withName: CONNECTING_ARROW, recursively: true)
-        {
-            arrowNode.runAction(SCNAction.move(to: newPosition, duration: 0.1))
-            return arrowNode
+            node.runAction(SCNAction.move(to: newPosition, duration: 0.1))
+            return node
         }
         
         return nil
@@ -168,12 +103,7 @@ class AssemblerViewController: UIViewController
         messageViewText.text = model.isValid() ? instruction?.message : "Detecting the floor..."
         messageViewButton.setTitle(instruction?.buttonText, for: .normal)
         
-        if model.lostTracking
-        {
-            messageViewButton.isEnabled = false
-            messageViewText.text = "Tracking has been lost. Attempting to find them again..."
-        }
-        else if model.instructionHasFailed
+        if model.instructionHasFailed
         {
             messageViewText.text = "Failed to complete instruction..."
             messageViewButton.setTitle("Try again?", for: .normal)
@@ -220,14 +150,9 @@ class AssemblerViewController: UIViewController
         let detector = ObjectDetector(frame: overlayView.frame)
         detector.delegate = executioner
         
-        // Setup the object tracker
-        let tracker = ObjectTracker(viewFrame: overlayView.frame)
-        tracker.delegate = self
-        
         // Setup instruction executioner
         executioner.delegate = self
         executioner.detector = detector
-        executioner.tracker = tracker
         executioner.instructions = furniture?.instructions
         executioner.nextInstruction()
         
@@ -238,14 +163,12 @@ class AssemblerViewController: UIViewController
     {
         super.viewWillDisappear(animated)
         sceneView.session.pause()
-        executioner.tracker?.requestCancelTracking()
         executioner.repeatTimer?.invalidate()
     }
 
     override func didReceiveMemoryWarning()
     {
         super.didReceiveMemoryWarning()
-        executioner.tracker?.requestCancelTracking()
         print("Memory is full!")
     }
     
@@ -307,50 +230,6 @@ extension AssemblerViewController: ARSCNViewDelegate
         {
             model.numberOfPlanesDetected -= 1
         }
-    }
-}
-
-extension AssemblerViewController: ObjectTrackerDelegate
-{
-    // Called when the Object tracker outputs new rects for the tracked objects
-    func trackedRects(rects: [ObjectRectangle])
-    {
-        model.lostTracking = false
-        model.objectsOnScreen = rects
-        
-        // Put the bounding box rects in the rectangles list
-        // and connect them
-        var rectangles = [CGRect]()
-        for objectRect in rects
-        {
-            rectangles.append(objectRect.getRect())
-        }
-        if DEBUG
-        {
-            overlayView.rectangles = rects
-            overlayView.setNeedsDisplay()
-        }
-        connectParts(rects: rectangles)
-        updateMessageView(executioner.currentInstruction)
-    }
-    
-    // Called whenever Object Tracker stopped tracking
-    func trackingDidStop()
-    {
-        self.overlayView.clearDisplay()
-    }
-    
-    func trackingLost()
-    {
-        print("Lost tracking due to low confidence")
-        model.lostTracking = true
-        updateMessageView(executioner.currentInstruction)
-    }
-    
-    // Called when Object Tracker 
-    func getFrame() -> CVPixelBuffer?
-    {
-        return sceneView.session.currentFrame?.capturedImage
     }
 }
 

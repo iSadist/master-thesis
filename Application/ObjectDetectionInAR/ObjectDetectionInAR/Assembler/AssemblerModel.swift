@@ -8,16 +8,6 @@ class AssemblerModel: Model
 {
     var objectsOnScreen: [ObjectRectangle]
     var instructionHasFailed: Bool
-    var lostTracking: Bool
-    {
-        didSet
-        {
-            DispatchQueue.main.async {
-                self.callback()
-            }
-        }
-    }
-    
     var numberOfPlanesDetected: Int
     {
         didSet
@@ -51,7 +41,6 @@ class AssemblerModel: Model
     init()
     {
         instructionHasFailed = false
-        lostTracking = false
         numberOfPlanesDetected = 0
         objectsOnScreen = []
         summedPlaneAreas = 0.0

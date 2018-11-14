@@ -14,7 +14,6 @@ import UIKit
 class InstructionExecutioner: ObjectDetectorDelegate
 {
     var delegate: InstructionExecutionerDelegate?
-    var tracker: ObjectTracker?
     var detector: ObjectDetector?
     var instructions: [Instruction]?
     var currentInstruction: Instruction?
@@ -34,7 +33,6 @@ class InstructionExecutioner: ObjectDetectorDelegate
     var repeatTimer: Timer?
     let repeatTimeIntervalInSeconds: Int = 1
     let totalAttemptsBeforeCancel: Int = 20
-    private let trackerQueue = DispatchQueue(label: "tracker", qos: DispatchQoS.userInitiated)
     private let workerQueue = DispatchQueue(label: "worker", qos: DispatchQoS.userInitiated)
     
     func executeInstruction()
@@ -62,7 +60,6 @@ class InstructionExecutioner: ObjectDetectorDelegate
         if instructions?.isEmpty ?? true
         {
             currentInstruction = nil
-            tracker?.requestCancelTracking()
         }
         else
         {
@@ -75,22 +72,6 @@ class InstructionExecutioner: ObjectDetectorDelegate
         guard let frame = delegate?.getPixelBuffer() else { return }
         workerQueue.async {
             self.detector?.findObjects(pixelBuffer: frame, parts: objects)
-        }
-    }
-    
-    /* Insert the bounding boxes of the objects that are
-     of interest to track and start tracking immediately.*/
-    func startTracking(on boundingBoxes: [ObjectRectangle])
-    {
-        tracker?.requestCancelTracking()
-        for boundingBox in boundingBoxes
-        {
-            boundingBox.addPadding()
-        }
-        
-        tracker?.setObjectsToTrack(objects: boundingBoxes)
-        trackerQueue.async {
-            self.tracker?.track()
         }
     }
     
@@ -123,7 +104,7 @@ class InstructionExecutioner: ObjectDetectorDelegate
             }
             else
             {
-                startTracking(on: rects)
+                // Decide what to do when objects have been found
                 instructionComplete()
             }
         }
@@ -140,7 +121,7 @@ class InstructionExecutioner: ObjectDetectorDelegate
             }
             else if rects.count == 2
             {
-                startTracking(on: rects)
+                // Implement
             }
         }
     }
