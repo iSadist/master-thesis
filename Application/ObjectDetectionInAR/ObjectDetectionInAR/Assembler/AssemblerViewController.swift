@@ -39,7 +39,7 @@ class AssemblerViewController: UIViewController
     func loadWorldTrackingConfiguration()
     {
         let configuration = ARWorldTrackingConfiguration()
-        configuration.planeDetection = [.horizontal, .vertical]
+        configuration.planeDetection = [.horizontal]
 
         // All the objects that are tracked is contained in the Objects folder
 //        guard let detectingObjects = ARReferenceObject.referenceObjects(inGroupNamed: "Objects", bundle: nil) else { return }
@@ -254,6 +254,7 @@ extension AssemblerViewController: InstructionExecutionerDelegate
     
     func newInstructionSet(_ instruction: Instruction?)
     {
+        if instruction is ScanInstruction { removeAllNodes() }
         updateMessageView(instruction)
     }
     

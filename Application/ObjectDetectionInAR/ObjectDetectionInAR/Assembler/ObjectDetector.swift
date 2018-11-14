@@ -25,13 +25,6 @@ class ObjectDetector
     func findObjects(pixelBuffer: CVPixelBuffer, parts: [String])
     {
         let predictions = detectAndClassifyObjects(pixelBuffer: (pixelBuffer))
-        if DEBUG
-        {
-            for prediction in predictions
-            {
-//                print("Found object \(prediction.label)")
-            }
-        }
         let correctParts = predictions.filter {parts.contains($0.label)}.removingDuplicates().sorted { $0.label < $1.label }
         var partRectangles = [ObjectRectangle]()
         
@@ -72,7 +65,7 @@ class ObjectDetector
     {
         let coordinates = results[0].featureValue.multiArrayValue!
         let confidence = results[1].featureValue.multiArrayValue!
-        let confidenceThreshold = 0.15
+        let confidenceThreshold = 0.25
         var unorderedPredictions = [Prediction]()
         let numBoundingBoxes = confidence.shape[0].intValue
         let numClasses = confidence.shape[1].intValue
