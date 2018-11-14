@@ -95,7 +95,6 @@ class GeometryFactory
         {
         case NOLMYRA_PIECE1:
             furnitureNode = (SCNScene(named: "art.scnassets/nolmyraPiece1.scn")?.rootNode.childNode(withName: NOLMYRA_PIECE1, recursively: false))!
-
             let realWidth: Float = 0.05
             let realLength: Float = 0.57
             let realHeigth: Float = 0.02
@@ -115,9 +114,9 @@ class GeometryFactory
             break
         case NOLMYRA_CONJOINED_PIECE1:
             furnitureNode = (SCNScene(named: "art.scnassets/nolmyraConjoinedPiece1.scn")?.rootNode.childNode(withName: NOLMYRA_CONJOINED_PIECE1, recursively: false))!
-            let realWidth: Float = 0.43
+            let realWidth: Float = 0.62
             let realLength: Float = 0.61
-            let realHeigth: Float = 0.62
+            let realHeigth: Float = 0.43
             furnitureNode.scale.x = realWidth / (furnitureNode.boundingBox.max.x - furnitureNode.boundingBox.min.x)
             furnitureNode.scale.y = realLength / (furnitureNode.boundingBox.max.y - furnitureNode.boundingBox.min.y)
             furnitureNode.scale.z = realHeigth / (furnitureNode.boundingBox.max.z - furnitureNode.boundingBox.min.z)
@@ -125,9 +124,9 @@ class GeometryFactory
             break
         case NOLMYRA_CONJOINED_PIECE2:
             furnitureNode = (SCNScene(named: "art.scnassets/nolmyraConjoinedPiece2.scn")?.rootNode.childNode(withName: NOLMYRA_CONJOINED_PIECE2, recursively: false))!
-            let realWidth: Float = 0.43
+            let realWidth: Float = 0.62
             let realLength: Float = 0.61
-            let realHeigth: Float = 0.62
+            let realHeigth: Float = 0.43
             furnitureNode.scale.x = realWidth / (furnitureNode.boundingBox.max.x - furnitureNode.boundingBox.min.x)
             furnitureNode.scale.y = realLength / (furnitureNode.boundingBox.max.y - furnitureNode.boundingBox.min.y)
             furnitureNode.scale.z = realHeigth / (furnitureNode.boundingBox.max.z - furnitureNode.boundingBox.min.z)
@@ -135,9 +134,9 @@ class GeometryFactory
             break
         case NOLMYRA_CONJOINED_PIECE3:
             furnitureNode = (SCNScene(named: "art.scnassets/nolmyraConjoinedPiece3.scn")?.rootNode.childNode(withName: NOLMYRA_CONJOINED_PIECE3, recursively: false))!
-            let realWidth: Float = 0.43
+            let realWidth: Float = 0.67 
             let realLength: Float = 0.61
-            let realHeigth: Float = 0.67
+            let realHeigth: Float = 0.43
             furnitureNode.scale.x = realWidth / (furnitureNode.boundingBox.max.x - furnitureNode.boundingBox.min.x)
             furnitureNode.scale.y = realLength / (furnitureNode.boundingBox.max.y - furnitureNode.boundingBox.min.y)
             furnitureNode.scale.z = realHeigth / (furnitureNode.boundingBox.max.z - furnitureNode.boundingBox.min.z)
