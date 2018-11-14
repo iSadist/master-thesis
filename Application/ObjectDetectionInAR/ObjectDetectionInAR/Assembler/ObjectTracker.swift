@@ -43,13 +43,14 @@ class ObjectTracker
         cancelTracking = false
         
         var trackingObservations = [UUID: VNDetectedObjectObservation]()
-        var trackedObjects = [UUID: CGRect]()
+        var trackedObjects = [UUID: ObjectRectangle]()
         let requestHandler = VNSequenceRequestHandler()
+        let boundingFrame = delegate?.getBoundingFrame()
         for object in objectsToTrack
         {
             let observation = VNDetectedObjectObservation(boundingBox: object.getNormalizedRect(frame: viewFrame))
             trackingObservations[observation.uuid] = observation
-            trackedObjects[observation.uuid] = object.getNormalizedRect(frame: viewFrame)
+            trackedObjects[observation.uuid] = object
         }
         
         while true
@@ -63,7 +64,7 @@ class ObjectTracker
                 usleep(useconds_t(millisecondsPerFrame * 1000))
                 continue
             }
-
+            
             for trackingObservation in trackingObservations
             {
                 // Create the requests
@@ -81,14 +82,21 @@ class ObjectTracker
                 
                 if observation.confidence > confidenceThreshold
                 {
-                    trackedObjects[observation.uuid] = observation.boundingBox
+                    guard let object = trackedObjects[observation.uuid] else { continue }
+//                    Set new bounding box
+                    object.setNewBoundingBox(newBoundingBox: observation.boundingBox, frame: boundingFrame)
+                    
+//                    trackedObjects[observation.uuid] = observation.boundingBox
+                    trackedObjects[observation.uuid] = object
                     trackingObservations[observation.uuid] = observation
-                    let object = ObjectRectangle(visionRect: observation.boundingBox, frame: viewFrame)
+                    
+                    
                     rects.append(object)
                 }
             }
 
             DispatchQueue.main.async {
+                rects = rects.sorted { $0.name! < $1.name! }
                 self.delegate?.trackedRects(rects: rects)
             }
             

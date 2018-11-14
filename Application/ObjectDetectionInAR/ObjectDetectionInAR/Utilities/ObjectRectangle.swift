@@ -45,6 +45,12 @@ class ObjectRectangle
         rectangle = CGRect(x: newXOrigin, y: newYOrigin, width: newWidth, height: newHeigth)
     }
     
+    func setNewBoundingBox(newBoundingBox: CGRect, frame: CGRect?)
+    {
+        guard frame != nil else { self.rectangle = newBoundingBox; return }
+        self.rectangle = translateFromNormalizedRect(normalized: newBoundingBox, frame: frame!)
+    }
+
     private func translateFromNormalizedRect(normalized rect: CGRect, frame: CGRect) -> CGRect
     {
         let pointY = 1 - rect.minY
