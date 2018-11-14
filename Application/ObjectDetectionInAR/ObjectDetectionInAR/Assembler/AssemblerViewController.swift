@@ -272,6 +272,7 @@ extension AssemblerViewController: InstructionExecutionerDelegate
             
             addFurniture(part: object.name!, position: worldPosition)
         }
+        executioner.nextInstruction()
     }
     
     func getPixelBuffer() -> CVPixelBuffer?
