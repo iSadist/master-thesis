@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Assembler View Controller-->
+        <!--Title-->
         <scene sceneID="tXr-a1-R10">
             <objects>
                 <viewController id="BV1-FR-VrT" customClass="AssemblerViewController" customModule="ObjectDetectionInAR" customModuleProvider="target" sceneMemberID="viewController">
@@ -42,13 +42,22 @@
                                     <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.01" translatesAutoresizingMaskIntoConstraints="NO" id="6du-kA-6Dd">
                                         <rect key="frame" x="20" y="61.666666666666629" width="285" height="2"/>
                                     </progressView>
+                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Pm-x8-yFW">
+                                        <rect key="frame" x="275" y="75" width="30" height="30"/>
+                                        <state key="normal" title="Skip"/>
+                                        <connections>
+                                            <action selector="skipButtonTapped:" destination="BV1-FR-VrT" eventType="touchUpInside" id="A0p-Kd-OQR"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.89980377053990601" alpha="0.84999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="EO1-me-qzt" firstAttribute="top" secondItem="Nj7-bF-yoU" secondAttribute="top" constant="20" symbolic="YES" id="EDw-Zy-2R5"/>
                                     <constraint firstAttribute="height" constant="125" id="FLs-eJ-3s4"/>
                                     <constraint firstItem="6du-kA-6Dd" firstAttribute="centerY" secondItem="Nj7-bF-yoU" secondAttribute="centerY" id="Hve-43-gzW"/>
+                                    <constraint firstAttribute="trailing" secondItem="2Pm-x8-yFW" secondAttribute="trailing" constant="20" id="L33-5Q-0PL"/>
                                     <constraint firstItem="iDV-o0-qqo" firstAttribute="centerX" secondItem="Nj7-bF-yoU" secondAttribute="centerX" id="QtP-ln-thg"/>
+                                    <constraint firstAttribute="bottom" secondItem="2Pm-x8-yFW" secondAttribute="bottom" constant="20" id="bRH-AY-TZq"/>
                                     <constraint firstAttribute="bottom" secondItem="iDV-o0-qqo" secondAttribute="bottom" constant="20" id="k8a-hb-jgf"/>
                                     <constraint firstAttribute="trailing" secondItem="6du-kA-6Dd" secondAttribute="trailing" constant="20" symbolic="YES" id="q48-qw-KAz"/>
                                     <constraint firstAttribute="trailing" secondItem="EO1-me-qzt" secondAttribute="trailing" constant="20" symbolic="YES" id="qdf-4k-iDF"/>
@@ -71,6 +80,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="dKC-5Y-GCf"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Title" id="9Gq-cQ-NPW"/>
                     <connections>
                         <outlet property="detectedPlanesProgressBar" destination="6du-kA-6Dd" id="F8c-kg-O35"/>
                         <outlet property="messageView" destination="Nj7-bF-yoU" id="1II-NI-soC"/>
@@ -78,6 +88,7 @@
                         <outlet property="messageViewText" destination="EO1-me-qzt" id="0sD-pf-Zke"/>
                         <outlet property="overlayView" destination="9R9-Pn-61C" id="7ws-Mi-2xC"/>
                         <outlet property="sceneView" destination="J7w-MF-Wz6" id="tYg-3t-V9p"/>
+                        <outlet property="skipButton" destination="2Pm-x8-yFW" id="h3d-OQ-Oq1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>

@@ -21,6 +21,7 @@ class AssemblerViewController: UIViewController
     @IBOutlet weak var overlayView: OverlayView!
     @IBOutlet weak var messageView: UIView!
     @IBOutlet weak var messageViewButton: UIButton!
+    @IBOutlet weak var skipButton: UIButton!
     @IBOutlet weak var messageViewText: UITextView!
     @IBOutlet weak var detectedPlanesProgressBar: UIProgressView!
     
@@ -110,9 +111,12 @@ class AssemblerViewController: UIViewController
     func updateMessageView(_ instruction: Instruction?)
     {
         messageViewButton.isEnabled = model.isValid()
+        skipButton.isEnabled = model.isValid()
         messageViewButton.isHidden = !model.isValid() || instruction?.buttonText == nil
         messageViewText.text = model.isValid() ? instruction?.message : "Detecting the floor..."
         messageViewButton.setTitle(instruction?.buttonText, for: .normal)
+        
+        messageView.isHidden = executioner.currentInstruction == nil
         
         if model.instructionHasFailed
         {
@@ -202,6 +206,12 @@ class AssemblerViewController: UIViewController
         {
             executioner.nextInstruction()
         }
+    }
+    
+    @IBAction func skipButtonTapped(_ sender: UIButton)
+    {
+        model.instructionHasFailed = false
+        executioner.nextInstruction()
     }
 }
 
