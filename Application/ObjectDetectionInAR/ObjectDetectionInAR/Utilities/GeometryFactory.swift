@@ -89,33 +89,76 @@ class GeometryFactory
     
     static func makeFurniturePart(name: String) -> SCNNode
     {
-        var node: SCNNode
+        var furnitureNode: SCNNode
         
         switch name
         {
         case NOLMYRA_PIECE1:
-            node = (SCNScene(named: "art.scnassets/nolmyraPiece1.scn")?.rootNode.childNode(withName: NOLMYRA_PIECE1, recursively: false))!
+            furnitureNode = (SCNScene(named: "art.scnassets/nolmyraPiece1.scn")?.rootNode.childNode(withName: NOLMYRA_PIECE1, recursively: false))!
+
+            let realWidth: Float = 0.05
+            let realLength: Float = 0.57
+            let realHeigth: Float = 0.02
+            furnitureNode.scale.x = realWidth/furnitureNode.boundingBox.max.x
+            furnitureNode.scale.y = realLength/furnitureNode.boundingBox.max.y
+            furnitureNode.scale.z = realHeigth/furnitureNode.boundingBox.max.z
             break
         case NOLMYRA_PIECE2:
-            node = (SCNScene(named: "art.scnassets/nolmyraPiece2.scn")?.rootNode.childNode(withName: NOLMYRA_PIECE2, recursively: false))!
+            furnitureNode = (SCNScene(named: "art.scnassets/nolmyraPiece2.scn")?.rootNode.childNode(withName: NOLMYRA_PIECE2, recursively: false))!
+            let realWidth: Float = 0.43
+            let realLength: Float = 0.61
+            let realHeigth: Float = 0.05
+            furnitureNode.scale.x = realWidth/furnitureNode.boundingBox.max.x
+            furnitureNode.scale.y = realLength/furnitureNode.boundingBox.max.y
+            furnitureNode.scale.z = realHeigth/furnitureNode.boundingBox.max.z
+            
             break
         case NOLMYRA_CONJOINED_PIECE1:
-            node = (SCNScene(named: "art.scnassets/nolmyraConjoinedPiece1.scn")?.rootNode.childNode(withName: NOLMYRA_CONJOINED_PIECE1, recursively: false))!
+            furnitureNode = (SCNScene(named: "art.scnassets/nolmyraConjoinedPiece1.scn")?.rootNode.childNode(withName: NOLMYRA_CONJOINED_PIECE1, recursively: false))!
+            let realWidth: Float = 0.43
+            let realLength: Float = 0.61
+            let realHeigth: Float = 0.62
+            furnitureNode.scale.x = realWidth/furnitureNode.boundingBox.max.x
+            furnitureNode.scale.y = realLength/furnitureNode.boundingBox.max.y
+            furnitureNode.scale.z = realHeigth/furnitureNode.boundingBox.max.z
+            
             break
         case NOLMYRA_CONJOINED_PIECE2:
-            node = (SCNScene(named: "art.scnassets/nolmyraConjoinedPiece2.scn")?.rootNode.childNode(withName: NOLMYRA_CONJOINED_PIECE2, recursively: false))!
+            furnitureNode = (SCNScene(named: "art.scnassets/nolmyraConjoinedPiece2.scn")?.rootNode.childNode(withName: NOLMYRA_CONJOINED_PIECE2, recursively: false))!
+            let realWidth: Float = 0.43
+            let realLength: Float = 0.61
+            let realHeigth: Float = 0.62
+            furnitureNode.scale.x = realWidth/furnitureNode.boundingBox.max.x
+            furnitureNode.scale.y = realLength/furnitureNode.boundingBox.max.y
+            furnitureNode.scale.z = realHeigth/furnitureNode.boundingBox.max.z
+            
             break
         case NOLMYRA_CONJOINED_PIECE3:
-            node = (SCNScene(named: "art.scnassets/nolmyraConjoinedPiece3.scn")?.rootNode.childNode(withName: NOLMYRA_CONJOINED_PIECE3, recursively: false))!
+            furnitureNode = (SCNScene(named: "art.scnassets/nolmyraConjoinedPiece3.scn")?.rootNode.childNode(withName: NOLMYRA_CONJOINED_PIECE3, recursively: false))!
+            let realWidth: Float = 0.43
+            let realLength: Float = 0.61
+            let realHeigth: Float = 0.67
+            furnitureNode.scale.x = realWidth/furnitureNode.boundingBox.max.x
+            furnitureNode.scale.y = realLength/furnitureNode.boundingBox.max.y
+            furnitureNode.scale.z = realHeigth/furnitureNode.boundingBox.max.z
+            
             break
         case NOLMYRA_SEAT:
-            node = (SCNScene(named: "art.scnassets/nolmyraSeat.scn")?.rootNode.childNode(withName: NOLMYRA_SEAT, recursively: false))!
+            furnitureNode = (SCNScene(named: "art.scnassets/nolmyraSeat.scn")?.rootNode.childNode(withName: NOLMYRA_SEAT, recursively: false))!
+            let realWidth: Float = 0.62
+            let realLength: Float = 0.45
+            let realHeigth: Float = 0.72
+            furnitureNode.scale.x = realWidth/furnitureNode.boundingBox.max.x
+            furnitureNode.scale.y = realLength/furnitureNode.boundingBox.max.y
+            furnitureNode.scale.z = realHeigth/furnitureNode.boundingBox.max.z
+            
             break
         default:
-            node = SCNNode()
+            furnitureNode = SCNNode()
             break
         }
-        
+        let node = SCNNode()
+        node.addChildNode(furnitureNode)
         return node
     }
 }
