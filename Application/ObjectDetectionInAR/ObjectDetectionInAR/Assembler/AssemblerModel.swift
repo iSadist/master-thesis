@@ -12,6 +12,7 @@ class AssemblerModel: Model
     {
         didSet
         {
+            if numberOfPlanesDetected == 0 { doneSetup = false }
             DispatchQueue.main.async {
                 self.callback()
             }
@@ -22,6 +23,7 @@ class AssemblerModel: Model
     {
         didSet
         {
+            if detectedPlaneProgress >= 1.0 { self.doneSetup = true }
             DispatchQueue.main.async {
                 self.callback()
             }
@@ -30,8 +32,11 @@ class AssemblerModel: Model
     
     var detectedPlaneProgress: Float
     {
-        return summedPlaneAreas / 4.0
+        return summedPlaneAreas / minimumPlaneArea
     }
+    
+    var minimumPlaneArea: Float
+    var doneSetup: Bool
     
     var callback =
     {
@@ -41,13 +46,15 @@ class AssemblerModel: Model
     init()
     {
         instructionHasFailed = false
+        doneSetup = false
         numberOfPlanesDetected = 0
         objectsOnScreen = []
         summedPlaneAreas = 0.0
+        minimumPlaneArea = 2.5
     }
     
     func isValid() -> Bool
     {
-        return numberOfPlanesDetected > 0 && detectedPlaneProgress >= 1.0
+        return numberOfPlanesDetected > 0 && doneSetup
     }
 }

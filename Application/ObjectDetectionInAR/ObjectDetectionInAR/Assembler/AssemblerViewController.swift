@@ -219,7 +219,6 @@ extension AssemblerViewController: ARSCNViewDelegate
         {
             node.addChildNode(GeometryFactory.createPlane(planeAnchor: planeAnchor, metalDevice: metalDevice!))
             model.numberOfPlanesDetected += 1
-            model.summedPlaneAreas = planeAnchor.extent.x * planeAnchor.extent.z
         }
     }
     
