@@ -99,18 +99,18 @@ class GeometryFactory
             let realWidth: Float = 0.05
             let realLength: Float = 0.57
             let realHeigth: Float = 0.02
-            furnitureNode.scale.x = realWidth/furnitureNode.boundingBox.max.x
-            furnitureNode.scale.y = realLength/furnitureNode.boundingBox.max.y
-            furnitureNode.scale.z = realHeigth/furnitureNode.boundingBox.max.z
+            furnitureNode.scale.x = realWidth / (furnitureNode.boundingBox.max.x - furnitureNode.boundingBox.min.x)
+            furnitureNode.scale.y = realLength / (furnitureNode.boundingBox.max.y - furnitureNode.boundingBox.min.y)
+            furnitureNode.scale.z = realHeigth / (furnitureNode.boundingBox.max.z - furnitureNode.boundingBox.min.z)
             break
         case NOLMYRA_PIECE2:
             furnitureNode = (SCNScene(named: "art.scnassets/nolmyraPiece2.scn")?.rootNode.childNode(withName: NOLMYRA_PIECE2, recursively: false))!
-            let realWidth: Float = 0.43
+            let realWidth: Float = 0.05
             let realLength: Float = 0.61
-            let realHeigth: Float = 0.05
-            furnitureNode.scale.x = realWidth/furnitureNode.boundingBox.max.x
-            furnitureNode.scale.y = realLength/furnitureNode.boundingBox.max.y
-            furnitureNode.scale.z = realHeigth/furnitureNode.boundingBox.max.z
+            let realHeigth: Float = 0.43
+            furnitureNode.scale.x = realWidth / (furnitureNode.boundingBox.max.x - furnitureNode.boundingBox.min.x)
+            furnitureNode.scale.y = realLength / (furnitureNode.boundingBox.max.y - furnitureNode.boundingBox.min.y)
+            furnitureNode.scale.z = realHeigth / (furnitureNode.boundingBox.max.z - furnitureNode.boundingBox.min.z)
             
             break
         case NOLMYRA_CONJOINED_PIECE1:
@@ -118,9 +118,9 @@ class GeometryFactory
             let realWidth: Float = 0.43
             let realLength: Float = 0.61
             let realHeigth: Float = 0.62
-            furnitureNode.scale.x = realWidth/furnitureNode.boundingBox.max.x
-            furnitureNode.scale.y = realLength/furnitureNode.boundingBox.max.y
-            furnitureNode.scale.z = realHeigth/furnitureNode.boundingBox.max.z
+            furnitureNode.scale.x = realWidth / (furnitureNode.boundingBox.max.x - furnitureNode.boundingBox.min.x)
+            furnitureNode.scale.y = realLength / (furnitureNode.boundingBox.max.y - furnitureNode.boundingBox.min.y)
+            furnitureNode.scale.z = realHeigth / (furnitureNode.boundingBox.max.z - furnitureNode.boundingBox.min.z)
             
             break
         case NOLMYRA_CONJOINED_PIECE2:
@@ -128,9 +128,9 @@ class GeometryFactory
             let realWidth: Float = 0.43
             let realLength: Float = 0.61
             let realHeigth: Float = 0.62
-            furnitureNode.scale.x = realWidth/furnitureNode.boundingBox.max.x
-            furnitureNode.scale.y = realLength/furnitureNode.boundingBox.max.y
-            furnitureNode.scale.z = realHeigth/furnitureNode.boundingBox.max.z
+            furnitureNode.scale.x = realWidth / (furnitureNode.boundingBox.max.x - furnitureNode.boundingBox.min.x)
+            furnitureNode.scale.y = realLength / (furnitureNode.boundingBox.max.y - furnitureNode.boundingBox.min.y)
+            furnitureNode.scale.z = realHeigth / (furnitureNode.boundingBox.max.z - furnitureNode.boundingBox.min.z)
             
             break
         case NOLMYRA_CONJOINED_PIECE3:
@@ -138,9 +138,9 @@ class GeometryFactory
             let realWidth: Float = 0.43
             let realLength: Float = 0.61
             let realHeigth: Float = 0.67
-            furnitureNode.scale.x = realWidth/furnitureNode.boundingBox.max.x
-            furnitureNode.scale.y = realLength/furnitureNode.boundingBox.max.y
-            furnitureNode.scale.z = realHeigth/furnitureNode.boundingBox.max.z
+            furnitureNode.scale.x = realWidth / (furnitureNode.boundingBox.max.x - furnitureNode.boundingBox.min.x)
+            furnitureNode.scale.y = realLength / (furnitureNode.boundingBox.max.y - furnitureNode.boundingBox.min.y)
+            furnitureNode.scale.z = realHeigth / (furnitureNode.boundingBox.max.z - furnitureNode.boundingBox.min.z)
             
             break
         case NOLMYRA_SEAT:
@@ -148,9 +148,9 @@ class GeometryFactory
             let realWidth: Float = 0.62
             let realLength: Float = 0.45
             let realHeigth: Float = 0.72
-            furnitureNode.scale.x = realWidth/furnitureNode.boundingBox.max.x
-            furnitureNode.scale.y = realLength/furnitureNode.boundingBox.max.y
-            furnitureNode.scale.z = realHeigth/furnitureNode.boundingBox.max.z
+            furnitureNode.scale.x = realWidth / (furnitureNode.boundingBox.max.x - furnitureNode.boundingBox.min.x)
+            furnitureNode.scale.y = realLength / (furnitureNode.boundingBox.max.y - furnitureNode.boundingBox.min.y)
+            furnitureNode.scale.z = realHeigth / (furnitureNode.boundingBox.max.z - furnitureNode.boundingBox.min.z)
             
             break
         default:
