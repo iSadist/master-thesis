@@ -278,6 +278,9 @@ extension AssemblerViewController: InstructionExecutionerDelegate
     
     func getPixelBuffer() -> CVPixelBuffer?
     {
-        return sceneView.session.currentFrame?.capturedImage
+        let snapshot = sceneView.snapshot()
+        let converter = ImageConverter()
+        
+        return converter.convertImageToPixelBuffer(image: snapshot)
     }
 }
