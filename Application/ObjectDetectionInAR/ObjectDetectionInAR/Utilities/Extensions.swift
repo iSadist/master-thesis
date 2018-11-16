@@ -31,3 +31,11 @@ extension Array where Element: Hashable {
         self = self.removingDuplicates()
     }
 }
+
+extension SCNVector3
+{
+    func substract(other: SCNVector3) -> SCNVector3
+    {
+        return SCNVector3(self.x - other.x , self.y - other.y , self.z - other.z)
+    }
+}

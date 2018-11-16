@@ -111,19 +111,19 @@ class InstructionExecutioner: ObjectDetectorDelegate
         
         if let assembleInstruction = currentInstruction as? AssembleInstruction
         {
-            let isAssembled = rects.contains { (rectangle) -> Bool in
-                return rectangle.name == assembleInstruction.assembledItem
-            }
-            
-            if isAssembled
-            {
-                repeatTimer?.invalidate()
-                delegate?.instructionCompleted()
-            }
-            else if rects.count == 2
-            {
-                // Implement
-            }
+//            let isAssembled = rects.contains { (rectangle) -> Bool in
+//                return rectangle.name == assembleInstruction.assembledItem
+//            }
+//            
+//            if isAssembled
+//            {
+//                repeatTimer?.invalidate()
+////                delegate?.instructionCompleted()
+//            }
+//            else if rects.count == 2
+//            {
+//                // Implement
+//            }
         }
     }
 }
