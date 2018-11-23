@@ -76,17 +76,18 @@ class AssemblerViewController: UIViewController
         return nil
     }
     
-    func addFurniture(part: String, position: SCNVector3)
+    func addFurniture(part: String, position: SCNVector3) -> SCNNode
     {
         let node = GeometryFactory.makeFurniturePart(name: part)
-        addNode(node, position, part)
+        return addNode(node, position, part)
     }
     
-    func addNode(_ node: SCNNode, _ position: SCNVector3, _ name: String)
+    func addNode(_ node: SCNNode, _ position: SCNVector3, _ name: String) -> SCNNode
     {
         node.position = position
         node.name = name
         sceneView.scene.rootNode.addChildNode(node)
+        return node
     }
     
     func removeAllNodes()
@@ -274,14 +275,48 @@ extension AssemblerViewController: InstructionExecutionerDelegate
     
     func instructionCompleted(andFound objects: [ObjectRectangle])
     {
+        var furniturePartNodes = [SCNNode]()
+        
         for object in objects
         {
             let rectangle = object.getRect()
             let screenPoint = CGPoint(x: rectangle.midX, y: rectangle.midY)
             guard let worldPosition = translateToWorldPoint(from: screenPoint) else { return }
-            
-            addFurniture(part: object.name!, position: worldPosition)
+            let furnitureNode = addFurniture(part: object.name!, position: worldPosition)
+            furniturePartNodes.append(furnitureNode)
         }
+        
+        var previousNode: SCNNode? = nil
+        var previousAnchorPoint: SCNNode? = nil
+        
+        for node in furniturePartNodes
+        {
+            let anchorPoint = node.childNode(withName: ANCHOR_POINT, recursively: true)
+            
+            if anchorPoint == nil
+            {
+                if previousAnchorPoint != nil
+                {
+                    node.runAction(SCNAction.move(to: previousAnchorPoint!.worldPosition, duration: 2))
+                }
+                previousNode = node
+            }
+            else
+            {
+                previousNode?.runAction(SCNAction.move(to: anchorPoint!.worldPosition, duration: 2))
+                if previousAnchorPoint != nil
+                {
+
+                    let firstMove = SCNAction.move(to: previousAnchorPoint!.worldPosition, duration: 2)
+                    let secondMove = SCNAction.move(by: node.worldPosition.substract(other: anchorPoint!.worldPosition), duration: 2)
+                    
+                    node.runAction(SCNAction.sequence([firstMove, secondMove]))
+                }
+                
+                previousAnchorPoint = anchorPoint
+            }
+    }
+        
         executioner.nextInstruction()
     }
     

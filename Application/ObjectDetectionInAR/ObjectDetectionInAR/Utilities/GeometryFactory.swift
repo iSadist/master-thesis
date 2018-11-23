@@ -106,31 +106,65 @@ class GeometryFactory
             furnitureNode = (SCNScene(named: "art.scnassets/nolmyraPiece1.scn")?.rootNode.childNode(withName: NOLMYRA_PIECE1, recursively: false))!
             let realLengths = SCNVector3(0.05, 0.57, 0.02)
             furnitureNode.scale = setRealLengths(realLengths: realLengths, boundingBox: furnitureNode.boundingBox)
+            
+            furnitureNode.eulerAngles.x = Float.pi
             break
         case NOLMYRA_PIECE2:
             furnitureNode = (SCNScene(named: "art.scnassets/nolmyraPiece2.scn")?.rootNode.childNode(withName: NOLMYRA_PIECE2, recursively: false))!
             let realLengths = SCNVector3(0.05, 0.61, 0.43)
             furnitureNode.scale = setRealLengths(realLengths: realLengths, boundingBox: furnitureNode.boundingBox)
+            
+            let anchorPoint = SCNNode()
+            anchorPoint.position.z = -0.30 / furnitureNode.scale.z
+            anchorPoint.position.y = -0.06 / furnitureNode.scale.y
+            anchorPoint.name = ANCHOR_POINT
+            furnitureNode.addChildNode(anchorPoint)
             break
         case NOLMYRA_CONJOINED_PIECE1:
             furnitureNode = (SCNScene(named: "art.scnassets/nolmyraConjoinedPiece1.scn")?.rootNode.childNode(withName: NOLMYRA_CONJOINED_PIECE1, recursively: false))!
             let realLengths = SCNVector3(0.62, 0.61, 0.43)
             furnitureNode.scale = setRealLengths(realLengths: realLengths, boundingBox: furnitureNode.boundingBox)
+            
+            let anchorPoint = SCNNode()
+            anchorPoint.position.z = -0.22 / furnitureNode.scale.z
+            anchorPoint.position.y = -0.505 / furnitureNode.scale.y
+            anchorPoint.name = ANCHOR_POINT
+            furnitureNode.addChildNode(anchorPoint)
             break
         case NOLMYRA_CONJOINED_PIECE2:
             furnitureNode = (SCNScene(named: "art.scnassets/nolmyraConjoinedPiece2.scn")?.rootNode.childNode(withName: NOLMYRA_CONJOINED_PIECE2, recursively: false))!
             let realLengths = SCNVector3(0.62, 0.61, 0.43)
             furnitureNode.scale = setRealLengths(realLengths: realLengths, boundingBox: furnitureNode.boundingBox)
+            
+            let anchorPoint = SCNNode()
+            anchorPoint.position.z = -0.30 / furnitureNode.scale.z
+            anchorPoint.position.y = -0.055 / furnitureNode.scale.y
+            anchorPoint.position.x = 0.57 / furnitureNode.scale.x
+            anchorPoint.name = ANCHOR_POINT
+            furnitureNode.addChildNode(anchorPoint)
             break
         case NOLMYRA_CONJOINED_PIECE3:
             furnitureNode = (SCNScene(named: "art.scnassets/nolmyraConjoinedPiece3.scn")?.rootNode.childNode(withName: NOLMYRA_CONJOINED_PIECE3, recursively: false))!
             let realLengths = SCNVector3(0.67, 0.61, 0.43)
             furnitureNode.scale = setRealLengths(realLengths: realLengths, boundingBox: furnitureNode.boundingBox)
+            let anchorPoint = SCNNode()
+            anchorPoint.position.z = -0.40 / furnitureNode.scale.z
+            anchorPoint.position.y = -0.14 / furnitureNode.scale.y
+            anchorPoint.name = ANCHOR_POINT
+            furnitureNode.addChildNode(anchorPoint)
             break
         case NOLMYRA_SEAT:
             furnitureNode = (SCNScene(named: "art.scnassets/nolmyraSeat.scn")?.rootNode.childNode(withName: NOLMYRA_SEAT, recursively: false))!
             let realLengths = SCNVector3(0.62, 0.45, 0.72)
             furnitureNode.scale = setRealLengths(realLengths: realLengths, boundingBox: furnitureNode.boundingBox)
+            
+            let anchorPoint = SCNNode()
+            anchorPoint.position.z = -0.36 / furnitureNode.scale.z
+            anchorPoint.position.y = -0.06 / furnitureNode.scale.y
+            anchorPoint.position.x = -0.305 / furnitureNode.scale.x
+
+            anchorPoint.name = ANCHOR_POINT
+            furnitureNode.addChildNode(anchorPoint)
             break
         default:
             furnitureNode = SCNNode()
