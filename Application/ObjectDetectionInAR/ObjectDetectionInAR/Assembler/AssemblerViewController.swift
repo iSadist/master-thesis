@@ -327,6 +327,8 @@ extension AssemblerViewController: InstructionExecutionerDelegate
         let snapshot = sceneView.snapshot()
         let converter = ImageConverter()
         
+        sceneView.session.currentFrame?.capturedImage
+        
         return converter.convertImageToPixelBuffer(image: snapshot)
     }
 }
