@@ -15,6 +15,7 @@ class InstructionExecutioner: ObjectDetectorDelegate
 {
     var delegate: InstructionExecutionerDelegate?
     var detector: ObjectDetector?
+    var model: AssemblerModel?
     var instructions: [Instruction]?
     var currentInstruction: Instruction?
     {
@@ -32,7 +33,7 @@ class InstructionExecutioner: ObjectDetectorDelegate
     var isInstructionComplete: Bool = false
     var repeatTimer: Timer?
     let repeatTimeIntervalInSeconds: Int = 1
-    let totalAttemptsBeforeCancel: Int = 20
+    let totalAttemptsBeforeCancel: Int = 100
     private let workerQueue = DispatchQueue(label: "worker", qos: DispatchQoS.userInitiated)
     
     func executeInstruction()
@@ -88,42 +89,49 @@ class InstructionExecutioner: ObjectDetectorDelegate
     {
         if currentInstruction is ScanInstruction
         {
-            // We expect two objects to be found when scan instruction
-            if rects.count != 2
+            guard attempts < totalAttemptsBeforeCancel else
             {
-                // Handle error
-                guard attempts < totalAttemptsBeforeCancel else
+                attempts = 0
+                self.delegate?.instructionFailed(currentInstruction, error: InstructionExecutionError.FailedAttempts)
+                model?.foundObjects.removeAll()
+                return
+            }
+            
+            for rect in rects
+            {
+                guard let isNewObject = model?.foundObjects.contains(where: { (object) -> Bool in
+                    return object.name == rect.name
+                })
+                else
                 {
-                    attempts = 0
-                    self.delegate?.instructionFailed(currentInstruction, error: InstructionExecutionError.FailedAttempts)
                     return
                 }
                 
-                print("Could not find objects. Trying again...")
-                executeInstruction()
+                if isNewObject
+                {
+                    let part = ObjectPart()
+                    part.name = rect.name
+                    part.screenPosition = rect
+                    part.position = delegate?.getWorldPosition(rect)
+                    model?.foundObjects.append(part)
+                }
+            }
+            
+            if model?.foundObjects.count == 2
+            {
+                // Decide what to do when both objects have been found
+                delegate?.instructionCompleted()
+                model?.foundObjects.removeAll()
             }
             else
             {
-                // Decide what to do when objects have been found
-                delegate?.instructionCompleted(andFound: rects)
+                // Re-execute the same instruction if all the parts hasn't been discovered yet.
+                executeInstruction()
             }
         }
         
         if let assembleInstruction = currentInstruction as? AssembleInstruction
         {
-//            let isAssembled = rects.contains { (rectangle) -> Bool in
-//                return rectangle.name == assembleInstruction.assembledItem
-//            }
-//            
-//            if isAssembled
-//            {
-//                repeatTimer?.invalidate()
-////                delegate?.instructionCompleted()
-//            }
-//            else if rects.count == 2
-//            {
-//                // Implement
-//            }
         }
     }
 }

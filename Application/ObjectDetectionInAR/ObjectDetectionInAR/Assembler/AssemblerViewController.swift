@@ -169,6 +169,7 @@ class AssemblerViewController: UIViewController
         // Setup instruction executioner
         executioner.delegate = self
         executioner.detector = detector
+        executioner.model = model
         executioner.instructions = furniture?.instructions
         executioner.nextInstruction()
         
@@ -256,6 +257,13 @@ extension AssemblerViewController: ARSCNViewDelegate
 
 extension AssemblerViewController: InstructionExecutionerDelegate
 {
+    func getWorldPosition(_ rect: ObjectRectangle) -> SCNVector3?
+    {
+        let rectangle = rect.getRect()
+        let screenPoint = CGPoint(x: rectangle.midX, y: rectangle.midY)
+        return translateToWorldPoint(from: screenPoint)
+    }
+    
     func instructionFailed(_ instruction: Instruction?, error: Error?) {
         print("Instruction unable to complete")
         model.instructionHasFailed = true
@@ -270,19 +278,14 @@ extension AssemblerViewController: InstructionExecutionerDelegate
     
     func instructionCompleted()
     {
-        executioner.nextInstruction()
-    }
-    
-    func instructionCompleted(andFound objects: [ObjectRectangle])
-    {
         var furniturePartNodes = [SCNNode]()
-        
-        for object in objects
+
+        for object in model.foundObjects
         {
-            let rectangle = object.getRect()
-            let screenPoint = CGPoint(x: rectangle.midX, y: rectangle.midY)
-            guard let worldPosition = translateToWorldPoint(from: screenPoint) else { return }
-            let furnitureNode = addFurniture(part: object.name!, position: worldPosition)
+            guard object.name != nil else { return }
+            guard object.position != nil else { return }
+            
+            let furnitureNode = addFurniture(part: object.name!, position: object.position!)
             furniturePartNodes.append(furnitureNode)
         }
         
@@ -299,6 +302,7 @@ extension AssemblerViewController: InstructionExecutionerDelegate
                 {
                     node.runAction(SCNAction.move(to: previousAnchorPoint!.worldPosition, duration: 2))
                 }
+
                 previousNode = node
             }
             else
@@ -306,16 +310,14 @@ extension AssemblerViewController: InstructionExecutionerDelegate
                 previousNode?.runAction(SCNAction.move(to: anchorPoint!.worldPosition, duration: 2))
                 if previousAnchorPoint != nil
                 {
-
                     let firstMove = SCNAction.move(to: previousAnchorPoint!.worldPosition, duration: 2)
                     let secondMove = SCNAction.move(by: node.worldPosition.substract(other: anchorPoint!.worldPosition), duration: 2)
-                    
                     node.runAction(SCNAction.sequence([firstMove, secondMove]))
                 }
-                
+
                 previousAnchorPoint = anchorPoint
             }
-    }
+        }
         
         executioner.nextInstruction()
     }

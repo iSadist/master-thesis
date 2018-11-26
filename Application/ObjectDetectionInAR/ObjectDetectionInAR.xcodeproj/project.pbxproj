@@ -17,6 +17,7 @@
 		590E9FF921785D8C0080100A /* ObjectDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590E9FF821785D8C0080100A /* ObjectDetector.swift */; };
 		590E9FFB21785EA90080100A /* ObjectDetectorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590E9FFA21785EA90080100A /* ObjectDetectorDelegate.swift */; };
 		592DC1BE213FEF1A00E29665 /* SamplePhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592DC1BD213FEF1A00E29665 /* SamplePhotoViewController.swift */; };
+		593F79E521AC65F400AF3A01 /* ObjectPart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593F79E421AC65F400AF3A01 /* ObjectPart.swift */; };
 		594D8D44216749F4002F9CA3 /* ObjectTrackerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594D8D43216749F4002F9CA3 /* ObjectTrackerDelegate.swift */; };
 		59652B12216360BD00B0CC1A /* GeometryFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59652B11216360BD00B0CC1A /* GeometryFactory.swift */; };
 		59652B1821638DC600B0CC1A /* ObjectTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59652B1721638DC600B0CC1A /* ObjectTracker.swift */; };
@@ -74,6 +75,7 @@
 		590E9FF821785D8C0080100A /* ObjectDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectDetector.swift; sourceTree = "<group>"; };
 		590E9FFA21785EA90080100A /* ObjectDetectorDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectDetectorDelegate.swift; sourceTree = "<group>"; };
 		592DC1BD213FEF1A00E29665 /* SamplePhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SamplePhotoViewController.swift; sourceTree = "<group>"; };
+		593F79E421AC65F400AF3A01 /* ObjectPart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectPart.swift; sourceTree = "<group>"; };
 		594D8D43216749F4002F9CA3 /* ObjectTrackerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectTrackerDelegate.swift; sourceTree = "<group>"; };
 		59652B11216360BD00B0CC1A /* GeometryFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeometryFactory.swift; sourceTree = "<group>"; };
 		59652B1721638DC600B0CC1A /* ObjectTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectTracker.swift; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 				52A0B5752188BDC600161C8E /* ObjectRectangle.swift */,
 				59D310C0219043FD005069A6 /* Errors.swift */,
 				52A0B57F219AEC8900161C8E /* GlobalVariables.swift */,
+				593F79E421AC65F400AF3A01 /* ObjectPart.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -424,6 +427,7 @@
 				59D310BD21903B61005069A6 /* Model.swift in Sources */,
 				59652B1821638DC600B0CC1A /* ObjectTracker.swift in Sources */,
 				5906999A2195D8610016800A /* NolmyraNet.mlmodel in Sources */,
+				593F79E521AC65F400AF3A01 /* ObjectPart.swift in Sources */,
 				594D8D44216749F4002F9CA3 /* ObjectTrackerDelegate.swift in Sources */,
 				59D310BB21903B45005069A6 /* AssemblerModel.swift in Sources */,
 				590E9FFB21785EA90080100A /* ObjectDetectorDelegate.swift in Sources */,

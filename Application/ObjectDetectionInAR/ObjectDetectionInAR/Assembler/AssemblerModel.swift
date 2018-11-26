@@ -6,7 +6,7 @@ import ARKit
 
 class AssemblerModel: Model
 {
-    var objectsOnScreen: [ObjectRectangle]
+    var foundObjects: [ObjectPart]
     var instructionHasFailed: Bool
     var numberOfPlanesDetected: Int
     {
@@ -48,9 +48,9 @@ class AssemblerModel: Model
         instructionHasFailed = false
         doneSetup = false
         numberOfPlanesDetected = 0
-        objectsOnScreen = []
         summedPlaneAreas = 0.0
         minimumPlaneArea = 2.5
+        foundObjects = []
     }
     
     func isValid() -> Bool
