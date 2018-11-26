@@ -165,9 +165,48 @@ Apple have developed their own toolkit for development of custom machine learnin
 
 In this project, the Object Detection method included in Turi Create was tested. First, one has to create ground truth data for every image that was trained and tested on. This was done using Simple Image Annotator \url{https://github.com/sgp715/simple_image_annotator}, where one has to draw bounding boxes for the objects in the images and label them; the data output is in the \textit{.csv} format.  Turi Create uses a different format for annotations called \textit{.sframe}, however, they provide a simple Python script which automatically does the conversion. 
 
-Turi then trains a model using a re-implementation of the TinyYOLO netwok. It also utilizes transfer learning by starting with an image classifier that has been trained on the imageNet dataset and the does \textit{end-to-end finetuning} do change the network to a \textit{one-stage detector}.
+Turi then trains a model using a re-implementation of the TinyYOLO netwok. It also utilizes transfer learning by starting with an image classifier that has been trained on the imageNet dataset and then does \textit{end-to-end finetuning} to change the network to a \textit{one-stage detector}.
 
-After training and evaluating that the model lives up to a standard worth including in this project, it was converted to the \textit{.mlmodel} format usable by CoreML in the application. However, due to current technical bugs in Turi Create the model does not yield correct bounding boxes while running in the application, thus the decision was made to scrap the use of this toolkit.
+After training and evaluating that the model lives up to a standard worth including in this project, it was converted to the \textit{.mlmodel}. When inputting a frame from the application into the model, the model outputs a multi array containing an array for each \textit{object} found. These predictions have not been \textit{non-max suppressed}, which will have to be done to filter out most false positives and duplicates. A non-max threshold of $0.5$ was used as it is considered a traditional standard \cite{nms}. The code below shows how non-max suppression was implemented. 
+
+\begin{lstlisting}[language=swift]
+    private func filterOverlappingPredictions(unorderedPredictions: [Prediction], nmsThreshold: Float) -> [Prediction]
+    {
+        var predictions = [Prediction]()
+        let orderedPredictions = unorderedPredictions.sorted { $0.confidence > $1.confidence }
+        var keep = [Bool](repeating: true, count: orderedPredictions.count)
+        for i in 0..<orderedPredictions.count {
+            if keep[i] {
+                predictions.append(orderedPredictions[i])
+                let bbox1 = orderedPredictions[i].boundingBox
+                for j in (i+1)..<orderedPredictions.count {
+                    if keep[j] {
+                        let bbox2 = orderedPredictions[j].boundingBox
+                        if bbox1.IoU(other: bbox2) > nmsThreshold {
+                            keep[j] = false
+                        }
+                    }
+                }
+            }
+        }
+        return predictions
+    }
+    
+    extension CGRect
+{
+    func IoU(other: CGRect) -> Float
+    {
+        let intersection = self.intersection(other)
+        let union = self.union(other)
+        return Float((intersection.width * intersection.height) / (union.width * union.height))
+    }
+}
+\end{lstlisting}
+
+
+
+[INCLUDE NETWORK MODEL]
+
 
 [iNCLUDE IMAGES FROM TESTING BOTH IN TURI AND FROM TESTING IN APP] 
 
