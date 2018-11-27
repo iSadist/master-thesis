@@ -147,7 +147,13 @@ and is a good option when negative values should be ignored or don't make sense.
 \[\frac{e^x}{1+e^x}\]
 and works like the Tanh function but keeps the values between 0 and 1 and sets y(0) = 0.5 instead.
 
-Softmax is a little bit more complex. It is described as $  $ !INCOMPLETE!
+\textbf{Softmax} is a little bit more complex. It takes a vector $v$ of dimension $n$ and turns it into a vector $\sigma(v)$ of the same dimension where $\displaystyle\sum_{i=1}^{n} \sigma_i(v) = 1 $ and each element value is between zero and one.
+
+Each element in the array is described as below
+\[ \sigma_i(v) = \frac{e^{v_i}}{\displaystyle\sum_{j=1}^{n} e^{z_k}} \]
+
+This output is good for describing the probability for each element to be correct and is therefore commonly used
+in the output layer.
 
 \subsubsection{Loss/Optimizers}
 When training the model using backpropagation, the model will at first make a guess to what the right answer or value is based on the random initial weigh values. In the beginning, the model is usually mostly wrong and it is then important to know how wrong it was and in what direction it should go.
