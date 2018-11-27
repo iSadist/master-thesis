@@ -7,6 +7,14 @@ import ARKit
 class AssemblerModel: Model
 {
     var foundObjects: [ObjectPart]
+    {
+        didSet
+        {
+            DispatchQueue.main.async {
+                self.callback()
+            }
+        }
+    }
     var instructionHasFailed: Bool
     var numberOfPlanesDetected: Int
     {

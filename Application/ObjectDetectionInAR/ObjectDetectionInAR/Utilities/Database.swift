@@ -5,6 +5,7 @@
 
 import Foundation
 import UIKit
+import SceneKit
 
 class Database
 {
@@ -59,4 +60,24 @@ class Database
             return nil
         }
     }
+    func getMeasurements(forPart part: String?) -> (SCNVector3)
+    {
+        switch part {
+        case NOLMYRA_PIECE1:
+            return SCNVector3(0.05, 0.57, 0.02)
+        case NOLMYRA_PIECE2:
+            return SCNVector3(0.05, 0.61, 0.43)
+        case NOLMYRA_CONJOINED_PIECE1:
+            return SCNVector3(0.62, 0.61, 0.43)
+        case NOLMYRA_CONJOINED_PIECE2:
+            return  SCNVector3(0.62, 0.61, 0.43)
+        case NOLMYRA_CONJOINED_PIECE3:
+            return SCNVector3(0.67, 0.61, 0.43)
+        case NOLMYRA_SEAT:
+            return SCNVector3(0.62, 0.45, 0.72)
+        default:
+            return SCNVector3Zero
+        }
+    }
+    
 }

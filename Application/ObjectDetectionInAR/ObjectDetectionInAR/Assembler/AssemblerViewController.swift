@@ -131,12 +131,41 @@ class AssemblerViewController: UIViewController
     {
         updateMessageView(executioner.currentInstruction)
         updateProgressBar()
+        updateMarkings()
     }
     
     func updateProgressBar()
     {
         detectedPlanesProgressBar.progress = model.detectedPlaneProgress
         detectedPlanesProgressBar.isHidden = model.detectedPlaneProgress >= 1.0
+    }
+    
+    func updateMarkings(){
+        
+        for childNode in sceneView.scene.rootNode.childNodes
+        {
+            if childNode.name == MARKING
+            {
+                childNode.removeFromParentNode()
+            }
+        }
+        
+        for object in model.foundObjects
+        {
+            let size = Database.instance.getMeasurements(forPart: object.name)
+            if let position = object.position
+            {
+                drawMarking(position: position,size: size)
+            }
+        }
+        
+    }
+    
+    func drawMarking(position: SCNVector3,size: SCNVector3)
+    {
+        let maxWidth = max(size.x,size.y)
+        let squareNode = GeometryFactory.makeSquare(width: maxWidth)
+        _ = addNode(squareNode, position, MARKING)
     }
     
     // MARK: Lifecycle events
