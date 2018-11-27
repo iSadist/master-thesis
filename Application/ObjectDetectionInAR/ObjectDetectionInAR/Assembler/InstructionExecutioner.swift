@@ -96,10 +96,10 @@ class InstructionExecutioner: ObjectDetectorDelegate
                 model?.foundObjects.removeAll()
                 return
             }
-            
+
             for rect in rects
             {
-                guard let isNewObject = model?.foundObjects.contains(where: { (object) -> Bool in
+                guard let objectAlreadyFound = model?.foundObjects.contains(where: { (object) -> Bool in
                     return object.name == rect.name
                 })
                 else
@@ -107,7 +107,7 @@ class InstructionExecutioner: ObjectDetectorDelegate
                     return
                 }
                 
-                if isNewObject
+                if !objectAlreadyFound
                 {
                     let part = ObjectPart()
                     part.name = rect.name
