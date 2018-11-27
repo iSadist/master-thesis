@@ -38,20 +38,25 @@ class InstructionExecutioner: ObjectDetectorDelegate
     
     func executeInstruction()
     {
-        attempts += 1
-        
         if let scanInstruction = currentInstruction as? ScanInstruction
         {
-            detectAndTrackObjects(objects: [scanInstruction.firstItem!, scanInstruction.secondItem!])
+            model?.foundObjects.removeAll()
+            executeScanInstruction(instruction: scanInstruction)
         }
         
         if let assembleInstruction = currentInstruction as? AssembleInstruction
         {
-            repeatTimer = Timer.scheduledTimer(withTimeInterval: TimeInterval(repeatTimeIntervalInSeconds), repeats: true, block: {_ in
-                self.detectAndTrackObjects(objects: [assembleInstruction.firstItem!, assembleInstruction.secondItem!, assembleInstruction.assembledItem!])
-            })
-            repeatTimer?.fire()
+//            repeatTimer = Timer.scheduledTimer(withTimeInterval: TimeInterval(repeatTimeIntervalInSeconds), repeats: true, block: {_ in
+//                self.detectAndTrackObjects(objects: [assembleInstruction.firstItem!, assembleInstruction.secondItem!, assembleInstruction.assembledItem!])
+//            })
+//            repeatTimer?.fire()
         }
+    }
+    
+    private func executeScanInstruction(instruction: ScanInstruction)
+    {
+        attempts += 1
+        detectAndTrackObjects(objects: [instruction.firstItem!, instruction.secondItem!])
     }
     
     func nextInstruction()
@@ -93,7 +98,6 @@ class InstructionExecutioner: ObjectDetectorDelegate
             {
                 attempts = 0
                 self.delegate?.instructionFailed(currentInstruction, error: InstructionExecutionError.FailedAttempts)
-                model?.foundObjects.removeAll()
                 return
             }
 
@@ -121,12 +125,11 @@ class InstructionExecutioner: ObjectDetectorDelegate
             {
                 // Decide what to do when both objects have been found
                 delegate?.instructionCompleted()
-                model?.foundObjects.removeAll()
             }
             else
             {
                 // Re-execute the same instruction if all the parts hasn't been discovered yet.
-                executeInstruction()
+                executeScanInstruction(instruction: currentInstruction as! ScanInstruction)
             }
         }
         

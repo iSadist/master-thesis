@@ -48,11 +48,11 @@ class GeometryFactory
     static func makeSquare(width: Float) -> SCNNode
     {
         let geometry = SCNPlane(width: CGFloat(width), height: CGFloat(width))
-        geometry.firstMaterial?.diffuse.contents =  #colorLiteral(red: 1, green: 0.2287626863, blue: 0.1264216006, alpha: 1)
+        geometry.firstMaterial?.diffuse.contents =  #colorLiteral(red: 0.2468146832, green: 0.827173737, blue: 0.2179623374, alpha: 1)
         let squareNode = SCNNode(geometry: geometry)
         squareNode.eulerAngles.x = -Float.pi/2
         let node = SCNNode()
-        node.opacity = (0.2)
+        node.opacity = (0.1)
         node.addChildNode(squareNode)
         return node
         

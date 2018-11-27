@@ -10,9 +10,7 @@ class AssemblerModel: Model
     {
         didSet
         {
-            DispatchQueue.main.async {
-                self.callback()
-            }
+            self.updateFoundObjects()
         }
     }
     var instructionHasFailed: Bool
@@ -47,6 +45,11 @@ class AssemblerModel: Model
     var doneSetup: Bool
     
     var callback =
+    {
+        print("Callback function has not been implemented")
+    }
+    
+    var updateFoundObjects =
     {
         print("Callback function has not been implemented")
     }

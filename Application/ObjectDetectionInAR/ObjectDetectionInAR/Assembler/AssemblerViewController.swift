@@ -94,19 +94,22 @@ class AssemblerViewController: UIViewController
     {
         for node in sceneView.scene.rootNode.childNodes
         {
-            node.removeFromParentNode()
+            node.runAction(SCNAction.fadeOut(duration: 0.5))
+            {
+                node.removeFromParentNode()
+            }
         }
     }
     
-    func removeNode(named: String) -> Bool
+    func removeNodes(withName name: String)
     {
-        if let node = sceneView.scene.rootNode.childNode(withName: named, recursively: false)
+        for node in sceneView.scene.rootNode.childNodes
         {
-            node.removeFromParentNode()
-            return true
+            if name == node.name
+            {
+                node.removeFromParentNode()
+            }
         }
-        
-        return false
     }
     
     func updateMessageView(_ instruction: Instruction?)
@@ -131,7 +134,6 @@ class AssemblerViewController: UIViewController
     {
         updateMessageView(executioner.currentInstruction)
         updateProgressBar()
-        updateMarkings()
     }
     
     func updateProgressBar()
@@ -140,15 +142,9 @@ class AssemblerViewController: UIViewController
         detectedPlanesProgressBar.isHidden = model.detectedPlaneProgress >= 1.0
     }
     
-    func updateMarkings(){
-        
-        for childNode in sceneView.scene.rootNode.childNodes
-        {
-            if childNode.name == MARKING
-            {
-                childNode.removeFromParentNode()
-            }
-        }
+    func updateMarkings()
+    {
+        removeNodes(withName: MARKING)
         
         for object in model.foundObjects
         {
@@ -158,7 +154,6 @@ class AssemblerViewController: UIViewController
                 drawMarking(position: position,size: size)
             }
         }
-        
     }
     
     func drawMarking(position: SCNVector3,size: SCNVector3)
@@ -176,6 +171,7 @@ class AssemblerViewController: UIViewController
         sceneView.delegate = self
         messageView.layer.cornerRadius = 25
         model.callback = modelUpdate
+        model.updateFoundObjects = updateMarkings
         
 //        Show statistics such as fps and timing information
 //        sceneView.showsStatistics = true
