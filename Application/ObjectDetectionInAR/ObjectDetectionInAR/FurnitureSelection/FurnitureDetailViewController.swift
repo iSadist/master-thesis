@@ -28,8 +28,7 @@ class FurnitureDetailViewController: UIViewController
     
     override func viewWillAppear(_ animated: Bool)
     {
-        let database = Database()
-        furniture?.instructions = database.getInstructions(for: furniture!)
+        furniture?.instructions = Database.instance.getInstructions(for: furniture!)
         
         // Don't allow the user to navigate further if no instructions exist
         if furniture?.instructions == nil

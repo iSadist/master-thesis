@@ -8,8 +8,12 @@ import UIKit
 
 class Database
 {
+    static var instance = Database()
+    
     init()
-    {}
+    {
+        // Implement a connection to a server
+    }
     
     func getFurnitures() -> [Furniture]
     {
