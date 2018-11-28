@@ -79,6 +79,7 @@ class AssemblerViewController: UIViewController
     func addFurniture(part: String, position: SCNVector3) -> SCNNode
     {
         let node = GeometryFactory.makeFurniturePart(name: part)
+        node.opacity = CGFloat(FURNITURE_NODE_OPACITY)
         return addNode(node, position, part)
     }
     
@@ -317,15 +318,20 @@ extension AssemblerViewController: InstructionExecutionerDelegate
         var previousNode: SCNNode? = nil
         var previousAnchorPoint: SCNNode? = nil
         
+        var nodeActions = [(SCNNode, [SCNAction])]() // A list for storing animations to run on a node later
+        
         for node in furniturePartNodes
         {
+            var actions: [SCNAction] = []
+            actions.append(SCNAction.rotate(by: -CGFloat.pi / 2, around: SCNVector3(0, 0, 1), duration: 1))
+
             let anchorPoint = node.childNode(withName: ANCHOR_POINT, recursively: true)
             
             if anchorPoint == nil
             {
                 if previousAnchorPoint != nil
                 {
-                    node.runAction(SCNAction.move(to: previousAnchorPoint!.worldPosition, duration: 2))
+                    actions.append(SCNAction.move(to: previousAnchorPoint!.worldPosition, duration: 2))
                 }
 
                 previousNode = node
@@ -335,13 +341,21 @@ extension AssemblerViewController: InstructionExecutionerDelegate
                 previousNode?.runAction(SCNAction.move(to: anchorPoint!.worldPosition, duration: 2))
                 if previousAnchorPoint != nil
                 {
-                    let firstMove = SCNAction.move(to: previousAnchorPoint!.worldPosition, duration: 2)
-                    let secondMove = SCNAction.move(by: node.worldPosition.substract(other: anchorPoint!.worldPosition), duration: 2)
-                    node.runAction(SCNAction.sequence([firstMove, secondMove]))
+                    actions.append(SCNAction.move(to: previousAnchorPoint!.worldPosition, duration: 2))
+                    actions.append(SCNAction.move(by: node.worldPosition.substract(other: anchorPoint!.worldPosition), duration: 2))
                 }
 
                 previousAnchorPoint = anchorPoint
             }
+            
+            nodeActions.append((node, actions))
+        }
+        
+        // Peform all the animations
+        for nodeAction in nodeActions
+        {
+            nodeAction.0.eulerAngles.z = Float.pi / 2 // Lay the furniture part down on its side
+            nodeAction.0.runAction(SCNAction.sequence(nodeAction.1))
         }
         
         executioner.nextInstruction()

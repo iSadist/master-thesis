@@ -9,3 +9,4 @@ let NOLMYRA_CONJOINED_PIECE3 = "conjoinedPiece3"
 let NOLMYRA_SEAT = "seat"
 let ANCHOR_POINT = "anchorPoint"
 let MARKING = "marking"
+let FURNITURE_NODE_OPACITY = 0.65
