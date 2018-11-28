@@ -352,10 +352,22 @@ extension AssemblerViewController: InstructionExecutionerDelegate
         }
         
         // Peform all the animations
-        for nodeAction in nodeActions
+        for (index, nodeAction) in nodeActions.enumerated()
         {
             nodeAction.0.eulerAngles.z = Float.pi / 2 // Lay the furniture part down on its side
-            nodeAction.0.runAction(SCNAction.sequence(nodeAction.1))
+            nodeAction.0.runAction(SCNAction.sequence(nodeAction.1)) {
+                // Wait until the last item in the list
+                if index == nodeActions.count - 1
+                {
+                    let screwAnchor = self.sceneView.scene.rootNode.childNode(withName: SCREW_ANCHOR_POINT, recursively: true)
+                    let screw = GeometryFactory.makeScrew1()
+                    screw.eulerAngles.z = -Float.pi / 2
+                    self.addNode(screw, screwAnchor!.worldPosition, NOLMYRA_SCREW1)
+                    let move = SCNVector3(0.1, 0, 0)
+                    screw.position.x -= move.x
+                    screw.runAction(SCNAction.move(by: move, duration: TimeInterval(ANIMATION_DURATION)))
+                }
+            }
         }
         
         executioner.nextInstruction()

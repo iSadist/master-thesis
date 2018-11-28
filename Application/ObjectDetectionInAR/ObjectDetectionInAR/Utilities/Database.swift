@@ -76,9 +76,9 @@ class Database
         case NOLMYRA_SEAT:
             return SCNVector3(0.62, 0.45, 0.72)
         case NOLMYRA_SCREW1:
-            return SCNVector3(0.1, 0.015, 0.015)
+            return SCNVector3(0.015, 0.1, 0.015)
         case NOLMYRA_SCREW2:
-            return SCNVector3(0.04, 0.015, 0.015)
+            return SCNVector3(0.015, 0.01, 0.015)
         default:
             return SCNVector3Zero
         }

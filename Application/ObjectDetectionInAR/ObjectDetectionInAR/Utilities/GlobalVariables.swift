@@ -10,5 +10,7 @@ let NOLMYRA_SCREW1 = "screw1"
 let NOLMYRA_SCREW2 = "screw2"
 let NOLMYRA_SEAT = "seat"
 let ANCHOR_POINT = "anchorPoint"
+let SCREW_ANCHOR_POINT = "screwAnchorPoint"
 let MARKING = "marking"
 let FURNITURE_NODE_OPACITY = 0.65
+let ANIMATION_DURATION = 2

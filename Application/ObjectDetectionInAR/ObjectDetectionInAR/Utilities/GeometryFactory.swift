@@ -120,6 +120,13 @@ class GeometryFactory
             furnitureNode = (SCNScene(named: "art.scnassets/nolmyraPiece1.scn")?.rootNode.childNode(withName: NOLMYRA_PIECE1, recursively: false))!
             furnitureNode.scale = setRealLengths(realLengths: realLengths, boundingBox: furnitureNode.boundingBox)
             furnitureNode.eulerAngles.x = Float.pi
+            
+            let screwAnchorPoint = SCNNode()
+            screwAnchorPoint.name = SCREW_ANCHOR_POINT
+            screwAnchorPoint.position.z = -0.01 / furnitureNode.scale.z
+            screwAnchorPoint.position.y = 0.025 / furnitureNode.scale.y
+            screwAnchorPoint.position.x = -0.02 / furnitureNode.scale.x
+            furnitureNode.addChildNode(screwAnchorPoint)
             break
         case NOLMYRA_PIECE2:
             furnitureNode = (SCNScene(named: "art.scnassets/nolmyraPiece2.scn")?.rootNode.childNode(withName: NOLMYRA_PIECE2, recursively: false))!
