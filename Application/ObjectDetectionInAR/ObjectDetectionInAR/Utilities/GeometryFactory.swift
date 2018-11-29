@@ -166,6 +166,9 @@ class GeometryFactory
             
             let screwAnchorPoint = SCNNode()
             screwAnchorPoint.position = anchorPoint.position
+            screwAnchorPoint.position.x += 0.027 / furnitureNode.scale.x
+            screwAnchorPoint.position.y += 0.01 / furnitureNode.scale.y
+            screwAnchorPoint.position.z += 0.04 / furnitureNode.scale.z
             screwAnchorPoint.name = SCREW_ANCHOR_POINT
             screwAnchorPoint.eulerAngles.z = Float.pi / 2
             
