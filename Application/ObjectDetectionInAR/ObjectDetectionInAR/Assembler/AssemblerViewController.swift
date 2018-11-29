@@ -113,6 +113,46 @@ class AssemblerViewController: UIViewController
         }
     }
     
+    func findNodes(withName name: String) -> [SCNNode]
+    {
+        var nodes = [SCNNode]()
+        for node in sceneView.scene.rootNode.childNodes
+        {
+            if name == node.name
+            {
+                nodes.append(node)
+            }
+            else
+            {
+                nodes.append(contentsOf: findNodes(withName: name, startNode: node))
+            }
+        }
+        
+        return nodes
+    }
+    
+    func findNodes(withName name: String, startNode node: SCNNode) -> [SCNNode]
+    {
+        var nodes = [SCNNode]()
+        for childNode in node.childNodes
+        {
+            if name == childNode.name
+            {
+                nodes.append(childNode)
+            }
+            else
+            {
+                let otherNodes = findNodes(withName: name, startNode: childNode)
+                if !otherNodes.isEmpty
+                {
+                    nodes.append(contentsOf: otherNodes)
+                }
+            }
+        }
+        
+        return nodes
+    }
+    
     func updateMessageView(_ instruction: Instruction?)
     {
         messageViewButton.isEnabled = model.isValid()
@@ -362,14 +402,16 @@ extension AssemblerViewController: InstructionExecutionerDelegate
                 // Wait until the last item in the list
                 if index == nodeActions.count - 1
                 {
-                    guard let screwAnchor = self.sceneView.scene.rootNode.childNode(withName: SCREW_ANCHOR_POINT, recursively: true) else { return }
-                    let screw = GeometryFactory.makeScrew1()
-                    screw.eulerAngles = screwAnchor.eulerAngles
-                    _ = self.addNode(screw, screwAnchor.worldPosition, NOLMYRA_SCREW1)
-                    
-                    let move = screwAnchor.childNode(withName: MOVE_VECTOR_NODE, recursively: false)!.position
-                    screw.position = screw.position.substract(other: move)
-                    screw.runAction(SCNAction.move(by: move, duration: TimeInterval(ANIMATION_DURATION)))
+                    for screwAnchor in self.findNodes(withName: SCREW_ANCHOR_POINT)
+                    {
+                        let screw = GeometryFactory.makeScrew1()
+                        screw.eulerAngles = screwAnchor.eulerAngles
+                        _ = self.addNode(screw, screwAnchor.worldPosition, NOLMYRA_SCREW1)
+                        
+                        let move = screwAnchor.childNode(withName: MOVE_VECTOR_NODE, recursively: false)!.position
+                        screw.position = screw.position.substract(other: move)
+                        screw.runAction(SCNAction.move(by: move, duration: TimeInterval(ANIMATION_DURATION)))
+                    }
                 }
             }
         }

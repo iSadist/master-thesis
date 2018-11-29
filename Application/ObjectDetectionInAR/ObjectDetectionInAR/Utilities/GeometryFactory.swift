@@ -164,21 +164,32 @@ class GeometryFactory
             anchorPoint.name = ANCHOR_POINT
             furnitureNode.addChildNode(anchorPoint)
             
-            let screwAnchorPoint = SCNNode()
-            screwAnchorPoint.position = anchorPoint.position
-            screwAnchorPoint.position.x += 0.027 / furnitureNode.scale.x
-            screwAnchorPoint.position.y += 0.01 / furnitureNode.scale.y
-            screwAnchorPoint.position.z += 0.04 / furnitureNode.scale.z
-            screwAnchorPoint.name = SCREW_ANCHOR_POINT
-            screwAnchorPoint.eulerAngles.z = Float.pi / 2
+            let screwAnchorPoint1 = SCNNode()
+            screwAnchorPoint1.position = anchorPoint.position
+            screwAnchorPoint1.position.x += 0.027 / furnitureNode.scale.x
+            screwAnchorPoint1.position.y += 0.01 / furnitureNode.scale.y
+            screwAnchorPoint1.position.z += 0.04 / furnitureNode.scale.z
+            screwAnchorPoint1.name = SCREW_ANCHOR_POINT
+            screwAnchorPoint1.eulerAngles.z = Float.pi / 2
             
-            let moveVectorNode = SCNNode()
-            moveVectorNode.name = MOVE_VECTOR_NODE
-            moveVectorNode.position = SCNVector3(-0.1, 0, 0)
-            screwAnchorPoint.addChildNode(moveVectorNode)
+            let moveVectorNode1 = SCNNode()
+            moveVectorNode1.name = MOVE_VECTOR_NODE
+            moveVectorNode1.position = SCNVector3(-0.1, 0, 0)
+            screwAnchorPoint1.addChildNode(moveVectorNode1)
             
-            furnitureNode.addChildNode(screwAnchorPoint)
+            let screwAnchorPoint2 = SCNNode()
+            screwAnchorPoint2.position = screwAnchorPoint1.position
+            screwAnchorPoint2.position.y -= 0.44 / furnitureNode.scale.y
+            screwAnchorPoint2.name = SCREW_ANCHOR_POINT
+            screwAnchorPoint2.eulerAngles = screwAnchorPoint1.eulerAngles
             
+            let moveVectorNode2 = SCNNode()
+            moveVectorNode2.name = MOVE_VECTOR_NODE
+            moveVectorNode2.position = SCNVector3(-0.1, 0, 0)
+            screwAnchorPoint2.addChildNode(moveVectorNode2)
+            
+            furnitureNode.addChildNode(screwAnchorPoint1)
+            furnitureNode.addChildNode(screwAnchorPoint2)
             break
         case NOLMYRA_CONJOINED_PIECE3:
             furnitureNode = (SCNScene(named: "art.scnassets/nolmyraConjoinedPiece3.scn")?.rootNode.childNode(withName: NOLMYRA_CONJOINED_PIECE3, recursively: false))!
