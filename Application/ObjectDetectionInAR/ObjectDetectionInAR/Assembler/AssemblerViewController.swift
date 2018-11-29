@@ -364,10 +364,11 @@ extension AssemblerViewController: InstructionExecutionerDelegate
                 {
                     guard let screwAnchor = self.sceneView.scene.rootNode.childNode(withName: SCREW_ANCHOR_POINT, recursively: true) else { return }
                     let screw = GeometryFactory.makeScrew1()
-                    screw.eulerAngles.z = -Float.pi / 2
+                    screw.eulerAngles = screwAnchor.eulerAngles
                     _ = self.addNode(screw, screwAnchor.worldPosition, NOLMYRA_SCREW1)
-                    let move = SCNVector3(0.1, 0, 0)
-                    screw.position.x -= move.x
+                    
+                    let move = screwAnchor.childNode(withName: MOVE_VECTOR_NODE, recursively: false)!.position
+                    screw.position = screw.position.substract(other: move)
                     screw.runAction(SCNAction.move(by: move, duration: TimeInterval(ANIMATION_DURATION)))
                 }
             }

@@ -126,6 +126,13 @@ class GeometryFactory
             screwAnchorPoint.position.z = -0.01 / furnitureNode.scale.z
             screwAnchorPoint.position.y = 0.025 / furnitureNode.scale.y
             screwAnchorPoint.position.x = -0.02 / furnitureNode.scale.x
+            screwAnchorPoint.eulerAngles.z = -Float.pi / 2
+            
+            let moveVectorNode = SCNNode()
+            moveVectorNode.name = MOVE_VECTOR_NODE
+            moveVectorNode.position = SCNVector3(0.1, 0, 0)
+            screwAnchorPoint.addChildNode(moveVectorNode)
+            
             furnitureNode.addChildNode(screwAnchorPoint)
             break
         case NOLMYRA_PIECE2:
@@ -156,6 +163,19 @@ class GeometryFactory
             anchorPoint.position.x = 0.57 / furnitureNode.scale.x
             anchorPoint.name = ANCHOR_POINT
             furnitureNode.addChildNode(anchorPoint)
+            
+            let screwAnchorPoint = SCNNode()
+            screwAnchorPoint.position = anchorPoint.position
+            screwAnchorPoint.name = SCREW_ANCHOR_POINT
+            screwAnchorPoint.eulerAngles.z = Float.pi / 2
+            
+            let moveVectorNode = SCNNode()
+            moveVectorNode.name = MOVE_VECTOR_NODE
+            moveVectorNode.position = SCNVector3(-0.1, 0, 0)
+            screwAnchorPoint.addChildNode(moveVectorNode)
+            
+            furnitureNode.addChildNode(screwAnchorPoint)
+            
             break
         case NOLMYRA_CONJOINED_PIECE3:
             furnitureNode = (SCNScene(named: "art.scnassets/nolmyraConjoinedPiece3.scn")?.rootNode.childNode(withName: NOLMYRA_CONJOINED_PIECE3, recursively: false))!
