@@ -9,10 +9,12 @@
  */
 
 import Foundation
+import AVFoundation
 import UIKit
 
 class InstructionExecutioner: ObjectDetectorDelegate
 {
+    var plingSoundPlayer: AVAudioPlayer?
     var delegate: InstructionExecutionerDelegate?
     var detector: ObjectDetector?
     var model: AssemblerModel?
@@ -35,6 +37,18 @@ class InstructionExecutioner: ObjectDetectorDelegate
     let repeatTimeIntervalInSeconds: Int = 1
     let totalAttemptsBeforeCancel: Int = 100
     private let workerQueue = DispatchQueue(label: "worker", qos: DispatchQoS.userInitiated)
+    
+    init()
+    {
+        setupAudioPlayer()
+    }
+    
+    func setupAudioPlayer()
+    {
+        guard let urlPath = Bundle.main.path(forResource: "cling", ofType: "mp3") else { return }
+        let url = URL(fileURLWithPath: urlPath)
+        plingSoundPlayer = try? AVAudioPlayer.init(contentsOf: url)
+    }
     
     func executeInstruction()
     {
@@ -123,6 +137,7 @@ class InstructionExecutioner: ObjectDetectorDelegate
                     part.screenPosition = rect
                     part.position = delegate?.getWorldPosition(rect)
                     model?.foundObjects.append(part)
+                    plingSoundPlayer?.play()
                 }
             }
             

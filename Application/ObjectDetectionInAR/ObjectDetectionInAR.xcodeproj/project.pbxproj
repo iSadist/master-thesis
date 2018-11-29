@@ -19,6 +19,7 @@
 		592DC1BE213FEF1A00E29665 /* SamplePhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592DC1BD213FEF1A00E29665 /* SamplePhotoViewController.swift */; };
 		593F79E521AC65F400AF3A01 /* ObjectPart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593F79E421AC65F400AF3A01 /* ObjectPart.swift */; };
 		594D8D44216749F4002F9CA3 /* ObjectTrackerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594D8D43216749F4002F9CA3 /* ObjectTrackerDelegate.swift */; };
+		595B6E2D21B073B400C58926 /* cling.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 595B6E2C21B073B400C58926 /* cling.mp3 */; };
 		59652B12216360BD00B0CC1A /* GeometryFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59652B11216360BD00B0CC1A /* GeometryFactory.swift */; };
 		59652B1821638DC600B0CC1A /* ObjectTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59652B1721638DC600B0CC1A /* ObjectTracker.swift */; };
 		59652B1C2164BA4600B0CC1A /* OverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59652B1B2164BA4600B0CC1A /* OverlayView.swift */; };
@@ -78,6 +79,7 @@
 		592DC1BD213FEF1A00E29665 /* SamplePhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SamplePhotoViewController.swift; sourceTree = "<group>"; };
 		593F79E421AC65F400AF3A01 /* ObjectPart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectPart.swift; sourceTree = "<group>"; };
 		594D8D43216749F4002F9CA3 /* ObjectTrackerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectTrackerDelegate.swift; sourceTree = "<group>"; };
+		595B6E2C21B073B400C58926 /* cling.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = cling.mp3; sourceTree = "<group>"; };
 		59652B11216360BD00B0CC1A /* GeometryFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeometryFactory.swift; sourceTree = "<group>"; };
 		59652B1721638DC600B0CC1A /* ObjectTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectTracker.swift; sourceTree = "<group>"; };
 		59652B1B2164BA4600B0CC1A /* OverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayView.swift; sourceTree = "<group>"; };
@@ -223,6 +225,14 @@
 			path = Storyboards;
 			sourceTree = "<group>";
 		};
+		595B6E2B21B073A500C58926 /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				595B6E2C21B073B400C58926 /* cling.mp3 */,
+			);
+			path = Audio;
+			sourceTree = "<group>";
+		};
 		E1ED296420BCA23B007DBE66 = {
 			isa = PBXGroup;
 			children = (
@@ -246,6 +256,7 @@
 		E1ED296F20BCA23B007DBE66 /* ObjectDetectionInAR */ = {
 			isa = PBXGroup;
 			children = (
+				595B6E2B21B073A500C58926 /* Audio */,
 				52A0B56C218863A900161C8E /* Models */,
 				594FE303217DF20F000D5068 /* Storyboards */,
 				594FE301217DF193000D5068 /* Protocols */,
@@ -385,6 +396,7 @@
 				E1ED297D20BCA23C007DBE66 /* LaunchScreen.storyboard in Resources */,
 				E1ED297A20BCA23C007DBE66 /* Assets.xcassets in Resources */,
 				E1ED297820BCA23B007DBE66 /* Main.storyboard in Resources */,
+				595B6E2D21B073B400C58926 /* cling.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
