@@ -323,6 +323,11 @@ extension AssemblerViewController: ARSCNViewDelegate
 
 extension AssemblerViewController: InstructionExecutionerDelegate
 {
+    func instructionSetHasCompleted()
+    {
+        // Implement
+    }
+    
     func getWorldPosition(_ rect: ObjectRectangle) -> SCNVector3?
     {
         let rectangle = rect.getRect()

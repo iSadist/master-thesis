@@ -51,6 +51,11 @@ class InstructionExecutioner: ObjectDetectorDelegate
 //            })
 //            repeatTimer?.fire()
         }
+        
+        if currentInstruction is CompleteInstruction
+        {
+            delegate?.instructionSetHasCompleted()
+        }
     }
     
     private func executeScanInstruction(instruction: ScanInstruction)

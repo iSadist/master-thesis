@@ -54,7 +54,7 @@ class Database
             nolmyraInstructions.append(AssembleInstruction(message: "Put these two pieces together", buttonText: "Done", firstItem: NOLMYRA_CONJOINED_PIECE2, secondItem: NOLMYRA_PIECE2, assembledItem: NOLMYRA_CONJOINED_PIECE3))
             nolmyraInstructions.append(ScanInstruction(message: "Looking for the last piece and the seat", buttonText: nil, firstItem: NOLMYRA_CONJOINED_PIECE3, secondItem: NOLMYRA_SEAT))
             nolmyraInstructions.append(AssembleInstruction(message: "Put these two pieces together", buttonText: "Done", firstItem: NOLMYRA_CONJOINED_PIECE3, secondItem: NOLMYRA_SEAT, assembledItem: "nolmyra"))
-            nolmyraInstructions.append(Instruction(message: "You are done putting together Nolmyra", buttonText: "Complete"))
+            nolmyraInstructions.append(CompleteInstruction(message: "You are done putting together Nolmyra", buttonText: "Complete"))
             return nolmyraInstructions
         default:
             return nil
