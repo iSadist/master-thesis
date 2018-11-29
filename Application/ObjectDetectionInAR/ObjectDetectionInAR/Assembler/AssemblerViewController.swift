@@ -415,7 +415,11 @@ extension AssemblerViewController: InstructionExecutionerDelegate
                         
                         let move = screwAnchor.childNode(withName: MOVE_VECTOR_NODE, recursively: false)!.position
                         screw.position = screw.position.substract(other: move)
-                        screw.runAction(SCNAction.move(by: move, duration: TimeInterval(ANIMATION_DURATION)))
+                        
+                        let screwAction = SCNAction.move(by: move, duration: TimeInterval(ANIMATION_DURATION))
+                        let reverseAction = SCNAction.move(by: SCNVector3Zero.substract(other: move), duration: TimeInterval(ANIMATION_DURATION))
+                        screw.runAction(SCNAction.repeatForever(
+                            SCNAction.sequence([screwAction, reverseAction])))
                     }
                 }
             }
