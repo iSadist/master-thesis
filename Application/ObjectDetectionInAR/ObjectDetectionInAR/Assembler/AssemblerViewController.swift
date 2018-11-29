@@ -348,6 +348,9 @@ extension AssemblerViewController: InstructionExecutionerDelegate
                 previousAnchorPoint = anchorPoint
             }
             
+            // HACK: Adds an extra action with no content at the end to make completion handler wait until the last action is done
+            actions.append(SCNAction.move(by: SCNVector3Zero, duration: 1))
+            
             nodeActions.append((node, actions))
         }
         
@@ -359,10 +362,10 @@ extension AssemblerViewController: InstructionExecutionerDelegate
                 // Wait until the last item in the list
                 if index == nodeActions.count - 1
                 {
-                    let screwAnchor = self.sceneView.scene.rootNode.childNode(withName: SCREW_ANCHOR_POINT, recursively: true)
+                    guard let screwAnchor = self.sceneView.scene.rootNode.childNode(withName: SCREW_ANCHOR_POINT, recursively: true) else { return }
                     let screw = GeometryFactory.makeScrew1()
                     screw.eulerAngles.z = -Float.pi / 2
-                    self.addNode(screw, screwAnchor!.worldPosition, NOLMYRA_SCREW1)
+                    _ = self.addNode(screw, screwAnchor.worldPosition, NOLMYRA_SCREW1)
                     let move = SCNVector3(0.1, 0, 0)
                     screw.position.x -= move.x
                     screw.runAction(SCNAction.move(by: move, duration: TimeInterval(ANIMATION_DURATION)))
