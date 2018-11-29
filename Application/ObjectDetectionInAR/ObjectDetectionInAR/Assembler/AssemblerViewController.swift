@@ -325,7 +325,12 @@ extension AssemblerViewController: InstructionExecutionerDelegate
 {
     func instructionSetHasCompleted()
     {
-        // Implement
+        guard let floorPoint = translateToWorldPoint(from: CGPoint(x: 300, y: 500)) else { return }
+        let balloons = GeometryFactory.makeBalloons()
+        let balloonsNode = addNode(balloons, floorPoint, BALLOONS)
+        balloonsNode.runAction(SCNAction.group(
+            [SCNAction.move(by: SCNVector3(0, 0.6, 0), duration: TimeInterval(ANIMATION_DURATION + 3)),
+             SCNAction.fadeOut(duration: TimeInterval(ANIMATION_DURATION + 3))]))
     }
     
     func getWorldPosition(_ rect: ObjectRectangle) -> SCNVector3?

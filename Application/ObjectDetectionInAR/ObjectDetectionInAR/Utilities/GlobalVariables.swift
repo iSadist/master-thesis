@@ -15,3 +15,4 @@ let MARKING = "marking"
 let FURNITURE_NODE_OPACITY = 0.65
 let ANIMATION_DURATION = 2
 let MOVE_VECTOR_NODE = "moveVector"
+let BALLOONS = "balloons"

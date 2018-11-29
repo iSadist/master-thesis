@@ -287,4 +287,12 @@ class GeometryFactory
         node.addChildNode(screwNode)
         return node
     }
+    
+    static func makeBalloons() -> SCNNode
+    {
+        let node = SCNNode()
+        let balloonNode = (SCNScene(named: "art.scnassets/balloons.scn")?.rootNode.childNode(withName: BALLOONS, recursively: false))!
+        node.addChildNode(balloonNode)
+        return node
+    }
 }
