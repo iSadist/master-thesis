@@ -179,7 +179,8 @@ class GeometryFactory
             
             let screwAnchorPoint2 = SCNNode()
             screwAnchorPoint2.position = screwAnchorPoint1.position
-            screwAnchorPoint2.position.y -= 0.44 / furnitureNode.scale.y
+            screwAnchorPoint2.position.z += 0.04 / furnitureNode.scale.z
+            screwAnchorPoint2.position.y -= 0.455 / furnitureNode.scale.y
             screwAnchorPoint2.name = SCREW_ANCHOR_POINT
             screwAnchorPoint2.eulerAngles = screwAnchorPoint1.eulerAngles
             
@@ -209,6 +210,54 @@ class GeometryFactory
             anchorPoint.position.x = -0.305 / furnitureNode.scale.x
             anchorPoint.name = ANCHOR_POINT
             furnitureNode.addChildNode(anchorPoint)
+            
+            let screwAnchorPoint1 = SCNNode()
+            screwAnchorPoint1.position = anchorPoint.position
+            screwAnchorPoint1.position.x += 0.0 / furnitureNode.scale.x
+            screwAnchorPoint1.position.y += 0.005 / furnitureNode.scale.y
+            screwAnchorPoint1.position.z += 0.0 / furnitureNode.scale.z
+            screwAnchorPoint1.name = SCREW_ANCHOR_POINT
+            
+            let moveVectorNode1 = SCNNode()
+            moveVectorNode1.name = MOVE_VECTOR_NODE
+            moveVectorNode1.position = SCNVector3(0, 0.1, 0)
+            screwAnchorPoint1.addChildNode(moveVectorNode1)
+            
+            let screwAnchorPoint2 = SCNNode()
+            screwAnchorPoint2.position = screwAnchorPoint1.position
+            screwAnchorPoint2.position.y += 0.055 / furnitureNode.scale.y
+            screwAnchorPoint2.position.z += 0.22 / furnitureNode.scale.z
+            screwAnchorPoint2.name = SCREW_ANCHOR_POINT
+
+            let moveVectorNode2 = SCNNode()
+            moveVectorNode2.name = MOVE_VECTOR_NODE
+            moveVectorNode2.position = SCNVector3(0, 0.1, 0)
+            screwAnchorPoint2.addChildNode(moveVectorNode2)
+            
+            let screwAnchorPoint3 = SCNNode()
+            screwAnchorPoint3.position = screwAnchorPoint1.position
+            screwAnchorPoint3.position.x += 0.61 / furnitureNode.scale.x
+            screwAnchorPoint3.name = SCREW_ANCHOR_POINT
+            
+            let moveVectorNode3 = SCNNode()
+            moveVectorNode3.name = MOVE_VECTOR_NODE
+            moveVectorNode3.position = SCNVector3(0, 0.1, 0)
+            screwAnchorPoint3.addChildNode(moveVectorNode3)
+            
+            let screwAnchorPoint4 = SCNNode()
+            screwAnchorPoint4.position = screwAnchorPoint2.position
+            screwAnchorPoint4.position.x += 0.61 / furnitureNode.scale.x
+            screwAnchorPoint4.name = SCREW_ANCHOR_POINT
+            
+            let moveVectorNode4 = SCNNode()
+            moveVectorNode4.name = MOVE_VECTOR_NODE
+            moveVectorNode4.position = SCNVector3(0, 0.1, 0)
+            screwAnchorPoint4.addChildNode(moveVectorNode4)
+            
+            furnitureNode.addChildNode(screwAnchorPoint1)
+            furnitureNode.addChildNode(screwAnchorPoint2)
+            furnitureNode.addChildNode(screwAnchorPoint3)
+            furnitureNode.addChildNode(screwAnchorPoint4)
             break
         default:
             furnitureNode = SCNNode()
