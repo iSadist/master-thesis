@@ -94,7 +94,7 @@ environment the user will interact with. An example of how a scene like that loo
 To load a scene, a new .scn file must be created in the art.scnassets folder and fetched like below.
 \lstinputlisting[language=swift,firstline=154,lastline=156]{../../Application/ObjectDetectionInAR/ObjectDetectionInAR/Assembler/AssemblerViewController.swift}
 
-When ARScene detects objects, images, planes etc. it calls the renderer function. This function can be implemented by setting the ViewController to conform to the ARSCNViewDelegate. ARScene adds an anchor and a node for the place where it detected it, and this can be used inside the function to render new nodes or other logic.
+When ARScene detects objects, images, planes etc. it calls the renderer function. This function can be implemented by setting the ViewController to conform to the ARSCNViewDelegate. ARScene adds an anchor (ARAnchor) and a node (SCNNode) for the place where it detected it, and this can be used inside the function to render new nodes or other logic.
 
 \lstinputlisting[language=swift,firstline=215,lastline=230]{../../Application/ObjectDetectionInAR/ObjectDetectionInAR/Assembler/AssemblerViewController.swift}
 
