@@ -4,15 +4,13 @@ To first get an understanding of why this project was done, it is important for 
 
 \subsection{Background}
 \label{subsecBackground}
-Why is AR and Object recognition interesting, for the consumers and Jayway
-
 The idea of Augmented Reality is to render virtual object in the real world. This usually requires hardware in the form of a camera and display, a processing unit and software. Common AR devices today are the HoloLens \cite{microsoft}, Google's Glass \cite{googleGlasses} and a vast amount of mobile devices, such as Apple's iPhone X \cite{appleAR}. 
 
 The general interest for AR has undeniably grown in recent years, with mobile games and applications such as Niantic's Pokémon Go \cite{pokemonGO} and IKEA's IKEA Place \cite{IKEAPlace} the AR industry has peaked a general interest and sources speculate it could be a \$90 million dollar industry by 2022 \cite{digi-capital}.
  But Augmented Reality has not only reached the casual users; the technology has also peaked an interest in several industries. One such project is Fieldbit's Fieldbit Hero \cite{fieldbit}, a platform enabling technicians to get instant AR annotations to their AR devices from an engineer, allowing the technician to get visual instructions while simultaneously  being able to work hands-free. 
  
-[SKRIVA MER OM OBJECT DETECTION OCH OBJECT RECOGNITION]
-
+However, as of now, most localization and identification of objects within AR are done using marker detection \cite{markerDetection}. An alternative to this would be to use \textit{Deep Neural Networks}, as they have been proven to be very useful for object detection in images. The hype around neural networks have been particularly strong since AlexNet scored high in the ImageNet LSVRC-2010 challenge and the ImageNet ILSVRC-2012 challenge \cite{NIPS2012_4824}. They accomplished these feats by making use of new methods, e.g. \textit{dropout}. Since then several different types of network models have been created. Now we have network models that can detect both where an object is in an image, and what the object is, in one go. One such network is \textit{YOLO}\cite{YOLO1}. By adopting such a network, the need for having to mark objects would drop significantly and it would open up for many more possible use cases for AR.
+ 
 \subsection{Previous studies}
 \label{subsecPrevStud}
 D. Chatzopoulos et al.(2017) describes the basics of Mobile Augmented Reality, its advancements and it's flaws. They estimate that MAR is the most promising field of mobile applications and that it will have a massive impact on how we interact with the real world. However, they also go through some of the current hiccoughs with the technology, such as bandwith limitation and the computing power required. 
