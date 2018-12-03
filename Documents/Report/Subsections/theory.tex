@@ -65,8 +65,6 @@ hardware components make this task possible, including gyro, accelerometer and a
 \end{center}
 \end{figure}
 
-\subsubsection{Cameras}
-
 \subsubsection{Other inputs}
 Compass, Gyroscope, Accelerometer  etc.
 
@@ -227,13 +225,6 @@ It is kind of like when someone has an off pitch in a big choir. If there are ma
 
 The final technique is called early stopping and is based on validating the model after every epoch and stopping the training when the validation loss, or some other criteria, is not improving anymore.
 
-\subsubsection{Deep Neural Networks}
-% Write about how Deep Neural Networks work and how it's applyed to image classification
-
-\subsubsection{Transfer Learning}
-% Write about the theory behind Transfer Learning
-
-
 \subsection{Object Detection with traditional machine learning}
 % Write about feature based detection and segmentation
 
@@ -337,7 +328,7 @@ Comparisons done by the team working on \textit{YOLO} found that, compared to ot
 Throughout the years Redmon et al. has been working on updating the design pattern of the 
 YOLO network. First in 2016 when they introduced \textit{YOLOv2} and then April 2018 with \textit{YOLOv3} \cite{YOLO2}\cite{YOLO3}. \textit{YOLOv2} added a few concepts to the system to make it even more fast and accurate than the earlier iteration. It removed the fully connected layers and is was now possible to train on several different input image resolutions and it could now also predict many more bounding boxes than its predecessor. \textit{YOLOv3} added some changes which improved its ability to detect small objects, with the trade off of having a bit worse performance when finding larger sized objects.  
 
-\subsection{mean Average Precision}
+\subsection{Mean Average Precision}
 Metrics for object detection
 \url{https://github.com/rafaelpadilla/Object-Detection-Metrics}
 
@@ -357,9 +348,5 @@ COCO Detection Evaluation
 [RECALL]
 
 [IOU]
-
-
-\subsection{Object recognition with machine learning}
-
 
 \newpage
