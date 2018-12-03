@@ -21,6 +21,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="5Tx-GT-lt3" appends="YES" id="qKg-CR-RAt"/>
+                                    <outletCollection property="gestureRecognizers" destination="60P-kb-AqR" appends="YES" id="mCZ-5l-QDt"/>
+                                </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nj7-bF-yoU">
                                 <rect key="frame" x="25" y="653" width="325" height="125"/>
@@ -92,6 +96,16 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="5Tx-GT-lt3">
+                    <connections>
+                        <action selector="panGesture:" destination="BV1-FR-VrT" id="2q1-ey-Gxx"/>
+                    </connections>
+                </panGestureRecognizer>
+                <tapGestureRecognizer id="60P-kb-AqR">
+                    <connections>
+                        <action selector="tapGesture:" destination="BV1-FR-VrT" id="Y2Y-QW-YKz"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2282" y="40"/>
         </scene>

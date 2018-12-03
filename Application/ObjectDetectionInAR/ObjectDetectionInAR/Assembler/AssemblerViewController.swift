@@ -280,6 +280,28 @@ class AssemblerViewController: UIViewController
         model.instructionHasFailed = false
         executioner.nextInstruction()
     }
+    
+    @IBAction func tapGesture(_ sender: UITapGestureRecognizer)
+    {
+        if DEBUG
+        {
+            let location = sender.location(in: overlayView)
+            let rect = CGRect(x: location.x, y: location.y, width: 2, height: 2)
+            overlayView.rectangles = [ObjectRectangle(rectangle: rect)]
+            overlayView.setNeedsDisplay()
+        }
+    }
+    
+    @IBAction func panGesture(_ sender: UIPanGestureRecognizer)
+    {
+        if DEBUG
+        {
+            let location = sender.location(in: overlayView)
+            let rect = CGRect(x: location.x, y: location.y, width: 2, height: 2)
+            overlayView.rectangles = [ObjectRectangle(rectangle: rect)]
+            overlayView.setNeedsDisplay()            
+        }
+    }
 }
 
 extension AssemblerViewController: ARSCNViewDelegate
