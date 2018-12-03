@@ -32,9 +32,6 @@ class InstructionExecutioner: ObjectDetectorDelegate
     }
     
     var attempts = 0
-    var isInstructionComplete: Bool = false
-    var repeatTimer: Timer?
-    let repeatTimeIntervalInSeconds: Int = 1
     let totalAttemptsBeforeCancel: Int = 100
     private let workerQueue = DispatchQueue(label: "worker", qos: DispatchQoS.userInitiated)
     
@@ -45,7 +42,7 @@ class InstructionExecutioner: ObjectDetectorDelegate
     
     func setupAudioPlayer()
     {
-        guard let urlPath = Bundle.main.path(forResource: "cling", ofType: "mp3") else { return }
+        guard let urlPath = Bundle.main.path(forResource: "plop", ofType: "mp3") else { return }
         let url = URL(fileURLWithPath: urlPath)
         plingSoundPlayer = try? AVAudioPlayer.init(contentsOf: url)
     }
@@ -56,14 +53,6 @@ class InstructionExecutioner: ObjectDetectorDelegate
         {
             model?.foundObjects.removeAll()
             executeScanInstruction(instruction: scanInstruction)
-        }
-        
-        if let assembleInstruction = currentInstruction as? AssembleInstruction
-        {
-//            repeatTimer = Timer.scheduledTimer(withTimeInterval: TimeInterval(repeatTimeIntervalInSeconds), repeats: true, block: {_ in
-//                self.detectAndTrackObjects(objects: [assembleInstruction.firstItem!, assembleInstruction.secondItem!, assembleInstruction.assembledItem!])
-//            })
-//            repeatTimer?.fire()
         }
         
         if currentInstruction is CompleteInstruction
@@ -80,8 +69,6 @@ class InstructionExecutioner: ObjectDetectorDelegate
     
     func nextInstruction()
     {
-        repeatTimer?.invalidate()
-        
         if instructions?.isEmpty ?? true
         {
             currentInstruction = nil
@@ -98,12 +85,6 @@ class InstructionExecutioner: ObjectDetectorDelegate
         workerQueue.async {
             self.detector?.findObjects(pixelBuffer: frame, parts: objects)
         }
-    }
-    
-    func instructionComplete()
-    {
-        repeatTimer?.invalidate()
-        delegate?.instructionCompleted()
     }
     
     // Mark: - Object detector delegate
@@ -137,6 +118,8 @@ class InstructionExecutioner: ObjectDetectorDelegate
                     part.screenPosition = rect
                     part.position = delegate?.getWorldPosition(rect)
                     model?.foundObjects.append(part)
+                    plingSoundPlayer?.stop()
+                    plingSoundPlayer?.prepareToPlay()
                     plingSoundPlayer?.play()
                 }
             }
@@ -151,10 +134,6 @@ class InstructionExecutioner: ObjectDetectorDelegate
                 // Re-execute the same instruction if all the parts hasn't been discovered yet.
                 executeScanInstruction(instruction: currentInstruction as! ScanInstruction)
             }
-        }
-        
-        if let assembleInstruction = currentInstruction as? AssembleInstruction
-        {
         }
     }
 }

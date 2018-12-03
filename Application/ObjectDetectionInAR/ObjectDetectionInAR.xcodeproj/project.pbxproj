@@ -23,6 +23,7 @@
 		59652B12216360BD00B0CC1A /* GeometryFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59652B11216360BD00B0CC1A /* GeometryFactory.swift */; };
 		59652B1821638DC600B0CC1A /* ObjectTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59652B1721638DC600B0CC1A /* ObjectTracker.swift */; };
 		59652B1C2164BA4600B0CC1A /* OverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59652B1B2164BA4600B0CC1A /* OverlayView.swift */; };
+		59869E5E21B5202F00551141 /* plop.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 59869E5D21B5202F00551141 /* plop.mp3 */; };
 		598D526D215149BE00DD307E /* ImageConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598D526C215149BE00DD307E /* ImageConverter.swift */; };
 		599157A121402F4D00B3A8D7 /* ImageProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599157A021402F4D00B3A8D7 /* ImageProcessor.swift */; };
 		599F621421B031BD00E6FD6B /* CompleteInstruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599F621321B031BD00E6FD6B /* CompleteInstruction.swift */; };
@@ -83,6 +84,7 @@
 		59652B11216360BD00B0CC1A /* GeometryFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeometryFactory.swift; sourceTree = "<group>"; };
 		59652B1721638DC600B0CC1A /* ObjectTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectTracker.swift; sourceTree = "<group>"; };
 		59652B1B2164BA4600B0CC1A /* OverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayView.swift; sourceTree = "<group>"; };
+		59869E5D21B5202F00551141 /* plop.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = plop.mp3; sourceTree = "<group>"; };
 		598D526C215149BE00DD307E /* ImageConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageConverter.swift; sourceTree = "<group>"; };
 		599157A021402F4D00B3A8D7 /* ImageProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProcessor.swift; sourceTree = "<group>"; };
 		599F621321B031BD00E6FD6B /* CompleteInstruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteInstruction.swift; sourceTree = "<group>"; };
@@ -229,6 +231,7 @@
 			isa = PBXGroup;
 			children = (
 				595B6E2C21B073B400C58926 /* cling.mp3 */,
+				59869E5D21B5202F00551141 /* plop.mp3 */,
 			);
 			path = Audio;
 			sourceTree = "<group>";
@@ -397,6 +400,7 @@
 				E1ED297A20BCA23C007DBE66 /* Assets.xcassets in Resources */,
 				E1ED297820BCA23B007DBE66 /* Main.storyboard in Resources */,
 				595B6E2D21B073B400C58926 /* cling.mp3 in Resources */,
+				59869E5E21B5202F00551141 /* plop.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
