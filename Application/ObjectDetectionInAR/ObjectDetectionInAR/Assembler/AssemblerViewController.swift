@@ -158,7 +158,7 @@ class AssemblerViewController: UIViewController
         messageViewButton.isEnabled = model.isValid()
         skipButton.isEnabled = model.isValid()
         messageViewButton.isHidden = !model.isValid() || instruction?.buttonText == nil
-        messageViewText.text = model.isValid() ? instruction?.message : "Detecting the floor..."
+        messageViewText.text = model.isValid() ? instruction?.message : "Pan the camera over the floor to start..."
         messageViewButton.setTitle(instruction?.buttonText, for: .normal)
         
         messageView.isHidden = executioner.currentInstruction == nil
