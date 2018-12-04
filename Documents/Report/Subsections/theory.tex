@@ -198,8 +198,8 @@ Each element in the array is described as below
 This output is good for describing the probability for each element to be correct and is therefore commonly used
 in the output layer.
 
-\subsubsection{Loss/Optimizers}
-When training the model using backpropagation, the model will at first make a guess to what the right answer or value is based on the random initial weigh values. In the beginning, the model is usually mostly wrong and it is then important to know how wrong it was and in what direction it should go.
+\subsubsection{Calculating the loss}
+When training the model, it will at first make a guess to what the right answer or value is based on the random initial weigh values. In the beginning, the model is usually mostly wrong and it is then important to know how wrong it was and in what direction it should go.
 
 For this, the model uses a loss function to calculate that error. For different applications the loss function can be different.
 One way to calculate the error is to simply take the predicted value and subtract it with the correct value, $ error = y_p - y_c $.
@@ -209,9 +209,55 @@ Sometimes the sign of the error is not important. Then the absolute error can be
 Another approach is the \textbf{mean squared error} which squares the difference and takes the mean value over a few predictions.
 \[Error = \frac{1}{n} \cdot \displaystyle\sum_{i=1}^{n} (y_p - y_c)^{2} \]
 
-SGD
-Adam
-Nadam
+
+\subsubsection{Optimizers}
+Once the error has been calculated, the network will make changes to itself to improve the performance by decreasing the error value. This is called backpropagation.
+The principle behind backpropagation is to go backwards in the network from the output node and determining how each weight value, $ \omega_{ik} $, should change.\\
+
+A popular method for minimizing the error is to use \textbf{Gradient Decent} which works by ,step by step , go in the negative direction that minimize the error.
+The direction is determined by taking the derivative of the error function.
+The new weight value is calculated accordingly. $\eta$ is a chosen parameter called the learning rate.
+
+\[ \Delta \omega_{ik} = -\eta \frac{\delta E}{\delta \omega_{ik}} \]
+
+\begin{center}
+where the error function is
+\end{center}
+
+\[E = \frac{1}{N} \displaystyle\sum_{i=1}^{N} E(n) \]
+
+\begin{center}
+which leads to
+\end{center}
+
+\[ \Delta\omega_{ik} = \frac{1}{N}  \displaystyle\sum_{i=1}^{N} \Delta\omega_{ik}(n) \]
+
+The most common form of gradient decent is called \textbf{Stochastic gradient decent}.
+The difference is that SGD only evaluates on a small number of nodes/patterns and updates all the weights from that observation.
+
+\[ \Delta\omega_{ik} = \frac{1}{P}  \displaystyle\sum_{i=1}^{P} \Delta\omega_{ik}(p) \]
+
+\textbf{Adam} (which is short for Adaptive moment estimation) is another optimizer which is quite popular.
+The reason is because it has been proven to be a very effective algorithm in many different use cases.
+
+Adam is a kind of combination of using \textbf{RMSPROP} and SGD with momentum.
+Without going into too much detail, SGD with momentum keeps track of which direction the the improvement is in and keeps the improvement going in that same way. The optimisation goes faster when the previous direction is the same and slower when they are different. Almost like a rolling ball that gains speed as it is rolling down hill.
+RMSPROP does something similar and uses a running average of each weight value and the previous values importance can be controlled with a parameter. It also only uses the sign of the direction and NOT its value. Also RMSPROP has individual weights.
+
+Adam keeps a running average of both the past gradients and the squared past gradients.
+The full mathematical description of Adam is given by
+
+\[ \omega_i (t+1) = \omega_i(t) - \eta \frac{m_i}{\sqrt{v_i} + \epsilon} \]
+
+where
+
+\[ m_i (t+1) = \beta \]
+
+FINISH THIS EQUATION
+
+There are a lot of other optimizers such as \textbf{Adagrad}, \textbf{Adadelta}, \textbf{Nadam} etc. They all have their own advantage and use-cases. We won't go into further details about them.
+
+REFERENCE TO THE BOOK
 
 \subsubsection{Layers}
 
