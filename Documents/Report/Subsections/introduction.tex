@@ -26,24 +26,11 @@ Y LeCun and M.A. Ranzato goes in-depth on the history and progress of deep learn
 
 \subsection{The goal of this project}
 \label{subsecGoal}
-When working with Augmented Reality it is obviously interesting to know where planes are and how the camera moves in the scene to be able to render virtual object. But usually there is more than one single plane in ones environment. Usually there are other objects in the scene that affects how the virtual objects should be rendered. Sometimes maybe the virtual objects could interact with the real objects to make a more realistic scene. Because of this it can be very interesting to know what those objects actually are.
+Our goal is to try to combine Augmented Reality with Object detection and Object recognition to find out if it is feasible and if there is an actual desirable use case for this technique. 
 
-For example, if you are going to place a virtual furniture in your home it would be good to detect other furnitures in the area so that the virtual object can collide with the real object. This way, they will not intertwine with each other.
+This will be limited to the use of ARKit 2 developed by \textit{Apple} for iOS devices. An augmented reality application for iPhone X incorporating the use of modern machine learning models for object detection and recognition will be developed in order to test our thesis. The application will be a assembly manual for furniture. Deep neural networks will be trained to recognize the different available parts and configurations of said parts.  The model should then predict which parts it is seeing in the camera feed and show how they should be assembled in an AR scene. 
 
-% Our master thesis
-Or maybe one would like to give virtual instructions to a user for assembling or constructing a certain product or to do maintenance. It is then important to figure out what 3D objects there are in the scene to be able to render instructions on the right places.
-
-Augmented Reality technology has come a long way, but there are still things missing for making it a genuine experience. In ARKit, for instance, if a virtual object is rendered on top of a plane and a real object come in between the virtual object will still be rendered first. This makes it painfully obvious that the virtual object is just a 2D drawing on the screen.
-
-\begin{figure}[hbtp]
-\begin{center}
-\includegraphics[width = 0.25\textwidth]{./Images/overlapping2.jpg} 
-\includegraphics[width = 0.25\textwidth]{./Images/overlapping1.jpg} 
-\caption{Book shelf rendered in a corner. To the left no objects in front so it looks realistic.On the right, the book shelf has a lamp in front of it.}
-\end{center}
-\end{figure}
-
-Our goal is to try to combine Augmented Reality with Object detection and Object recognition to see if there is a possibility to create something valuable out of this. This report will investigate both the performance possibilities and the creative possibilities as well as research the current tools and try to push them to their limits.
+Hence, we will not research what is possible with other hardware, although, we will mention them. We will also restrict the amount of furniture we train on, as well as the environments they will be built in. However, we hypothesize that if it works for one furniture and one set of environments, it should be possible to scale for larger sets.
 
 \subsection{Jayway}
 This project is conducted partly on Jayway's request and much of the work is done in their office in Malmö.\\
