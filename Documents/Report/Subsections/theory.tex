@@ -355,7 +355,7 @@ The dual camera on the back works by taking two photos and comparing those to fi
 However, obtaining the depth data from the dual cameras in real time is not possible since it requires too much computational power. This unfortunately makes it impossible to use in an ARScene and thus not possible for this project.\\
 
 Despite all the available methods above, object detection without machine learning is still very tricky. These methods works best when the images are in an controlled environment, typically industrial, like finding screws on a white background (as they do in an article posted by combine.se). \cite{combine}
-When the environment is a more casual place tough, like recognizing furnitures indoors, the task becomes much more difficult. For this reason, object detection with pure algorithms is not very common in household applications. Instead object detection with machine learning methods such as RCNN networks are much more common nowadays.
+When the environment is a more casual place tough, like recognizing furniture indoors, the task becomes much more difficult. For this reason, object detection with pure algorithms is not very common in household applications. Instead object detection with machine learning methods such as RCNN networks are much more common nowadays.
 
 \subsection{Object Detection with deep learning}
 % Write about how one can do object detection by the use of ML
@@ -364,12 +364,44 @@ Big advantages with this is that classification and detection can be done in the
  step. For this project that is really desirable.
  
  \subsubsection{Convolutional Neural Networks}
+
+ Convolutional neural networks have been used for quite some time when it comes to deep learning and their capabilities are rather astounding, as proved by Krizhevsky et al \cite{NIPS2012_4824}.  They use layers which perform convolutions, hence it's name.  The input to a convolutional network are either 2D or 3D tensors, where the 3D alternative usually has color channels along the third dimension. Use of convolutional neural networks in image recognition for several reasons, e.g. it can tell of spatial relationships in an image. This section has been written with reference to V. Dumolin et al \cite{convArit}. 
  
- The convolutional layers, kernel size, stride.
+[EXEMBILD CNN]
  
- Pooling layers.
+ A convolutional layer performs the mathematical operation \textit{convolution} on the input tensor, which can be presented as an image. A kernel of size $k \cdot l$ slides across the input and sums pixel values that is included inside the kernel; a new image containing these sums is the output. Padding on the input can be used to account for values when the kernel is outside the input. Use of padding have an impact on the output size after the convolutional layer. Stride is also be used, which tells how much the kernel translates along an axis;  increased stride leads to subsampling.. Since changes of parameters in one axis doesn't affect outcome in another axis it simplifies explaining CNNs by having the parameter values being the same along both axes.
+
+ The common types of padding is \textit{no zero}, \textit{same} and \textit{full}; examples seen in figure \ref{fig:padding}. No Zero padding involves having no padding outside of the input. This means that the kernel never goes outside of the actual image, once a side of the kernel hits the side of the input it jump down to the next line (if stride is 1). 
  
- Flatten layer.
+ Same padding is used when one desires the output size of the layer to be the same as the input size. This is achieved by having a padding $p$ be $ p = \floor{\frac{k}{2}} $ for any odd kernel size $k$.
+  
+ With full padding one actually makes the output size larger than the input, by fully utilizing the every possible combination of the kernel and the input image. This is accomplished  by having the padding $p $ be $p = k - 1$ for any kernel size $k$. 
+ 
+ 
+ \begin{figure}[hbtp]
+\begin{center}
+\includegraphics[width = 0.3\textwidth]{./Images/noPad.png}
+\includegraphics[width = 0.3\textwidth]{./Images/samePad.png}
+\includegraphics[width = 0.3\textwidth]{./Images/fullPad.png} 
+\caption{Different examples of padding. Grid in green is the output, grid in blue is the input, and area in shadow is the current area kernel is at. Leftmost image shows a no zero padding being used. Here the kernel size is $k = 3$, input size is $i = 4$ and the output size is  $o = 2$, i.e., smaller then input.  In the middle image same padding is used; output size is the same as input size $o = i = 5$. In the rightmost image full padding is used. Here a bigger output size than the input size is produced, $o = 7, i = 5$. Images taken from \cite{convArit}}
+\label{fig:padding}
+\end{center}
+\end{figure}
+ 
+ 
+ Another useful feature used in a lot of convolutional neural networks is pooling. Pooling layers are somewhat similar to convolutional layers in that they use a sliding window which performs an operation on the contents of the window and outputs a new value. However, the difference is that they use other functions instead of linear addition. Two common pooling functions are \textit{max pooling}, where the output is the largest value within the window, and \textit{average pooling}, where the output is the average of the components within the window.  Pooling is commonly done do reduce the size of the input. Figure \ref{fig:pooling} shows example of pooling being used.
+ 
+ \begin{figure}[hbtp]
+\begin{center}
+\includegraphics[width = 0.45\textwidth]{./Images/avgPool.png}
+\includegraphics[width = 0.45\textwidth]{./Images/maxPool.png}
+\caption{Examples of two types of pooling. Blue grid represents input, green grid represents the output, and the shaded area is where the sliding window is located. The left image shows the use of average pooling, while the right one shows the use of max pooling.
+Images taken from \cite{convArit}}
+\label{fig:pooling}
+\end{center}
+\end{figure} 
+ 
+ [FLATTEN]/[MORE?]
 
 \subsubsection{RCNN and its different forms}
 
