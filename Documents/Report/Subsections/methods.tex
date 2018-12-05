@@ -233,40 +233,6 @@ After training and evaluating that the model lives up to a standard worth includ
 
 [iNCLUDE IMAGES FROM TESTING BOTH IN TURI AND FROM TESTING IN APP] 
 
-\subsection{Mock-up}
-To be able to design the layout and flow of the application, a mock-up of application was first created, illustrating the information -and use flow throughout the usage. In this section the general concept will be described and why it was designed in this way. The mock up was created using a free online tool called MockFlow \url{https://mockflow.com/}. 
-
-When the application is open up, one is taken to a furniture selection screen, see figure \ref{fig:furniture-select}, which allows the user to select which furniture they want to assemble. A user can select the furniture by either scrolling through the list, using the search bar, or using the built in barcode scanner. It was important for a first time user to understand what the purpose of the application was when they first open up the app. Therefore, first time users are greeted with an informative pop-up notification explaining the general purpose.
-
-\begin{figure}[hbtp]
-\begin{center}
-\includegraphics[height = 0.4\textheight]{./Images/Furniture_Select.png}
-\caption{Furniture selection screen which the user is greeted with when starting the application. The left image shows how it looks for first time users, and right side how it looks for known users.}
-\label{fig:furniture-select}
-\end{center}
-\end{figure}
-
-After selecting a furniture the user is taken to a detail view, figure \ref{fig:detal-view}. This view is there for the user to see bigger images of the furniture and its unique article number. This is useful since some furniture models look very similar. Here the user can also read other specific information about the piece of furniture as well as preview a 3D model of the furniture, showing how it will look like when it's completed. Once the user is ready, they are supposed to press the "Assemble" button to progress.
- 
-\begin{figure}[hbtp]
-\begin{center}
-\includegraphics[height = 0.4\textheight]{./Images/Detail_view.png}
-\caption{.}
-\label{fig:detal-view}
-\end{center}
-\end{figure}
-
-
-In the Assemble view the user is greeted with a live feed camera view as well as an information field containing instructions, see figure \ref{fig:assemble-view}. The first step for the user is to scan the pieces on the floor, allowing the machine learning model to find the pieces that are supposed to be assembled. Once the first parts are automatically found, they are highlighted using bounding boxes to alert the user of their current importance. The user can then press the "Next" button to continue. Afterwards, an animation showing the 3D parts in question being assembled properly and informatively. When the user has put together the parts, they press "Next". This process will then be fed with the next set of instructions and will continue like this until the furniture is fully assembled.
-\begin{figure}[hbtp]
-\begin{center}
-\includegraphics[height = 0.4\textheight]{./Images/AR_Scene.png}
-\caption{Shows from left to right the user flow of putting two pieces together.}
-\label{fig:assemble-view}
-\end{center}
-\end{figure}
-\newpage
-
 \subsection{iOS Application}
 
 \textbf{UML Diagram and explanation of how the app is put together}
