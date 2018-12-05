@@ -365,11 +365,17 @@ Big advantages with this is that classification and detection can be done in the
  
  \subsubsection{Convolutional Neural Networks}
 
- Convolutional neural networks have been used for quite some time when it comes to deep learning and their capabilities are rather astounding, as proved by Krizhevsky et al \cite{NIPS2012_4824}.  They use layers which perform convolutions, hence it's name.  The input to a convolutional network are either 2D or 3D tensors, where the 3D alternative usually has color channels along the third dimension. Use of convolutional neural networks in image recognition for several reasons, e.g. it can tell of spatial relationships in an image. This section has been written with reference to V. Dumolin et al \cite{convArit}. 
+ Convolutional neural networks have been used for quite some time when it comes to deep learning and their capabilities are rather astounding, as proved by Krizhevsky et al \cite{NIPS2012_4824}.  They use layers which perform convolutions, hence it's name.  The input to a convolutional network are either 2D or 3D tensors, where the 3D alternative usually has color channels along the third dimension. Use of convolutional neural networks in image recognition for several reasons, e.g. it can tell of spatial relationships in an image. This section has been written with reference to V. Dumolin et al \cite{convArit}. Figure \ref{fig:cnn} shows an example of how a CNN may look.
  
-[EXEMBILD CNN]
+ \begin{figure}[hbtp]
+\begin{center}
+\includegraphics[width = 0.9\textwidth]{./Images/convNetwork.jpg}
+\caption{Image shows the flow of a convolutional neural network from left to right. Several convolutions as well as pooling functions are done in order on the input image. The last feature map is then flattened to fit into the hidden layers, to then be classified with a softmax function. Image taken from \cite{cnnImage}}.
+\label{fig:cnn}
+\end{center}
+\end{figure}
  
- A convolutional layer performs the mathematical operation \textit{convolution} on the input tensor, which can be presented as an image. A kernel of size $k \cdot l$ slides across the input and sums pixel values that is included inside the kernel; a new image containing these sums is the output. Padding on the input can be used to account for values when the kernel is outside the input. Use of padding have an impact on the output size after the convolutional layer. Stride is also be used, which tells how much the kernel translates along an axis;  increased stride leads to subsampling.. Since changes of parameters in one axis doesn't affect outcome in another axis it simplifies explaining CNNs by having the parameter values being the same along both axes.
+ A convolutional layer performs the mathematical operation \textit{convolution} on the input tensor, which can be presented as an image. A kernel of size $k \cdot l$ slides across the input and sums pixel values that is included inside the kernel; a new image containing these sums is the output. Padding on the input can be used to account for values when the kernel is outside the input. Use of padding have an impact on the output size after the convolutional layer. Stride is also be used, which tells how much the kernel translates along an axis;  increased stride leads to subsampling.. Since changes of parameters in one axis doesn't affect outcome in another axis it simplifies explaining CNNs by having the parameter values being the same along both axes. The more convolutional layers used in a network, more complex shapes are detected. First layers may detect edges and corners, whereas, later layers may find features representing a car or a dog. A common addition to the layers are an activation function, commonly ReLU, which has been described earlier in the report. This gives faster training by only allowing for positive weights to pass the layer.
 
  The common types of padding is \textit{no zero}, \textit{same} and \textit{full}; examples seen in figure \ref{fig:padding}. No Zero padding involves having no padding outside of the input. This means that the kernel never goes outside of the actual image, once a side of the kernel hits the side of the input it jump down to the next line (if stride is 1). 
  
@@ -401,7 +407,7 @@ Images taken from \cite{convArit}}
 \end{center}
 \end{figure} 
  
- [FLATTEN]/[MORE?]
+When a classification is to be done in the CNN, the shape needs to be shifted to an array. This is done after the last pooling layer or convolutional layer. This array can then be passed into a hidden layer for classification.
 
 \subsubsection{RCNN and its different forms}
 
