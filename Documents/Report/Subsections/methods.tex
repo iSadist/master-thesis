@@ -235,8 +235,8 @@ CAN ELABORATE MORE ON THIS IN THE CONCLUSIONS
 
 
 \subsection{Design process of Machine Learning Model}
-It was decided that a machine learning model for classification of different parts were to be designed using Keras [CITE]. Firstly, a lot of data would have to be gathered with which to train the network upon. Pictures of the different parts of the furniture was taken from several different angles and on various amounts of background floors. 
-All images were scaled down to \imageSize to speed up the training process as well as remove possible unnecessary features [CITE]. To easily generate even more data, the images were rotated, had their brightness and sharpness altered. 
+It was decided that a machine learning model for classification of different parts were to be designed using Keras \cite{keras}. Firstly, a lot of data would have to be gathered with which to train the network upon. Pictures of the different parts of the furniture was taken from several different angles and on various amounts of background floors. 
+All images were scaled down to speed up the training process as well as remove possible unnecessary features [VAR DET VERKLIGEN SÅ?]. To easily generate even more data, the images were rotated, had their brightness and sharpness altered. 
 [INSERT IMAGE SET SHOWING DIFFERENT CONFIGURATIONS]
  
 % Write about what design choices we made, from first iterations or planing, to our final model, add some code. 
@@ -257,16 +257,16 @@ In implementing the convolutional network several configurations were tried and 
 
 \subsubsection{Transfer Learning}
 % Write about how we went about in order to insert Transfer Learning into the mix. 
-After trial of designing the network from scratch, it was decided to try and make use of pre-trained networks and then retrain them for another purpose. Models trained on imageNet [CITE] were chosen since that source domain is similar to this target domain. The models with their respective weights were loaded, without their fully connected layer. The top layer's weights were then frozen at different stages, and new fully connected layers were added on top, and new classifiers were trained. 
-Several different models were tried, including ResNet50[CITE], InceptionV3[CITE] and VGG19[CITE].
+After trial of designing the network from scratch, it was decided to try and make use of pre-trained networks and then retrain them for another purpose. Models trained on imageNet \cite{imageNet} were chosen since that source domain is similar to this target domain. The models with their respective weights were loaded, without their fully connected layer. The top layer's weights were then frozen at different stages, and new fully connected layers were added on top, and new classifiers were trained. 
+Several different models were tried, including ResNet50, InceptionV3 and VGG19, which where all integrated in Keras to start with.
 [ADD CODE]
 [ADD IMAGES/TEST RESULTS]
 
 \subsubsection{Turi Create}
 %Write about the testing an implementation of Turi
-Apple have developed their own toolkit for development of custom machine learning models called Turi Create \url{https://github.com/apple/turicreate}. This was created to help developers to easily implement their own ideas into an app. It includes methods for image classification, object detection etc.. 
+Apple have developed their own toolkit for development of custom machine learning models called Turi Create \cite{turiCreate}. This was created to help developers to easily implement their own ideas into an app. It includes methods for image classification, object detection etc.. 
 
-In this project, the Object Detection method included in Turi Create was tested. First, one has to create ground truth data for every image that was trained and tested on. This was done using Simple Image Annotator \url{https://github.com/sgp715/simple_image_annotator}, where one has to draw bounding boxes for the objects in the images and label them; the data output is in the \textit{.csv} format.  Turi Create uses a different format for annotations called \textit{.sframe}, however, they provide a simple Python script which automatically does the conversion. 
+In this project, the Object Detection method included in Turi Create was tested. First, one has to create ground truth data for every image that was trained and tested on. This was done using Simple Image Annotator \cite{simpleImage}, where one has to draw bounding boxes for the objects in the images and label them; the data output is in the \textit{.csv} format.  Turi Create uses a different format for annotations called \textit{.sframe}, however, they provide a simple Python script which automatically does the conversion. 
 
 Turi then trains a model using a re-implementation of the TinyYOLO netwok. It also utilizes transfer learning by starting with an image classifier that has been trained on the imageNet dataset and then does \textit{end-to-end finetuning} to change the network to a \textit{one-stage detector}.
 
