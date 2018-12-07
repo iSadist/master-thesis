@@ -68,7 +68,7 @@ the predicted value is correct or not.
 
 In this project the data is sets of images of different furniture parts. These images didn't exist anywhere online, so they had to be collected by taking lots of photos. The photos contained the part in different background and from different angles. The backgrounds were mostly of typical office surroundings, although there were exceptions (as will be explained shortly). All the photos were then resized to 256x256 pixels. The reason for choosing a square size is because when rotating them (this will be useful later on when augmenting data) the images will not have any black bars on the sides or be stretched.
 
-For the first furniture Nolmyra, there were only 3 unique part (, excluding screws and similar parts). Therefore the model was trained to recognize 4 things; the different parts and an unknown object. The unknown label was because the object detection algorithm could detect other objects and it is then unwanted that those objects be mistaken for furniture parts. This could of course also be done by setting a threshold on the confidence value, i.e if the model give a confidence value under X it discards it as being an unknown object. The problem with this type is that it is much harder to distinguish parts from unknown objects. This is due to that the best model is the one that can give a close to 100\% confidence value on every prediction.
+For the first furniture Nolmyra, there were only 3 unique part (, excluding screws and similar parts). Therefore the model was trained to recognize 4 things; the different parts and an unknown object. The unknown label was because the object detection algorithm could detect other objects and it is then unwanted that those objects be mistaken for furniture parts. This could of course also be done by setting a threshold on the confidence value, i.e if the model give a confidence value under 0.8 it discards it as being an unknown object. The problem with this type is that it is much harder to distinguish parts from unknown objects. This is due to that the best model is the one that can give a close to 100\% confidence value on every prediction.
 
 For this reason, photos of random objects were also added to the data set. Most of these photos were taken by ourselves, but some were also collected from the web. The images were placed in folders with a specific item which meant labelling them became much simpler. Just put all the images containing a certain part in the same folder.
 
@@ -217,7 +217,13 @@ One way to solve this is to perform the detection and recognition once, to later
 Object detection and recognition will then be repeated, but only update the state of the rectangles if the correct objects are identified.
 In this application, an arrow was drawn between the objects with an instructional text for the user. Doing this created a rather big issue though.
 
-ADD AN IMAGE OF THE ARROW AND THE RECTANGLES
+\begin{figure}[!hbtp]
+\begin{center}
+\includegraphics[width = 0.35\textwidth]{./Images/tracking.png}
+\caption{The image shows an early stage of the application were two pieces have been recognized by the network and an outline around them has been drawn. Between them, an arrow is rendered on the floor, showing how to put together the two pieces. The objects are continuously being tracked within the frame and the arrow is also updated.}
+\label{fig:tracking}
+\end{center}
+\end{figure}
 
 In this project, ARKit by Apple has been utilized. As previously stated, when working with ARKit, a frame from the camera is fetched by either calling snapshot() on the ARSCNView object or getting the currentFrame from the ARSession.
 However, both of these images contain both the RAW camera image and all the virtual items rendered in the ARScene. We did not find a way to capture just the RAW camera image.
