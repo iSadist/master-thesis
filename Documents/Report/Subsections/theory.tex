@@ -251,9 +251,11 @@ The full mathematical description of Adam is given by
 
 where
 
-\[ m_i (t+1) = \beta \]
+\[ m_i (t+1) = \beta_1m_i(t) + (1 - \beta_1) \frac{ \delta E(t) }{\delta\omega_i} \]
 
-FINISH THIS EQUATION
+\[ v_i (t+1) = \beta_2v_i(t) + (1 - \beta_2) (\frac{ \delta E(t) }{\delta\omega_i})^2 \]
+
+and $ \eta, \beta_1 $ and $ \beta_2 $ is adjustable parameters and $ \epsilon $ a small value to keep the equation from dividing by zero.\\
 
 There are a lot of other optimizers such as \textbf{Adagrad}, \textbf{Adadelta}, \textbf{Nadam} etc. They all have their own advantage and use-cases. We won't go into further details about them.
 
