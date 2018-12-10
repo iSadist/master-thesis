@@ -1,4 +1,5 @@
 import turicreate as tc
+tc.config.set_num_gpus(0)
 
 # Load the data
 data =  tc.SFrame('Nolmyra.sframe')
