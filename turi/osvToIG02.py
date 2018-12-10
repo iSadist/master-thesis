@@ -63,4 +63,4 @@ sf = sf_images.join(sf_annotations, on='name', how='left')
 sf['annotations'] = sf['annotations'].fillna([])
 
 # Save SFrame
-sf.save('ig02.sframe')
+sf.save('Nolmyra.sframe')
