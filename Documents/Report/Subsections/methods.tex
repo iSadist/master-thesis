@@ -314,7 +314,7 @@ model.save('Nolmyra030.model')
 # Export for use in Core ML
 model.export_coreml('Nolmyra030.mlmodel', include_non_maximum_suppression=False)
 \end{lstlisting}
-The results could also be further inspected by drawing the newly predicted bounding boxes on top of the original image, from this one can visualize how the model actually performed. This was done using code below. Some results from different models can be seen in the results. 
+The results could also be further inspected by drawing the newly predicted bounding boxes on top of the original image, from this one can visualize how the model actually performed. This was done using code below. Some of the resulting images from different models can be seen in the result section further below. 
 
 \begin{lstlisting}[language=python]
 #Load test data
@@ -337,10 +337,8 @@ image_prediction.explore()
 After training and evaluating that the model lives up to a standard worth including in this
  project, it was converted to the \textit{.mlmodel}. When inputting a frame from the
 application into the model, the model outputs a multi array containing an array for each
-  \textit{object} found. These predictions have not been \textit{non-max suppressed},
-which will have to be done to filter out most false positives and duplicates. A non-max
-threshold of $0.5$ was used as it is considered a traditional standard \cite{nms}. The
-code below shows how non-max suppression was implemented. 
+  \textit{object} found. These predictions have not been \textit{non-max suppressed}, since it that functionality is lost during the conversion from the model used in python, to the .mlmodel format. Thus, it has to be reimplemented in the application itself. 
+  A non-max supression threshold of $0.5$ was used as it is considered a traditional standard \cite{nms}. The code below shows how non-max suppression was implemented. 
 
 \begin{lstlisting}[language=swift]
     private func filterOverlappingPredictions(unorderedPredictions: [Prediction], nmsThreshold: Float) -> [Prediction]
