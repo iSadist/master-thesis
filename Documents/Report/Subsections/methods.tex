@@ -409,21 +409,93 @@ The form asked the participants the following questions:
 The answers were then evaluated and the result from this can be read in the result section.
 
 \subsection{iOS Application}
+The application is build for iOS using Xcode and Swift 4.0. The app has been developed specifically for iPhone X. It has also only been tested on iPhone X. However, the app should work on other iPhone models that support ARKit 2.0 as well.
 
-\textbf{UML Diagram and explanation of how the app is put together}
+\subsubsection{Class diagrams}
+Below are some class diagrams for the reader to better understand what different parts there are, 
+how they fit together and how the application works as a whole. The diagrams are divided into 
+three parts to be readable in the paper.
 
-\textbf{Sequence diagram for whole AR Logic with detector, tracker, executioner, assembler}
+\begin{figure}[!hbtp]
+\begin{center}
+\includegraphics[width = 1.1\textwidth]{./Images/AssemblerClassDiagram1.jpg}
+\caption{A class diagram of the assembler view part of the application. The Furniture class in the lower right is incomplete and is shown in the next diagram.}
+\label{fig:classdiagramassembler}
+\end{center}
+\end{figure}
 
-\textbf{Real screen shots of the application in use}
+The application follows the Model View Controller design pattern as well as the Delegate design pattern.
+This decision was made since many tools and features in iOS and Swift are implemented that way,
+so we are just following the standard procedure.
 
+\textbf{AssemblerViewController} is the controller for the view that holds the ARSCNView.
+It is responsible for what happens when the user taps on a button in that view and displaying the correct
+information to the user at the right times. It also holds the \textbf{Instruction Executioner} which holds a 
+set of instructions that it gets at initialisation. The instruction executioner executes the current
+instruction and therefore decides what will happen when it executes. Every instruction is executed on a worker queue thread to avoid the video feedback to freeze during execution.\\
 
+The InstructionExecutioner holds the \textbf{ObjectDetector} which finds specific objects in a 
+trained model from a pixel buffer. The found objects are passed back as \textbf{ObjectRectangles} through the delegate. The object rectangles are bounding boxes
+of the objects on screen. They are represented as CGRect's and can be stored and fetched as
+either regular or normalized rectangles. The normalized variants are needed in all kinds of machine learning purposes and the regular form are used in all GUI purposes, such as in the \textbf{OverlayView}. (Normalized 
+rectangles have values of 0-1 for widths, heights, x-, and y-position. The origin is in the lower left 
+corner.)\\
+
+The \textbf{AssemblerModel} is the model in the AssemblerViewController, but is also used in the InstructionExecutioner since they are highly dependent on each other.
+The most important attributes it holds are the \textbf{ObjectParts} that have been spotted by the 
+app during the execution of the current instruction.
+That way, all the parts needed for the current instruction do not need to be in the same image 
+together but instead can be spotted separately.\\
+
+\begin{figure}[!hbtp]
+\begin{center}
+\includegraphics[width = 0.9\textwidth]{./Images/FurnitureClassDiagram.jpg}
+\caption{A class diagram of the furniture selection views part of the application. The Furniture class.}
+\label{fig:classdiagramassembler}
+\end{center}
+\end{figure}
+
+The furniture that the user wants to put together is selected in a collection view \textbf{FurnitureSelectionViewController}
+which conforms to the UICollectionViewDelegate- and UICollectionViewDataSource protocol for the collection view functionality.
+The data to be viewed in the controller is fetched from the \textbf{Database} class.
+The return data from the class are hardcoded from the start but can easily be changed to fetch
+data from a server.\\
+
+The \textbf{Furniture} holds all the information about a specific furniture as well as the instruction set of how to put it together. The instruction set consists of \textbf{Instruction}'s that can be
+of the kind \textbf{ScanInstruction}, \textbf{AssembleInstruction} or \textbf{CompleteInstruction}.
+A regular Instruction is usually just text instructions to the user, while the scan instructions tell the instruction executioner to look for specific parts during that step.
+The assemble instruction is run when the user is in the process of assembling two parts.
+Finally the complete instruction is given which tells the executioner that the furniture has been fully assembled.\\
+
+For scanning barcodes, the \textbf{BarcodeScannerViewController} is used, which inherits all the photo capture functionality from the \textbf{ImageViewController}.\\
+
+\begin{figure}[!hbtp]
+\begin{center}
+\includegraphics[width = 0.5\textwidth]{./Images/UtilitiesClassDiagram.jpg}
+\caption{A class diagram of the utilities part of the application. These are some classes that make the rest of the code in the application easier to understand and use.}
+\label{fig:classdiagramassembler}
+\end{center}
+\end{figure}
+
+In the utilities folder there are some classes that simplifies the rest of the application
+by holding code that removes a lot of redundancy.
+
+The \textbf{GeometryFactory} creates all the 3D geometry for the ARScene and return the nodes 
+containing this geometry. An example is that it can create all the furniture parts as virtual object 
+nodes to be placed in the scene.
+
+A lot of conversion between pixel buffers and UIImage's are made and the \textbf{ImageConverter }
+eases the pain of having to do that in many places.
+
+Finally the \textbf{Prediction} class helps the object detector when getting results
+from the VNCoreMLRequest.
 
 \subsubsection{Connecting two pieces in AR}
 After finding the specific pieces that are supposed to be connected they are created as
 virtual objects in the scene on their respective locations. The location is determined using
 hit tests of the screen positions to the detected plane from the ARScene.
 
-The virtual objects are rendered in the scene using SCNNode's as talked about in [SECTION WHERE WE TALK ABOUT ARKIT] and the node position is the origin of the 3D model. The origin has been chosen to be at a location that is touching the floor when it is standing. That way they can easily be placed to look like they are standing right on the floor.
+The virtual objects are rendered in the scene using SCNNode's as talked about in \ref{subsecARKit} and the node position is the origin of the 3D model. The origin has been chosen to be at a location that is touching the floor when it is standing. That way they can easily be placed to look like they are standing right on the floor.
 When both pieces are placed in the scene they are to be moved with an animation in a way so that they become connected.
 
 Each virtual object node can embed another node called the "anchor point". The position of this node within the parent node is where the other object is to be connected. To connect them, either the object without the anchor point moves to the anchor point position, or the two object move so that each of their anchor points are at the same position.
@@ -484,11 +556,27 @@ This is accomplished using the algorithm below.
 
 Afterwards, the items in 'action' are performed on the respective node.
 
-\begin{center}
-\textbf{Log book}
-\end{center}
+\subsubsection{The finished GUI}
+The finished GUI is similar to the prototype but some details are different.
 
-\textbf{2018-09-18}
-When training the object recognition net, they where trained on only the red channel and although it technically worked by inputting an RGB image later on, it obviously gave us completely bogus results.
+\begin{figure}[!hbtp]
+\begin{center}
+\includegraphics[width = 0.3\textwidth]{./Images/Application1}
+\includegraphics[width = 0.3\textwidth]{./Images/Application2}
+\includegraphics[width = 0.3\textwidth]{./Images/Application3}
+\caption{Images from the use of the application when selecting a furniture and right before starting the assembler view.}
+\label{fig:applicationSelection}
+\end{center}
+\end{figure}
+
+\begin{figure}[!hbtp]
+\begin{center}
+\includegraphics[width = 0.3\textwidth]{./Images/Application4}
+\includegraphics[width = 0.3\textwidth]{./Images/Application5}
+\includegraphics[width = 0.3\textwidth]{./Images/Application6}
+\caption{Images from the application when having started the ARScene, finding objects and showing animations when putting them together.}
+\label{fig:applicationAssembler}
+\end{center}
+\end{figure}
 
 \newpage
