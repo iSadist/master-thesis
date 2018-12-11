@@ -1,2 +1,9 @@
 First time: image size 256x256
 {'average_precision_50': {'piece1': 0.9844439022846686, 'piece2': 0.9994243902679604, 'seat': 1.0}, 'mean_average_precision_50': 0.9946227641842097}
+
+5% : 
+{'mean_average_precision': 0.1706407057261053}
+
+20% : 
+{'mean_average_precision': 0.3926975572411251}
+
