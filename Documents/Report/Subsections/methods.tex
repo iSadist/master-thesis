@@ -272,17 +272,33 @@ Several different models were tried, including ResNet50, InceptionV3 and VGG19, 
 %Write about the testing an implementation of Turi
 Apple have developed their own toolkit for development of custom machine learning models called Turi Create \cite{turiCreate}. This was created to help developers to easily implement their own ideas into an app. It includes methods for image classification, object detection etc.. 
 
-In this project, the Object Detection method included in Turi Create was tested. First, one has to create ground truth data for every image that was trained and tested on. This was done using Simple Image Annotator \cite{simpleImage}, where one has to draw bounding boxes for the objects in the images and label them; the data output is in the \textit{.csv} format.  Turi Create uses a different format for annotations called \textit{.sframe}, however, they provide a simple Python script which automatically does the conversion. 
+In this project, the Object Detection method included in Turi Create was tested. First, one
+ has to create ground truth data for every image that was trained and tested on. This was
+ done using Simple Image Annotator \cite{simpleImage}, where one has to draw bounding
+  boxes for the objects in the images and label them; the data output is in the \textit{.csv} format.  Turi Create uses a different format for annotations called \textit{.sframe},
+  however, they provide a simple Python script which automatically does the conversion. 
 
 Turi then trains a model using a re-implementation of the TinyYOLO netwok. It also utilizes transfer learning by starting with an image classifier that has been trained on the imageNet dataset and then does \textit{end-to-end finetuning} to change the network to a \textit{one-stage detector}.
 
-Several models were trained, with different amount of training data, to evaluate how many were needed to get a decent result. The Turi website states that at least 30 samples of each class is needed to generate a good enough model. Hence, we tested for even lower samples, as well as much more. Lowest amount of training images were around 50, and highest  were around 1000. The \textit{mean average precision} was measured for each model using 200 testing images, and then plotted to create a graph showing how it changed, depending on the amount of training data was used. Result from this can be seen in the result section of the report. The best performing model was then to be used in the application.
+Several models were trained, with different amount of training data, to evaluate how many
+ were needed to get a decent result. The Turi website states that at least 30 samples of
+each class is needed to generate a good enough model. Hence, we tested for even lower
+samples, as well as much more. Lowest amount of training images were around 50, and
+highest  were around 1000. The \textit{mean average precision} was measured for each model using 200 testing images, and then plotted to create a graph showing how it
+ changed, depending on the amount of training data was used. Result from this can be
+ seen in the result section of the report. The best performing model was then to be used in the application.
 
 [CODE FROM TURI?]
 [iNCLUDE IMAGES FROM TESTING  IN TURI]
 \subsubsection{Importing model to application}
 
-After training and evaluating that the model lives up to a standard worth including in this project, it was converted to the \textit{.mlmodel}. When inputting a frame from the application into the model, the model outputs a multi array containing an array for each \textit{object} found. These predictions have not been \textit{non-max suppressed}, which will have to be done to filter out most false positives and duplicates. A non-max threshold of $0.5$ was used as it is considered a traditional standard \cite{nms}. The code below shows how non-max suppression was implemented. 
+After training and evaluating that the model lives up to a standard worth including in this
+ project, it was converted to the \textit{.mlmodel}. When inputting a frame from the
+application into the model, the model outputs a multi array containing an array for each
+  \textit{object} found. These predictions have not been \textit{non-max suppressed},
+which will have to be done to filter out most false positives and duplicates. A non-max
+threshold of $0.5$ was used as it is considered a traditional standard \cite{nms}. The
+code below shows how non-max suppression was implemented. 
 
 \begin{lstlisting}[language=swift]
     private func filterOverlappingPredictions(unorderedPredictions: [Prediction], nmsThreshold: Float) -> [Prediction]
@@ -325,11 +341,19 @@ After training and evaluating that the model lives up to a standard worth includ
  [INSERT IMAGES OF TESTING IN APP HERE  OR SOMEWHERE ELSE] 
 
 \subsection{User testing}
-Evaluating the AR experience is possible on a technical level, to research if the combination of AR with object recognition is feasible. This can be done by, for instance,  making sure the application is running at an acceptable frame rate. However, as this report also want to research into the desirability of this combination of technology, the same approach is not as appropriate. What was done was to ourselves test the application, as well as get outside evaluations through user tests.
+Evaluating the AR experience is possible on a technical level, to research if the
+ combination of AR with object recognition is feasible. This can be done by, for instance, 
+ making sure the application is running at an acceptable frame rate. However, as this
+  report also want to research into the desirability of this combination of technology, the
+  same approach is not as appropriate. What was done was to ourselves test the
+   application, as well as get outside evaluations through user tests.
 
-The user tests were set up by having people sign up online and to come test our application, as well as answering a form afterwards where they answered several questions. While the users were doing the tests, they were observed and comments were written down, reporting on how they behaved. 
+The user tests were set up by having people sign up online and to come test our
+ application, as well as answering a form afterwards where they answered several
+  questions. While the users were doing the tests, they were observed and comments were
+   written down, reporting on how they behaved. 
 
-[Insert Questions? Vi tar detta  imorn hur det ska skrivas :^)]
+[Insert Questions? Vi tar detta  imorn hur det ska skrivas :)]
 
 \subsection{iOS Application}
 

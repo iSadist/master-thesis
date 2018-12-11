@@ -13,11 +13,36 @@ A Matlab script was tried in order to find possible ways of segmenting out regio
 \subsection{Results from doing object detection with Turi}
 Because of the vast amount of possible use cases it was decided to scale the objective down. The model was trained only on a few floor backgrounds. 
 
-[IMAGES OF FLOOR IN JAYWAY?]
+The mean average precision from the different models that were trained were observed and can be read in table \ref{table:mAP}. 
 
-A user survey was done in order to evaluate the performance of the application. By having a multitude of interested people booking time slots for a ten minute testing period, a decent amount of sample data could be gathered and evaluated
+\begin{table}[h]
+\centering
+\begin{tabular}{ |c|c| } 
+ \hline
+ Percentage of training images used & mean\_average\_precision  \\ 
+ \hline
+ 5\% & 0.17064 \\ 
+ \hline
+ 20\% & 0.39269 \\ 
+ \hline
+\end{tabular}
+\caption{Mean average precision depending on the amount of training data used. 100\% corresponds to 926 images.}
+\label{table:mAP}
+\end{table}
 
-[UTFÖRA ANVÄNDARTESTER]
+These values can then be plotted giving us the graph shown in figure
+
+[SAMPLE BILD TILLS VI HAR GENERERAT KORREKT PLOT]
+\begin{figure}[hbtp]
+\begin{center}
+\includegraphics[width = 0.32\textwidth]{./Images/3dscanning1.png}
+\caption{Mean Average Precision plotted against the amount of training data used. 100\% corresponds to 926 images.}
+\label{fig:mAP}
+\end{center}
+\end{figure}
+
+
+
 
 \subsection{Rendered nodes in ARScene and how stable they were}
 Precision when doing the hit tests
@@ -29,6 +54,9 @@ How well the nodes stayed in their place (depending on environment?)
 What is the peek performance?
 
 \subsection{User tests}
+
+A user survey was done in order to evaluate the performance of the application. By having a multitude of interested people booking time slots for a ten minute testing period, a decent amount of sample data could be gathered and evaluated
+
 
 Sammanställ info: \\
 
