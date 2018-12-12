@@ -3,24 +3,100 @@
 \subsection{Summary}
 
 \subsection{Future Work}
-Because of the rapid development in the fields discussed in this report, much of what we've gone through could be improved in the future. With new \textit{Augmented Reality} and \textit{Mixed Reality} hardware being developed by big franchises, such as Facebook \cite{facebookAR}, the performance will increase ever so rapidly. 
-One improvement of our application would be to port it to, not only hand-held devices, but also the headgear, thus allowing the user to building with both hands and never have to pause during the assembly process. 
+INTROTEXT
 
-The model used also only included the pieces to one furniture, but one could easily include more in the future by gathering data for other furniture parts. 
+Because of the rapid development in the fields discussed in this report, much of what we've gone through could be improved in the future. With new \textit{Augmented Reality} and \textit{Mixed Reality} hardware being developed by big franchises, such as Facebook \cite{facebookAR}, the performance will increase ever so rapidly.
 
-Another issue with our model is that we are unable to detect screws and bolts because of their comparatively small size, instead, we just inform the user that screws should be used during a particular step using animations. This issue could possibly be fixed by adapting our model into taking account to smaller objects.
+The model used also only included the pieces to one furniture, but one could easily include more in the future by gathering data for other furniture parts.
 
-[SHARED EXPERIENCE IN AR]
+\subsubsection{Wearable}
+One improvement of our application would be to port it to, not only hand-held devices, but also the headgear, thus allowing the user to building with both hands and never have to pause during the assembly process.
+
+\subsubsection{Detecting smaller objects}
+Another issue with our model is that we are unable to detect screws and bolts because of their 
+comparatively small size, instead, we just inform the user that screws should be used during a particular step using animations.
+This issue could possibly be fixed by adapting our model into taking account to smaller objects.
+Some future work could be to investigate whether it is possible.
+
+\subsubsection{Mask RCNN}
+Since there was a lot of confusion around the green markings from the user tests, it would be an
+improvement to only mark the exact position of the part and not the surrounding floor.
+For this application only the bounding box of the 2D image is known, not the floor where it lays.
+
+A possible solution to this in the future could be to implement a Mask RCNN network. However, 
+the problem with this type right now is that it does not work in real time applications (definitely not on mobile devices).
+If this would get better it could be implemented in the app for a much nicer user experience.
+
+\subsubsection{Starting the app in the ARScene}
+When comparing to other AR Applications in the App Store, a lot of them starts right in the AR 
+scene. This seems to be somewhat of a convention in the AR community.
+
+We chose to have the user select the furniture before entering the AR scene to make the GUI
+implementation easier. However, it could be changed so that the furniture could be selected
+either from an overlay or a bottom card design over the AR scene view.
+
+\subsubsection{Shared AR experience}
+Ever since ARKit 2.0 was released, it is possible to share an AR experience with another user.
+Since the app already utilizes ARKit 2.0 it would be relatively simple to implement a shared 
+experience. The shared experience could make it easier for multiple people to work together to
+assemble a furniture. Big furnitures are rarely assembled by just one person.
+
+\subsubsection{Voiced instructions}
+Reading instructions on the screen while viewing a video preview is not the most intuitive in an
+AR environment. The eyes are mostly focused on what is going on in the environment and text
+instructions given on an overlay can easily be missed if they are subtle.
+
+Furthermore, people with hard of seeing could have a hard time with both reading the instructions
+and seeing the 3D models. This problem can be solved by introducing voiced instructions in the app.
+
+\subsubsection{Finding the anchor points with object detection}
+Since screws were to small to detect, so are the anchor points on the furniture parts that connect
+each other.
+An improvement in the future could be to try to detect the exact anchor points on the
+real furniture parts and rendering the virtual object right on that location. This would
+require more work on training the neural net to detect those small parts and probably
+higher resolution on the images.
+
+\subsubsection{Make it scalable}
+The application only supports one furniture. For a full scale application it would need to support
+many more furnitures. For a complete catalogue there could exist hundreds of furnitures.
+
+To add support for a new furniture in the app the following steps are needed:
+
+\begin{list}{•}
+\item Take at least 50 pictures of every furniture part
+\item Train a neural net to recognize those parts and import the model into Xcode
+\item Add an instruction set on how to put the furniture together
+\item Add 3D models of all the parts and the fully assembled model
+\item Add anchor points and screw points to the models
+\end{list}
+
+The problem of making the app scalable is the size of the ML-model. For many furnitures it could
+easily be the size of 1 GB or more. A way to solve this is to have an downloadable ML-model for each 
+furniture. These could be fetched from a database before starting the assembly session.
+
+All the other instructions, geometry, anchor- and screw points could also be fetched from a database.
 
 \subsubsection{AR stuff}
-When working with Augmented Reality it is obviously interesting to know where planes are and how the camera moves in the scene to be able to render virtual object. But usually there is more than one single plane in the environment. Usually there are other objects in the scene that affect how the virtual objects should be rendered. Sometimes maybe the virtual objects could interact with the real objects to make a more realistic scene. Because of this it can be very interesting to know what those objects actually are.
+When working with Augmented Reality it is obviously interesting to know where planes are and how the 
+camera moves in the scene to be able to render virtual object. But usually there is more than one single 
+plane in the environment. Usually there are other objects in the scene that affect how the virtual objects 
+should be rendered. Sometimes maybe the virtual objects could interact with the real objects to make a 
+more realistic scene. Because of this it can be very interesting to know what those objects actually are.
 
-For example, if you are going to place a virtual furniture in your home it would be good to detect other furnitures in the area so that the virtual object can collide with the real object. This way, they will not intertwine with each other.
+For example, if you are going to place a virtual furniture in your home it would be good to detect other 
+furnitures in the area so that the virtual object can collide with the real object. This way, they will not 
+intertwine with each other.
 
 % Our master thesis
-Or maybe one would like to give virtual instructions to a user for assembling or constructing a certain product or to do maintenance. It is then important to figure out what 3D objects there are in the scene to be able to render instructions on the right places.
+Or maybe one would like to give virtual instructions to a user for assembling or constructing a certain 
+product or to do maintenance. It is then important to figure out what 3D objects there are in the scene to 
+be able to render instructions on the right places.
 
-Augmented Reality technology has come a long way, but there are still things missing for making it a genuine experience. In ARKit, for instance, if a virtual object is rendered on top of a plane and a real object comes in between the virtual object will still be rendered first. This makes it painfully obvious that the virtual object is just a 2D drawing on the screen.
+Augmented Reality technology has come a long way, but there are still things missing for making it a 
+genuine experience. In ARKit, for instance, if a virtual object is rendered on top of a plane and a real 
+object comes in between the virtual object will still be rendered first. This makes it painfully obvious that 
+the virtual object is just a 2D drawing on the screen.
 
 \begin{figure}[hbtp]
 \begin{center}
