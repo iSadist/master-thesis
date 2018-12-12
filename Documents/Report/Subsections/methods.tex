@@ -260,12 +260,17 @@ In implementing the convolutional network several configurations were tried and 
 \item Addition of dropout to reduce chance of overfitting 
 \end{itemize}
 
+\begin{lstlisting}[language=python]
+#Code from training 
+
+\end{lstlisting}
+
 \subsubsection{Transfer Learning}
 % Write about how we went about in order to insert Transfer Learning into the mix. 
 After trial of designing the network from scratch, it was decided to try and make use of pre-trained networks and then retrain them for another purpose. Models trained on imageNet \cite{imageNet} were chosen since that source domain is similar to this target domain. The models with their respective weights were loaded, without their fully connected layer. The top layer's weights were then frozen at different stages, and new fully connected layers were added on top, and new classifiers were trained. 
-Several different models were tried, including ResNet50, InceptionV3 and VGG19, which where all integrated in Keras to start with.
+Several different models were tried, including ResNet50, InceptionV3 and VGG16, which where all integrated in Keras to start with.
 
-Code below shows how to load the VGG19 network which has weights that has been pretrained on imageNet. The fully connected layer is then removed and instead a custom top layer is added to be trained. 
+Code below shows how to load the VGG16 network which has weights that has been pretrained on imageNet. The fully connected layer is then removed and instead a custom top layer is added to be trained. 
 \begin{lstlisting}[language=python]
 #Project path: master-thesis/FeatureTraining/transferLearning.py
 from keras import applications
@@ -285,7 +290,7 @@ nb_validation_samples = 21
 batch_size = 16
 epochs = 50
 input_layer = Input(shape=(256,256,3))
-model = applications.VGG19(include_top=False, weights='imagenet', input_tensor=input_layer, pooling=None)
+model = applications.VGG16(include_top=False, weights='imagenet', input_tensor=input_layer, pooling=None)
 
 #Cut network and add own layers
 x = model.get_layer('block5_pool').output
@@ -312,7 +317,28 @@ validation_data = validation_generator,
 callbacks = [checkpoint, early])
 \end{lstlisting}
 
-[ADD IMAGES/TEST RESULTS]
+The best result  that was achieved for each of the models using this method is listed in
+ table \ref{table:transferLearning}. It shows that using InceptionV3 model with pretrained
+ weights gave the best result. However, a few factors, such as, where the models were
+ frozen, how adding and removing layers, has most likely affected the results. As can be
+ seen from using ResNet, the best model achieved 25\% accuracy, which is the same as making a guess, seeing as there are only four possible classes. 
+
+\begin{table}[h]
+\centering
+\begin{tabular}{ |c|c| } 
+ \hline
+ Pretrained model used &  Best achieved accuracy  \\ 
+ \hline
+ VGG16 & 70.8\%. \\ 
+ \hline
+ ResNet & 25.0\% \\ 
+  \hline
+ InceptionV3 & 72.9\% \\ 
+ \hline
+\end{tabular}
+\caption{Results from doing transfer learning .}
+\label{table:transferLearning}
+\end{table}
 
 \subsubsection{Turi Create}
 %Write about the testing an implementation of Turi
