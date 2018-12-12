@@ -31,3 +31,7 @@ Documents/Report/main.synctex.gz
 Documents/Report/main.toc
 Documents/Report/Subsections/methods.log
 Documents/Report/Subsections/theory.log
+
+# Turi
+turi/Test_Data.sframe/*
+turi/Train_Data.sframe/*
