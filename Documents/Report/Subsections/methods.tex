@@ -6,12 +6,12 @@ When working in a project it is generally a good idea to work according to a pre
 
 Simply, if you have a plan at the start it is easier to stick to that plan and stay on the same path as intended, rather than shifting to another one. That is not to say that the plan cannot change, but if it does it does so controllably.
 
-A historically good model has been the waterfall model. However, in the software industry this has changed lately with the agile methodology being more popular and has proven to be very effective.
+A historically good model has been the waterfall model. However, in the software industry this has changed lately with the agile methodology being more popular and it has proven to be very effective.
 
 \subsubsection{Agile}
 Basically, the agile model says that rather than planning a workload for 6 months forward or so it is better to work in short iterations. These iterations should be between 1 - 4 weeks depending on the team.
 Instead of trying to estimate the time it will take to complete an entire project, the team is given a finite time frame and tries to do as much as possible during that time. During this time, the team works very closely to the customer and project owner to make sure that they will get what they want and ask for.
-For selecting items to work with for every sprint the team keeps a backlog of item it wishes to complete during the project. Every sprint these items (or stories) are picked out and included into the sprint and estimated in size. The stories themselves should be collected from customers, project owner, users and people connected to the product. This way, the team knows what the purpose is with developing a certain thing. If there is any doubt about a specific feature it should be easier to ask than to assume.
+For selecting items to work with for every sprint the team keeps a backlog of item it wishes to complete during the project. Every sprint these items (or stories) are picked out and included into the sprint and estimated in size. The stories themselves should be collected from customers, project owner, users and people connected to the product. This way, the team knows what the purpose of developing a certain thing is. If there is any doubt about a specific feature it should be easier to ask than to assume.
 
 This is of course a simplified version of how the agile method works. 'Extreme Programming Pocket Guide' is a good book for anyone who wants to read more about agile methodology.
 
@@ -21,8 +21,8 @@ This is of course a simplified version of how the agile method works. 'Extreme P
 \subsubsection{How we used the agile methodology}
 \textbf{Sprints} \\
 For our planned work we have decided to work in two week period sprints where we begin on a Tuesday and end on a Monday. At each start of a sprint we pick out stories to focus on for the coming two weeks and try to estimate how long each of them will take.
-On weekdays we start with a quick discussion about yesterdays work and what we are planning to do today. This is for everyone to be up to speed about the other persons work.
-At the end of the sprint everything is review and analysed so to do even better the next sprint by correcting possible faults.
+On weekdays we start with a quick discussion about yesterdays work and what we are planning to do today. This is for everyone to be up to speed about the other person's work.
+At the end of the sprint everything is reviewed and analyzed so to do even better the next sprint by correcting possible faults.
 
 \textbf{Story board} \\
 For organizing our sprints we used a story board which contained an area for our backlog items and four rows for our stories during a sprint. The stories were broken into tasks which were placed on either one of the columns (Started, In Progress, Waiting, Completed).
@@ -43,9 +43,9 @@ We worked very close to the project owner by sitting on desks right across him. 
 % Write about design decisions for the Matlab prototype and what it does. 
 % Probably add some code as well.
 A purely feature based object segmentation method was implemented as a prototype in Matlab. This was done to see if a machine learning model for detecting objects could be dismissed. 
-The idea was that if one sent an image into the system, the resulting output of would be bounding box coordinates for each respective object within the image. These smaller sub-images would later be separately be classified using a deep neural networks. The bounding boxes would also be useful for user interface in the application. 
+The idea was that if one sent an image into the system, the resulting output would be bounding box coordinates for each respective object within the image. These smaller sub-images would later be separately classified using a deep neural networks. The bounding boxes would also be useful for user interface in the application. 
 
-First, a edge detection method was run on the entire image, to find the edges, which would serve as a good variable for the segmentation. Then, Bradley's threshold algorithm \cite{Bradley} would binarize the image. Bradley's method is locally adaptive and computes the threshold value for each pixel by looking at the mean intensity of a neighborhood of pixels surrounding it.  From this, one can find enclosed blobs, and by finding enclosed blobs containing more than a certain amount of pixels, to remove noisy errors, one can find the objects. The bounding boxes are them found by selecting the minimal and maximal height and weight values of the blobs. See figure \ref{fig:matlabImages} for graphical representation.
+First, an edge detection method was run on the entire image, to find the edges, which would serve as a good variable for the segmentation. Then, Bradley's threshold algorithm \cite{Bradley} would binarize the image. Bradley's method is locally adaptive and computes the threshold value for each pixel by looking at the mean intensity of a neighborhood of pixels surrounding it.  From this, one can find enclosed blobs, and by finding enclosed blobs containing more than a certain amount of pixels, to remove noisy errors, one can find the objects. The bounding boxes are then found by selecting the minimal and maximal height and weight values of the blobs. See figure \ref{fig:matlabImages} for graphical representation.
 
 \begin{figure}[hbtp]
 \begin{center}
@@ -53,7 +53,7 @@ First, a edge detection method was run on the entire image, to find the edges, w
 \includegraphics[width = 0.4\textwidth]{./Images/matlabImage2.png}
 \includegraphics[width = 0.4\textwidth]{./Images/matlabImage3.png} 
 \includegraphics[width = 0.4\textwidth]{./Images/matlabImage4.png} 
-\caption{Images showing the results from doing object detection in matlab. Top left image shows the original image. The top left image shows the result from running edge detection on the original image. Bottom left image shows the the result after  binarizing the top right image. the bottom left image shows the generated bounding box superimposed on the original image}
+\caption{Images showing the results from doing object detection in matlab. Top left image shows the original image. The top right image shows the result from running edge detection on the original image. Bottom left image shows the the result after  binarizing the top right image. the bottom right image shows the generated bounding box superimposed on the original image}
 \label{fig:matlabImages}
 \end{center}
 \end{figure}
@@ -63,12 +63,12 @@ This method did however not end up being useful since its performance varied dra
 \subsection{Collecting data}
 When working with machine learning, big sets of data is often required for a good resulting model.
 A problem with this is that it can be tricky to obtain such a large data set because it usually also requires
-labels with that data to be manually input. These labels will be used by the neural net to, during training, check if
+labels with that data to be manually put in. These labels will be used by the neural net to, during training, check if
 the predicted value is correct or not.
 
 In this project the data is sets of images of different furniture parts. These images didn't exist anywhere online, so they had to be collected by taking lots of photos. The photos contained the part in different background and from different angles. The backgrounds were mostly of typical office surroundings, although there were exceptions (as will be explained shortly). All the photos were then resized to 256x256 pixels. The reason for choosing a square size is because when rotating them (this will be useful later on when augmenting data) the images will not have any black bars on the sides or be stretched.
 
-For the first furniture Nolmyra, there were only 3 unique part (, excluding screws and similar parts). Therefore the model was trained to recognize 4 things; the different parts and an unknown object. The unknown label was because the object detection algorithm could detect other objects and it is then unwanted that those objects be mistaken for furniture parts. This could of course also be done by setting a threshold on the confidence value, i.e if the model give a confidence value under 0.8 it discards it as being an unknown object. The problem with this type is that it is much harder to distinguish parts from unknown objects. This is due to that the best model is the one that can give a close to 100\% confidence value on every prediction.
+For the first furniture Nolmyra, there were only 3 unique parts ( excluding screws and similar parts). Therefore the model was trained to recognize 4 things; the different parts and an unknown object. The unknown label was because the object detection algorithm could detect other objects and it is then unwanted that those objects be mistaken for furniture parts. This could of course also be done by setting a threshold on the confidence value, i.e., if the model gives a confidence value under 0.8 it discards it as being an unknown object. The problem with this type is that it is much harder to distinguish parts from unknown objects. This is due to that the best model is the one that can give a close to 100\% confidence value on every prediction.
 
 For this reason, photos of random objects were also added to the data set. Most of these photos were taken by ourselves, but some were also collected from the web. The images were placed in folders with a specific item which meant labelling them became much simpler. Just put all the images containing a certain part in the same folder.
 
@@ -76,13 +76,13 @@ Training a model usually requires hundreds of thousands or even millions of phot
 However, there are other options.
 
 \subsubsection{Augmenting data}
-Instead of training on only original images, some images can be created from other images by for example rotating, flipping, changing brightness, saturation, contrast etc.  This will essentially be an image of the same object, but the data will look different, thus gives the model more relevant data to train on.
+Instead of training on only original images, some images can be created from other images by for example rotating, flipping, changing brightness, saturation, contrast etc.  This will essentially be an image of the same object, but the data will look different, thus giving the model more relevant data to train on.
 When doing this it is important to keep in mind that the augmented data should be relevant to real situations.
 Creating data with only the blue color band when the real situations are only in daylight makes no sense.
 
 Furthermore, images of objects of interest can be cut out and pasted into random environments to create even more data.
 The idea of this is to try and make the model understand that the focus should be on the furniture part and the background environment is irrelevant. While doing this, even though the parts could be cut into totally random environments we tried to focus on pasting them into relevant spaces like office floors or carpets.
-In our project, this gave a good results as it increased the test accuracy by 8%.
+In our project, this gave a good result as it increased the test accuracy by 8%.
 
 Doing this by hand can still be very time consuming, so automating this process as far as possible is recommended.
 
@@ -101,7 +101,7 @@ configuration.detectionObjects = detectingObjects
 \includegraphics[width = 0.32\textwidth]{./Images/3dscanning1.png}
 \includegraphics[width = 0.32\textwidth]{./Images/3dscanning2.png}
 \includegraphics[width = 0.32\textwidth]{./Images/3dscanning3.png} 
-\caption{3D Scanning using Apple's app. On the right, the bounding box is defined so that no reference points from other objects are included. In the middle, the object is scanned by aiming the camera around the object at all angles. On the right the created model is tested. In this case, the object is detected after 0.4 seconds.}
+\caption{3D Scanning using Apple's app. On the left, the bounding box is defined so that no reference points from other objects are included. In the middle, the object is scanned by aiming the camera around the object at all angles. On the right the created model is tested. In this case, the object is detected after 0.4 seconds.}
 \end{center}
 \end{figure}
 
@@ -228,7 +228,7 @@ In this application, an arrow was drawn between the objects with an instructiona
 In this project, ARKit by Apple has been utilized. As previously stated, when working with ARKit, a frame from the camera is fetched by either calling snapshot() on the ARSCNView object or getting the currentFrame from the ARSession.
 However, both of these images contain both the RAW camera image and all the virtual items rendered in the ARScene. We did not find a way to capture just the RAW camera image.
 
-This whole scenario created a kind of positive feedback loop because the virtual arrow that was rendered between the object was usually contained within either one of the tracking rectangles. Thus, the arrow's position was determined by the tracking rectangle and the tracking rectangle was tracking the position of the arrow.
+This whole scenario created a kind of positive feedback loop because the virtual arrow that was rendered between the objects was usually contained within either one of the tracking rectangles. Thus, the arrow's position was determined by the tracking rectangle and the tracking rectangle was tracking the position of the arrow.
 Just the tiniest change in the picture made the arrow jump up and down until it finally got out of frame.
 
 The take away from this was to skip object tracking and solve the problem in another way.
@@ -241,8 +241,8 @@ CAN ELABORATE MORE ON THIS IN THE CONCLUSIONS
 
 
 \subsection{Design process of Machine Learning Model}
-It was decided that a machine learning model for classification of different parts were to be designed using Keras \cite{keras}. Firstly, a lot of data would have to be gathered with which to train the network upon. Pictures of the different parts of the furniture was taken from several different angles and on various amounts of background floors. 
-All images were scaled down to speed up the training process as well as remove possible unnecessary features [VAR DET VERKLIGEN SÅ?]. To easily generate even more data, the images were rotated, had their brightness and sharpness altered. 
+It was decided that a machine learning model for classification of different parts was to be designed using Keras \cite{keras}. Firstly, a lot of data would have to be gathered with which to train the network upon. Pictures of the different parts of the furniture was taken from several different angles and on various amounts of background floors. 
+All images were scaled down to speed up the training process as well as remove possible unnecessary features. To easily generate even more data, the images were rotated and had their brightness and sharpness altered. 
 [INSERT IMAGE SET SHOWING DIFFERENT CONFIGURATIONS]
  
 % Write about what design choices we made, from first iterations or planing, to our final model, add some code. 
@@ -270,7 +270,7 @@ Several different models were tried, including ResNet50, InceptionV3 and VGG19, 
 
 \subsubsection{Turi Create}
 %Write about the testing an implementation of Turi
-Apple have developed their own toolkit for development of custom machine learning models called Turi Create \cite{turiCreate}. This was created to help developers to easily implement their own ideas into an app. It includes methods for image classification, object detection etc.. 
+Apple has developed their own toolkit for development of custom machine learning models called Turi Create \cite{turiCreate}. This was created to help developers easily implement their own ideas into an app. It includes methods for image classification, object detection etc.. 
 
 In this project, the Object Detection method included in Turi Create was tested. First, one
  has to create ground truth data for every image that was trained and tested on. This was
@@ -278,7 +278,7 @@ In this project, the Object Detection method included in Turi Create was tested.
   boxes for the objects in the images and label them; the data output is in the \textit{.csv} format.  Turi Create uses a different format for annotations called \textit{.sframe},
   however, they provide a simple Python script which automatically does the conversion. 
 
-Turi then trains a model using a re-implementation of the TinyYOLO netwok. It also utilizes transfer learning by starting with an image classifier that has been trained on the imageNet dataset and then does \textit{end-to-end finetuning} to change the network to a \textit{one-stage detector}.
+Turi then trains a model using a re-implementation of the TinyYOLO network. It also utilizes transfer learning by starting with an image classifier that has been trained on the imageNet dataset and then does \textit{end-to-end finetuning} to change the network to a \textit{one-stage detector}.
 
 Several models were trained, with different amount of training data, to evaluate how many
  were needed to get a decent result. The Turi website states that at least 30 samples of
@@ -384,9 +384,9 @@ application into the model, the model outputs a multi array containing an array 
 Evaluating the AR experience is possible on a technical level, to research if the 
 combination of AR with object recognition is feasible. This can be done by, for instance,  
 making sure the application is running at an acceptable frame rate. However, as this 
-report also want to research into the desirability of this combination of technology, the 
-same approach is not as appropriate. What was done was to ourselves test the 
-application, as well as get outside evaluations through user tests.
+report also wants to research into the desirability of this combination of technology, the 
+same approach is not as appropriate. What was done was to test the 
+application ourselves, as well as get outside evaluations through user tests.
 
 The user tests were set up by having people from the office sign up online to come test our 
 application, as well as answering a form afterwards where they answered several 

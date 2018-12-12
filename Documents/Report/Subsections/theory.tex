@@ -68,7 +68,7 @@ hardware components make this task possible, including gyro, accelerometer and a
 \subsubsection{How does ARKit work?}
 \label{subsecARKit}
 ARKit works similar to SceneKit were a scene (which is basically a 3D environment in which nodes containing 3D models (geometry) can be rendered) is loaded at start up and interacted with.
-An ARScene is contained inside an ARSCNView (AR Scene View) which also has a ARSession
+An ARScene is contained inside an ARSCNView (AR Scene View) which also has an ARSession
 that that manages the motion tracking and camera image processing. For an ARScene to work, it must have a running ARSession.
 The session is started with configuration (ARConfiguration). This configuration can be of many kinds, the most common ones begin ARWorldTrackingConfiguration and ARFaceTrackingConfigurations. For this project, ARWorldTrackingConfiguration will be used since the face tracking one uses the front camera.
 
@@ -182,7 +182,7 @@ The most common of these functions are \textbf{ReLu}, \textbf{Tanh}, \textbf{Sig
 \[f(x) = max(0, x)\]
 and is a good option when negative values should be ignored or don't make sense. Problems with ReLu?
 
-\textbf{Tanh} is the tangens hyperbolicus function and is used to output values either as -1 or 1 like a binary operator. Unlke a binary operator, tanh's derivative is always defined which makes back propagation possible.
+\textbf{Tanh} is the tangens hyperbolicus function and is used to output values either as -1 or 1 like a binary operator. Unlike a binary operator, tanh's derivative is always defined which makes back propagation possible.
 
 \textbf{Sigmoid} is described as 
 \[\frac{e^x}{1+e^x}\]
@@ -253,7 +253,7 @@ where
 
 \[ v_i (t+1) = \beta_2v_i(t) + (1 - \beta_2) (\frac{ \delta E(t) }{\delta\omega_i})^2 \]
 
-and $ \eta, \beta_1 $ and $ \beta_2 $ is adjustable parameters and $ \epsilon $ a small value to keep the equation from dividing by zero.\\
+and $ \eta, \beta_1 $ and $ \beta_2 $ are adjustable parameters and $ \epsilon $ a small value to keep the equation from dividing by zero.\\
 
 There are a lot of other optimizers such as \textbf{Adagrad}, \textbf{Adadelta}, \textbf{Nadam} etc. They all have their own advantage and use-cases. We won't go into further details about them.
 
@@ -302,7 +302,7 @@ Another way to keep the values between 0 and 1 is to normalize the input to ever
 One important thing to point out is that all these methods mentioned so far are only active during training and is not doing anything when making real predictions.
 
 
-If lots of training data exists, the ensemble technique could be a good way to go. This technique divides the training data into more smaller sets and trains a model for every data set.
+If lots of training data exists, the ensemble technique could be a good way to go. This technique divides the training data into smaller sets and trains a model for every data set.
 The final prediction is then an average of the predictions of all the models. This technique works because if the model is highly overtrained in a certain direction, chances are that the other networks will drown out this result by the many other models.
 
 It is kind of like when someone has an off pitch in a big choir. If there are many other singers, this off-pitch will not be noticed very much.
@@ -354,8 +354,8 @@ The dual camera on the back works by taking two photos and comparing those to fi
 
 However, obtaining the depth data from the dual cameras in real time is not possible since it requires too much computational power. This unfortunately makes it impossible to use in an ARScene and thus not possible for this project.\\
 
-Despite all the available methods above, object detection without machine learning is still very tricky. These methods works best when the images are in an controlled environment, typically industrial, like finding screws on a white background (as they do in an article posted by combine.se). \cite{combine}
-When the environment is a more casual place tough, like recognizing furniture indoors, the task becomes much more difficult. For this reason, object detection with pure algorithms is not very common in household applications. Instead object detection with machine learning methods such as RCNN networks are much more common nowadays.
+Despite all the available methods above, object detection without machine learning is still very tricky. These methods work best when the images are in an controlled environment, typically industrial, like finding screws on a white background (as they do in an article posted by combine.se). \cite{combine}
+When the environment is a more casual place though, e.g., recognizing furniture indoors, the task becomes much more difficult. For this reason, object detection with pure algorithms is not very common in household applications. Instead object detection with machine learning methods such as RCNN networks are much more common nowadays.
 
 \subsection{Object Detection with deep learning}
 % Write about how one can do object detection by the use of ML
@@ -365,7 +365,7 @@ Big advantages with this is that classification and detection can be done in the
  
  \subsubsection{Convolutional Neural Networks}
 
- Convolutional neural networks have been used for quite some time when it comes to deep learning and their capabilities are rather astounding, as proved by Krizhevsky et al \cite{NIPS2012_4824}.  They use layers which perform convolutions, hence it's name.  The input to a convolutional network are either 2D or 3D tensors, where the 3D alternative usually has color channels along the third dimension. Use of convolutional neural networks in image recognition for several reasons, e.g. it can tell of spatial relationships in an image. This section has been written with reference to V. Dumolin et al \cite{convArit}. Figure \ref{fig:cnn} shows an example of how a CNN may look.
+ Convolutional neural networks have been used for quite some time when it comes to deep learning and their capabilities are rather astounding, as proved by Krizhevsky et al \cite{NIPS2012_4824}.  They use layers which perform convolutions, hence it's name.  The input to a convolutional network are either 2D or 3D tensors, where the 3D alternative usually has color channels along the third dimension. Use of convolutional neural networks in image recognition  can be practical for several reasons, e.g., it can tell of spatial relationships in an image. This section has been written with reference to V. Dumolin et al \cite{convArit}. Figure \ref{fig:cnn} shows an example of how a CNN may look.
  
  \begin{figure}[hbtp]
 \begin{center}
@@ -375,13 +375,13 @@ Big advantages with this is that classification and detection can be done in the
 \end{center}
 \end{figure}
  
- A convolutional layer performs the mathematical operation \textit{convolution} on the input tensor, which can be presented as an image. A kernel of size $k \cdot l$ slides across the input and sums pixel values that is included inside the kernel; a new image containing these sums is the output. Padding on the input can be used to account for values when the kernel is outside the input. Use of padding have an impact on the output size after the convolutional layer. Stride is also be used, which tells how much the kernel translates along an axis;  increased stride leads to subsampling.. Since changes of parameters in one axis doesn't affect outcome in another axis it simplifies explaining CNNs by having the parameter values being the same along both axes. The more convolutional layers used in a network, more complex shapes are detected. First layers may detect edges and corners, whereas, later layers may find features representing a car or a dog. A common addition to the layers are an activation function, commonly ReLU, which has been described earlier in the report. This gives faster training by only allowing for positive weights to pass the layer.
+ A convolutional layer performs the mathematical operation \textit{convolution} on the input tensor, which can be presented as an image. A kernel of size $k \cdot l$ slides across the input and sums pixel values that are included inside the kernel; a new image containing these sums is the output. Padding on the input can be used to account for values when the kernel is outside the input. Use of padding have an impact on the output size after the convolutional layer. Stride can also be used, which tells how much the kernel translates along an axis;  increased stride leads to subsampling. Since changes of parameters in one axis do not affect outcome in another axis it simplifies explaining CNNs by having the parameter values being the same along both axes. The more convolutional layers used in a network, the more complex shapes are detected. First layers may detect edges and corners, whereas, later layers may find features representing a car or a dog. A common addition to the layers is an activation function, commonly ReLU, which has been described earlier in the report. This gives faster training by only allowing for positive weights to pass the layer.
 
- The common types of padding is \textit{no zero}, \textit{same} and \textit{full}; examples seen in figure \ref{fig:padding}. No Zero padding involves having no padding outside of the input. This means that the kernel never goes outside of the actual image, once a side of the kernel hits the side of the input it jump down to the next line (if stride is 1). 
+ The common types of padding is \textit{no zero}, \textit{same} and \textit{full}; examples seen in figure \ref{fig:padding}. No Zero padding involves having no padding outside of the input. This means that the kernel never goes outside of the actual image, once a side of the kernel hits the side of the input it jumps down to the next line (if stride is 1). 
  
  Same padding is used when one desires the output size of the layer to be the same as the input size. This is achieved by having a padding $p$ be $ p = \floor{\frac{k}{2}} $ for any odd kernel size $k$.
   
- With full padding one actually makes the output size larger than the input, by fully utilizing the every possible combination of the kernel and the input image. This is accomplished  by having the padding $p $ be $p = k - 1$ for any kernel size $k$. 
+ With full padding one actually makes the output size larger than the input, by fully utilizing every possible combination of the kernel and the input image. This is accomplished  by having the padding $p $ be $p = k - 1$ for any kernel size $k$. 
  
  
  \begin{figure}[hbtp]
@@ -389,7 +389,7 @@ Big advantages with this is that classification and detection can be done in the
 \includegraphics[width = 0.3\textwidth]{./Images/noPad.png}
 \includegraphics[width = 0.3\textwidth]{./Images/samePad.png}
 \includegraphics[width = 0.3\textwidth]{./Images/fullPad.png} 
-\caption{Different examples of padding. Grid in green is the output, grid in blue is the input, and area in shadow is the current area kernel is at. Leftmost image shows a no zero padding being used. Here the kernel size is $k = 3$, input size is $i = 4$ and the output size is  $o = 2$, i.e., smaller then input.  In the middle image same padding is used; output size is the same as input size $o = i = 5$. In the rightmost image full padding is used. Here a bigger output size than the input size is produced, $o = 7, i = 5$. Images taken from \cite{convArit}}
+\caption{Different examples of padding. Grid in green is the output, grid in blue is the input, and area in shadow is the current area where the kernel is currently at. Leftmost image shows a no zero padding being used. Here the kernel size is $k = 3$, input size is $i = 4$ and the output size is  $o = 2$, i.e., smaller than input.  In the middle image same padding is used; output size is the same as input size $o = i = 5$. In the rightmost image full padding is used. Here a bigger output size than the input size is produced, $o = 7, i = 5$. Images taken from \cite{convArit}}
 \label{fig:padding}
 \end{center}
 \end{figure}
@@ -416,7 +416,7 @@ How to calculate loss in RCNN
 Selective search for detecting regions of interest (RoI)
 
 Fast R-CNN
-" reduce the time consumption related to the high number of models necessary to analyse all region proposals."
+" reduces the time consumption related to the high number of models necessary to analyse all region proposals."
 
 Instead of having many CNNs for each region, one CNN is applied to the whole image.
 
@@ -434,7 +434,7 @@ YOLO, or You Only Look Once, is a one stage detector approach to object detectio
  
  The architecture for \textit{YOLO} consist mainly as a convolutional neural network, with 24 convolutional layers and two fully connected layers. There was also a smaller neural network trained called \textit{Fast YOLO} trained which were only 9 layers which was designed to create an even faster system for object detection. 
  
- The system first divides the input image into an  $S \times S$  grid, where each cell predicts $B$ amount of bounding boxes respectively confidence scores for the boxes. Each bounding box prediction consist of 5 separate predictions: the \textit{x, y} coordinates, represented as their position relative to the the grid cell, width and height relative to the entire image and a confidence value. The confidence values are there to reflect how certain the model is that there exists an object within the box, i.e. ideally, confidence should be zero when no object, and the intersection over union between ground truth and the predicted box if there is. Each grid cell also predicts $C$ probabilities for each class, conditioned that there's an object within the boxes. 
+ The system first divides the input image into an  $S \times S$  grid, where each cell predicts $B$ amount of bounding boxes respectively confidence scores for the boxes. Each bounding box prediction consists of 5 separate predictions: the \textit{x, y} coordinates, represented as their position relative to the the grid cell, width and height relative to the entire image and a confidence value. The confidence values are there to reflect how certain the model is that there exists an object within the box, i.e. ideally, confidence should be zero when no object, and the intersection over union between ground truth and the predicted box if there is. Each grid cell also predicts $C$ probabilities for each class, conditioned that there's an object within the boxes. 
  
  Intersection over union, also known as the Jaccard index, is a way of measuring similarity between sets. It can be written as 
  \[
@@ -455,7 +455,7 @@ IOU(A,B) =  \frac{|A\cap B |}{|A\cup B|} =\frac{|A\cap B|}{|A| + |B| - |A \cap B
 Comparisons done by the team working on \textit{YOLO} found that, compared to other real-time systems at the time, both \textit{Fast YOLO} and \textit{YOLO} outperformed them all with \textit{Fast YOLO} being the fastest, but \textit{YOLO} being more accurate on the \textit{PASCAL VOC} data sets \cite{PASCAL}.
 
 Throughout the years Redmon et al. has been working on updating the design pattern of the 
-YOLO network. First in 2016 when they introduced \textit{YOLOv2} and then April 2018 with \textit{YOLOv3} \cite{YOLO2}\cite{YOLO3}. \textit{YOLOv2} added a few concepts to the system to make it even more fast and accurate than the earlier iteration. It removed the fully connected layers and is was now possible to train on several different input image resolutions and it could now also predict many more bounding boxes than its predecessor. \textit{YOLOv3} added some changes which improved its ability to detect small objects, with the trade off of having a bit worse performance when finding larger sized objects.  
+YOLO network. First in 2016 when they introduced \textit{YOLOv2} and then April 2018 with \textit{YOLOv3} \cite{YOLO2}\cite{YOLO3}. \textit{YOLOv2} added a few concepts to the system to make it even more fast and accurate than the earlier iteration. It removed the fully connected layers and it was now possible to train on several different input image resolutions and it could now also predict many more bounding boxes than its predecessor. \textit{YOLOv3} added some changes which improved its ability to detect small objects, with the trade off of having a bit worse performance when finding larger sized objects.  
 
 \subsection{Mean Average Precision}
 
@@ -467,7 +467,7 @@ Recall is how good the model is to find all the relevant data, and is written as
 \[ recall = \frac{True Positives}{True Positives +False Negatives }\]
 
 
- When a classification is made you also get a confidence value. One only calls it a prediction if the predictions confidence passes a set threshold. However, if one calculates the recall and precision for all possible thresholds, a Recall x Precision curve can be made. From this curve, one gets the mean Average Precision by taking the area under the the curve.
+ When a classification is made you also get a confidence value. One only calls it a prediction if the predictions confidence passes a set threshold. However, if one calculates the recall and precision for all possible thresholds, a Recall x Precision curve can be made. From this curve, one gets the mAP by taking the area under the the curve.
 
 There are different standards when calculating the mAP. The PASCAL VOC Challenge uses a mean average precision with a static threshold of 50\%
  \cite{PASCAL}. This is called   \textit{mean\_average\_precision\_50} . Another common standard is the one used by COCO  \cite{COCO}. This one calculates the mAP at IoU threshold from 50\%  to 95\%  and averages them all together. This is quite strangely known as just \textit{mean\_average\_precision}. The latter mentioned method is the one this report will use for evaluation, since it puts more value on localization than the PASCAL VOC method.
