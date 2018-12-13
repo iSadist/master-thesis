@@ -75,14 +75,50 @@ For this reason, photos of random objects were also added to the data set. Most 
 Training a model usually requires hundreds of thousands or even millions of photos. That much data is hard to get and would take a lot of time to obtain Going around the office to snap that many photos is almost unthinkable.
 However, there are other options.
 
+\begin{figure}[hbtp]
+\begin{center}
+\includegraphics[width = 0.3\textwidth]{./Images/image_31.jpg}
+\includegraphics[width = 0.3\textwidth]{./Images/image_133.jpg}
+\includegraphics[width = 0.3\textwidth]{./Images/image_136.jpg}
+
+\caption{Images showing different samples of training data used for training the model}
+\label{fig:exampleData}
+\end{center}
+\end{figure}
+
 \subsubsection{Augmenting data}
-Instead of training on only original images, some images can be created from other images by for example rotating, flipping, changing brightness, saturation, contrast etc.  This will essentially be an image of the same object, but the data will look different, thus giving the model more relevant data to train on.
+Instead of training on only original images, some images can be created from other images by for example rotating, flipping, changing brightness, saturation, contrast etc.  This will essentially be an image of the same object, but the data will look different, thus giving the model more relevant data to train on, see figure \ref{fig:exampleArtificial}.
 When doing this it is important to keep in mind that the augmented data should be relevant to real situations.
 Creating data with only the blue color band when the real situations are only in daylight makes no sense.
 
-Furthermore, images of objects of interest can be cut out and pasted into random environments to create even more data.
+\begin{figure}[hbtp]
+\begin{center}
+\includegraphics[width = 0.3\textwidth]{./Images/image_15-1.jpg}
+\includegraphics[width = 0.3\textwidth]{./Images/image_15-3.jpg}
+\includegraphics[width = 0.3\textwidth]{./Images/image_15-4.jpg}
+\includegraphics[width = 0.3\textwidth]{./Images/image_15-9.jpg}
+\includegraphics[width = 0.3\textwidth]{./Images/image_15-11.jpg}
+\includegraphics[width = 0.3\textwidth]{./Images/image_15-12.jpg}
+\caption{Images showing some resulting images from augmentation. Top left image shows the original image. Top middle image shows the result after rotating $180$ degrees. Top right image shows result after rotating $-90$ degrees. Bottom left image show result after  reducing the contrast with by $30\%$. Bottom middle image shows result after reducing color balance by $70\%$. Bottom right image shows result after increasing color balance by $60\%$.}
+\label{fig:exampleArtificial}
+\end{center}
+\end{figure}
+
+
+Furthermore, images of objects of interest can be cut out and pasted into random environments to create even more data, see figure \ref{fig:exampleCutout}.
 The idea of this is to try and make the model understand that the focus should be on the furniture part and the background environment is irrelevant. While doing this, even though the parts could be cut into totally random environments we tried to focus on pasting them into relevant spaces like office floors or carpets.
 In our project, this gave a good result as it increased the test accuracy by 8%.
+
+\begin{figure}[hbtp]
+\begin{center}
+\includegraphics[width = 0.3\textwidth]{./Images/image_13.jpg}
+\includegraphics[width = 0.3\textwidth]{./Images/image_86.jpg}
+\includegraphics[width = 0.3\textwidth]{./Images/image_107.jpg}
+\caption{Images showing how cutouts of images were utilized. Leftmost image shows a cutout of one of the furniture parts. The other two images show the result after they were pasted in to different environments to artificially increase training data.}
+\label{fig:exampleCutout}
+\end{center}
+\end{figure}
+
 
 Doing this by hand can still be very time consuming, so automating this process as far as possible is recommended.
 
