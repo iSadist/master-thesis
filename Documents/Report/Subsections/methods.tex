@@ -275,36 +275,173 @@ Switching gear to that solution made the whole application much better and easie
 
 CAN ELABORATE MORE ON THIS IN THE CONCLUSIONS
 
-
 \subsection{Design process of Machine Learning Model}
-It was decided that a machine learning model for classification of different parts was to be designed using Keras \cite{keras}. Firstly, a lot of data would have to be gathered with which to train the network upon. Pictures of the different parts of the furniture was taken from several different angles and on various amounts of background floors. 
-All images were scaled down to speed up the training process as well as remove possible unnecessary features. To easily generate even more data, the images were rotated and had their brightness and sharpness altered. 
+It was decided that a machine learning model for classification of different parts was to be 
+designed using Keras \cite{keras}. Firstly, a lot of data would have to be gathered with which to 
+train the network upon. Pictures of the different parts of the furniture was taken from several 
+different angles and on various amounts of background floors. 
+All images were scaled down to speed up the training process as well as remove possible 
+unnecessary features. To easily generate even more data, the images were rotated and had their 
+brightness and sharpness altered.
  
 % Write about what design choices we made, from first iterations or planing, to our final model, add some code. 
-\subsubsection{Deep Neural Networks}
-% Write about that we chose Keras and that why made our model the way we did
-In implementing the convolutional network several configurations were tried and further tested for accuracy in the developed application. What was tried was as follows:
-[ADD IMAGES/TEST RESULTS IN RESULT SECTION]
+\subsubsection{Image classification}
+Designing a neural net for the image classification is not the easiest task and much
+work consists of trying things and making intelligent guesses.
+As stated in the section about data collection we had 4 different classes to classify,
+which means that a test accuracy of over 25\% would be significant. We were aiming for
+somewhere above or around 90\% with a relatively small amount of data.
 
-\begin{itemize}
-\item Changing amount of convolutional layers
-\item Kernel sizes of the convolutional layers
-\item Addition and removal of pooling layers
-\item Stride sizes of the pooling layers
-\item Layers in the fully connected part
-\item Amount of nodes in the fully connected part
-\item Addition of dropout to reduce chance of overfitting 
-\end{itemize}
+We started out with many convolutional layers layered with pooling layers and a few dense
+layers at the end. The final layer had four nodes and softmax activation functions to give a
+classification probability between four classes.
+The activation functions of the other layers were set to ReLu since they are the fastest
+and preferred for larger nets. Tanh was also tried but with no success.
+
+SGD with momentum as an optimizer was tested but was was changed to Adam
+quite early on since it had better performance.
+Only linear optimizers were considered because non-linear optimizers take a lot of
+computing power and are usually only recommended for small networks.
+
+We went back and forth with trying different mixes of kernel sizes, amounts of convolutional
+layers, insertion of pooling layers on different places, stride sizes, amount of dense layers
+and how many nodes they had.
+
+When training the models, overfitting was a big problem from the start. The tested methods
+for combating this was dropouts with different values, L2 weight regularisation,
+batch normalization and reducing the number of weights.
+
+It was hard to reduce the number of weights as the evaluation usually converged around 25\%
+whenever it was tried.
+When using the dropout method a value of 50\% with a minimum of 64 nodes in the layer
+reduced overfitting most effectively. That, with a combination of weight regularisation and batch 
+normalization gave good results. Figure \ref{fig:imageclassification} shows how overfitting was avoided.
+
+Gaussian Noise gave very good results, but was unfortunately not possible to be 
+converted from a keras model to an ml-model that is required for Xcode.
+
+The most important thing to mention is the difference the amount of photos we had and how they
+were taken. Adding more photos made a huge difference to the test evaluation score.
+After having added 50 more images per class with a library of 600 images the test score increased
+from \textbf{80.55\%} to \textbf{83.45\%}. \\
+
+When finally testing the model we made a mistake by not separating the training data and test data.
+Since we shuffled our data before splitting it up into two parts, some augmented data got into the
+test set. The model had already trained on the original image and it was similar enough to
+give unrealistic good results of 99.52\%. This was finally fixed by splitting up the test and train data 
+into separate folders. Figure \ref{fig:augmentedtestdata} shows the printed graph from one of those
+training sessions.
+
+\begin{figure}[!hbtp]
+\begin{center}
+\includegraphics[width = 0.4\textwidth]{./Images/augmentedtestdata}
+\caption{Test and train accuracy over a 100 epochs. The performance seems much better than it actually is.}
+\label{fig:augmentedtestdata}
+\end{center}
+\end{figure}
+
+\begin{figure}[!hbtp]
+\begin{center}
+\includegraphics[width = 0.4\textwidth]{./Images/imageclassification1}
+\includegraphics[width = 0.4\textwidth]{./Images/imageclassification2}
+\includegraphics[width = 0.4\textwidth]{./Images/imageclassification3}
+\caption{Images shows the result from introducing weight regularisation and dropout to a model. The graphs show the training loss (green) and evaluation loss (red). The upper left image shows the training without any dropout or weight regularisation. The upper right image shows the training with dropout implemented. The bottom image shows the training with dropout and weight regularisation implemented.}
+\label{fig:imageclassification}
+\end{center}
+\end{figure}
+
+As shown in the code below, early stopping was also finally implemented with a callback to save
+highest performing model at the end of the process.
 
 \begin{lstlisting}[language=python]
-#Code from training 
+#Python script from training
+#Project path:
+	master-thesis/Training/trainer.py
+import tensorflow as tf
+from tensorflow import keras
+import numpy as np
+import matplotlib.pyplot as plt
+from PIL import Image
+from sklearn.utils import shuffle
 
+train_images = []
+train_labels = []
+loadImages(train_images, train_labels, "Train", 200)
+train_images = reshapeArray(train_images)
+
+test_images = []
+test_labels = []
+loadImages(test_images, test_labels, "Test", 39)
+test_images = reshapeArray(test_images)
+
+# Create the neural network
+model = keras.Sequential([
+	keras.layers.Conv2D(4, kernel_size=(5, 5), strides=(2, 2), input_shape=(image_height, image_width, number_of_color_channels)),
+		
+	["The code for the hidden layers"]
+
+	keras.layers.Dense(4, activation=tf.nn.softmax)
+])
+
+model.compile(optimizer=keras.optimizers.Adam(),
+	    loss='sparse_categorical_crossentropy',
+	    metrics=['accuracy'])
+	    
+train_data, train_labels = shuffle(train_data, train_labels)
+
+early_stopping = keras.callbacks.EarlyStopping(monitor='val_acc', patience=5, verbose=1)
+checkpoint = keras.callbacks.ModelCheckpoint("./Models/Nolmyra.h5", monitor='val_acc', 
+verbose=1, save_best_only=True, save_weights_only=False, mode='auto', period=1)
+
+history = model.fit(train_data, train_labels, epochs=40, batch_size=10, validation_data=(test_images, test_labels), callbacks=[early_stopping, checkpoint] , verbose=1)
+
+model.save("./Models/recognizer.h5")
 \end{lstlisting}
+
+The network that proved to be the best performing network (\textbf{92.25\%}) had the following configuration:
+
+\begin{lstlisting}[language=python]
+Conv2D(4, kernel_size=(5, 5), strides=(2, 2), input_shape=(image_height, image_width, number_of_color_channels)),
+Conv2D(4, kernel_size=(3, 3), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
+MaxPool2D(pool_size=(2, 2), padding="valid"),
+BatchNormalization(),
+LeakyReLU(),
+Conv2D(8, kernel_size=(3, 3), strides=(1, 1)),
+Conv2D(8, kernel_size=(3, 3), strides=(1, 1)),
+Conv2D(8, kernel_size=(3, 3), strides=(1, 1)),
+MaxPool2D(pool_size=(2, 2), padding="valid"),
+BatchNormalization(),
+LeakyReLU(),
+Conv2D(16, kernel_size=(3, 3), strides=(1, 1)),
+Conv2D(16, kernel_size=(3, 3), strides=(1, 1)),
+Conv2D(16, kernel_size=(3, 3), strides=(1, 1)),
+MaxPool2D(pool_size=(2, 2), padding="valid"),
+BatchNormalization(),
+LeakyReLU(),
+Flatten(),
+Dropout(0.5),
+Dense(64, kernel_regularizer=keras.regularizers.l2(0.003), activation=tf.nn.relu),
+GaussianNoise(0.2),
+Dense(64, kernel_regularizer=keras.regularizers.l2(0.003), activation=tf.nn.relu),
+Dropout(0.25),
+Dense(4, activation=tf.nn.softmax)
+\end{lstlisting}
+
+A model with many convolutional layers and a few dense layers at the end gave the best
+results. A larger network could have been implemented and testes as well but
+since the model size would grow more and training time would increase drastically,
+we didn't increase it further.
 
 \subsubsection{Transfer Learning}
 % Write about how we went about in order to insert Transfer Learning into the mix. 
-After trial of designing the network from scratch, it was decided to try and make use of pre-trained networks and then retrain them for another purpose. Models trained on imageNet \cite{imageNet} were chosen since that source domain is similar to this target domain. The models with their respective weights were loaded, without their fully connected layer. The top layer's weights were then frozen at different stages, and new fully connected layers were added on top, and new classifiers were trained. 
-Several different models were tried, including ResNet50, InceptionV3 and VGG16, which where all integrated in Keras to start with.
+After trial of designing the network from scratch, it was decided to try and make use of 
+pre-trained networks and then retrain them for another purpose. Models trained on 
+imageNet \cite{imageNet} were chosen since that source domain is similar to this target 
+domain. The models with their respective weights were loaded, without their fully 
+connected layer. The top layer's weights were then frozen at different stages, and new 
+fully connected layers were added on top, and new classifiers were trained. 
+Several different models were tried, including ResNet50, InceptionV3 and VGG16, 
+which where all integrated in Keras to start with.
 
 Code below shows how to load the VGG16 network which has weights that has been pretrained on imageNet. The fully connected layer is then removed and instead a custom top layer is added to be trained. 
 \begin{lstlisting}[language=python]
