@@ -27,21 +27,21 @@ The mean average precision from the different models that were trained were obse
  \hline
  40\% & 0.40595 \\
  \hline
- 50\% & 0.47397
+ 50\% & 0.47397 \\
  \hline
 \end{tabular}
 \caption{Mean average precision depending on the amount of training data used. 100\% corresponds to 926 images.}
 \label{table:mAP}
 \end{table}
 
-These values can then be plotted giving us the graph shown in figure
+These values can then be plotted giving us the graph shown in figure \ref{fig:mAPResult}
 
 [SAMPLE BILD TILLS VI HAR GENERERAT KORREKT PLOT]
-\begin{figure}[hbtp]
+\begin{figure}[h]
 \begin{center}
-\includegraphics[width = 0.32\textwidth]{./Images/3dscanning1.png}
+\includegraphics[width = 0.2\textwidth]{./Images/3dscanning1.png}
 \caption{Mean Average Precision plotted against the amount of training data used. 100\% corresponds to 926 images.}
-\label{fig:mAP}
+\label{fig:mAPResult}
 \end{center}
 \end{figure}
 
@@ -108,37 +108,46 @@ A user survey was done in order to evaluate the performance of the application. 
 \end{center}
 \end{figure}
 
-What people liked and found interesting
 
+By collecting the data from the forms, the recorded videos and our own observations we could find some general trends and reach a few conclusions.
 
-what people disliked and found confusing
+What we found was that half of the participants thought it was easier to use our
+application to assemble the furniture than using a traditional paper instruction, and none t
+thought it was definitively more difficult, as seen in figure \ref{fig:question5}. This could be due to the fact that the piece of furniture we 
+chose to train on were quite simple to assemble, relative to other possible furniture. Would be interesting to perform the same task but on a more complicated piece of furniture.
 
+Everyone of the the participants saw that the application good or great potential, see figure \ref{fig:question6}, if it were 
+to be improved. This result shows that the use of this technology is mostly desirable, if 
+done in a more proper way.
 
-Suggestions for improvements
+The answers show that most people could understand how to use the application and 
+could intuitively start up the application and start the assembly process without outside 
+help, figure \ref{fig:question1}, \ref{fig:question2} \& \ref{fig:question4}. In some cases we noticed that people were a bit confused with the augmented reality 
+interface. Several participants had a hard time understanding the purpose of the green 
+rectangles that were rendered around a found object in the scene. Mostly because the 
+rectangles were significantly larger than the object itself, hence, it often overlaps with 
+other objects on the floor.
 
+The hassle of having to put the phone down in between looking at the animation and 
+actually assembling the furniture parts was also brought up. Some of the participants had 
+to pick up the phone several times during certain steps to make sure they were executing 
+the task in the correct manner.
 
+At times, some participants were getting confused because the application could not find 
+the correct parts. This happened because of several reasons. One being that they had 
+accidentally skipped an instruction, thus the application were looking for model parts that 
+had not yet been assembled. Another reason being that the machine learning model were 
+inconsistent at times and could not identify certain in the orientation it was currently in. It 
+also happened when the users did not perform 
+the first task given by the application, being that they had to make sure that the parts were 
+laying on the floor and not overlapping each other. A solution to these problems could be 
+to give the users a more clarified and more intuitive set of instructions such that the user 
+don't accidentally skip an important instruction. Another solution is to retrain the machine 
+learning model to be able to identify the parts in more orientations. 
 
-Sammanställ info: \\
-
-How to make instructions easy to understand in AR
-
-Green rectangles were confusing
-
-Back button?
-
-People trying to rotate the object
-
-The app needs glasses to make it hands free
-
-Voice instructions
-
-Confusing when the part was in unsupported orientation
-
-
-
-
-
-
-
-
+The user test was performed in the Jayway offices on people with background in 
+technology, where most participants were developers or designers. Due to this, the result 
+could be skewed, since people with similar background have a tendency to understand 
+each others intent. The same test would have to be performed on actual end users with a 
+more varied background to see if it would match the results we've gathered.
 \newpage
