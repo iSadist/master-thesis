@@ -83,33 +83,20 @@ furniture. These could be fetched from a database before starting the assembly s
 
 All the other instructions, geometry, anchor- and screw points could also be fetched from a database.
 
-\subsubsection{AR stuff}
-When working with Augmented Reality it is obviously interesting to know where planes are and how the 
-camera moves in the scene to be able to render virtual object. But usually there is more than one single 
-plane in the environment. Usually there are other objects in the scene that affect how the virtual objects 
-should be rendered. Sometimes maybe the virtual objects could interact with the real objects to make a 
-more realistic scene. Because of this it can be very interesting to know what those objects actually are.
-
-For example, if you are going to place a virtual furniture in your home it would be good to detect other 
-furnitures in the area so that the virtual object can collide with the real object. This way, they will not 
-intertwine with each other.
-
-% Our master thesis
-Or maybe one would like to give virtual instructions to a user for assembling or constructing a certain 
-product or to do maintenance. It is then important to figure out what 3D objects there are in the scene to 
-be able to render instructions on the right places.
-
-Augmented Reality technology has come a long way, but there are still things missing for making it a 
-genuine experience. In ARKit, for instance, if a virtual object is rendered on top of a plane and a real 
-object comes in between the virtual object will still be rendered first. This makes it painfully obvious that 
-the virtual object is just a 2D drawing on the screen.
-
+\subsubsection{Occlusion problem in AR}
 \begin{figure}[hbtp]
 \begin{center}
 \includegraphics[width = 0.25\textwidth]{./Images/overlapping2.jpg} 
 \includegraphics[width = 0.25\textwidth]{./Images/overlapping1.jpg} 
 \caption{Book shelf rendered in a corner. To the left no objects in front so it looks realistic.On the right, the book shelf has a lamp in front of it.}
+\label{fig:occlusion}
 \end{center}
 \end{figure}
+
+One of the current problems with Augmented Reality for us is that the models are rendered on top of the real world. When there are no other object in the scene and we just have a simple plane to render one, the result can look decently realistic. However, when other objects are in the scene, the  illusion of realism is easily lost. Example of this can be seen in figure \ref{fig:occlusion}. 
+
+A way to solve this problem would be to create a 3D model of the real world, to be able to find foreground objects and thus, add a transparency mask on the object we wish to render in the real world to increase the effect of illusion that it is actually there.
+
+As of now it is not possible with ARKit to do this in a real time fashion. However, there are scholars working on solutions for the occlusion problem in augmented reality, such as Shah, Niyati \cite{occlusion}.
 
 \newpage
