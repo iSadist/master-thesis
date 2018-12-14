@@ -1,6 +1,6 @@
-\section{Pre YOLO}
-
-\subsection{Testing Object Scanning with ARKit2}
+\chapter{Object Detection}
+Chapter intro text
+\section{Testing Object Scanning with ARKit2}
 Apple's ARKit2 has a feature where it can detect scanned 3D objects. For scanning, they have developed an app that can be downloaded from their website. \cite{ARScanning}
 After the scanning is complete the app lets you export the model to then include it in your ARKit2 project. Once in the project it is simply imported into the ARWorldTrackingConfiguration like shown below. (The models are kept inside the Assets.xcassets catalogue in a folder called 'Objects').
 
@@ -25,7 +25,7 @@ Sadly, this method came up short for our purpose. When testing live in our app t
 The detection worked best while being in the same environment, static with the same kind of lightning conditions, but fell short when the object was moving or being held. Therefore, since the user is going to hold the pieces by hand and moving them around, this method cannot be used for our purpose.
 
 
-\subsection{Object Detection with traditional machine learning}
+\section{Object Detection with traditional machine learning}
 % Write about feature based detection and segmentation
 
 When trying to detect objects in a still image we have looked into two main methods. One typical way is to try and look for patterns or features in the image.
@@ -68,7 +68,7 @@ When the environment is a more casual place though, e.g., recognizing furniture 
 
 
 
-\subsection{Matlab prototype for Object Detection}
+\section{Matlab prototype for Object Detection}
 % Write about design decisions for the Matlab prototype and what it does. 
 % Probably add some code as well.
 A purely feature based object segmentation method was implemented as a prototype in Matlab. This was done to see if a machine learning model for detecting objects could be dismissed. 
@@ -89,7 +89,7 @@ First, an edge detection method was run on the entire image, to find the edges, 
 
 This method did however not end up being useful since its performance varied drastically depending on the input image and variables needed to be modified to fit every image. Thus, this method of segmenting out object areas was deemed not viable for this project.
 
-\subsection{Results from doing object detection in matlab}
+\section{Results from doing object detection in matlab}
 A Matlab script was tried in order to find possible ways of segmenting out regions containing objects in an image. The output segments would then each be classified separately. This way we would have both object locations and classifications on each object. \ref{fig:matlabImages} shows an example of this. However, results from this were highly unpredictable and the parameters were too dependent on lighting, shadows, the background among other features. Hence, this method was scrapped.
 
 

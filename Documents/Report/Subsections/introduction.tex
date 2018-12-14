@@ -1,10 +1,10 @@
-\section{Introduction}
+\chapter{Introduction}
 To first get an understanding of why this project was done, it is important for the reader to learn, not only the background of the fields studied, but also about the prospects of the technologies involved.
- At \hyperref[subsecBackground]{3.1} we go through the current and the potential use of these technologies; also what prospects the consumers and the industry have. Later on, at  \hyperref[subsecPrevStud]{3.2} we go through some of the previous research that has been done in the fields that are studied in the report. This section is then rounded off at \hyperref[subsecGoal]{3.3} with us telling you what we hoped to achieve with this project and a brief run-down of how.
+ At \ref{subsecBackground}we go through the current and the potential use of these technologies; also what prospects the consumers and the industry have. Later on, at  \ref{subsecPrevStud} we go through some of the previous research that has been done in the fields that are studied in the report. In section \ref{subsecGoal} the we explain what we hoped to achieve with this project and a brief rundown of how. Section \ref{subSecJayway} tells about the company that ordered the project and why they were interested in it. This section is rounded off with section \ref{subSecMockup}, which illustrates a mock up of how we had hoped the project ended up looking like.
  
  The full repository for this project can be downloaded at \url{https://github.com/iSadist/master-thesis}
 
-\subsection{Background}
+\section{Background}
 \label{subsecBackground}
 The idea of Augmented Reality is to render virtual object in the real world. This usually requires hardware in the form of a camera and display, a processing unit and software. Common AR devices today are the HoloLens \cite{microsoft}, Google's Glass \cite{googleGlasses} and a vast amount of mobile devices, such as Apple's iPhone X \cite{appleAR}. 
 
@@ -13,7 +13,7 @@ The general interest for AR has undeniably grown in recent years, with mobile ga
  
 However, as of now, most localization and identification of objects within AR are done using marker detection \cite{markerDetection}. An alternative to this would be to use \textit{Deep Neural Networks}, as they have been proven to be very useful for object detection in images. The hype around neural networks has been particularly strong since AlexNet scored high in the ImageNet LSVRC-2010 challenge and the ImageNet ILSVRC-2012 challenge \cite{NIPS2012_4824}. They accomplished these feats by making use of new methods, e.g. \textit{dropout}. Since then several different types of network models have been created. Now we have network models that can detect both where an object is in an image, and what the object is, in one go. One such network is \textit{YOLO}\cite{YOLO1}. By adopting such a network, the need for having to mark objects would drop significantly and it would open up for many more possible use cases for AR.
  
-\subsection{Previous studies}
+\section{Previous studies}
 \label{subsecPrevStud}
 D. Chatzopoulos et al.(2017) describes the basics of Mobile Augmented Reality, its advancements and it's flaws. They estimate that MAR is the most promising field of mobile applications and that it will have a massive impact on how we interact with the real world. However, they also go through some of the current hiccoughs with the technology, such as bandwith limitation and the computing power required. 
 \cite{MARS}
@@ -26,7 +26,7 @@ Y LeCun and M.A. Ranzato goes in-depth on the history and progress of deep learn
 \cite{deepLearningTutorial}
 
 
-\subsection{The goal of this project}
+\section{The goal of this project}
 \label{subsecGoal}
 Our goal is to try to combine Augmented Reality with Object detection and Object recognition to find out if it is feasible and if there is an actual desirable use case for this technique. 
 
@@ -35,7 +35,8 @@ This will be limited to the use of ARKit 2 developed by \textit{Apple} for iOS d
 Hence, we will not research what is possible with other hardware, although, we will mention them. We will also restrict the amount of furniture we train on, as well as the environments they will be built in. However, we hypothesize that if it works for one furniture and one set of environments, it should be possible to scale for larger sets.
 
 
-\subsection{Jayway}
+\section{Jayway}
+\label{subSecJayway}
 This project is conducted partly on Jayway's request and much of the work is done in their office in Malmö.
 Jayway is a software studio with offices in Malmö, Halmstad, Stockholm, Copenhagen and Palo Alto. They aim to provide costumers with digital solutions  within fields such as mobile, web, backend, cloud as well as UX \& design. They also have a focus on AR \& VR, where they hope to give businesses a new perspective on the technologies.
 
@@ -46,13 +47,8 @@ Jayway is continuously looking to explore new technologies and Augmented Reality
 A second objective is for Jayway to take the finished implementation to one of their customers and
 present an example of what they are able to do for their customers.
 
-\newpage
-
-
-\subsection{Summary of our plans}
-In order to start a project of this magnitude, a good strategy had to be conceived. 
-
-\subsubsection{Mock-up of the planned product}
+\section{Mock-up of the planned product}
+\label{subSecMockup}
 To be able to design the layout and flow of the application, a mock-up of application was first created, illustrating the information and use flow throughout the usage. In this section the general concept will be described and why it was designed in this way. The mock up was created using a free online tool called MockFlow\cite{mockflow}. 
 
 When the application is opened up, one is taken to a furniture selection screen, see figure \ref{fig:furniture-select}, which allows the user to select which furniture they want to assemble. A user can select the furniture by either scrolling through the list, using the search bar, or using the built in barcode scanner. It was important for a first time user to understand what the purpose of the application was when they first open up the app. Therefore, first time users are greeted with an informative pop-up notification explaining the general purpose.

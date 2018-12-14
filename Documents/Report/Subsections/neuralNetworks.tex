@@ -1,11 +1,11 @@
-\section{Machine Learning}
-
-\subsection{How neural networks work}
+\chapter{Neural Networks}
+Introtext to chapter
+\section{How neural networks work}
 There exists many different machine learning techniques out there today. Due to its high effectiveness and relevance, for this report we are going to focus on the highly popular method of artificial neural networks.
 This is a proven method for working well with images (Convolutional neural networks) and is therefore a highly 
 relevant technique for this project.
 
-\subsubsection{Perceptron}
+\subsection{Perceptron}
 A perceptron is the simplest form of the neural network. It has a set of inputs and an output.
 The perceptron first sums up all the input values, x, multiplied with the weight value, w.
 After that it passes that sum through an activation function. This activation function can be everything from a simple f(x)=x to the more complex sigmoid function, depending on the need. More on this in the upcoming section.
@@ -27,7 +27,7 @@ The output of the perceptron is described by the following formula:
 
 where b is the bias value, x is the input, w is the weight for that input and n is the number of inputs.
 
-\subsubsection{Activation functions}
+\subsection{Activation functions}
 
 The activation function,  $ \phi (v_{i}) $ , takes the sum of all the inputs from a node as input and passes them through a function before giving an output. This is beneficial when for instance the output should be kept in a range between 0 and 1, or perhaps when negative values don't make sense.
 Usually, activation functions are attributed to layers instead of individual nodes.
@@ -52,7 +52,7 @@ Each element in the array is described as below
 This output is good for describing the probability for each element to be correct and is therefore commonly used
 in the output layer.
 
-\subsubsection{Calculating the loss}
+\subsection{Calculating the loss}
 When training the model, it will at first make a guess to what the right answer or value is based on the random initial weigh values. In the beginning, the model is usually mostly wrong and it is then important to know how wrong it was and in what direction it should go.
 
 For this, the model uses a loss function to calculate that error. For different applications the loss function can be different.
@@ -64,7 +64,7 @@ Another approach is the \textbf{mean squared error} which squares the difference
 \[Error = \frac{1}{n} \cdot \displaystyle\sum_{i=1}^{n} (y_p - y_c)^{2} \]
 
 
-\subsubsection{Optimizers}
+\subsection{Optimizers}
 Once the error has been calculated, the network will make changes to itself to improve the performance by decreasing the error value. This is called backpropagation.
 The principle behind backpropagation is to go backwards in the network from the output node and determining how each weight value, $ \omega_{ik} $, should change.\\
 
@@ -115,7 +115,7 @@ There are a lot of other optimizers such as \textbf{Adagrad}, \textbf{Adadelta},
 
 REFERENCE TO THE BOOK
 
-\subsubsection{Layers}
+\subsection{Layers}
 
 \begin{figure}[hbtp]
 \begin{center}
@@ -126,7 +126,7 @@ REFERENCE TO THE BOOK
 
 With more layers and more neurons the networks parameters and complexity begins to grow. So does also the training time, size of the model and the cost for doing predictions. Thus, these networks are capable of describing much more complex data sets. But as a result of that, the risk of overfitting (The act of describing the training data set too well so that new data sets will not get recognized. More on this soon.) becomes much greater. That is why a complex network is not always wanted.
 
-\subsubsection{Overfitting}
+\subsection{Overfitting}
 When training a neural net, one needs to be careful not to train the model too much or overfitting is likely to happen. Overfitting is when a model gets REALLY good at predicting the data that it is training on but fails to predict accurately on new data. This is because it starts to pick up too much on detail or in some instances even noise. For this reason it fails to pick up the general trends, which is more valuable. 
 
 \begin{figure}[hbtp]
@@ -173,7 +173,7 @@ It is kind of like when someone has an off pitch in a big choir. If there are ma
 The final technique is called early stopping and is based on validating the model after every epoch and stopping the training when the validation loss, or some other criteria, is not improving anymore.
 
 
- \subsection{Convolutional Neural Networks}
+ \section{Convolutional Neural Networks}
 
  Convolutional neural networks have been used for quite some time when it comes to deep learning and their capabilities are rather astounding, as proved by Krizhevsky et al \cite{NIPS2012_4824}.  They use layers which perform convolutions, hence it's name.  The input to a convolutional network are either 2D or 3D tensors, where the 3D alternative usually has color channels along the third dimension. Use of convolutional neural networks in image recognition  can be practical for several reasons, e.g., it can tell of spatial relationships in an image. This section has been written with reference to V. Dumolin et al \cite{convArit}. Figure \ref{fig:cnn} shows an example of how a CNN may look.
  
@@ -220,7 +220,7 @@ Images taken from \cite{convArit}}
 When a classification is to be done in the CNN, the shape needs to be shifted to an array. This is done after the last pooling layer or convolutional layer. This array can then be passed into a hidden layer for classification.
 
 
-\subsection{Collecting data}
+\section{Collecting data}
 When working with machine learning, big sets of data is often required for a good resulting model.
 A problem with this is that it can be tricky to obtain such a large data set because it usually also requires
 labels with that data to be manually put in. These labels will be used by the neural net to, during training, check if
@@ -246,7 +246,7 @@ However, there are other options.
 \end{center}
 \end{figure}
 
-\subsubsection{Augmenting data}
+\subsection{Augmenting data}
 Instead of training on only original images, some images can be created from other images by for example rotating, flipping, changing brightness, saturation, contrast etc.  This will essentially be an image of the same object, but the data will look different, thus giving the model more relevant data to train on, see figure \ref{fig:exampleArtificial}.
 When doing this it is important to keep in mind that the augmented data should be relevant to real situations.
 Creating data with only the blue color band when the real situations are only in daylight makes no sense.
@@ -282,7 +282,7 @@ In our project, this gave a good result as it increased the test accuracy by 8%.
 
 Doing this by hand can still be very time consuming, so automating this process as far as possible is recommended.
 
-\subsection{Image classification}
+\section{Image classification}
 Designing a neural net for the image classification is not the easiest task and much
 work consists of trying things and making intelligent guesses.
 As stated in the section about data collection we had 4 different classes to classify,
@@ -429,7 +429,7 @@ results. A larger network could have been implemented and testes as well but
 since the model size would grow more and training time would increase drastically,
 we didn't increase it further.
 
-\subsection{Transfer Learning}
+\section{Transfer Learning}
 % Write about how we went about in order to insert Transfer Learning into the mix. 
 After trial of designing the network from scratch, it was decided to try and make use of 
 pre-trained networks and then retrain them for another purpose. Models trained on 

@@ -1,7 +1,7 @@
-\section{Post YOLO}
+\chapter{YOLO}
+Intro text to chapter
 
-
-\subsection{RCNN and its different forms}
+\section{RCNN and its different forms}
 
 How to calculate loss in RCNN
 
@@ -20,7 +20,7 @@ Mask R-CNN
 Outside our scope, but something that can be used to improve object tracking.
 Although, then an object tracking algorithm that tracks on an outline is required.
 
-\subsection{YOLO}
+\section{YOLO}
 YOLO, or You Only Look Once, is a one stage detector approach to object detection and
  recognition \cite{YOLO1}. It takes an image and predicts both bounding boxes and the probabilities of the classes being within these bounding boxes in one run, hence its name. It was designed to be fast and usable in real-time scenarios. Since YOLO sees the entire image during training and testing, it receives contextual information about the classes and reduces error with matching background patches for objects. 
  
@@ -49,7 +49,7 @@ Comparisons done by the team working on \textit{YOLO} found that, compared to ot
 Throughout the years Redmon et al. has been working on updating the design pattern of the 
 YOLO network. First in 2016 when they introduced \textit{YOLOv2} and then April 2018 with \textit{YOLOv3} \cite{YOLO2}\cite{YOLO3}. \textit{YOLOv2} added a few concepts to the system to make it even more fast and accurate than the earlier iteration. It removed the fully connected layers and it was now possible to train on several different input image resolutions and it could now also predict many more bounding boxes than its predecessor. \textit{YOLOv3} added some changes which improved its ability to detect small objects, with the trade off of having a bit worse performance when finding larger sized objects.  
 
-\subsection{Mean Average Precision}
+\section{Mean Average Precision}
 
 There is quite a difference when it comes to evaluating a model that does object detection,  compared to normal image classification. When doing the latter, accuracy tells you how often the model makes the correct prediction. However, with object detection it is done differently. The common metric is \textit{mean Average Precision} (mAP).  This metric makes use of the previously discussed \textit{IoU} (intersection over union). The IoU and the classification determines if the prediction is deemed correct. The classification obviously has to be the same as the ground truth, and the IoU has to be over a set threshold, these are known as True Positives. A predicted box that does not pass the threshold is known as a False Positive.. If there are more than one prediction that passes the threshold, only one will get seen as a True Positive, and the other as False Positive. When a prediction was not made for a ground truth box, it is called a False Negative \cite{turiAdvanced}.
 
@@ -66,7 +66,7 @@ There are different standards when calculating the mAP. The PASCAL VOC Challenge
 
 
 
-\subsection{Turi Create}
+\section{Turi Create}
 %Write about the testing an implementation of Turi
 Apple has developed their own toolkit for development of custom machine learning models called Turi Create \cite{turiCreate}. This was created to help developers easily implement their own ideas into an app. It includes methods for image classification, object detection etc.. 
 
@@ -130,7 +130,7 @@ image_prediction = tc.object_detector.util.draw_bounding_boxes(test_data['image'
 image_prediction.explore()
 \end{lstlisting}
 
-\subsubsection{Importing model to application}
+\subsection{Importing model to application}
 
 After training and evaluating that the model lives up to a standard worth including in this
  project, it was converted to the \textit{.mlmodel}. When inputting a frame from the
@@ -180,7 +180,7 @@ application into the model, the model outputs a multi array containing an array 
 
 
 
-\subsection{Results from doing object detection with Turi}
+\section{Results from doing object detection with Turi}
 Because of the vast amount of possible use cases it was decided to scale the objective down. The model was trained only on a few floor backgrounds. 
 
 The mean average precision from the different models that were trained were observed and can be read in table \ref{table:mAP}. 

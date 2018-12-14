@@ -1,7 +1,7 @@
-\section{Augmented Reality}
-INTROTEXT
+\chapter{Augmented Reality}
 
-\subsection{How does Augmented Reality work?}
+Introtext to chapter
+\section{How does Augmented Reality work?}
 There are different types of augmented reality. Some of those are marker-based, location-based, superimposition-based and projection-based. \\
 
 \textbf{Marker-based} AR is when markers, in the form of images have to be placed in the real world and detected by the application. Virtual object are rendered on top of these markers. An example would be a picture in a magazine which, when pointing a camera at it, the application renders an 3D object on top.\\
@@ -29,7 +29,7 @@ An example of where this could be useful is in a museum where different informat
 
 In this paper we will mainly be using projection based AR with a form of recognition. The projections will be in the form of way-pointers used as instructions for the user to perform the next step in putting together a furniture piece. These instructions can visualize how the pieces will look like after the step is completed, and to show arrow pointers between the pieces that are supposed to be put together.
 
-\subsubsection{History of AR}
+\subsection{History of AR}
 The idea of augmented reality has existed a long time, the phrase has only been used for about 28 years but it is not until recently that the technology has become mainstream.
 This is mainly due to it becoming good enough to be used by the average person at home. Today we can just download an app on our smart phones to enjoy the technology. Below follows a brief history of how augmented reality has progressed throughout the years.\\
 
@@ -51,7 +51,7 @@ AR comes to the web in the form of an open source toolkit called ARToolKit.\\
 \textbf{2017}
 Apple launches AR Kit and Google launches AR Core.\\
 
-\subsubsection{S.L.A.M.}
+\subsection{S.L.A.M.}
 S.L.A.M (Simultaneous Localization and Mapping) is a way for a machine to get to know the environment that it is in. It registers features and maps them to its surroundings. S.L.A.M is about having the map of the environment and knowing where the robot is in that map.
 The problem with this is that a map is needed for knowing where you are, and you have to know where you are to be able to create a map. That is why S.L.A.M is doing this at the same time, hence 'Simultaneous'. The system is used in autonomous robots, but also valuable in Augmented Reality. \cite{slam}
 
@@ -66,7 +66,7 @@ hardware components make this task possible, including gyro, accelerometer and a
 \end{center}
 \end{figure}
 
-\subsubsection{How does ARKit work?}
+\subsection{How ARKit works}
 \label{subsecARKit}
 ARKit works similar to SceneKit were a scene (which is basically a 3D environment in which nodes containing 3D models (geometry) can be rendered) is loaded at start up and interacted with.
 An ARScene is contained inside an ARSCNView (AR Scene View) which also has an ARSession

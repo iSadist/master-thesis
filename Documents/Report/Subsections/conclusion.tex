@@ -1,4 +1,4 @@
-\section{Conclusion}
+\chapter{Conclusion}
 The main goal for this project was to investigate whether it was possible to
 use object detection together with augmented reality, both with respect to
 if it is technically possible and if it creates value for the customer.
@@ -26,23 +26,23 @@ hardware was outside the scope of this project.
 A fully working prototype for combining object detection with augmented reality
 was finally developed for iPhone X.
 
-\subsection{Future Work}
+\section{Future Work}
 INTROTEXT
 
 Because of the rapid development in the fields discussed in this report, much of what we've gone through could be improved in the future. With new \textit{Augmented Reality} and \textit{Mixed Reality} hardware being developed by big franchises, such as Facebook \cite{facebookAR}, the performance will increase ever so rapidly.
 
 The model used also only included the pieces to one furniture, but one could easily include more in the future by gathering data for other furniture parts.
 
-\subsubsection{Wearable}
+\subsection{Wearable}
 One improvement of our application would be to port it to, not only hand-held devices, but also the headgear, thus allowing the user to building with both hands and never have to pause during the assembly process.
 
-\subsubsection{Detecting smaller objects}
+\subsection{Detecting smaller objects}
 Another issue with our model is that we are unable to detect screws and bolts because of their 
 comparatively small size, instead, we just inform the user that screws should be used during a particular step using animations.
 This issue could possibly be fixed by adapting our model into taking account to smaller objects.
 Some future work could be to investigate whether it is possible.
 
-\subsubsection{Mask RCNN}
+\subsection{Mask RCNN}
 Since there was a lot of confusion around the green markings from the user tests, it would be an
 improvement to only mark the exact position of the part and not the surrounding floor.
 For this application only the bounding box of the 2D image is known, not the floor where it lays.
@@ -51,7 +51,7 @@ A possible solution to this in the future could be to implement a Mask RCNN netw
 the problem with this type right now is that it does not work in real time applications (definitely not on mobile devices).
 If this would get better it could be implemented in the app for a much nicer user experience.
 
-\subsubsection{Starting the app in the ARScene}
+\subsection{Starting the app in the ARScene}
 When comparing to other AR Applications in the App Store, a lot of them starts right in the AR 
 scene. This seems to be somewhat of a convention in the AR community.
 
@@ -59,13 +59,13 @@ We chose to have the user select the furniture before entering the AR scene to m
 implementation easier. However, it could be changed so that the furniture could be selected
 either from an overlay or a bottom card design over the AR scene view.
 
-\subsubsection{Shared AR experience}
+\subsection{Shared AR experience}
 Ever since ARKit 2.0 was released, it is possible to share an AR experience with another user.
 Since the app already utilizes ARKit 2.0 it would be relatively simple to implement a shared 
 experience. The shared experience could make it easier for multiple people to work together to
 assemble a furniture. Big furnitures are rarely assembled by just one person.
 
-\subsubsection{Voiced instructions}
+\subsection{Voiced instructions}
 Reading instructions on the screen while viewing a video preview is not the most intuitive in an
 AR environment. The eyes are mostly focused on what is going on in the environment and text
 instructions given on an overlay can easily be missed if they are subtle.
@@ -73,7 +73,7 @@ instructions given on an overlay can easily be missed if they are subtle.
 Furthermore, people with hard of seeing could have a hard time with both reading the instructions
 and seeing the 3D models. This problem can be solved by introducing voiced instructions in the app.
 
-\subsubsection{Finding the anchor points with object detection}
+\subsection{Finding the anchor points with object detection}
 Since screws were to small to detect, so are the anchor points on the furniture parts that connect
 each other.
 An improvement in the future could be to try to detect the exact anchor points on the
@@ -81,7 +81,7 @@ real furniture parts and rendering the virtual object right on that location. Th
 require more work on training the neural net to detect those small parts and probably
 higher resolution on the images.
 
-\subsubsection{Make it scalable}
+\subsection{Make it scalable}
 The application only supports one furniture. For a full scale application it would need to support
 many more furnitures. For a complete catalogue there could exist hundreds of furnitures.
 
@@ -101,7 +101,7 @@ furniture. These could be fetched from a database before starting the assembly s
 
 All the other instructions, geometry, anchor- and screw points could also be fetched from a database.
 
-\subsubsection{Occlusion problem in AR}
+\subsection{Occlusion problem in AR}
 \begin{figure}[hbtp]
 \begin{center}
 \includegraphics[width = 0.25\textwidth]{./Images/overlapping2.jpg} 
