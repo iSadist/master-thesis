@@ -11,20 +11,20 @@ Model History:
 	Test Accuracy: 48%
 
 	model = keras.Sequential([
-			keras.layers.Conv2D(8, kernel_size=(8, 8), strides=(2, 2), input_shape=(image_height, image_width, number_of_color_channels)),
-			keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-			keras.layers.Conv2D(8, kernel_size=(6,6), strides=(2, 2)),
-			keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-			keras.layers.Conv2D(8, kernel_size=(4,4), strides=(2, 2)),
-			keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-			keras.layers.Flatten(),
-		    keras.layers.Dense(16, activation=tf.nn.relu),
-		    keras.layers.Dropout(0.1),
-		    keras.layers.Dense(16, activation=tf.nn.relu),
-		    keras.layers.Dropout(0.1),
-		    keras.layers.Dense(16, activation=tf.nn.relu),
-		    keras.layers.Dropout(0.1),
-		    keras.layers.Dense(4, activation=tf.nn.softmax) # The number of nodes must be the same as the number of possibilities
+			Conv2D(8, kernel_size=(8, 8), strides=(2, 2), input_shape=(image_height, image_width, number_of_color_channels)),
+			MaxPool2D(pool_size=(2, 2), padding="valid"),
+			Conv2D(8, kernel_size=(6,6), strides=(2, 2)),
+			MaxPool2D(pool_size=(2, 2), padding="valid"),
+			Conv2D(8, kernel_size=(4,4), strides=(2, 2)),
+			MaxPool2D(pool_size=(2, 2), padding="valid"),
+			Flatten(),
+		    Dense(16, activation=tf.nn.relu),
+		    Dropout(0.1),
+		    Dense(16, activation=tf.nn.relu),
+		    Dropout(0.1),
+		    Dense(16, activation=tf.nn.relu),
+		    Dropout(0.1),
+		    Dense(4, activation=tf.nn.softmax) # The number of nodes must be the same as the number of possibilities
 		])
 
 		model.compile(optimizer=keras.optimizers.Adam(),
@@ -44,20 +44,20 @@ Model History:
 	Test Accuracy: 41%
 
 	model = keras.Sequential([
-			keras.layers.Conv2D(8, kernel_size=(8, 8), strides=(2, 2), input_shape=(image_height, image_width, number_of_color_channels)),
-			keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-			keras.layers.Conv2D(8, kernel_size=(6,6), strides=(2, 2)),
-			keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-			keras.layers.Conv2D(8, kernel_size=(4,4), strides=(2, 2)),
-			keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-			keras.layers.Flatten(),
-		    keras.layers.Dense(16, activation=tf.nn.relu),
-		    keras.layers.Dropout(0.1),
-		    keras.layers.Dense(16, activation=tf.nn.relu),
-		    keras.layers.Dropout(0.1),
-		    keras.layers.Dense(16, activation=tf.nn.relu),
-		    keras.layers.Dropout(0.1),
-		    keras.layers.Dense(4, activation=tf.nn.softmax) # The number of nodes must be the same as the number of possibilities
+			Conv2D(8, kernel_size=(8, 8), strides=(2, 2), input_shape=(image_height, image_width, number_of_color_channels)),
+			MaxPool2D(pool_size=(2, 2), padding="valid"),
+			Conv2D(8, kernel_size=(6,6), strides=(2, 2)),
+			MaxPool2D(pool_size=(2, 2), padding="valid"),
+			Conv2D(8, kernel_size=(4,4), strides=(2, 2)),
+			MaxPool2D(pool_size=(2, 2), padding="valid"),
+			Flatten(),
+		    Dense(16, activation=tf.nn.relu),
+		    Dropout(0.1),
+		    Dense(16, activation=tf.nn.relu),
+		    Dropout(0.1),
+		    Dense(16, activation=tf.nn.relu),
+		    Dropout(0.1),
+		    Dense(4, activation=tf.nn.softmax) # The number of nodes must be the same as the number of possibilities
 		])
 
 		model.compile(optimizer=keras.optimizers.Adam(),
@@ -77,20 +77,20 @@ Model History:
 	Test Accuracy: 53%
 
 	model = keras.Sequential([
-		keras.layers.Conv2D(16, kernel_size=(10, 10), strides=(2, 2), input_shape=(image_height, image_width, number_of_color_channels)),
-		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-		keras.layers.Conv2D(16, kernel_size=(8,8), strides=(2, 2)),
-		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-		keras.layers.Conv2D(16, kernel_size=(4,4), strides=(1, 1)),
-		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-		keras.layers.Flatten(),
-	    keras.layers.Dense(32, activation=tf.nn.relu),
-	    keras.layers.Dropout(0.1),
-	    keras.layers.Dense(32, activation=tf.nn.relu),
-	    keras.layers.Dropout(0.1),
-	    keras.layers.Dense(16, activation=tf.nn.relu),
-	    keras.layers.Dense(16, activation=tf.nn.relu),
-	    keras.layers.Dense(4, activation=tf.nn.softmax) # The number of nodes must be the same as the number of possibilities
+		Conv2D(16, kernel_size=(10, 10), strides=(2, 2), input_shape=(image_height, image_width, number_of_color_channels)),
+		MaxPool2D(pool_size=(2, 2), padding="valid"),
+		Conv2D(16, kernel_size=(8,8), strides=(2, 2)),
+		MaxPool2D(pool_size=(2, 2), padding="valid"),
+		Conv2D(16, kernel_size=(4,4), strides=(1, 1)),
+		MaxPool2D(pool_size=(2, 2), padding="valid"),
+		Flatten(),
+	    Dense(32, activation=tf.nn.relu),
+	    Dropout(0.1),
+	    Dense(32, activation=tf.nn.relu),
+	    Dropout(0.1),
+	    Dense(16, activation=tf.nn.relu),
+	    Dense(16, activation=tf.nn.relu),
+	    Dense(4, activation=tf.nn.softmax) # The number of nodes must be the same as the number of possibilities
 	])
 
 	model.compile(optimizer=keras.optimizers.Adam(),
@@ -109,22 +109,22 @@ Model History:
 	Test Accuracy: 58%
 
 	model = keras.Sequential([
-		keras.layers.Conv2D(16, kernel_size=(10, 10), strides=(2, 2), input_shape=(image_height, image_width, number_of_color_channels)),
-		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-		keras.layers.Conv2D(16, kernel_size=(8,8), strides=(2, 2)),
-		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-		keras.layers.Conv2D(16, kernel_size=(4,4), strides=(1, 1)),
-		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-		keras.layers.Flatten(),
-	    keras.layers.Dense(32, activation=tf.nn.relu),
-	    keras.layers.Dropout(0.1),
-	    keras.layers.Dense(32, activation=tf.nn.relu),
-	    keras.layers.Dropout(0.1),
-	    keras.layers.Dense(16, activation=tf.nn.relu),
-	    keras.layers.Dropout(0.1),
-	    keras.layers.Dense(16, activation=tf.nn.relu),
-	    keras.layers.Dropout(0.1),
-	    keras.layers.Dense(4, activation=tf.nn.softmax) # The number of nodes must be the same as the number of possibilities
+		Conv2D(16, kernel_size=(10, 10), strides=(2, 2), input_shape=(image_height, image_width, number_of_color_channels)),
+		MaxPool2D(pool_size=(2, 2), padding="valid"),
+		Conv2D(16, kernel_size=(8,8), strides=(2, 2)),
+		MaxPool2D(pool_size=(2, 2), padding="valid"),
+		Conv2D(16, kernel_size=(4,4), strides=(1, 1)),
+		MaxPool2D(pool_size=(2, 2), padding="valid"),
+		Flatten(),
+	    Dense(32, activation=tf.nn.relu),
+	    Dropout(0.1),
+	    Dense(32, activation=tf.nn.relu),
+	    Dropout(0.1),
+	    Dense(16, activation=tf.nn.relu),
+	    Dropout(0.1),
+	    Dense(16, activation=tf.nn.relu),
+	    Dropout(0.1),
+	    Dense(4, activation=tf.nn.softmax) # The number of nodes must be the same as the number of possibilities
 	])
 
 	model.compile(optimizer=keras.optimizers.Adam(),
@@ -143,22 +143,22 @@ Model History:
 	Test Accuracy: 48.2%
 
 	model = keras.Sequential([
-		keras.layers.Conv2D(16, kernel_size=(10, 10), strides=(2, 2), input_shape=(image_height, image_width, number_of_color_channels)),
-		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-		keras.layers.Conv2D(16, kernel_size=(8,8), strides=(2, 2)),
-		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-		keras.layers.Conv2D(16, kernel_size=(4,4), strides=(1, 1)),
-		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-		keras.layers.Flatten(),
-	    keras.layers.Dense(32, activation=tf.nn.relu),
-	    keras.layers.Dropout(0.2),
-	    keras.layers.Dense(32, activation=tf.nn.relu),
-	    keras.layers.Dropout(0.2),
-	    keras.layers.Dense(16, activation=tf.nn.relu),
-	    keras.layers.Dropout(0.1),
-	    keras.layers.Dense(16, activation=tf.nn.relu),
-	    keras.layers.Dropout(0.1),
-	    keras.layers.Dense(4, activation=tf.nn.softmax) # The number of nodes must be the same as the number of possibilities
+		Conv2D(16, kernel_size=(10, 10), strides=(2, 2), input_shape=(image_height, image_width, number_of_color_channels)),
+		MaxPool2D(pool_size=(2, 2), padding="valid"),
+		Conv2D(16, kernel_size=(8,8), strides=(2, 2)),
+		MaxPool2D(pool_size=(2, 2), padding="valid"),
+		Conv2D(16, kernel_size=(4,4), strides=(1, 1)),
+		MaxPool2D(pool_size=(2, 2), padding="valid"),
+		Flatten(),
+	    Dense(32, activation=tf.nn.relu),
+	    Dropout(0.2),
+	    Dense(32, activation=tf.nn.relu),
+	    Dropout(0.2),
+	    Dense(16, activation=tf.nn.relu),
+	    Dropout(0.1),
+	    Dense(16, activation=tf.nn.relu),
+	    Dropout(0.1),
+	    Dense(4, activation=tf.nn.softmax) # The number of nodes must be the same as the number of possibilities
 	])
 
 	model.compile(optimizer=keras.optimizers.Adam(),
@@ -177,23 +177,23 @@ Model History:
 	Test Accuracy: 55.5%
 
 	model = keras.Sequential([
-		keras.layers.Conv2D(16, kernel_size=(10, 10), strides=(2, 2), input_shape=(image_height, image_width, number_of_color_channels)),
-		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-		keras.layers.Dropout(0.1),
-		keras.layers.Conv2D(16, kernel_size=(8,8), strides=(2, 2)),
-		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-		keras.layers.Dropout(0.1),
-		keras.layers.Conv2D(16, kernel_size=(4,4), strides=(1, 1)),
-		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-		keras.layers.Flatten(),
-	    keras.layers.Dense(32, activation=tf.nn.relu),
-	    keras.layers.Dropout(0.1),
-	    keras.layers.Dense(32, activation=tf.nn.relu),
-	    keras.layers.Dropout(0.1),
-	    keras.layers.Dense(16, activation=tf.nn.relu),
-	    keras.layers.Dropout(0.1),
-	    keras.layers.Dense(16, activation=tf.nn.relu),
-	    keras.layers.Dense(4, activation=tf.nn.softmax) # The number of nodes must be the same as the number of possibilities
+		Conv2D(16, kernel_size=(10, 10), strides=(2, 2), input_shape=(image_height, image_width, number_of_color_channels)),
+		MaxPool2D(pool_size=(2, 2), padding="valid"),
+		Dropout(0.1),
+		Conv2D(16, kernel_size=(8,8), strides=(2, 2)),
+		MaxPool2D(pool_size=(2, 2), padding="valid"),
+		Dropout(0.1),
+		Conv2D(16, kernel_size=(4,4), strides=(1, 1)),
+		MaxPool2D(pool_size=(2, 2), padding="valid"),
+		Flatten(),
+	    Dense(32, activation=tf.nn.relu),
+	    Dropout(0.1),
+	    Dense(32, activation=tf.nn.relu),
+	    Dropout(0.1),
+	    Dense(16, activation=tf.nn.relu),
+	    Dropout(0.1),
+	    Dense(16, activation=tf.nn.relu),
+	    Dense(4, activation=tf.nn.softmax) # The number of nodes must be the same as the number of possibilities
 	])
 
 	model.compile(optimizer=keras.optimizers.Adam(),
@@ -212,23 +212,23 @@ Model History:
 	Test Accuracy: 45.35%
 
 	model = keras.Sequential([
-		keras.layers.Conv2D(16, kernel_size=(10, 10), strides=(2, 2), input_shape=(image_height, image_width, number_of_color_channels)),
-		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-		keras.layers.Dropout(0.1),
-		keras.layers.Conv2D(16, kernel_size=(8,8), strides=(2, 2)),
-		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-		keras.layers.Dropout(0.1),
-		keras.layers.Conv2D(16, kernel_size=(4,4), strides=(1, 1)),
-		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-		keras.layers.Flatten(),
-	    keras.layers.Dense(32, activation=tf.nn.relu),
-	    keras.layers.Dropout(0.1),
-	    keras.layers.Dense(32, activation=tf.nn.relu),
-	    keras.layers.Dropout(0.1),
-	    keras.layers.Dense(16, activation=tf.nn.relu),
-	    keras.layers.Dropout(0.1),
-	    keras.layers.Dense(16, activation=tf.nn.relu),
-	    keras.layers.Dense(4, activation=tf.nn.softmax) # The number of nodes must be the same as the number of possibilities
+		Conv2D(16, kernel_size=(10, 10), strides=(2, 2), input_shape=(image_height, image_width, number_of_color_channels)),
+		MaxPool2D(pool_size=(2, 2), padding="valid"),
+		Dropout(0.1),
+		Conv2D(16, kernel_size=(8,8), strides=(2, 2)),
+		MaxPool2D(pool_size=(2, 2), padding="valid"),
+		Dropout(0.1),
+		Conv2D(16, kernel_size=(4,4), strides=(1, 1)),
+		MaxPool2D(pool_size=(2, 2), padding="valid"),
+		Flatten(),
+	    Dense(32, activation=tf.nn.relu),
+	    Dropout(0.1),
+	    Dense(32, activation=tf.nn.relu),
+	    Dropout(0.1),
+	    Dense(16, activation=tf.nn.relu),
+	    Dropout(0.1),
+	    Dense(16, activation=tf.nn.relu),
+	    Dense(4, activation=tf.nn.softmax) # The number of nodes must be the same as the number of possibilities
 	])
 
 	model.compile(optimizer=keras.optimizers.Adam(),
@@ -247,23 +247,23 @@ Model History:
 	Test Accuracy: 60.01%
 
 	model = keras.Sequential([
-		keras.layers.Conv2D(16, kernel_size=(10, 10), strides=(2, 2), input_shape=(image_height, image_width, number_of_color_channels)),
-		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-		keras.layers.Dropout(0.2),
-		keras.layers.Conv2D(16, kernel_size=(8,8), strides=(2, 2)),
-		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-		keras.layers.Dropout(0.2),
-		keras.layers.Conv2D(16, kernel_size=(4,4), strides=(1, 1)),
-		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-		keras.layers.Flatten(),
-	    keras.layers.Dense(32, activation=tf.nn.relu),
-	    keras.layers.Dropout(0.1),
-	    keras.layers.Dense(32, activation=tf.nn.relu),
-	    keras.layers.Dropout(0.1),
-	    keras.layers.Dense(16, activation=tf.nn.relu),
-	    keras.layers.Dropout(0.1),
-	    keras.layers.Dense(16, activation=tf.nn.relu),
-	    keras.layers.Dense(4, activation=tf.nn.softmax) # The number of nodes must be the same as the number of possibilities
+		Conv2D(16, kernel_size=(10, 10), strides=(2, 2), input_shape=(image_height, image_width, number_of_color_channels)),
+		MaxPool2D(pool_size=(2, 2), padding="valid"),
+		Dropout(0.2),
+		Conv2D(16, kernel_size=(8,8), strides=(2, 2)),
+		MaxPool2D(pool_size=(2, 2), padding="valid"),
+		Dropout(0.2),
+		Conv2D(16, kernel_size=(4,4), strides=(1, 1)),
+		MaxPool2D(pool_size=(2, 2), padding="valid"),
+		Flatten(),
+	    Dense(32, activation=tf.nn.relu),
+	    Dropout(0.1),
+	    Dense(32, activation=tf.nn.relu),
+	    Dropout(0.1),
+	    Dense(16, activation=tf.nn.relu),
+	    Dropout(0.1),
+	    Dense(16, activation=tf.nn.relu),
+	    Dense(4, activation=tf.nn.softmax) # The number of nodes must be the same as the number of possibilities
 	])
 
 	model.compile(optimizer=keras.optimizers.Adam(),
@@ -283,23 +283,23 @@ Model History:
 	Test Accuracy: 59.87%
 
 	model = keras.Sequential([
-		keras.layers.Conv2D(16, kernel_size=(10, 10), strides=(2, 2), input_shape=(image_height, image_width, number_of_color_channels)),
-		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-		keras.layers.Dropout(0.2),
-		keras.layers.Conv2D(16, kernel_size=(8,8), strides=(2, 2)),
-		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-		keras.layers.Dropout(0.2),
-		keras.layers.Conv2D(16, kernel_size=(4,4), strides=(1, 1)),
-		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-		keras.layers.Flatten(),
-	    keras.layers.Dense(32, activation=tf.nn.relu),
-	    keras.layers.Dropout(0.1),
-	    keras.layers.Dense(32, activation=tf.nn.relu),
-	    keras.layers.Dropout(0.1),
-	    keras.layers.Dense(16, activation=tf.nn.relu),
-	    keras.layers.Dropout(0.1),
-	    keras.layers.Dense(16, activation=tf.nn.relu),
-	    keras.layers.Dense(4, activation=tf.nn.softmax) # The number of nodes must be the same as the number of possibilities
+		Conv2D(16, kernel_size=(10, 10), strides=(2, 2), input_shape=(image_height, image_width, number_of_color_channels)),
+		MaxPool2D(pool_size=(2, 2), padding="valid"),
+		Dropout(0.2),
+		Conv2D(16, kernel_size=(8,8), strides=(2, 2)),
+		MaxPool2D(pool_size=(2, 2), padding="valid"),
+		Dropout(0.2),
+		Conv2D(16, kernel_size=(4,4), strides=(1, 1)),
+		MaxPool2D(pool_size=(2, 2), padding="valid"),
+		Flatten(),
+	    Dense(32, activation=tf.nn.relu),
+	    Dropout(0.1),
+	    Dense(32, activation=tf.nn.relu),
+	    Dropout(0.1),
+	    Dense(16, activation=tf.nn.relu),
+	    Dropout(0.1),
+	    Dense(16, activation=tf.nn.relu),
+	    Dense(4, activation=tf.nn.softmax) # The number of nodes must be the same as the number of possibilities
 	])
 
 	model.compile(optimizer=keras.optimizers.Adam(),
@@ -317,20 +317,20 @@ Model History:
 
 	Test Accuracy: 59%
 	model = keras.Sequential([
-	  keras.layers.Conv2D(16, kernel_size=(4, 4), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
-	  keras.layers.MaxPool2D(pool_size=(4,4), padding="valid"),
-	  keras.layers.Conv2D(16, kernel_size=(4,4), strides=(1, 1)),
-	  keras.layers.MaxPool2D(pool_size=(4, 4), padding="valid"),
-	  keras.layers.Conv2D(16, kernel_size=(2,2), strides=(1, 1)),
-	  keras.layers.MaxPool2D(pool_size=(4, 4), padding="valid"),
-	  keras.layers.Flatten(),
-	    keras.layers.Dense(16, activation=tf.nn.relu),
-	    keras.layers.Dropout(0.1),
-	    keras.layers.Dense(16, activation=tf.nn.relu),
-	    keras.layers.Dropout(0.1),
-	    keras.layers.Dense(16, activation=tf.nn.relu),
-	    keras.layers.Dropout(0.1),
-	    keras.layers.Dense(4, activation=tf.nn.softmax) # The number of nodes must be the same as the number of possibilities
+	  Conv2D(16, kernel_size=(4, 4), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
+	  MaxPool2D(pool_size=(4,4), padding="valid"),
+	  Conv2D(16, kernel_size=(4,4), strides=(1, 1)),
+	  MaxPool2D(pool_size=(4, 4), padding="valid"),
+	  Conv2D(16, kernel_size=(2,2), strides=(1, 1)),
+	  MaxPool2D(pool_size=(4, 4), padding="valid"),
+	  Flatten(),
+	    Dense(16, activation=tf.nn.relu),
+	    Dropout(0.1),
+	    Dense(16, activation=tf.nn.relu),
+	    Dropout(0.1),
+	    Dense(16, activation=tf.nn.relu),
+	    Dropout(0.1),
+	    Dense(4, activation=tf.nn.softmax) # The number of nodes must be the same as the number of possibilities
 	])
 	model.compile(optimizer=keras.optimizers.Adam(),
 								loss='sparse_categorical_crossentropy',
@@ -348,20 +348,20 @@ Model History:
 
 	Test Accuracy: 41.25%
 
-		keras.layers.Conv2D(8, kernel_size=(9, 9), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
-		keras.layers.MaxPool2D(pool_size=(4, 4), padding="valid"),
-		keras.layers.Conv2D(8, kernel_size=(6,6), strides=(1, 1)),
-		keras.layers.MaxPool2D(pool_size=(4, 4), padding="valid"),
-		keras.layers.Conv2D(8, kernel_size=(4,4), strides=(1, 1)),
-		keras.layers.Flatten(),
-		keras.layers.Dense(32, activation=tf.nn.relu),
-		keras.layers.Dropout(0.1),
-		keras.layers.Dense(32, activation=tf.nn.relu),
-		keras.layers.Dropout(0.1),
-		keras.layers.Dense(16, activation=tf.nn.relu),
-		keras.layers.Dropout(0.1),
-		keras.layers.Dense(16, activation=tf.nn.relu),
-		keras.layers.Dense(4, activation=tf.nn.softmax) # The number of nodes must be the same as the number of possibilities
+		Conv2D(8, kernel_size=(9, 9), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
+		MaxPool2D(pool_size=(4, 4), padding="valid"),
+		Conv2D(8, kernel_size=(6,6), strides=(1, 1)),
+		MaxPool2D(pool_size=(4, 4), padding="valid"),
+		Conv2D(8, kernel_size=(4,4), strides=(1, 1)),
+		Flatten(),
+		Dense(32, activation=tf.nn.relu),
+		Dropout(0.1),
+		Dense(32, activation=tf.nn.relu),
+		Dropout(0.1),
+		Dense(16, activation=tf.nn.relu),
+		Dropout(0.1),
+		Dense(16, activation=tf.nn.relu),
+		Dense(4, activation=tf.nn.softmax) # The number of nodes must be the same as the number of possibilities
 	])
 	model.compile(optimizer=keras.optimizers.Adam(),
 								loss='sparse_categorical_crossentropy',
@@ -380,24 +380,24 @@ Model History:
 	Test Accuracy: 69.12%
 
 	model = keras.Sequential([
-		keras.layers.Conv2D(16, kernel_size=(10, 10), strides=(2, 2), input_shape=(image_height, image_width, number_of_color_channels)),
-		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-		keras.layers.Dropout(0.2),
-		keras.layers.Conv2D(16, kernel_size=(8,8), strides=(2, 2)),
-		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-		keras.layers.Dropout(0.2),
-		keras.layers.Conv2D(16, kernel_size=(4,4), strides=(1, 1)),
-		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-		keras.layers.Dropout(0.2),
-		keras.layers.Flatten(),
-	    keras.layers.Dense(32, activation=tf.nn.relu),
-	    keras.layers.Dropout(0.1),
-	    keras.layers.Dense(32, activation=tf.nn.relu),
-	    keras.layers.Dropout(0.1),
-	    keras.layers.Dense(16, activation=tf.nn.relu),
-	    keras.layers.Dropout(0.1),
-	    keras.layers.Dense(16, activation=tf.nn.relu),
-	    keras.layers.Dense(4, activation=tf.nn.softmax) # The number of nodes must be the same as the number of possibilities
+		Conv2D(16, kernel_size=(10, 10), strides=(2, 2), input_shape=(image_height, image_width, number_of_color_channels)),
+		MaxPool2D(pool_size=(2, 2), padding="valid"),
+		Dropout(0.2),
+		Conv2D(16, kernel_size=(8,8), strides=(2, 2)),
+		MaxPool2D(pool_size=(2, 2), padding="valid"),
+		Dropout(0.2),
+		Conv2D(16, kernel_size=(4,4), strides=(1, 1)),
+		MaxPool2D(pool_size=(2, 2), padding="valid"),
+		Dropout(0.2),
+		Flatten(),
+	    Dense(32, activation=tf.nn.relu),
+	    Dropout(0.1),
+	    Dense(32, activation=tf.nn.relu),
+	    Dropout(0.1),
+	    Dense(16, activation=tf.nn.relu),
+	    Dropout(0.1),
+	    Dense(16, activation=tf.nn.relu),
+	    Dense(4, activation=tf.nn.softmax) # The number of nodes must be the same as the number of possibilities
 	])
 
 	model.compile(optimizer=keras.optimizers.Adam(),
@@ -418,24 +418,24 @@ Evaluation Accuracy: 99.89%
 Test Accuracy: 72.45%
 
 model = keras.Sequential([
-	keras.layers.Conv2D(16, kernel_size=(10, 10), strides=(2, 2), input_shape=(image_height, image_width, number_of_color_channels)),
-	keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-	keras.layers.Dropout(0.2),
-	keras.layers.Conv2D(16, kernel_size=(8,8), strides=(2, 2)),
-	keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-	keras.layers.Dropout(0.2),
-	keras.layers.Conv2D(16, kernel_size=(4,4), strides=(1, 1)),
-	keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-	keras.layers.Dropout(0.2),
-	keras.layers.Flatten(),
-		keras.layers.Dense(32, activation=tf.nn.relu),
-		keras.layers.Dropout(0.1),
-		keras.layers.Dense(32, activation=tf.nn.relu),
-		keras.layers.Dropout(0.1),
-		keras.layers.Dense(16, activation=tf.nn.relu),
-		keras.layers.Dropout(0.1),
-		keras.layers.Dense(16, activation=tf.nn.relu),
-		keras.layers.Dense(4, activation=tf.nn.softmax) # The number of nodes must be the same as the number of possibilities
+	Conv2D(16, kernel_size=(10, 10), strides=(2, 2), input_shape=(image_height, image_width, number_of_color_channels)),
+	MaxPool2D(pool_size=(2, 2), padding="valid"),
+	Dropout(0.2),
+	Conv2D(16, kernel_size=(8,8), strides=(2, 2)),
+	MaxPool2D(pool_size=(2, 2), padding="valid"),
+	Dropout(0.2),
+	Conv2D(16, kernel_size=(4,4), strides=(1, 1)),
+	MaxPool2D(pool_size=(2, 2), padding="valid"),
+	Dropout(0.2),
+	Flatten(),
+		Dense(32, activation=tf.nn.relu),
+		Dropout(0.1),
+		Dense(32, activation=tf.nn.relu),
+		Dropout(0.1),
+		Dense(16, activation=tf.nn.relu),
+		Dropout(0.1),
+		Dense(16, activation=tf.nn.relu),
+		Dense(4, activation=tf.nn.softmax) # The number of nodes must be the same as the number of possibilities
 ])
 
 model.compile(optimizer=keras.optimizers.Adam(),
@@ -455,24 +455,24 @@ model.compile(optimizer=keras.optimizers.Adam(),
 
 	Test Accuracy: 63.40%
 	model = keras.Sequential([
-		keras.layers.Conv2D(16, kernel_size=(10, 10), strides=(2, 2), input_shape=(image_height, image_width, number_of_color_channels)),
-		keras.layers.BatchNormalization(),
-		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-		keras.layers.Conv2D(16, kernel_size=(8,8), strides=(2, 2)),
-		keras.layers.BatchNormalization(),
-		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-		keras.layers.Conv2D(16, kernel_size=(4,4), strides=(1, 1)),
-		keras.layers.BatchNormalization(),
-		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-		keras.layers.Flatten(),
-			keras.layers.Dense(32, activation=tf.nn.relu),
-			keras.layers.Dropout(0.1),
-			keras.layers.Dense(32, activation=tf.nn.relu),
-			keras.layers.Dropout(0.1),
-			keras.layers.Dense(16, activation=tf.nn.relu),
-			keras.layers.Dropout(0.1),
-			keras.layers.Dense(16, activation=tf.nn.relu),
-			keras.layers.Dense(4, activation=tf.nn.softmax) # The number of nodes must be the same as the number of possibilities
+		Conv2D(16, kernel_size=(10, 10), strides=(2, 2), input_shape=(image_height, image_width, number_of_color_channels)),
+		BatchNormalization(),
+		MaxPool2D(pool_size=(2, 2), padding="valid"),
+		Conv2D(16, kernel_size=(8,8), strides=(2, 2)),
+		BatchNormalization(),
+		MaxPool2D(pool_size=(2, 2), padding="valid"),
+		Conv2D(16, kernel_size=(4,4), strides=(1, 1)),
+		BatchNormalization(),
+		MaxPool2D(pool_size=(2, 2), padding="valid"),
+		Flatten(),
+			Dense(32, activation=tf.nn.relu),
+			Dropout(0.1),
+			Dense(32, activation=tf.nn.relu),
+			Dropout(0.1),
+			Dense(16, activation=tf.nn.relu),
+			Dropout(0.1),
+			Dense(16, activation=tf.nn.relu),
+			Dense(4, activation=tf.nn.softmax) # The number of nodes must be the same as the number of possibilities
 	])
 
 	model.compile(optimizer=keras.optimizers.Adam(),
@@ -491,24 +491,24 @@ model.compile(optimizer=keras.optimizers.Adam(),
 
 	Test Accuracy: 78.36%
 	model = keras.Sequential([
-		keras.layers.Conv2D(16, kernel_size=(10, 10), strides=(2, 2), input_shape=(image_height, image_width, number_of_color_channels)),
-		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-		keras.layers.Dropout(0.2),
-		keras.layers.Conv2D(16, kernel_size=(8,8), strides=(2, 2)),
-		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-		keras.layers.Dropout(0.2),
-		keras.layers.Conv2D(16, kernel_size=(4,4), strides=(1, 1)),
-		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-		keras.layers.Dropout(0.2),
-		keras.layers.Flatten(),
-	    keras.layers.Dense(32, activation=tf.nn.relu),
-	    keras.layers.Dropout(0.2),
-	    keras.layers.Dense(32, activation=tf.nn.relu),
-	    keras.layers.Dropout(0.1),
-	    keras.layers.Dense(16, activation=tf.nn.relu),
-	    keras.layers.Dropout(0.1),
-	    keras.layers.Dense(16, activation=tf.nn.relu),
-	    keras.layers.Dense(4, activation=tf.nn.softmax) # The number of nodes must be the same as the number of possibilities
+		Conv2D(16, kernel_size=(10, 10), strides=(2, 2), input_shape=(image_height, image_width, number_of_color_channels)),
+		MaxPool2D(pool_size=(2, 2), padding="valid"),
+		Dropout(0.2),
+		Conv2D(16, kernel_size=(8,8), strides=(2, 2)),
+		MaxPool2D(pool_size=(2, 2), padding="valid"),
+		Dropout(0.2),
+		Conv2D(16, kernel_size=(4,4), strides=(1, 1)),
+		MaxPool2D(pool_size=(2, 2), padding="valid"),
+		Dropout(0.2),
+		Flatten(),
+	    Dense(32, activation=tf.nn.relu),
+	    Dropout(0.2),
+	    Dense(32, activation=tf.nn.relu),
+	    Dropout(0.1),
+	    Dense(16, activation=tf.nn.relu),
+	    Dropout(0.1),
+	    Dense(16, activation=tf.nn.relu),
+	    Dense(4, activation=tf.nn.softmax) # The number of nodes must be the same as the number of possibilities
 	])
 
 	model.compile(optimizer=keras.optimizers.Adam(),
@@ -532,24 +532,24 @@ After adding the new photos
 	Test Accuracy: 66.76%
 
 	model = keras.Sequential([
-		keras.layers.Conv2D(32, kernel_size=(10, 10), strides=(2, 2), input_shape=(image_height, image_width, number_of_color_channels)),
-		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-		keras.layers.Dropout(0.4),
-		keras.layers.Conv2D(32, kernel_size=(8,8), strides=(2, 2)),
-		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-		keras.layers.Dropout(0.4),
-		keras.layers.Conv2D(32, kernel_size=(4,4), strides=(1, 1)),
-		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-		keras.layers.Dropout(0.4),
-		keras.layers.Flatten(),
-	    keras.layers.Dense(32, activation=tf.nn.relu),
-	    keras.layers.Dropout(0.2),
-	    keras.layers.Dense(32, activation=tf.nn.relu),
-	    keras.layers.Dropout(0.1),
-	    keras.layers.Dense(16, activation=tf.nn.relu),
-	    keras.layers.Dropout(0.1),
-	    keras.layers.Dense(16, activation=tf.nn.relu),
-	    keras.layers.Dense(4, activation=tf.nn.softmax) # The number of nodes must be the same as the number of possibilities
+		Conv2D(32, kernel_size=(10, 10), strides=(2, 2), input_shape=(image_height, image_width, number_of_color_channels)),
+		MaxPool2D(pool_size=(2, 2), padding="valid"),
+		Dropout(0.4),
+		Conv2D(32, kernel_size=(8,8), strides=(2, 2)),
+		MaxPool2D(pool_size=(2, 2), padding="valid"),
+		Dropout(0.4),
+		Conv2D(32, kernel_size=(4,4), strides=(1, 1)),
+		MaxPool2D(pool_size=(2, 2), padding="valid"),
+		Dropout(0.4),
+		Flatten(),
+	    Dense(32, activation=tf.nn.relu),
+	    Dropout(0.2),
+	    Dense(32, activation=tf.nn.relu),
+	    Dropout(0.1),
+	    Dense(16, activation=tf.nn.relu),
+	    Dropout(0.1),
+	    Dense(16, activation=tf.nn.relu),
+	    Dense(4, activation=tf.nn.softmax) # The number of nodes must be the same as the number of possibilities
 	])
 
 	model.compile(optimizer=keras.optimizers.Adam(),
@@ -574,21 +574,21 @@ After shuffling training and test data
 	Test Accuracy: 69.61%
 
 	model = keras.Sequential([
-		keras.layers.Conv2D(32, kernel_size=(10, 10), strides=(2, 2), input_shape=(image_height, image_width, number_of_color_channels)),
-		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-		keras.layers.Dropout(0.4),
-		keras.layers.Conv2D(32, kernel_size=(8,8), strides=(2, 2)),
-		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-		keras.layers.Dropout(0.4),
-		keras.layers.Conv2D(32, kernel_size=(4,4), strides=(1, 1)),
-		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-		keras.layers.Dropout(0.4),
-		keras.layers.Flatten(),
-	    keras.layers.Dense(128, activation=tf.nn.relu),
-	    keras.layers.Dropout(0.5),
-	    keras.layers.Dense(64, activation=tf.nn.relu),
-	    keras.layers.Dropout(0.2),
-	    keras.layers.Dense(4, activation=tf.nn.softmax) # The number of nodes must be the same as the number of possibilities
+		Conv2D(32, kernel_size=(10, 10), strides=(2, 2), input_shape=(image_height, image_width, number_of_color_channels)),
+		MaxPool2D(pool_size=(2, 2), padding="valid"),
+		Dropout(0.4),
+		Conv2D(32, kernel_size=(8,8), strides=(2, 2)),
+		MaxPool2D(pool_size=(2, 2), padding="valid"),
+		Dropout(0.4),
+		Conv2D(32, kernel_size=(4,4), strides=(1, 1)),
+		MaxPool2D(pool_size=(2, 2), padding="valid"),
+		Dropout(0.4),
+		Flatten(),
+	    Dense(128, activation=tf.nn.relu),
+	    Dropout(0.5),
+	    Dense(64, activation=tf.nn.relu),
+	    Dropout(0.2),
+	    Dense(4, activation=tf.nn.softmax) # The number of nodes must be the same as the number of possibilities
 	])
 
 	model.compile(optimizer=keras.optimizers.Adam(),
@@ -608,23 +608,23 @@ After shuffling training and test data
 	Test Accuracy: 92.67%
 
 	model = keras.Sequential([
-		keras.layers.Conv2D(16, kernel_size=(3, 3), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
-		keras.layers.Conv2D(16, kernel_size=(2,2), strides=(1, 1)),
-		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-		keras.layers.Dropout(0.4),
-		keras.layers.Conv2D(16, kernel_size=(3,3), strides=(1, 1)),
-		keras.layers.Conv2D(16, kernel_size=(2,2), strides=(1, 1)),
-		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-		keras.layers.Dropout(0.4),
-		keras.layers.Conv2D(32, kernel_size=(3,3), strides=(1, 1)),
-		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-		keras.layers.Dropout(0.4),
-		keras.layers.Flatten(),
-	    keras.layers.Dense(128, activation=tf.nn.relu),
-	    keras.layers.Dropout(0.5),
-	    keras.layers.Dense(64, activation=tf.nn.relu),
-	    keras.layers.Dropout(0.2),
-	    keras.layers.Dense(4, activation=tf.nn.softmax) # The number of nodes must be the same as the number of possibilities
+		Conv2D(16, kernel_size=(3, 3), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
+		Conv2D(16, kernel_size=(2,2), strides=(1, 1)),
+		MaxPool2D(pool_size=(2, 2), padding="valid"),
+		Dropout(0.4),
+		Conv2D(16, kernel_size=(3,3), strides=(1, 1)),
+		Conv2D(16, kernel_size=(2,2), strides=(1, 1)),
+		MaxPool2D(pool_size=(2, 2), padding="valid"),
+		Dropout(0.4),
+		Conv2D(32, kernel_size=(3,3), strides=(1, 1)),
+		MaxPool2D(pool_size=(2, 2), padding="valid"),
+		Dropout(0.4),
+		Flatten(),
+	    Dense(128, activation=tf.nn.relu),
+	    Dropout(0.5),
+	    Dense(64, activation=tf.nn.relu),
+	    Dropout(0.2),
+	    Dense(4, activation=tf.nn.softmax) # The number of nodes must be the same as the number of possibilities
 	])
 
 	model.compile(optimizer=keras.optimizers.Adam(),
@@ -652,23 +652,23 @@ After shuffling the training data but having no augmented images in validation
 	Test Accuracy: 75.4%
 
 	model = keras.Sequential([
-		keras.layers.Conv2D(16, kernel_size=(3, 3), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
-		keras.layers.Conv2D(16, kernel_size=(2,2), strides=(1, 1)),
-		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-		keras.layers.Dropout(0.4),
-		keras.layers.Conv2D(16, kernel_size=(3,3), strides=(1, 1)),
-		keras.layers.Conv2D(16, kernel_size=(2,2), strides=(1, 1)),
-		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-		keras.layers.Dropout(0.4),
-		keras.layers.Conv2D(32, kernel_size=(3,3), strides=(1, 1)),
-		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-		keras.layers.Dropout(0.4),
-		keras.layers.Flatten(),
-	    keras.layers.Dense(128, activation=tf.nn.relu),
-	    keras.layers.Dropout(0.5),
-	    keras.layers.Dense(64, activation=tf.nn.relu),
-	    keras.layers.Dropout(0.2),
-	    keras.layers.Dense(4, activation=tf.nn.softmax) # The number of nodes must be the same as the number of possibilities
+		Conv2D(16, kernel_size=(3, 3), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
+		Conv2D(16, kernel_size=(2,2), strides=(1, 1)),
+		MaxPool2D(pool_size=(2, 2), padding="valid"),
+		Dropout(0.4),
+		Conv2D(16, kernel_size=(3,3), strides=(1, 1)),
+		Conv2D(16, kernel_size=(2,2), strides=(1, 1)),
+		MaxPool2D(pool_size=(2, 2), padding="valid"),
+		Dropout(0.4),
+		Conv2D(32, kernel_size=(3,3), strides=(1, 1)),
+		MaxPool2D(pool_size=(2, 2), padding="valid"),
+		Dropout(0.4),
+		Flatten(),
+	    Dense(128, activation=tf.nn.relu),
+	    Dropout(0.5),
+	    Dense(64, activation=tf.nn.relu),
+	    Dropout(0.2),
+	    Dense(4, activation=tf.nn.softmax) # The number of nodes must be the same as the number of possibilities
 	])
 
 	model.compile(optimizer=keras.optimizers.Adam(),
@@ -688,25 +688,25 @@ After shuffling the training data but having no augmented images in validation
 	Test Accuracy: 73.53%
 
 	model = keras.Sequential([
-		keras.layers.Conv2D(8, kernel_size=(3, 3), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
-		keras.layers.Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
-		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-		keras.layers.Conv2D(8, kernel_size=(3,3), strides=(1, 1)),
-		keras.layers.Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
-		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-		keras.layers.Conv2D(8, kernel_size=(3,3), strides=(1, 1)),
-		keras.layers.Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
-		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-		keras.layers.Conv2D(8, kernel_size=(3,3), strides=(1, 1)),
-		keras.layers.Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
-		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-		keras.layers.Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
-		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-		keras.layers.Dropout(0.5),
-		keras.layers.Flatten(),
-	    keras.layers.Dense(64, activation=tf.nn.relu),
-	    keras.layers.Dropout(0.5),
-	    keras.layers.Dense(4, activation=tf.nn.softmax) # The number of nodes must be the same as the number of possibilities
+		Conv2D(8, kernel_size=(3, 3), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
+		Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
+		MaxPool2D(pool_size=(2, 2), padding="valid"),
+		Conv2D(8, kernel_size=(3,3), strides=(1, 1)),
+		Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
+		MaxPool2D(pool_size=(2, 2), padding="valid"),
+		Conv2D(8, kernel_size=(3,3), strides=(1, 1)),
+		Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
+		MaxPool2D(pool_size=(2, 2), padding="valid"),
+		Conv2D(8, kernel_size=(3,3), strides=(1, 1)),
+		Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
+		MaxPool2D(pool_size=(2, 2), padding="valid"),
+		Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
+		MaxPool2D(pool_size=(2, 2), padding="valid"),
+		Dropout(0.5),
+		Flatten(),
+	    Dense(64, activation=tf.nn.relu),
+	    Dropout(0.5),
+	    Dense(4, activation=tf.nn.softmax) # The number of nodes must be the same as the number of possibilities
 	])
 
 	model.compile(optimizer=keras.optimizers.Adam(),
@@ -727,25 +727,25 @@ After shuffling the training data but having no augmented images in validation
 	Test Accuracy: 47.19%
 
 	model = keras.Sequential([
-		keras.layers.Conv2D(8, kernel_size=(3, 3), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
-		keras.layers.Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
-		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-		keras.layers.Conv2D(8, kernel_size=(3,3), strides=(1, 1)),
-		keras.layers.Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
-		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-		keras.layers.Conv2D(8, kernel_size=(3,3), strides=(1, 1)),
-		keras.layers.Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
-		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-		keras.layers.Conv2D(8, kernel_size=(3,3), strides=(1, 1)),
-		keras.layers.Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
-		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-		keras.layers.Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
-		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-		keras.layers.Dropout(0.5),
-		keras.layers.Flatten(),
-	    keras.layers.Dense(64, activation=tf.nn.relu),
-	    keras.layers.Dropout(0.5),
-	    keras.layers.Dense(4, activation=tf.nn.softmax) # The number of nodes must be the same as the number of possibilities
+		Conv2D(8, kernel_size=(3, 3), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
+		Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
+		MaxPool2D(pool_size=(2, 2), padding="valid"),
+		Conv2D(8, kernel_size=(3,3), strides=(1, 1)),
+		Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
+		MaxPool2D(pool_size=(2, 2), padding="valid"),
+		Conv2D(8, kernel_size=(3,3), strides=(1, 1)),
+		Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
+		MaxPool2D(pool_size=(2, 2), padding="valid"),
+		Conv2D(8, kernel_size=(3,3), strides=(1, 1)),
+		Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
+		MaxPool2D(pool_size=(2, 2), padding="valid"),
+		Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
+		MaxPool2D(pool_size=(2, 2), padding="valid"),
+		Dropout(0.5),
+		Flatten(),
+	    Dense(64, activation=tf.nn.relu),
+	    Dropout(0.5),
+	    Dense(4, activation=tf.nn.softmax) # The number of nodes must be the same as the number of possibilities
 	])
 
 	model.compile(optimizer=keras.optimizers.Adam(),
@@ -766,25 +766,25 @@ After shuffling the training data but having no augmented images in validation
 	Test Accuracy: 62.30%
 
 	model = keras.Sequential([
-		keras.layers.Conv2D(8, kernel_size=(3, 3), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
-		keras.layers.Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
-		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-		keras.layers.Conv2D(8, kernel_size=(3,3), strides=(1, 1)),
-		keras.layers.Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
-		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-		keras.layers.Conv2D(4, kernel_size=(3,3), strides=(1, 1)),
-		keras.layers.Conv2D(4, kernel_size=(2,2), strides=(1, 1)),
-		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-		keras.layers.Conv2D(4, kernel_size=(3,3), strides=(1, 1)),
-		keras.layers.Conv2D(4, kernel_size=(2,2), strides=(1, 1)),
-		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-		keras.layers.Conv2D(4, kernel_size=(2,2), strides=(1, 1)),
-		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-		keras.layers.Dropout(0.5),
-		keras.layers.Flatten(),
-	    keras.layers.Dense(64, activation=tf.nn.relu),
-	    keras.layers.Dropout(0.5),
-	    keras.layers.Dense(4, activation=tf.nn.softmax) # The number of nodes must be the same as the number of possibilities
+		Conv2D(8, kernel_size=(3, 3), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
+		Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
+		MaxPool2D(pool_size=(2, 2), padding="valid"),
+		Conv2D(8, kernel_size=(3,3), strides=(1, 1)),
+		Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
+		MaxPool2D(pool_size=(2, 2), padding="valid"),
+		Conv2D(4, kernel_size=(3,3), strides=(1, 1)),
+		Conv2D(4, kernel_size=(2,2), strides=(1, 1)),
+		MaxPool2D(pool_size=(2, 2), padding="valid"),
+		Conv2D(4, kernel_size=(3,3), strides=(1, 1)),
+		Conv2D(4, kernel_size=(2,2), strides=(1, 1)),
+		MaxPool2D(pool_size=(2, 2), padding="valid"),
+		Conv2D(4, kernel_size=(2,2), strides=(1, 1)),
+		MaxPool2D(pool_size=(2, 2), padding="valid"),
+		Dropout(0.5),
+		Flatten(),
+	    Dense(64, activation=tf.nn.relu),
+	    Dropout(0.5),
+	    Dense(4, activation=tf.nn.softmax) # The number of nodes must be the same as the number of possibilities
 	])
 
 	model.compile(optimizer=keras.optimizers.Adam(),
@@ -807,25 +807,25 @@ The images are loaded one category at a time
 	Test Accuracy: 65.37%
 
 	model = keras.Sequential([
-		keras.layers.Conv2D(4, kernel_size=(3, 3), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
-		keras.layers.Conv2D(4, kernel_size=(2,2), strides=(1, 1)),
-		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-		keras.layers.Conv2D(4, kernel_size=(3,3), strides=(1, 1)),
-		keras.layers.Conv2D(4, kernel_size=(2,2), strides=(1, 1)),
-		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-		keras.layers.Conv2D(4, kernel_size=(3,3), strides=(1, 1)),
-		keras.layers.Conv2D(4, kernel_size=(2,2), strides=(1, 1)),
-		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-		keras.layers.Conv2D(4, kernel_size=(3,3), strides=(1, 1)),
-		keras.layers.Conv2D(4, kernel_size=(2,2), strides=(1, 1)),
-		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-		keras.layers.Conv2D(4, kernel_size=(2,2), strides=(1, 1)),
-		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-		keras.layers.Dropout(0.5),
-		keras.layers.Flatten(),
-	    keras.layers.Dense(32, activation=tf.nn.relu),
-	    keras.layers.Dropout(0.5),
-	    keras.layers.Dense(4, activation=tf.nn.softmax) # The number of nodes must be the same as the number of possibilities
+		Conv2D(4, kernel_size=(3, 3), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
+		Conv2D(4, kernel_size=(2,2), strides=(1, 1)),
+		MaxPool2D(pool_size=(2, 2), padding="valid"),
+		Conv2D(4, kernel_size=(3,3), strides=(1, 1)),
+		Conv2D(4, kernel_size=(2,2), strides=(1, 1)),
+		MaxPool2D(pool_size=(2, 2), padding="valid"),
+		Conv2D(4, kernel_size=(3,3), strides=(1, 1)),
+		Conv2D(4, kernel_size=(2,2), strides=(1, 1)),
+		MaxPool2D(pool_size=(2, 2), padding="valid"),
+		Conv2D(4, kernel_size=(3,3), strides=(1, 1)),
+		Conv2D(4, kernel_size=(2,2), strides=(1, 1)),
+		MaxPool2D(pool_size=(2, 2), padding="valid"),
+		Conv2D(4, kernel_size=(2,2), strides=(1, 1)),
+		MaxPool2D(pool_size=(2, 2), padding="valid"),
+		Dropout(0.5),
+		Flatten(),
+	    Dense(32, activation=tf.nn.relu),
+	    Dropout(0.5),
+	    Dense(4, activation=tf.nn.softmax) # The number of nodes must be the same as the number of possibilities
 	])
 
 	model.compile(optimizer=keras.optimizers.Adam(),
@@ -842,25 +842,25 @@ The images are loaded one category at a time
 	Evaluation Accuracy: 78.80%
 
 	model = keras.Sequential([
-		keras.layers.Conv2D(8, kernel_size=(3, 3), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
-		keras.layers.Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
-		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-		keras.layers.Conv2D(8, kernel_size=(3,3), strides=(1, 1)),
-		keras.layers.Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
-		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-		keras.layers.Conv2D(8, kernel_size=(3,3), strides=(1, 1)),
-		keras.layers.Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
-		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-		keras.layers.Conv2D(8, kernel_size=(3,3), strides=(1, 1)),
-		keras.layers.Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
-		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-		keras.layers.Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
-		keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-		keras.layers.Dropout(0.5),
-		keras.layers.Flatten(),
-	    keras.layers.Dense(64, activation=tf.nn.relu),
-	    keras.layers.Dropout(0.5),
-	    keras.layers.Dense(4, activation=tf.nn.softmax) # The number of nodes must be the same as the number of possibilities
+		Conv2D(8, kernel_size=(3, 3), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
+		Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
+		MaxPool2D(pool_size=(2, 2), padding="valid"),
+		Conv2D(8, kernel_size=(3,3), strides=(1, 1)),
+		Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
+		MaxPool2D(pool_size=(2, 2), padding="valid"),
+		Conv2D(8, kernel_size=(3,3), strides=(1, 1)),
+		Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
+		MaxPool2D(pool_size=(2, 2), padding="valid"),
+		Conv2D(8, kernel_size=(3,3), strides=(1, 1)),
+		Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
+		MaxPool2D(pool_size=(2, 2), padding="valid"),
+		Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
+		MaxPool2D(pool_size=(2, 2), padding="valid"),
+		Dropout(0.5),
+		Flatten(),
+	    Dense(64, activation=tf.nn.relu),
+	    Dropout(0.5),
+	    Dense(4, activation=tf.nn.softmax) # The number of nodes must be the same as the number of possibilities
 	])
 
 	model.compile(optimizer=keras.optimizers.Adam(),
@@ -875,25 +875,25 @@ The images are loaded one category at a time
 	Training Accuracy: 86.57%
 	Evaluation Accuracy: 75.86%
 
-	keras.layers.Conv2D(8, kernel_size=(3, 3), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
-	keras.layers.Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
-	keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-	keras.layers.Conv2D(8, kernel_size=(3,3), strides=(1, 1)),
-	keras.layers.Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
-	keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-	keras.layers.Conv2D(8, kernel_size=(3,3), strides=(1, 1)),
-	keras.layers.Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
-	keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-	keras.layers.Conv2D(8, kernel_size=(3,3), strides=(1, 1)),
-	keras.layers.Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
-	keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-	keras.layers.Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
-	keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-	keras.layers.Dropout(0.5),
-	keras.layers.Flatten(),
-    keras.layers.Dense(64, activation=tf.nn.relu),
-    keras.layers.Dropout(0.5),
-    keras.layers.Dense(4, activation=tf.nn.softmax)
+	Conv2D(8, kernel_size=(3, 3), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
+	Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
+	MaxPool2D(pool_size=(2, 2), padding="valid"),
+	Conv2D(8, kernel_size=(3,3), strides=(1, 1)),
+	Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
+	MaxPool2D(pool_size=(2, 2), padding="valid"),
+	Conv2D(8, kernel_size=(3,3), strides=(1, 1)),
+	Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
+	MaxPool2D(pool_size=(2, 2), padding="valid"),
+	Conv2D(8, kernel_size=(3,3), strides=(1, 1)),
+	Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
+	MaxPool2D(pool_size=(2, 2), padding="valid"),
+	Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
+	MaxPool2D(pool_size=(2, 2), padding="valid"),
+	Dropout(0.5),
+	Flatten(),
+    Dense(64, activation=tf.nn.relu),
+    Dropout(0.5),
+    Dense(4, activation=tf.nn.softmax)
 
     Optimizer: Adam
     Loss: sparse_categorical_crossentropy
@@ -906,23 +906,23 @@ The images are loaded one category at a time
 	Training Accuracy: 86.64%
 	Evaluation Accuracy: 72.82%
 
-	keras.layers.Conv2D(16, kernel_size=(3, 3), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
-	keras.layers.Conv2D(16, kernel_size=(2,2), strides=(1, 1)),
-	keras.layers.Conv2D(16, kernel_size=(3,3), strides=(1, 1)),
-	keras.layers.Conv2D(16, kernel_size=(2,2), strides=(1, 1)),
-	keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-	keras.layers.Conv2D(8, kernel_size=(3,3), strides=(1, 1)),
-	keras.layers.Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
-	keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-	keras.layers.Conv2D(4, kernel_size=(3,3), strides=(1, 1)),
-	keras.layers.Conv2D(4, kernel_size=(2,2), strides=(1, 1)),
-	keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-	keras.layers.Conv2D(4, kernel_size=(2,2), strides=(1, 1)),
-	keras.layers.MaxPool2D(pool_size=(4, 4), padding="valid"),
-	keras.layers.Flatten(),
-    keras.layers.Dense(64, kernel_regularizer=keras.regularizers.l2(0.002), activation=tf.nn.relu),
-    keras.layers.Dropout(0.5),
-    keras.layers.Dense(4, activation=tf.nn.softmax)
+	Conv2D(16, kernel_size=(3, 3), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
+	Conv2D(16, kernel_size=(2,2), strides=(1, 1)),
+	Conv2D(16, kernel_size=(3,3), strides=(1, 1)),
+	Conv2D(16, kernel_size=(2,2), strides=(1, 1)),
+	MaxPool2D(pool_size=(2, 2), padding="valid"),
+	Conv2D(8, kernel_size=(3,3), strides=(1, 1)),
+	Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
+	MaxPool2D(pool_size=(2, 2), padding="valid"),
+	Conv2D(4, kernel_size=(3,3), strides=(1, 1)),
+	Conv2D(4, kernel_size=(2,2), strides=(1, 1)),
+	MaxPool2D(pool_size=(2, 2), padding="valid"),
+	Conv2D(4, kernel_size=(2,2), strides=(1, 1)),
+	MaxPool2D(pool_size=(4, 4), padding="valid"),
+	Flatten(),
+    Dense(64, kernel_regularizer=keras.regularizers.l2(0.002), activation=tf.nn.relu),
+    Dropout(0.5),
+    Dense(4, activation=tf.nn.softmax)
 
     Optimizer: Adam
     Loss: sparse_categorical_crossentropy
@@ -937,19 +937,19 @@ The images are loaded one category at a time
 
 	val_loss: 0.9656
 
-	keras.layers.Conv2D(4, kernel_size=(3, 3), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
-	keras.layers.Conv2D(4, kernel_size=(2, 2), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
-	keras.layers.MaxPool2D(pool_size=(4, 4), padding="valid"),
-	keras.layers.Conv2D(4, kernel_size=(3,3), strides=(1, 1)),
-	keras.layers.Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
-	keras.layers.MaxPool2D(pool_size=(4, 4), padding="valid"),
-	keras.layers.Conv2D(16, kernel_size=(3,3), strides=(1, 1)),
-	keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-	keras.layers.Flatten(),
-    keras.layers.Dense(64, kernel_regularizer=keras.regularizers.l2(0.002), activation=tf.nn.relu),
-    keras.layers.Dense(64, kernel_regularizer=keras.regularizers.l2(0.002), activation=tf.nn.relu),
-    keras.layers.Dropout(0.4),
-    keras.layers.Dense(4, activation=tf.nn.softmax)
+	Conv2D(4, kernel_size=(3, 3), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
+	Conv2D(4, kernel_size=(2, 2), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
+	MaxPool2D(pool_size=(4, 4), padding="valid"),
+	Conv2D(4, kernel_size=(3,3), strides=(1, 1)),
+	Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
+	MaxPool2D(pool_size=(4, 4), padding="valid"),
+	Conv2D(16, kernel_size=(3,3), strides=(1, 1)),
+	MaxPool2D(pool_size=(2, 2), padding="valid"),
+	Flatten(),
+    Dense(64, kernel_regularizer=keras.regularizers.l2(0.002), activation=tf.nn.relu),
+    Dense(64, kernel_regularizer=keras.regularizers.l2(0.002), activation=tf.nn.relu),
+    Dropout(0.4),
+    Dense(4, activation=tf.nn.softmax)
 
     Optimizer: Adam
     Loss: sparse_categorical_crossentropy
@@ -964,19 +964,19 @@ The images are loaded one category at a time
 
 	val_loss: 1.0042
 
-	keras.layers.Conv2D(4, kernel_size=(3, 3), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
-	keras.layers.Conv2D(4, kernel_size=(2, 2), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
-	keras.layers.MaxPool2D(pool_size=(4, 4), padding="valid"),
-	keras.layers.Conv2D(4, kernel_size=(3,3), strides=(1, 1)),
-	keras.layers.Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
-	keras.layers.MaxPool2D(pool_size=(4, 4), padding="valid"),
-	keras.layers.Conv2D(16, kernel_size=(3,3), strides=(1, 1)),
-	keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-	keras.layers.Flatten(),
-    keras.layers.Dense(64, kernel_regularizer=keras.regularizers.l2(0.005), activation=tf.nn.relu),
-    keras.layers.Dense(64, kernel_regularizer=keras.regularizers.l2(0.005), activation=tf.nn.relu),
-    keras.layers.Dropout(0.5),
-    keras.layers.Dense(4, activation=tf.nn.softmax)
+	Conv2D(4, kernel_size=(3, 3), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
+	Conv2D(4, kernel_size=(2, 2), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
+	MaxPool2D(pool_size=(4, 4), padding="valid"),
+	Conv2D(4, kernel_size=(3,3), strides=(1, 1)),
+	Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
+	MaxPool2D(pool_size=(4, 4), padding="valid"),
+	Conv2D(16, kernel_size=(3,3), strides=(1, 1)),
+	MaxPool2D(pool_size=(2, 2), padding="valid"),
+	Flatten(),
+    Dense(64, kernel_regularizer=keras.regularizers.l2(0.005), activation=tf.nn.relu),
+    Dense(64, kernel_regularizer=keras.regularizers.l2(0.005), activation=tf.nn.relu),
+    Dropout(0.5),
+    Dense(4, activation=tf.nn.softmax)
 
     Optimizer: Adam
     Loss: sparse_categorical_crossentropy
@@ -991,22 +991,22 @@ The images are loaded one category at a time
 
 	val_loss: 0.7203
 
-	keras.layers.Conv2D(4, kernel_size=(3, 3), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
-	keras.layers.Conv2D(4, kernel_size=(2, 2), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
-	keras.layers.BatchNormalization(),
-	keras.layers.MaxPool2D(pool_size=(4, 4), padding="valid"),
-	keras.layers.Conv2D(4, kernel_size=(3,3), strides=(1, 1)),
-	keras.layers.Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
-	keras.layers.BatchNormalization(),
-	keras.layers.MaxPool2D(pool_size=(4, 4), padding="valid"),
-	keras.layers.Conv2D(16, kernel_size=(3,3), strides=(1, 1)),
-	keras.layers.BatchNormalization(),
-	keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-	keras.layers.Flatten(),
-    keras.layers.Dense(64, kernel_regularizer=keras.regularizers.l2(0.005), activation=tf.nn.relu),
-    keras.layers.Dense(64, kernel_regularizer=keras.regularizers.l2(0.005), activation=tf.nn.relu),
-    keras.layers.Dropout(0.5),
-    keras.layers.Dense(4, activation=tf.nn.softmax)
+	Conv2D(4, kernel_size=(3, 3), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
+	Conv2D(4, kernel_size=(2, 2), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
+	BatchNormalization(),
+	MaxPool2D(pool_size=(4, 4), padding="valid"),
+	Conv2D(4, kernel_size=(3,3), strides=(1, 1)),
+	Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
+	BatchNormalization(),
+	MaxPool2D(pool_size=(4, 4), padding="valid"),
+	Conv2D(16, kernel_size=(3,3), strides=(1, 1)),
+	BatchNormalization(),
+	MaxPool2D(pool_size=(2, 2), padding="valid"),
+	Flatten(),
+    Dense(64, kernel_regularizer=keras.regularizers.l2(0.005), activation=tf.nn.relu),
+    Dense(64, kernel_regularizer=keras.regularizers.l2(0.005), activation=tf.nn.relu),
+    Dropout(0.5),
+    Dense(4, activation=tf.nn.softmax)
 
     Optimizer: Adam
     Loss: sparse_categorical_crossentropy
@@ -1021,23 +1021,23 @@ The images are loaded one category at a time
 
 	val_loss: 0.6030
 
-	keras.layers.Conv2D(4, kernel_size=(3, 3), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
-	keras.layers.Conv2D(4, kernel_size=(2, 2), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
-	keras.layers.BatchNormalization(),
-	keras.layers.MaxPool2D(pool_size=(4, 4), padding="valid"),
-	keras.layers.Conv2D(4, kernel_size=(3,3), strides=(1, 1)),
-	keras.layers.Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
-	keras.layers.BatchNormalization(),
-	keras.layers.MaxPool2D(pool_size=(4, 4), padding="valid"),
-	keras.layers.Conv2D(16, kernel_size=(3,3), strides=(1, 1)),
-	keras.layers.BatchNormalization(),
-	keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-	keras.layers.Flatten(),
-	keras.layers.Dropout(0.5),
-    keras.layers.Dense(64, kernel_regularizer=keras.regularizers.l2(0.005), activation=tf.nn.relu),
-    keras.layers.Dense(64, kernel_regularizer=keras.regularizers.l2(0.005), activation=tf.nn.relu),
-    keras.layers.Dropout(0.5),
-    keras.layers.Dense(4, activation=tf.nn.softmax)
+	Conv2D(4, kernel_size=(3, 3), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
+	Conv2D(4, kernel_size=(2, 2), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
+	BatchNormalization(),
+	MaxPool2D(pool_size=(4, 4), padding="valid"),
+	Conv2D(4, kernel_size=(3,3), strides=(1, 1)),
+	Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
+	BatchNormalization(),
+	MaxPool2D(pool_size=(4, 4), padding="valid"),
+	Conv2D(16, kernel_size=(3,3), strides=(1, 1)),
+	BatchNormalization(),
+	MaxPool2D(pool_size=(2, 2), padding="valid"),
+	Flatten(),
+	Dropout(0.5),
+    Dense(64, kernel_regularizer=keras.regularizers.l2(0.005), activation=tf.nn.relu),
+    Dense(64, kernel_regularizer=keras.regularizers.l2(0.005), activation=tf.nn.relu),
+    Dropout(0.5),
+    Dense(4, activation=tf.nn.softmax)
 
     Optimizer: Adam
     Loss: sparse_categorical_crossentropy
@@ -1054,24 +1054,24 @@ The images are loaded one category at a time
 
 	val_loss: 0.6229
 
-	keras.layers.Conv2D(4, kernel_size=(3, 3), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
-	keras.layers.Conv2D(4, kernel_size=(2, 2), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
-	keras.layers.BatchNormalization(),
-	keras.layers.MaxPool2D(pool_size=(4, 4), padding="valid"),
-	keras.layers.Conv2D(4, kernel_size=(3,3), strides=(1, 1)),
-	keras.layers.Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
-	keras.layers.BatchNormalization(),
-	keras.layers.MaxPool2D(pool_size=(4, 4), padding="valid"),
-	keras.layers.Conv2D(16, kernel_size=(3,3), strides=(1, 1)),
-	keras.layers.BatchNormalization(),
-	keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-	keras.layers.Flatten(),
-	keras.layers.Dropout(0.5),
-    keras.layers.Dense(64, kernel_regularizer=keras.regularizers.l2(0.005), activation=tf.nn.relu),
-    keras.layers.Dropout(0.5),
-    keras.layers.Dense(64, kernel_regularizer=keras.regularizers.l2(0.005), activation=tf.nn.relu),
-    keras.layers.Dropout(0.5),
-    keras.layers.Dense(4, activation=tf.nn.softmax)
+	Conv2D(4, kernel_size=(3, 3), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
+	Conv2D(4, kernel_size=(2, 2), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
+	BatchNormalization(),
+	MaxPool2D(pool_size=(4, 4), padding="valid"),
+	Conv2D(4, kernel_size=(3,3), strides=(1, 1)),
+	Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
+	BatchNormalization(),
+	MaxPool2D(pool_size=(4, 4), padding="valid"),
+	Conv2D(16, kernel_size=(3,3), strides=(1, 1)),
+	BatchNormalization(),
+	MaxPool2D(pool_size=(2, 2), padding="valid"),
+	Flatten(),
+	Dropout(0.5),
+    Dense(64, kernel_regularizer=keras.regularizers.l2(0.005), activation=tf.nn.relu),
+    Dropout(0.5),
+    Dense(64, kernel_regularizer=keras.regularizers.l2(0.005), activation=tf.nn.relu),
+    Dropout(0.5),
+    Dense(4, activation=tf.nn.softmax)
 
     Optimizer: Adam
     Loss: sparse_categorical_crossentropy
@@ -1086,25 +1086,25 @@ The images are loaded one category at a time
 
 	val_loss: 0.7209
 
-	keras.layers.Conv2D(4, kernel_size=(3, 3), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
-	keras.layers.Conv2D(4, kernel_size=(2, 2), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
-	keras.layers.BatchNormalization(),
-	keras.layers.MaxPool2D(pool_size=(4, 4), padding="valid"),
-	keras.layers.Conv2D(4, kernel_size=(3,3), strides=(1, 1)),
-	keras.layers.Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
-	keras.layers.BatchNormalization(),
-	keras.layers.MaxPool2D(pool_size=(4, 4), padding="valid"),
-	keras.layers.Conv2D(16, kernel_size=(3,3), strides=(1, 1)),
-	keras.layers.BatchNormalization(),
-	keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-	keras.layers.Flatten(),
-	keras.layers.Dropout(0.25),
-    keras.layers.Dense(64, kernel_regularizer=keras.regularizers.l2(0.005), activation=tf.nn.relu),
-    keras.layers.GaussianNoise(0.5),
-	keras.layers.Dropout(0.5),
-    keras.layers.Dense(64, kernel_regularizer=keras.regularizers.l2(0.005), activation=tf.nn.relu),
-    keras.layers.Dropout(0.5),
-    keras.layers.Dense(4, activation=tf.nn.softmax)
+	Conv2D(4, kernel_size=(3, 3), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
+	Conv2D(4, kernel_size=(2, 2), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
+	BatchNormalization(),
+	MaxPool2D(pool_size=(4, 4), padding="valid"),
+	Conv2D(4, kernel_size=(3,3), strides=(1, 1)),
+	Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
+	BatchNormalization(),
+	MaxPool2D(pool_size=(4, 4), padding="valid"),
+	Conv2D(16, kernel_size=(3,3), strides=(1, 1)),
+	BatchNormalization(),
+	MaxPool2D(pool_size=(2, 2), padding="valid"),
+	Flatten(),
+	Dropout(0.25),
+    Dense(64, kernel_regularizer=keras.regularizers.l2(0.005), activation=tf.nn.relu),
+    GaussianNoise(0.5),
+	Dropout(0.5),
+    Dense(64, kernel_regularizer=keras.regularizers.l2(0.005), activation=tf.nn.relu),
+    Dropout(0.5),
+    Dense(4, activation=tf.nn.softmax)
 
     Optimizer: Adam
     Loss: sparse_categorical_crossentropy
@@ -1120,24 +1120,24 @@ The images are loaded one category at a time
 
 	val_loss: 0.5785
 
-	keras.layers.Conv2D(4, kernel_size=(3, 3), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
-	keras.layers.Conv2D(4, kernel_size=(2, 2), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
-	keras.layers.BatchNormalization(),
-	keras.layers.MaxPool2D(pool_size=(4, 4), padding="valid"),
-	keras.layers.Conv2D(4, kernel_size=(3,3), strides=(1, 1)),
-	keras.layers.Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
-	keras.layers.BatchNormalization(),
-	keras.layers.MaxPool2D(pool_size=(4, 4), padding="valid"),
-	keras.layers.Conv2D(16, kernel_size=(3,3), strides=(1, 1)),
-	keras.layers.BatchNormalization(),
-	keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-	keras.layers.Flatten(),
-	keras.layers.Dropout(0.4),
-    keras.layers.Dense(64, kernel_regularizer=keras.regularizers.l2(0.005), activation=tf.nn.relu),
-    keras.layers.GaussianNoise(0.4),
-    keras.layers.Dense(64, kernel_regularizer=keras.regularizers.l2(0.005), activation=tf.nn.relu),
-    keras.layers.Dropout(0.4),
-    keras.layers.Dense(4, activation=tf.nn.softmax)
+	Conv2D(4, kernel_size=(3, 3), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
+	Conv2D(4, kernel_size=(2, 2), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
+	BatchNormalization(),
+	MaxPool2D(pool_size=(4, 4), padding="valid"),
+	Conv2D(4, kernel_size=(3,3), strides=(1, 1)),
+	Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
+	BatchNormalization(),
+	MaxPool2D(pool_size=(4, 4), padding="valid"),
+	Conv2D(16, kernel_size=(3,3), strides=(1, 1)),
+	BatchNormalization(),
+	MaxPool2D(pool_size=(2, 2), padding="valid"),
+	Flatten(),
+	Dropout(0.4),
+    Dense(64, kernel_regularizer=keras.regularizers.l2(0.005), activation=tf.nn.relu),
+    GaussianNoise(0.4),
+    Dense(64, kernel_regularizer=keras.regularizers.l2(0.005), activation=tf.nn.relu),
+    Dropout(0.4),
+    Dense(4, activation=tf.nn.softmax)
 
     Optimizer: Adam
     Loss: sparse_categorical_crossentropy
@@ -1154,24 +1154,24 @@ The images are loaded one category at a time
 
 	val_loss: 0.6263
 
-	keras.layers.Conv2D(4, kernel_size=(3, 3), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
-	keras.layers.Conv2D(4, kernel_size=(2, 2), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
-	keras.layers.BatchNormalization(),
-	keras.layers.MaxPool2D(pool_size=(4, 4), padding="valid"),
-	keras.layers.Conv2D(4, kernel_size=(3,3), strides=(1, 1)),
-	keras.layers.Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
-	keras.layers.BatchNormalization(),
-	keras.layers.MaxPool2D(pool_size=(4, 4), padding="valid"),
-	keras.layers.Conv2D(16, kernel_size=(3,3), strides=(1, 1)),
-	keras.layers.BatchNormalization(),
-	keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-	keras.layers.Flatten(),
-	keras.layers.Dropout(0.4),
-    keras.layers.Dense(64, kernel_regularizer=keras.regularizers.l2(0.005), activation=tf.nn.relu),
-    keras.layers.GaussianNoise(0.4),
-    keras.layers.Dense(64, kernel_regularizer=keras.regularizers.l2(0.005), activation=tf.nn.relu),
-    keras.layers.Dropout(0.4),
-    keras.layers.Dense(4, activation=tf.nn.softmax)
+	Conv2D(4, kernel_size=(3, 3), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
+	Conv2D(4, kernel_size=(2, 2), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
+	BatchNormalization(),
+	MaxPool2D(pool_size=(4, 4), padding="valid"),
+	Conv2D(4, kernel_size=(3,3), strides=(1, 1)),
+	Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
+	BatchNormalization(),
+	MaxPool2D(pool_size=(4, 4), padding="valid"),
+	Conv2D(16, kernel_size=(3,3), strides=(1, 1)),
+	BatchNormalization(),
+	MaxPool2D(pool_size=(2, 2), padding="valid"),
+	Flatten(),
+	Dropout(0.4),
+    Dense(64, kernel_regularizer=keras.regularizers.l2(0.005), activation=tf.nn.relu),
+    GaussianNoise(0.4),
+    Dense(64, kernel_regularizer=keras.regularizers.l2(0.005), activation=tf.nn.relu),
+    Dropout(0.4),
+    Dense(4, activation=tf.nn.softmax)
 
     Optimizer: Nadam
     Loss: sparse_categorical_crossentropy
@@ -1186,24 +1186,24 @@ The images are loaded one category at a time
 
 	val_loss: 0.6263
 
-	keras.layers.Conv2D(4, kernel_size=(3, 3), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
-	keras.layers.Conv2D(4, kernel_size=(2, 2), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
-	keras.layers.BatchNormalization(),
-	keras.layers.MaxPool2D(pool_size=(4, 4), padding="valid"),
-	keras.layers.Conv2D(4, kernel_size=(3,3), strides=(1, 1)),
-	keras.layers.Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
-	keras.layers.BatchNormalization(),
-	keras.layers.MaxPool2D(pool_size=(4, 4), padding="valid"),
-	keras.layers.Conv2D(16, kernel_size=(3,3), strides=(1, 1)),
-	keras.layers.BatchNormalization(),
-	keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-	keras.layers.Flatten(),
-	keras.layers.Dropout(0.4),
-    keras.layers.Dense(64, kernel_regularizer=keras.regularizers.l2(0.002), activation=tf.nn.relu),
-    keras.layers.GaussianNoise(0.4),
-    keras.layers.Dense(64, kernel_regularizer=keras.regularizers.l2(0.002), activation=tf.nn.relu),
-    keras.layers.Dropout(0.4),
-    keras.layers.Dense(4, activation=tf.nn.softmax)
+	Conv2D(4, kernel_size=(3, 3), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
+	Conv2D(4, kernel_size=(2, 2), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
+	BatchNormalization(),
+	MaxPool2D(pool_size=(4, 4), padding="valid"),
+	Conv2D(4, kernel_size=(3,3), strides=(1, 1)),
+	Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
+	BatchNormalization(),
+	MaxPool2D(pool_size=(4, 4), padding="valid"),
+	Conv2D(16, kernel_size=(3,3), strides=(1, 1)),
+	BatchNormalization(),
+	MaxPool2D(pool_size=(2, 2), padding="valid"),
+	Flatten(),
+	Dropout(0.4),
+    Dense(64, kernel_regularizer=keras.regularizers.l2(0.002), activation=tf.nn.relu),
+    GaussianNoise(0.4),
+    Dense(64, kernel_regularizer=keras.regularizers.l2(0.002), activation=tf.nn.relu),
+    Dropout(0.4),
+    Dense(4, activation=tf.nn.softmax)
 
     Optimizer: Nadam
     Loss: sparse_categorical_crossentropy
@@ -1219,24 +1219,24 @@ The images are loaded one category at a time
 
 	val_loss: ??
 
-	keras.layers.Conv2D(4, kernel_size=(5, 5), strides=(5, 5), input_shape=(image_height, image_width, number_of_color_channels)),
-	keras.layers.Conv2D(4, kernel_size=(3, 3), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
-	keras.layers.BatchNormalization(),
-	keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-	keras.layers.Conv2D(4, kernel_size=(3,3), strides=(1, 1)),
-	keras.layers.Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
-	keras.layers.BatchNormalization(),
-	keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-	keras.layers.Conv2D(16, kernel_size=(3,3), strides=(1, 1)),
-	keras.layers.BatchNormalization(),
-	keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-	keras.layers.Flatten(),
-	keras.layers.Dropout(0.4),
-    keras.layers.Dense(64, kernel_regularizer=keras.regularizers.l2(0.005), activation=tf.nn.relu),
-    keras.layers.GaussianNoise(0.4),
-    keras.layers.Dense(64, kernel_regularizer=keras.regularizers.l2(0.005), activation=tf.nn.relu),
-    keras.layers.Dropout(0.4),
-    keras.layers.Dense(4, activation=tf.nn.softmax)
+	Conv2D(4, kernel_size=(5, 5), strides=(5, 5), input_shape=(image_height, image_width, number_of_color_channels)),
+	Conv2D(4, kernel_size=(3, 3), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
+	BatchNormalization(),
+	MaxPool2D(pool_size=(2, 2), padding="valid"),
+	Conv2D(4, kernel_size=(3,3), strides=(1, 1)),
+	Conv2D(8, kernel_size=(2,2), strides=(1, 1)),
+	BatchNormalization(),
+	MaxPool2D(pool_size=(2, 2), padding="valid"),
+	Conv2D(16, kernel_size=(3,3), strides=(1, 1)),
+	BatchNormalization(),
+	MaxPool2D(pool_size=(2, 2), padding="valid"),
+	Flatten(),
+	Dropout(0.4),
+    Dense(64, kernel_regularizer=keras.regularizers.l2(0.005), activation=tf.nn.relu),
+    GaussianNoise(0.4),
+    Dense(64, kernel_regularizer=keras.regularizers.l2(0.005), activation=tf.nn.relu),
+    Dropout(0.4),
+    Dense(4, activation=tf.nn.softmax)
 
     Optimizer: Nadam
     Loss: sparse_categorical_crossentropy
@@ -1254,25 +1254,25 @@ The images are loaded one category at a time
 
 	val_loss: 0.5351 (on previous: 0.5120)
 
-	keras.layers.Conv2D(4, kernel_size=(5, 5), strides=(2, 2), input_shape=(image_height, image_width, number_of_color_channels)),
-	keras.layers.Conv2D(4, kernel_size=(3, 3), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
-	keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-	keras.layers.BatchNormalization(),
-	keras.layers.Conv2D(8, kernel_size=(3,3), strides=(1, 1)),
-	keras.layers.Conv2D(8, kernel_size=(2,2), strides=(2, 2)),
-	keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-	keras.layers.BatchNormalization(),
-	keras.layers.Conv2D(16, kernel_size=(3,3), strides=(1, 1)),
-	keras.layers.Conv2D(16, kernel_size=(2,2), strides=(2, 2)),
-	keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-	keras.layers.BatchNormalization(),
-	keras.layers.Flatten(),
-	keras.layers.Dropout(0.4),
-    keras.layers.Dense(64, kernel_regularizer=keras.regularizers.l2(0.005), activation=tf.nn.relu),
-    keras.layers.GaussianNoise(0.4),
-    keras.layers.Dense(64, kernel_regularizer=keras.regularizers.l2(0.005), activation=tf.nn.relu),
-    keras.layers.Dropout(0.4),
-    keras.layers.Dense(4, activation=tf.nn.softmax)
+	Conv2D(4, kernel_size=(5, 5), strides=(2, 2), input_shape=(image_height, image_width, number_of_color_channels)),
+	Conv2D(4, kernel_size=(3, 3), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
+	MaxPool2D(pool_size=(2, 2), padding="valid"),
+	BatchNormalization(),
+	Conv2D(8, kernel_size=(3,3), strides=(1, 1)),
+	Conv2D(8, kernel_size=(2,2), strides=(2, 2)),
+	MaxPool2D(pool_size=(2, 2), padding="valid"),
+	BatchNormalization(),
+	Conv2D(16, kernel_size=(3,3), strides=(1, 1)),
+	Conv2D(16, kernel_size=(2,2), strides=(2, 2)),
+	MaxPool2D(pool_size=(2, 2), padding="valid"),
+	BatchNormalization(),
+	Flatten(),
+	Dropout(0.4),
+    Dense(64, kernel_regularizer=keras.regularizers.l2(0.005), activation=tf.nn.relu),
+    GaussianNoise(0.4),
+    Dense(64, kernel_regularizer=keras.regularizers.l2(0.005), activation=tf.nn.relu),
+    Dropout(0.4),
+    Dense(4, activation=tf.nn.softmax)
 
     Optimizer: Nadam
     Loss: sparse_categorical_crossentropy
@@ -1289,28 +1289,28 @@ The images are loaded one category at a time
 
 	val_loss: 0.3???
 
-	keras.layers.Conv2D(4, kernel_size=(5, 5), strides=(2, 2), input_shape=(image_height, image_width, number_of_color_channels)),
-	keras.layers.Conv2D(4, kernel_size=(3, 3), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
-	keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-	keras.layers.BatchNormalization(),
-	keras.layers.LeakyReLU(),
-	keras.layers.Conv2D(8, kernel_size=(3,3), strides=(1, 1)),
-	keras.layers.Conv2D(8, kernel_size=(2,2), strides=(2, 2)),
-	keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-	keras.layers.BatchNormalization(),
-	keras.layers.LeakyReLU(),
-	keras.layers.Conv2D(16, kernel_size=(3,3), strides=(1, 1)),
-	keras.layers.Conv2D(16, kernel_size=(2,2), strides=(2, 2)),
-	keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-	keras.layers.BatchNormalization(),
-	keras.layers.LeakyReLU(),
-	keras.layers.Flatten(),
-	keras.layers.Dropout(0.5),
-    keras.layers.Dense(64, kernel_regularizer=keras.regularizers.l2(0.003), activation=tf.nn.relu),
-    keras.layers.GaussianNoise(0.2),
-    keras.layers.Dense(64, kernel_regularizer=keras.regularizers.l2(0.003), activation=tf.nn.relu),
-    keras.layers.Dropout(0.25),
-    keras.layers.Dense(4, activation=tf.nn.softmax)
+	Conv2D(4, kernel_size=(5, 5), strides=(2, 2), input_shape=(image_height, image_width, number_of_color_channels)),
+	Conv2D(4, kernel_size=(3, 3), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
+	MaxPool2D(pool_size=(2, 2), padding="valid"),
+	BatchNormalization(),
+	LeakyReLU(),
+	Conv2D(8, kernel_size=(3,3), strides=(1, 1)),
+	Conv2D(8, kernel_size=(2,2), strides=(2, 2)),
+	MaxPool2D(pool_size=(2, 2), padding="valid"),
+	BatchNormalization(),
+	LeakyReLU(),
+	Conv2D(16, kernel_size=(3,3), strides=(1, 1)),
+	Conv2D(16, kernel_size=(2,2), strides=(2, 2)),
+	MaxPool2D(pool_size=(2, 2), padding="valid"),
+	BatchNormalization(),
+	LeakyReLU(),
+	Flatten(),
+	Dropout(0.5),
+    Dense(64, kernel_regularizer=keras.regularizers.l2(0.003), activation=tf.nn.relu),
+    GaussianNoise(0.2),
+    Dense(64, kernel_regularizer=keras.regularizers.l2(0.003), activation=tf.nn.relu),
+    Dropout(0.25),
+    Dense(4, activation=tf.nn.softmax)
 
     Optimizer: Adam
     Loss: sparse_categorical_crossentropy
@@ -1327,30 +1327,30 @@ The images are loaded one category at a time
 
 	val_loss: 0.5494
 
-	keras.layers.Conv2D(4, kernel_size=(5, 5), strides=(2, 2), input_shape=(image_height, image_width, number_of_color_channels)),
-	keras.layers.Conv2D(4, kernel_size=(3, 3), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
-	keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-	keras.layers.BatchNormalization(),
-	keras.layers.LeakyReLU(),
-	keras.layers.Conv2D(8, kernel_size=(3, 3), strides=(1, 1)),
-	keras.layers.Conv2D(8, kernel_size=(3, 3), strides=(1, 1)),
-	keras.layers.Conv2D(8, kernel_size=(3, 3), strides=(1, 1)),
-	keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-	keras.layers.BatchNormalization(),
-	keras.layers.LeakyReLU(),
-	keras.layers.Conv2D(16, kernel_size=(3, 3), strides=(1, 1)),
-	keras.layers.Conv2D(16, kernel_size=(3, 3), strides=(1, 1)),
-	keras.layers.Conv2D(16, kernel_size=(3, 3), strides=(1, 1)),
-	keras.layers.MaxPool2D(pool_size=(2, 2), padding="valid"),
-	keras.layers.BatchNormalization(),
-	keras.layers.LeakyReLU(),
-	keras.layers.Flatten(),
-	keras.layers.Dropout(0.5),
-    keras.layers.Dense(64, kernel_regularizer=keras.regularizers.l2(0.003), activation=tf.nn.relu),
-    keras.layers.GaussianNoise(0.2),
-    keras.layers.Dense(64, kernel_regularizer=keras.regularizers.l2(0.003), activation=tf.nn.relu),
-    keras.layers.Dropout(0.25),
-    keras.layers.Dense(4, activation=tf.nn.softmax)
+	Conv2D(4, kernel_size=(5, 5), strides=(2, 2), input_shape=(image_height, image_width, number_of_color_channels)),
+	Conv2D(4, kernel_size=(3, 3), strides=(1, 1), input_shape=(image_height, image_width, number_of_color_channels)),
+	MaxPool2D(pool_size=(2, 2), padding="valid"),
+	BatchNormalization(),
+	LeakyReLU(),
+	Conv2D(8, kernel_size=(3, 3), strides=(1, 1)),
+	Conv2D(8, kernel_size=(3, 3), strides=(1, 1)),
+	Conv2D(8, kernel_size=(3, 3), strides=(1, 1)),
+	MaxPool2D(pool_size=(2, 2), padding="valid"),
+	BatchNormalization(),
+	LeakyReLU(),
+	Conv2D(16, kernel_size=(3, 3), strides=(1, 1)),
+	Conv2D(16, kernel_size=(3, 3), strides=(1, 1)),
+	Conv2D(16, kernel_size=(3, 3), strides=(1, 1)),
+	MaxPool2D(pool_size=(2, 2), padding="valid"),
+	BatchNormalization(),
+	LeakyReLU(),
+	Flatten(),
+	Dropout(0.5),
+    Dense(64, kernel_regularizer=keras.regularizers.l2(0.003), activation=tf.nn.relu),
+    GaussianNoise(0.2),
+    Dense(64, kernel_regularizer=keras.regularizers.l2(0.003), activation=tf.nn.relu),
+    Dropout(0.25),
+    Dense(4, activation=tf.nn.softmax)
 
     Optimizer: Adam
     Loss: sparse_categorical_crossentropy
