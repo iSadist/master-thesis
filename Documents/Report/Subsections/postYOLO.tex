@@ -1,0 +1,229 @@
+\section{Post YOLO}
+
+
+\subsection{RCNN and its different forms}
+
+How to calculate loss in RCNN
+
+Selective search for detecting regions of interest (RoI)
+
+Fast R-CNN
+" reduces the time consumption related to the high number of models necessary to analyse all region proposals."
+
+Instead of having many CNNs for each region, one CNN is applied to the whole image.
+
+Faster R-CNN
+Segmentation is slow
+Regional proposal network (RPN) is used instead
+
+Mask R-CNN
+Outside our scope, but something that can be used to improve object tracking.
+Although, then an object tracking algorithm that tracks on an outline is required.
+
+\subsection{YOLO}
+YOLO, or You Only Look Once, is a one stage detector approach to object detection and
+ recognition \cite{YOLO1}. It takes an image and predicts both bounding boxes and the probabilities of the classes being within these bounding boxes in one run, hence its name. It was designed to be fast and usable in real-time scenarios. Since YOLO sees the entire image during training and testing, it receives contextual information about the classes and reduces error with matching background patches for objects. 
+ 
+ The architecture for \textit{YOLO} consist mainly as a convolutional neural network, with 24 convolutional layers and two fully connected layers. There was also a smaller neural network trained called \textit{Fast YOLO} trained which were only 9 layers which was designed to create an even faster system for object detection. 
+ 
+ The system first divides the input image into an  $S \times S$  grid, where each cell predicts $B$ amount of bounding boxes respectively confidence scores for the boxes. Each bounding box prediction consists of 5 separate predictions: the \textit{x, y} coordinates, represented as their position relative to the the grid cell, width and height relative to the entire image and a confidence value. The confidence values are there to reflect how certain the model is that there exists an object within the box, i.e. ideally, confidence should be zero when no object, and the intersection over union between ground truth and the predicted box if there is. Each grid cell also predicts $C$ probabilities for each class, conditioned that there's an object within the boxes. 
+ 
+ Intersection over union, also known as the Jaccard index, is a way of measuring similarity between sets. It can be written as 
+ \[
+IOU(A,B) =  \frac{|A\cap B |}{|A\cup B|} =\frac{|A\cap B|}{|A| + |B| - |A \cap B|}
+, \quad 0\leq IOU(A,B) \leq 1
+ \]
+ if $A,B$ are two finite sets. If the two sets are equal, then \[ IOU(A,A) =  \frac{|A\cap A |}{|A\cup A|} = \frac{|A\cap A|}{|A| + |A| - |A \cap B|}  = \frac{A}{A} = 1 \]
+ 
+ When testing, these scores are then combined to give the class specific confidence values for each of the boxes, thus it receives both the confidence of the class being in the box, and how well the box fits the object. Figure \ref{fig:YOLO_stages} summarizes the flow in YOLO. 
+\begin{figure}[hbtp]
+\begin{center}
+\includegraphics[width = 0.75\textwidth]{./Images/YOLO_stages.PNG} 
+\caption{The stages of YOLO. First dives into $S \times S$ grid. Separately predicts bounding boxes with respective confidence, as well as class probability. Then, combines the two to form the final predictions. Image taken from \cite{YOLO1}.}
+\label{fig:YOLO_stages}
+\end{center}
+\end{figure}
+
+Comparisons done by the team working on \textit{YOLO} found that, compared to other real-time systems at the time, both \textit{Fast YOLO} and \textit{YOLO} outperformed them all with \textit{Fast YOLO} being the fastest, but \textit{YOLO} being more accurate on the \textit{PASCAL VOC} data sets \cite{PASCAL}.
+
+Throughout the years Redmon et al. has been working on updating the design pattern of the 
+YOLO network. First in 2016 when they introduced \textit{YOLOv2} and then April 2018 with \textit{YOLOv3} \cite{YOLO2}\cite{YOLO3}. \textit{YOLOv2} added a few concepts to the system to make it even more fast and accurate than the earlier iteration. It removed the fully connected layers and it was now possible to train on several different input image resolutions and it could now also predict many more bounding boxes than its predecessor. \textit{YOLOv3} added some changes which improved its ability to detect small objects, with the trade off of having a bit worse performance when finding larger sized objects.  
+
+\subsection{Mean Average Precision}
+
+There is quite a difference when it comes to evaluating a model that does object detection,  compared to normal image classification. When doing the latter, accuracy tells you how often the model makes the correct prediction. However, with object detection it is done differently. The common metric is \textit{mean Average Precision} (mAP).  This metric makes use of the previously discussed \textit{IoU} (intersection over union). The IoU and the classification determines if the prediction is deemed correct. The classification obviously has to be the same as the ground truth, and the IoU has to be over a set threshold, these are known as True Positives. A predicted box that does not pass the threshold is known as a False Positive.. If there are more than one prediction that passes the threshold, only one will get seen as a True Positive, and the other as False Positive. When a prediction was not made for a ground truth box, it is called a False Negative \cite{turiAdvanced}.
+
+From the False Positives, True Positives, and the False Negatives, one can calculate recall as well as precision scores \cite{rafaelpadilla}.  Precision is how good the model is to identify only the relevant data, and can be written as
+\[ precision = \frac{True Positives}{True Positives + False positives }\]
+Recall is how good the model is to find all the relevant data, and is written as 
+\[ recall = \frac{True Positives}{True Positives +False Negatives }\]
+
+
+ When a classification is made you also get a confidence value. One only calls it a prediction if the predictions confidence passes a set threshold. However, if one calculates the recall and precision for all possible thresholds, a Recall x Precision curve can be made. From this curve, one gets the mAP by taking the area under the the curve.
+
+There are different standards when calculating the mAP. The PASCAL VOC Challenge uses a mean average precision with a static threshold of 50\%
+ \cite{PASCAL}. This is called   \textit{mean\_average\_precision\_50} . Another common standard is the one used by COCO  \cite{COCO}. This one calculates the mAP at IoU threshold from 50\%  to 95\%  and averages them all together. This is quite strangely known as just \textit{mean\_average\_precision}. The latter mentioned method is the one this report will use for evaluation, since it puts more value on localization than the PASCAL VOC method.
+
+
+
+\subsection{Turi Create}
+%Write about the testing an implementation of Turi
+Apple has developed their own toolkit for development of custom machine learning models called Turi Create \cite{turiCreate}. This was created to help developers easily implement their own ideas into an app. It includes methods for image classification, object detection etc.. 
+
+In this project, the Object Detection method included in Turi Create was tested. First, one
+ has to create ground truth data for every image that was trained and tested on. This was
+ done using Simple Image Annotator \cite{simpleImage}, where one has to draw bounding
+  boxes for the objects in the images and label them; the data output is in the \textit{.csv} format.  Turi Create uses a different format for annotations called \textit{.sframe},
+  however, they provide a simple Python script which automatically does the conversion. 
+
+Turi then trains a model using a re-implementation of the TinyYOLO network. It also utilizes transfer learning by starting with an image classifier that has been trained on the imageNet dataset and then does \textit{end-to-end finetuning} to change the network to a \textit{one-stage detector}.
+
+Several models were trained, with different amount of training data, to evaluate how many
+ were needed to get a decent result. The Turi website states that at least 30 samples of
+each class is needed to generate a good enough model. Hence, we tested for even lower
+samples, as well as much more. Lowest amount of training images were around 50, and
+highest  were around 1000. The \textit{mean average precision} was measured for each model using 200 testing images, and then plotted to create a graph showing how it
+ changed, depending on the amount of training data was used. Result from this can be
+ seen in the result section of the report. The best performing model was then to be used in the application.
+
+Code below shows how the model was created using turi in python.
+\begin{lstlisting}[language=python]
+import turicreate as tc
+tc.config.set_num_gpus(0)
+
+# Load the data
+train_data = tc.SFrame("Train_Data.sframe")
+
+#Random split train data to get specific training size
+train_data, unused_data = train_data.random_split(0.3)
+
+test_data = tc.SFrame("Test_Data.sframe")
+
+# Create a model
+model = tc.object_detector.create(train_data)
+
+# Evaluate the model and save the results into a dictionary
+metrics = model.evaluate(test_data,metric='mean_average_precision')
+print(metrics)
+
+# Save the model for later use in Turi Create
+model.save('Nolmyra030.model')
+
+# Export for use in Core ML
+model.export_coreml('Nolmyra030.mlmodel', include_non_maximum_suppression=False)
+\end{lstlisting}
+The results could also be further inspected by drawing the newly predicted bounding boxes on top of the original image, from this one can visualize how the model actually performed. This was done using code below. Some of the resulting images from different models can be seen in the result section further below. 
+
+\begin{lstlisting}[language=python]
+#Load test data
+test_data = tc.SFrame("Test_Data.sframe")
+
+#Load created model
+model = tc.load_model('Nolmyra.model')
+
+# Save predictions to an SArray and draw predicted bounding boxes
+predictions = model.predict(test_data)
+predictions_stacked = tc.object_detector.util.stack_annotations(predictions)
+image_prediction = tc.object_detector.util.draw_bounding_boxes(test_data['image'], predictions)
+
+#Look through the predicted bounding boxes
+image_prediction.explore()
+\end{lstlisting}
+
+\subsubsection{Importing model to application}
+
+After training and evaluating that the model lives up to a standard worth including in this
+ project, it was converted to the \textit{.mlmodel}. When inputting a frame from the
+application into the model, the model outputs a multi array containing an array for each
+  \textit{object} found. These predictions have not been \textit{non-max suppressed}, since it that functionality is lost during the conversion from the model used in python, to the .mlmodel format. Thus, it has to be reimplemented in the application itself. 
+  A non-max supression threshold of $0.5$ was used as it is considered a traditional standard \cite{nms}. The code below shows how non-max suppression was implemented. 
+
+\begin{lstlisting}[language=swift]
+    private func filterOverlappingPredictions(unorderedPredictions: [Prediction], nmsThreshold: Float) -> [Prediction]
+    {
+        var predictions = [Prediction]()
+        let orderedPredictions = unorderedPredictions.sorted { $0.confidence > $1.confidence }
+        var keep = [Bool](repeating: true, count: orderedPredictions.count)
+        for i in 0..<orderedPredictions.count {
+            if keep[i] {
+                predictions.append(orderedPredictions[i])
+                let bbox1 = orderedPredictions[i].boundingBox
+                for j in (i+1)..<orderedPredictions.count {
+                    if keep[j] {
+                        let bbox2 = orderedPredictions[j].boundingBox
+                        if bbox1.IoU(other: bbox2) > nmsThreshold {
+                            keep[j] = false
+                        }
+                    }
+                }
+            }
+        }
+        return predictions
+    }
+    
+    extension CGRect
+{
+    func IoU(other: CGRect) -> Float
+    {
+        let intersection = self.intersection(other)
+        let union = self.union(other)
+        return Float((intersection.width * intersection.height) / (union.width * union.height))
+    }
+}
+\end{lstlisting}
+
+
+
+[INCLUDE NETWORK MODEL]
+
+ [INSERT IMAGES OF TESTING IN APP HERE  OR SOMEWHERE ELSE] 
+
+
+
+\subsection{Results from doing object detection with Turi}
+Because of the vast amount of possible use cases it was decided to scale the objective down. The model was trained only on a few floor backgrounds. 
+
+The mean average precision from the different models that were trained were observed and can be read in table \ref{table:mAP}. 
+
+\begin{table}[h]
+\centering
+\begin{tabular}{ |c|c|c| } 
+ \hline
+ Amount of training images & Percentage of total amount & mean\_average\_precision  \\ 
+ \hline
+ $\approx 50$& 5\% & 0.17064 \\
+ \hline
+ $\approx 185$& 20\% & 0.39269 \\
+ \hline
+$\approx 280$ &  30 \% & 0.41588 \\
+ \hline
+ $\approx 370$& 40\% & 0.40595 \\
+ \hline
+ $\approx 450$& 50\% & 0.47397 \\
+\hline
+ $\approx 700$& 75\% & 0.54433 \\
+ \hline
+$926$ & 100\% & 0.57618 \\
+ \hline
+\end{tabular}
+\caption{Mean average precision depending on the amount of training data used.}
+\label{table:mAP}
+\end{table}
+
+These values can then be plotted giving us the graph shown in figure \ref{fig:mAPResult}
+
+[SAMPLE BILD TILLS VI HAR GENERERAT KORREKT PLOT]
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width = 0.2\textwidth]{./Images/3dscanning1.png}
+\caption{Mean Average Precision plotted against the amount of training data used. 100\% corresponds to 926 images.}
+\label{fig:mAPResult}
+\end{center}
+\end{figure}
+
+[iNCLUDE IMAGES FROM TESTING  IN TURI]
+
+
+
+
+\newpage
