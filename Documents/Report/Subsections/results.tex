@@ -15,22 +15,26 @@ Because of the vast amount of possible use cases it was decided to scale the obj
 
 The mean average precision from the different models that were trained were observed and can be read in table \ref{table:mAP}. 
 
+WE SHOULD PUT NUMBER OF IMAGES INSTEAD OF A PERCENTAGE
+
 \begin{table}[h]
 \centering
-\begin{tabular}{ |c|c| } 
+\begin{tabular}{ |c|c|c| } 
  \hline
- Percentage of training images used & mean\_average\_precision  \\ 
+ Amount of training images & Percentage of total amount & mean\_average\_precision  \\ 
  \hline
- 5\% & 0.17064 \\ 
+ $\approx 50$& 5\% & 0.17064 \\
  \hline
- 20\% & 0.39269 \\ 
+ $\approx 185$& 20\% & 0.39269 \\
  \hline
- 40\% & 0.40595 \\
+ $\approx 370$& 40\% & 0.40595 \\
  \hline
- 50\% & 0.47397 \\
+ $\approx 450$& 50\% & 0.47397 \\
+ \hline
+ $\approx 700$& 75\% & 0.54433 \\
  \hline
 \end{tabular}
-\caption{Mean average precision depending on the amount of training data used. 100\% corresponds to 926 images.}
+\caption{Mean average precision depending on the amount of training data used. 100\% corresponds to 926 images. HOW MANY IMAGES WERE TESTED ON? HOW WAS THE TEST CONDUCTED?}
 \label{table:mAP}
 \end{table}
 

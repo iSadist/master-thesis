@@ -7,3 +7,5 @@ First time: image size 256x256
 20% : 
 {'mean_average_precision': 0.3926975572411251}
 
+75% :
+{'mean_average_precision': 0.5443281078519872}
