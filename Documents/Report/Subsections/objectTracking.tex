@@ -19,17 +19,22 @@ For this application, however, the user is not going to encounter any scenarios 
 
 The following lines of code show how the object tracking was set up. One important thing to realize when setting this up is that the heavy calculations are run on a different thread than the main thread (in this case the work thread). 
 
-That is why they can be executed in a while true loop. Later though, when drawing on the GUI wants to be made, they MUST be done on the main thread.
+That is why they can be executed in a while true loop. Later though, when drawing on the GUI wants to be made, they must be done on the main thread.
 
 \begin{lstlisting}[language=swift]
+// Project path:
+// master-thesis/Application/ObjectDetectionInAR/Assembler/ObjectTracker.swift
+
 func track()
     {
+    // Init all variables
         cancelTracking = false
-        
         var trackingObservations = [UUID: VNDetectedObjectObservation]()
         var trackedObjects = [UUID: ObjectRectangle]()
         let requestHandler = VNSequenceRequestHandler()
         let boundingFrame = delegate?.getBoundingFrame()
+        
+        // Add the objects to track to the created lists above
         for object in objectsToTrack
         {
             let observation = VNDetectedObjectObservation(boundingBox: object.getNormalizedRect(frame: viewFrame))
@@ -37,6 +42,7 @@ func track()
             trackedObjects[observation.uuid] = object
         }
         
+        // Loop over until a cancel tracking request is made
         while true
         {
             if cancelTracking { break }
@@ -57,6 +63,7 @@ func track()
                 trackingRequests.append(request)
             }
 
+		   // Perform the requests
             try? requestHandler.perform(trackingRequests, on: frame, orientation: CGImagePropertyOrientation.up)
 
             for processedRequest in trackingRequests
@@ -102,7 +109,7 @@ func track()
 
 \subsection{Combining Object detection with Object Tracking}
 The purpose of having the object tracker is to be able to avoid performing object detection and object recognition 30 frames per second or so. Also, doing this with R-CNN and Yolo nets have shown choppy results where an object can be identified in one frame, not identified in the next and then again identified.
-There is no real issue with this since both solutions perform really well overall. There is however concerns for the end user to have a fluid experience.
+There is no real issue with this since both solutions perform really well overall. There is however concerns for the end user to have a good experience.
 
 One way to solve this is to perform the detection and recognition once, to later continue to track the position of those items with a cheaper algorithm.
 Object detection and recognition will then be repeated, but only update the state of the rectangles if the correct objects are identified.
@@ -116,7 +123,7 @@ In this application, an arrow was drawn between the objects with an instructiona
 \end{center}
 \end{figure}
 
-In this project, ARKit by Apple has been utilized. As previously stated, when working with ARKit, a frame from the camera is fetched by either calling snapshot() on the ARSCNView object or getting the currentFrame from the ARSession.
+In this project, ARKit by Apple has been utilized. As previously stated, when working with ARKit, a frame from the camera is fetched by either calling the function snapshot() on the ARSCNView object or getting the currentFrame attribute from the ARSession.
 However, both of these images contain both the RAW camera image and all the virtual items rendered in the ARScene. We did not find a way to capture just the RAW camera image.
 
 This whole scenario created a kind of positive feedback loop because the virtual arrow that was rendered between the objects was usually contained within either one of the tracking rectangles. Thus, the arrow's position was determined by the tracking rectangle and the tracking rectangle was tracking the position of the arrow.

@@ -51,20 +51,17 @@ YOLO network. First in 2016 when they introduced \textit{YOLOv2} and then April 
 
 \section{Mean Average Precision}
 
-There is quite a difference when it comes to evaluating a model that does object detection,  compared to normal image classification. When doing the latter, accuracy tells you how often the model makes the correct prediction. However, with object detection it is done differently. The common metric is \textit{mean Average Precision} (mAP).  This metric makes use of the previously discussed \textit{IoU} (intersection over union). The IoU and the classification determines if the prediction is deemed correct. The classification obviously has to be the same as the ground truth, and the IoU has to be over a set threshold, these are known as True Positives. A predicted box that does not pass the threshold is known as a False Positive.. If there are more than one prediction that passes the threshold, only one will get seen as a True Positive, and the other as False Positive. When a prediction was not made for a ground truth box, it is called a False Negative \cite{turiAdvanced}.
+There is quite a difference when it comes to evaluating a model that does object detection,  compared to normal image classification. When doing the latter, accuracy tells you how often the model makes the correct prediction. However, with object detection it is done differently. The common metric is \textit{mean Average Precision} (mAP).  This metric makes use of the previously discussed \textit{IoU} (Intersection over Union). The IoU and the classification determines if the prediction is deemed correct. The classification obviously has to be the same as the ground truth, and the IoU has to be over a set threshold, these are known as true positives. A predicted box that does not pass the threshold is known as a false positive.. If there are more than one prediction that passes the threshold, only one will get seen as a true positive, and the other as false positive. When a prediction was not made for a ground truth box, it is called a false negative \cite{turiAdvanced}.
 
-From the False Positives, True Positives, and the False Negatives, one can calculate recall as well as precision scores \cite{rafaelpadilla}.  Precision is how good the model is to identify only the relevant data, and can be written as
+From the false positives, true positives, and the false negatives, one can calculate recall as well as precision scores \cite{rafaelpadilla}.  Precision is how good the model is to identify only the relevant data, and can be written as
 \[ precision = \frac{True Positives}{True Positives + False positives }\]
 Recall is how good the model is to find all the relevant data, and is written as 
 \[ recall = \frac{True Positives}{True Positives +False Negatives }\]
-
 
  When a classification is made you also get a confidence value. One only calls it a prediction if the predictions confidence passes a set threshold. However, if one calculates the recall and precision for all possible thresholds, a Recall x Precision curve can be made. From this curve, one gets the mAP by taking the area under the the curve.
 
 There are different standards when calculating the mAP. The PASCAL VOC Challenge uses a mean average precision with a static threshold of 50\%
  \cite{PASCAL}. This is called   \textit{mean\_average\_precision\_50} . Another common standard is the one used by COCO  \cite{COCO}. This one calculates the mAP at IoU threshold from 50\%  to 95\%  and averages them all together. This is quite strangely known as just \textit{mean\_average\_precision}. The latter mentioned method is the one this report will use for evaluation, since it puts more value on localization than the PASCAL VOC method.
-
-
 
 \section{Turi Create}
 %Write about the testing an implementation of Turi

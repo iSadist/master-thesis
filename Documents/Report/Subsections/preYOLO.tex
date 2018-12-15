@@ -20,7 +20,7 @@ configuration.detectionObjects = detectingObjects
 \end{figure}
 
 Once imported into our project we were able to test the performance of recognizing and tracking three pieces of our furniture.
-Sadly, this method came up short for our purpose. When testing live in our app the time for detection were much longer ( over 1 second ) which made tracking them difficult. The tracking wasn't smooth but rather choppy. Many times, the object wasn't detected at all. This was mainly due to our objects being a little big to fit the screen while being close with the camera but also that the object had a lot of empty space within its bounding box.
+Sadly, this method came up short for our purpose. When testing live in our app the time for detection were much longer (over 1 second) which made tracking them difficult. The tracking wasn't smooth but rather choppy. Many times, the object wasn't detected at all. This was mainly due to our objects being a little big to fit the screen while being close with the camera but also that the object had a lot of empty space within its bounding box.
 
 The detection worked best while being in the same environment, static with the same kind of lightning conditions, but fell short when the object was moving or being held. Therefore, since the user is going to hold the pieces by hand and moving them around, this method cannot be used for our purpose.
 
@@ -30,7 +30,9 @@ The detection worked best while being in the same environment, static with the s
 
 When trying to detect objects in a still image we have looked into two main methods. One typical way is to try and look for patterns or features in the image.
 Either a specific image can be matched within the larger image or a series of features can be found.
-An example of the latter is Haar features which is used in the Viola-Jones for face detection. Using the image integral (which is the summation of pixel values in a specific region) different features can be obtained.
+An example of the latter is Haar features which is used in the Viola-Jones for face detection.
+
+Using the image integral (which is the summation of pixel values in a specific region) different features can be obtained.
 
 \begin{figure}[hbtp]
 \begin{center}
@@ -53,8 +55,8 @@ Edge detection
 
 Histogram equalisation
 \\\\
-One possible way of detecting objects in an image is to use depth data, or RGB-D.
-A tool that typically comes to mind when reading about depth data is the Kinect camera
+One possible way of detecting objects in an image is to use depth data, or RGB-D which is depth data embedded in an RGB photo.
+A popular device that uses depth data for object detection is the Kinect camera
 for Xbox.
 
 On the iPhone X, depth data can be captured by either True Depth on the front camera or with the dual cameras on the back. The True Depth camera works by having a dot projector emit light dots (mainly on a face which is why this feature is found on the front camera) and picking those dots up with an infrared camera.
@@ -64,11 +66,9 @@ The dual camera on the back works by taking two photos and comparing those to fi
 However, obtaining the depth data from the dual cameras in real time is not possible since it requires too much computational power. This unfortunately makes it impossible to use in an ARScene and thus not possible for this project.\\
 
 Despite all the available methods above, object detection without machine learning is still very tricky. These methods work best when the images are in an controlled environment, typically industrial, like finding screws on a white background (as they do in an article posted by combine.se). \cite{combine}
-When the environment is a more casual place though, e.g., recognizing furniture indoors, the task becomes much more difficult. For this reason, object detection with pure algorithms is not very common in household applications. Instead object detection with machine learning methods such as RCNN networks are much more common nowadays.
+When the environment is a more casual place though, e.g., recognizing furniture indoors, the task becomes much more difficult. For this reason, object detection with pure algorithms is not very common in household applications. Instead object detection with machine learning methods such as R-CNN's (Regional-Convolutional Neural Network) are much more common nowadays.
 
-
-
-\section{Matlab prototype for Object Detection}
+\section{MATLAB prototype for Object Detection}
 % Write about design decisions for the Matlab prototype and what it does. 
 % Probably add some code as well.
 A purely feature based object segmentation method was implemented as a prototype in Matlab. This was done to see if a machine learning model for detecting objects could be dismissed. 
