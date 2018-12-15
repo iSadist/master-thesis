@@ -190,9 +190,11 @@ The mean average precision from the different models that were trained were obse
  \hline
  $\approx 50$& 5\% & 0.17064 \\
  \hline
+ $\approx 100$& 10\% & 0.30188 \\
+ \hline
  $\approx 185$& 20\% & 0.39269 \\
  \hline
-$\approx 280$ &  30 \% & 0.41588 \\
+$\approx 280$ &  30\% & 0.41588 \\
  \hline
  $\approx 370$& 40\% & 0.40595 \\
  \hline
@@ -235,6 +237,17 @@ The other explanation is that when training, the most optimal model for that dat
 not always (if ever) returned. Take into account early stopping for example.
 Sometimes the early stopping can happen on a good place and sometimes it could have
 given a better result if the training session would have kept going for a little bit.
-Nobody can know for sure.
+Nobody can know for sure. \\
+
+The curve from the tests shows no sign of saturation yet, thus even more data would
+surely improve the performance. The reason for not testing with more data is because
+of the difficulty of gathering more data (taking photos in different environments and 
+adding ground truth data) and the time it took for training.
+As of now, the time for training with 926 on a MacBook Pro 15 inch 2017 with a 2,8 GHz
+Intel Core i7 processor takes over 24 hours. With half the amount it takes about 17 hours.\\
+
+From the graph there is a small plateau between 185 to 370 images. Around that
+performance (0.4 mAP) is a sort of minimum for the model to perform well.
+For our 6 classes that would correlate to needing around 30-60 images per class.
 
 \newpage
