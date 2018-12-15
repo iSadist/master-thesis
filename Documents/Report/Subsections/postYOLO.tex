@@ -225,5 +225,19 @@ These values can then be plotted giving us the graph shown in figure \ref{fig:mA
 
 [iNCLUDE IMAGES FROM TESTING  IN TURI]
 
+When testing on different sizes of data it can appears as if more data gives a worse
+result sometimes. That can be explained in two ways. The first explanation is that when
+training the models the data was randomly split from the full training data set. That 
+means that sometimes there can be more "good" data and sometimes less in the set.
+Some images have lots of objects in them and others have fewer. Thus, if you have a
+data set with images with lots of objects in them it will likely give better results.
+An important thing to mention however is that for the model to perform well it also needs
+areas in the image of no object.
+
+The other explanation is that when training, the most optimal model for that data set is
+not always (if ever) returned. Take into account early stopping for example.
+Sometimes the early stopping can happen on a good place and sometimes it could have
+given a better result if the training session would have kept going for a little bit.
+Nobody can know for sure.
 
 \newpage
