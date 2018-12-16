@@ -1,7 +1,8 @@
 \chapter{The Finished Application}
-INTROTEXT TO CHAPTER
-\section{The iOS Application}
+This chapter will round off the work process of the report. It goes through how the final application was designed and implemented in \ref{sec:Application}. The chapter then ends with section \ref{sec:usertest}, detailing the evaluation process of the application, which was the by having users test the finished application.
 
+\section{The iOS Application}
+\label{sec:Application}
 The application is build for iOS using Xcode and Swift 4.0. The app has been developed specifically for iPhone X. It has also only been tested on iPhone X. However, the app should work on other iPhone models that support ARKit 2.0 as well.
 
 \subsection{Class diagrams}
@@ -44,7 +45,7 @@ together but instead can be spotted separately.\\
 \begin{center}
 \includegraphics[width = 0.9\textwidth]{./Images/FurnitureClassDiagram.jpg}
 \caption{A class diagram of the furniture selection views part of the application. The Furniture class.}
-\label{fig:classdiagramassembler}
+\label{fig:classdiagramfurniture}
 \end{center}
 \end{figure}
 
@@ -66,7 +67,7 @@ For scanning barcodes, the \textbf{BarcodeScannerViewController} is used, which 
 \begin{center}
 \includegraphics[width = 0.5\textwidth]{./Images/UtilitiesClassDiagram.jpg}
 \caption{A class diagram of the utilities part of the application. These are some classes that make the rest of the code in the application easier to understand and use.}
-\label{fig:classdiagramassembler}
+\label{fig:classdiagramutilities}
 \end{center}
 \end{figure}
 
@@ -173,7 +174,7 @@ The finished GUI is similar to the prototype but some details are different.
 \end{figure}
 
 \section{User Testing}
-
+\label{sec:usertest}
 Evaluating the AR experience is possible on a technical level, to research if the 
 combination of AR with object recognition is feasible. This can be done by, for instance,  
 making sure the application is running at an acceptable frame rate. However, as this 

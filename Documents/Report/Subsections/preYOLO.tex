@@ -1,6 +1,15 @@
 \chapter{Object Detection}
-Chapter intro text
+At this point of the project process, a machine learning model capable of decently 
+classifying which of the furniture parts were in the image existed. However, when using the 
+planned application, it is very likely that there are several parts within the same frame. 
+Hence, a method of localizing where an object was located was highly sought after. The idea 
+was to find such a method, segmenting out the areas containing an object, and then use these  
+areas as input images for to the machine learning model.
+
+In this chapter, a few of the methods for object detection that were tried is explained, even though none of them ended up being viable in the end.
+  
 \section{Testing Object Scanning with ARKit2}
+\label{sec:ODscanning}
 Apple's ARKit2 has a feature where it can detect scanned 3D objects. For scanning, they have developed an app that can be downloaded from their website. \cite{ARScanning}
 After the scanning is complete the app lets you export the model to then include it in your ARKit2 project. Once in the project it is simply imported into the ARWorldTrackingConfiguration like shown below. (The models are kept inside the Assets.xcassets catalogue in a folder called 'Objects').
 
@@ -26,6 +35,7 @@ The detection worked best while being in the same environment, static with the s
 
 
 \section{Object Detection with traditional machine learning}
+\label{sec:ODtrad}
 % Write about feature based detection and segmentation
 
 When trying to detect objects in a still image we have looked into two main methods. One typical way is to try and look for patterns or features in the image.
@@ -69,6 +79,7 @@ Despite all the available methods above, object detection without machine learni
 When the environment is a more casual place though, e.g., recognizing furniture indoors, the task becomes much more difficult. For this reason, object detection with pure algorithms is not very common in household applications. Instead object detection with machine learning methods such as R-CNN's (Regional-Convolutional Neural Network) are much more common nowadays.
 
 \section{MATLAB prototype for Object Detection}
+\label{sec:ODmatlab}
 % Write about design decisions for the Matlab prototype and what it does. 
 % Probably add some code as well.
 A purely feature based object segmentation method was implemented as a prototype in Matlab. This was done to see if a machine learning model for detecting objects could be dismissed. 
@@ -86,10 +97,11 @@ First, an edge detection method was run on the entire image, to find the edges, 
 \label{fig:matlabImages}
 \end{center}
 \end{figure}
-
+[IMAGE FROM WHEN IT DID NOT WORK AS WELL]
 This method did however not end up being useful since its performance varied drastically depending on the input image and variables needed to be modified to fit every image. Thus, this method of segmenting out object areas was deemed not viable for this project.
 
 \section{Results from doing object detection in matlab}
+\label{sec:ODresults}
 A Matlab script was tried in order to find possible ways of segmenting out regions containing objects in an image. The output segments would then each be classified separately. This way we would have both object locations and classifications on each object. \ref{fig:matlabImages} shows an example of this. However, results from this were highly unpredictable and the parameters were too dependent on lighting, shadows, the background among other features. Hence, this method was scrapped.
 
 

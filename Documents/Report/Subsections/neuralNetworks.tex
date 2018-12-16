@@ -1,6 +1,11 @@
 \chapter{Neural Networks}
-Introtext to chapter
+This chapter will focus on neural networks and how they were utilized for parts of this
+report. First, some theoretical background surrounding neural networks in general, and then
+more specifically, convolutional neural networks, is given in sections \ref{sec:NNwork}
+and \ref{sec:CNN}.
+Afterwards, the chapter goes more into how neural networks were tried and used during this project. Data collection and augmentation is described in sections \ref{sec:NNdata} and \ref{sec:NNaugment}. Further sections, \ref{sec:NNclassification} \& \ref{sec:NNtransfer}, describe how this data was used to train neural networks, with the latter section explaining an alternative to training a model from scratch. 
 \section{How neural networks work}
+\label{sec:NNwork}
 There exists many different machine learning techniques out there today. Due to its high 
 effectiveness and relevance, for this report we are going to focus on the highly popular 
 method of artificial neural networks.
@@ -191,6 +196,7 @@ improving anymore. A graph showing when to do early stopping is given in figure 
 \end{figure}
 
  \section{Convolutional Neural Networks}
+ \label{sec:CNN}
  Convolutional neural networks have been used for quite some time when it comes to deep learning and their capabilities are rather astounding, as proved by Krizhevsky et al \cite{NIPS2012_4824}.  They use layers which perform convolutions, hence it's name.  The input to a convolutional network are either 2D or 3D tensors, where the 3D alternative usually has color channels along the third dimension. Use of convolutional neural networks in image recognition  can be practical for several reasons, e.g., it can tell of spatial relationships in an image. This section has been written with reference to V. Dumolin et al \cite{convArit}. Figure \ref{fig:cnn} shows an example of how a CNN may look.
  
  \begin{figure}[hbtp]
@@ -237,6 +243,7 @@ When a classification is to be done in the CNN, the shape needs to be shifted to
 
 
 \section{Collecting data}
+\label{sec:NNdata}
 When working with machine learning, big sets of data is often required for a good resulting model.
 A problem with this is that it can be tricky to obtain such a large data set because it usually also requires
 labels with that data to be manually put in. These labels will be used by the neural net to, during training, check if
@@ -263,6 +270,7 @@ However, there are other options.
 \end{figure}
 
 \section{Augmenting data}
+\label{sec:NNaugment}
 Instead of training on only original images, some images can be created from other images by for example rotating, flipping, changing brightness, saturation, contrast etc.  This will essentially be an image of the same object, but the data will look different, thus giving the model more relevant data to train on, see figure \ref{fig:exampleArtificial}.
 When doing this it is important to keep in mind that the augmented data should be relevant to real situations.
 Creating data with only the blue color band when the real situations are only in daylight makes no sense.
@@ -298,6 +306,7 @@ In our project, this gave a good result as it increased the test accuracy by 8\%
 Doing this by hand can still be very time consuming, so automating this process as far as possible is recommended.
 
 \section{Image classification}
+\label{sec:NNclassification}
 Designing a neural net for the image classification is not the easiest task and much
 work consists of trying things and making intelligent guesses.
 As stated in the section about data collection we had 4 different classes to classify,
@@ -445,6 +454,7 @@ since the model size would grow more and training time would increase drasticall
 we didn't increase it further.
 
 \section{Transfer Learning}
+\label{sec:NNtransfer}
 % Write about how we went about in order to insert Transfer Learning into the mix. 
 After trial of designing the network from scratch, it was decided to try and make use of 
 pre-trained networks and then retrain them for another purpose. Models trained on 
@@ -506,7 +516,7 @@ The best result  that was achieved for each of the models using this method is l
  table \ref{table:transferLearning}. It shows that using InceptionV3 model with pretrained
  weights gave the best result. However, a few factors, such as, where the models were
  frozen, how adding and removing layers, has most likely affected the results. As can be
- seen from using ResNet, the best model achieved 25\% accuracy, which is the same as making a guess, seeing as there are only four possible classes. 
+ seen from using ResNet, the best model achieved 25\% accuracy, which is the same as making a guess, seeing as there are only four possible classes. These models could, and would most like have been, improved if it was not decided to take a new approach to the problem, which is described further on in this report.
 
 \begin{table}[h]
 \centering
