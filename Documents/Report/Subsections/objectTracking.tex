@@ -9,7 +9,7 @@ video. It contains still image analysis, image sequence analysis, object trackin
 detection etc.
 
 On their website, Apple has a project that lets any user try out the object tracking on a 
-video. When trying this on one of the furniture we are going to assemble, the result was 
+video \cite{ObjectTracking}. When trying this on one of the furniture we are going to assemble, the result was 
 very promising. While the parts were laying on the floor and simultaneously moving the 
 camera around, the objects were tracked fairly well. It was only when the camera was moved 
 in such a way that made the pieces rotate in the picture that it started having a hard time 
@@ -17,7 +17,6 @@ tracking it.
 
 For solving this, object detection can be performed in a reasonable time interval and be tracked until object detection is performed once again etc.
 
-\cite{ObjectTracking}
 The difference for this project and Apple's test project is that object tracking is going to 
 be performed in real-time. This puts a limit on how many frames per second we can perform 
 object tracking, since in a video playback you can just choose how fast you want to feed the 
@@ -125,7 +124,7 @@ func track()
 
 
 \section{Combining Object detection with Object Tracking}
-The purpose of having the object tracker is to be able to avoid performing object detection and object recognition 30 frames per second or so. Also, doing this with Yolo nets have shown choppy results where an object can be identified in one frame, not identified in the next and then again identified.
+The purpose of having the object tracker is to be able to avoid performing object detection and object recognition 30 frames per second or so. Also, doing this with YOLO nets have shown choppy results where an object can be identified in one frame, not identified in the next and then again identified.
 There is no real issue with this since both solutions perform really well overall. There is however concerns for the end user to have a good experience.
 
 One way to solve this is to perform the detection and recognition once, to later continue to track the position of those items with a cheaper algorithm.
@@ -141,7 +140,7 @@ In this application, an arrow was drawn between the objects with an instructiona
 \end{figure}
 
 In this project, ARKit by Apple has been utilized. As previously stated, when working with ARKit, a frame from the camera is fetched by either calling the function snapshot() on the ARSCNView object or getting the currentFrame attribute from the ARSession.
-However, both of these images contain both the RAW camera image and all the virtual items rendered in the ARScene. We did not find a way to capture just the RAW camera image.
+However, both of these images contain both the image from the camera as well as all the virtual items rendered in the ARScene. We did not find a way to capture just the image from  the camera.
 
 This whole scenario created a kind of positive feedback loop because the virtual arrow that was rendered between the objects was usually contained within either one of the tracking rectangles. Thus, the arrow's position was determined by the tracking rectangle and the tracking rectangle was tracking the position of the arrow.
 Just the tiniest change in the picture made the arrow jump up and down until it finally got out of frame.
@@ -151,7 +150,5 @@ The take away from this was to skip object tracking and solve the problem in ano
 An assumption was made that just as talked about before, the furniture parts are laying still on the ground while the user is using the application. That means that we can rely on ARKit to keep track of where the object is for us instead.
 
 Switching gear to that solution made the whole application much better and easier to code. A takeaway from that is that adding more technology to a project does not always equal a better product. Sometimes it is better to use the components the way they are meant to be used and try not to make it more complicated than it needs to be.
-
-CAN ELABORATE MORE ON THIS IN THE CONCLUSIONS
 
 \newpage
