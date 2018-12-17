@@ -1,12 +1,13 @@
 \chapter{Augmented Reality}
 
-To help better the understanding of augmented reality, this chapter will describe the historical background as well as how it works. In Section \ref{sec:ARtype} the a few different types of AR is explained. The chapter then briefly tells of the history of AR in section \ref{sec:ARhistory}. Afterwards, a section, \ref{sec:ARslam}, about a method for mapping the environment called \textit{S.L.A.M} is described. The chapter is rounded of with some information about how the the toolkit used in this project, \textit{ARKit}, functions, section \ref{subsecARKit}. 
+To help better the understanding of augmented reality, this chapter will describe the historical background as well as how it works. In Section \ref{sec:ARtype} there
+are a few different types of AR explained. Then a brief history of AR is presented in section \ref{sec:ARhistory}. Afterwards, a method about mapping the environment called \textit{S.L.A.M} is described in section \ref{sec:ARslam}. The chapter is rounded in section \ref{subsecARKit} with some information about how the the toolkit used in this project, \textit{ARKit}, functions. 
 
 \section{The different types of Augmented Reality}
 \label{sec:ARtype}
 There are different types of augmented reality. Some of those are marker-based, location-based, superimposition-based and projection-based. \\
 
-\textbf{Marker-based} AR is when markers, in the form of images have to be placed in the real world and detected by the application. Virtual object are rendered on top of these markers. An example would be a picture in a magazine which, when pointing a camera at it, the application renders an 3D object on top. An example is shown in figure \ref{fig:marker-based-ar} \\
+\textbf{Marker-based} AR is when markers, in the form of images have to be placed in the real world and detected by the application. Virtual object are rendered on top of these markers. An example would be a picture in a magazine which, when pointing a camera at it, the application renders a 3D object on top. An example is shown in figure \ref{fig:marker-based-ar} \\
 
 \begin{figure}[hbtp]
 \begin{center}
@@ -17,7 +18,7 @@ There are different types of augmented reality. Some of those are marker-based, 
 \end{figure}
 
 \textbf{Location-based} AR is when the content on the users screen differs depending on the location of the user. This type is highly dependent on the GPS signal.
-An example of where this could be useful is in a museum where different information could be given to the user depending on which room he is in.\\
+An example of where this could be useful is in a museum where different information could be given to the user depending on which room he or she is in.\\
 
 \textbf{Superimposition-based} AR uses object recognition in order to enhance that object with some sort of visual information. It replaces the real object with an enhanced virtual one. It could be used in retail to display different patterns on a piece of clothing.\\
 
@@ -60,7 +61,9 @@ Apple launches AR Kit and Google launches AR Core.\\
 \label{sec:ARslam}
 S.L.A.M (Simultaneous Localization and Mapping) is a way for a machine to get to know the environment that it is in. It registers features and maps them to its surroundings. S.L.A.M is about having the map of the environment and knowing where the robot is in that map.
 The problem with this is that a map is needed for knowing where you are, and you have to know where you are to be able to create a map. That is why S.L.A.M is doing this at the same time, hence 'Simultaneous'. The system is used in autonomous robots, but also valuable in Augmented Reality. \cite{slam}
-In figure \ref{fig:slam} a robot is driving around in a room collecting data. The robots camera can be seen in the lower left corner.
+In figure \ref{fig:slam} a robot is driving around in a room collecting data. The robots 
+camera can be seen in the lower left corner. On the right, a 3D model with 
+recognized feature points has been created.
 
 iPhone X does this by tracking multiple reference points in space and from them building a 3D model of the surroundings using a form of S.L.A.M technique.
 This is accomplished by keeping a map of the features while keeping track of the path the observer is taking. A number of 
