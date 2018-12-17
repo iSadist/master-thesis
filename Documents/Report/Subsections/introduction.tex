@@ -1,14 +1,14 @@
 \chapter{Introduction}
 To first get an understanding of why this project was done, it is important for the reader to learn, not only the background of the fields studied, but also about the prospects of the technologies involved.
- At \ref{subsecBackground} we go through the current and the potential use of these technologies; also what prospects the consumers and the industry have. Later on, at  \ref{subsecPrevStud} we go through some of the previous research that has been done in the fields that are studied in the report. In section \ref{subsecGoal} the we explain what we hoped to achieve with this project and a brief rundown of how. Section \ref{subSecJayway} tells about the company that ordered the project and why they were interested in it. This chapter is rounded off with section \ref{subSecMockup}, which illustrates a mock up of how we had hoped the final product would have ended up looking like.
+ At \ref{subsecBackground} we go through the current and the potential use of these technologies, as well as what prospects the consumers and the industry have. Later on, at  \ref{subsecPrevStud} we go through some of the previous research that has been done in the fields that are studied in the report. In section \ref{subsecGoal} we explain what we hoped to achieve with this project and a brief rundown of how. Section \ref{subSecJayway} tells about the company that ordered the project and why they were interested in it. This chapter is rounded off with section \ref{subSecMockup}, which illustrates a mock up of how we had hoped the final product would have ended up looking like.
  
- The full repository for this project can be downloaded at \url{https://github.com/iSadist/master-thesis}
+ The full repository for this project can be downloaded at \url{https://github.com/iSadist/master-thesis}.
 
 \section{Background}
 \label{subsecBackground}
-The idea of Augmented Reality is to render virtual object in the real world. This usually 
+The idea of Augmented Reality is to render virtual objects in the real world. This usually 
 requires hardware in the form of a camera and display, a processing unit and software. 
-Common AR devices today are the HoloLens \cite{microsoft}, Google Glass 
+Common devices capable of AR today are the HoloLens \cite{microsoft}, Google Glass 
 \cite{googleGlasses} and a vast amount of mobile devices, such as Apple's iPhone X 
 \cite{appleAR}. 
 
@@ -16,7 +16,7 @@ The general interest for AR has undeniably grown in recent years, with mobile ga
 applications such as Niantic's Pokémon Go \cite{pokemonGO} and IKEA Place 
 \cite{IKEAPlace} the AR industry has peaked a general interest and sources speculate it 
 could be a \$90 billion dollar industry by 2022 \cite{digi-capital}.
-But Augmented Reality has not only reached the casual users; the technology has also 
+But Augmented Reality has not only reached the end users; the technology has also 
 peaked an interest in several industries. One such project is Fieldbit Hero 
 \cite{fieldbit}, a platform enabling technicians to get instant AR annotations to their AR 
 devices from an engineer, allowing the technician to get visual instructions while 
@@ -28,7 +28,7 @@ marker detection \cite{markerDetection}. An alternative to this would be to use
 object detection in 
 images. The hype around neural networks has been particularly strong since AlexNet scored 
 high in the ImageNet LSVRC-2010 challenge and the ImageNet ILSVRC-2012 challenge 
-\cite{NIPS2012_4824}. They accomplished these feats by making use of new methods, e.g. 
+\cite{NIPS2012_4824}, which are are image classification contests. They accomplished these feats by making use of new methods, e.g. 
 \textit{dropout} (explained in section \ref{overfitting}). Since then several different types of network models have been created. 
 Now we have network models that can detect both where an object is in an image, and what 
 the object is in one go. One such network is \textit{YOLO}\cite{YOLO1}. By adopting such a 
@@ -52,7 +52,7 @@ Y LeCun and M.A. Ranzato goes in-depth on the history and progress of deep learn
 \label{subsecGoal}
 Our goal is to try to combine Augmented Reality with Object detection and Object recognition to find out if it is feasible and if there is an actual desirable use case for this technique. 
 
-This will be limited to the use of ARKit 2 developed by \textit{Apple} for iOS devices. An augmented reality application for iPhone X incorporating the use of modern machine learning models for object detection and recognition will be developed in order to test our thesis. The application will be an assembly manual for furniture. A Deep neural network will be trained to recognize the different available parts and configurations of said parts.  The model should then predict which parts it is seeing in the camera feed, where they are and show how they should be assembled in an AR scene. 
+This will be limited to the use of ARKit, a toolkit for developing AR applications, developed by \textit{Apple} for iOS devices. An augmented reality application for iPhone X incorporating the use of modern machine learning models for object detection and recognition will be developed in order to test our thesis. The application will be an assembly manual for furniture. A Deep neural network will be trained to recognize the different available parts and configurations of said parts.  The model should then predict which parts it is seeing in the camera feed, where they are and show how they should be assembled in an AR scene. 
 
 Hence, we will not research what is possible with other hardware, although, we will mention them. We will also restrict the amount of furniture we train on, as well as the environments they will be built in. However, we hypothesize that if it works for one furniture and one set of environments, it should be possible to scale for larger sets.
 

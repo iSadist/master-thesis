@@ -67,7 +67,7 @@ recognized feature points has been created.
 
 iPhone X does this by tracking multiple reference points in space and from them building a 3D model of the surroundings using a form of S.L.A.M technique.
 This is accomplished by keeping a map of the features while keeping track of the path the observer is taking. A number of 
-hardware components make this task possible, including gyro, accelerometer and a compass. \cite{iphoneslam}
+hardware components make this task possible, including gyroscope, accelerometer and a compass. \cite{iphoneslam}
 
 \begin{figure}[hbtp]
 \begin{center}
@@ -86,7 +86,7 @@ examples.
 ARKit works similar to SceneKit where a scene, which is basically a 3D environment in which nodes containing 3D models, known as geometries, can be rendered, is loaded at start up and interacted with.
 An ARScene is contained inside an ARSCNView (AR Scene View) which also has an ARSession
 that that manages the motion tracking and camera image processing. For an ARScene to work, it must have a running ARSession.
-The session is started with configuration (ARConfiguration). This configuration can be of many kinds, the most common ones begin ARWorldTrackingConfiguration and ARFaceTrackingConfigurations. For this project, ARWorldTrackingConfiguration will be used since the face tracking one uses the front camera.
+The session is started with configuration (ARConfiguration). This configuration can be of many kinds, the most common ones being ARWorldTrackingConfiguration and ARFaceTrackingConfigurations. For this project, ARWorldTrackingConfiguration will be used since the face tracking one uses the front camera.
 
 Below, an example of how to setup a configuration and running a session using Swift is given:
 
