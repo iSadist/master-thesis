@@ -16,7 +16,7 @@ YOLO, or You Only Look Once, is a one stage detector approach to object detectio
 IOU(A,B) =  \frac{|A\cap B |}{|A\cup B|} =\frac{|A\cap B|}{|A| + |B| - |A \cap B|}
 , \quad 0\leq IOU(A,B) \leq 1
  \]
- if $A,B$ are two finite sets. If the two sets are equal, then \[ IOU(A,A) =  \frac{|A\cap A |}{|A\cup A|} = \frac{|A\cap A|}{|A| + |A| - |A \cap B|}  = \frac{A}{A} = 1 \]
+ if $A,B$ are two finite sets. If the two sets are equal, then \[ IOU(A,A) =  \frac{|A\cap A |}{|A\cup A|} = \frac{|A\cap A|}{|A| + |A| - |A \cap A|}  = \frac{A}{A} = 1 \]
  
  When testing, these scores are then combined to give the class specific confidence values for each of the boxes, thus it receives both the confidence of the class being in the box, and how well the box fits the object. Figure \ref{fig:YOLO_stages} summarizes the flow in YOLO. 
 \begin{figure}[hbtp]

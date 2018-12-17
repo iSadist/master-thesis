@@ -1,6 +1,6 @@
 \chapter{Conclusion}
 The main goal for this project was to investigate whether it was possible to
-use object detection together with augmented reality, both with respect to
+use object detection and object recognition together with augmented reality, both with respect to
 if it is technically possible and if it creates value for the customer.
 
 From a technical perspective it is surely possible to combine the two in a single
@@ -41,12 +41,12 @@ comparatively small size, instead, we just inform the user that screws should be
 This issue could possibly be fixed by adapting our model into taking account to smaller objects.
 Some future work could be to investigate whether this would be possible.
 
-\subsection{Mask RCNN}
+\subsection{Mask R-CNN}
 Since there was a lot of confusion around the green markings from the user tests, it would be an
 improvement to only mark the exact position of the part and not the surrounding floor.
 For this application only the bounding box of the 2D image is known, not the floor where it lays.
 
-A possible solution to this in the future could be to implement a Mask RCNN network. However, 
+A possible solution to this in the future could be to implement a Mask R-CNN network. However, 
 the problem with this type right now is that it does not work in real time applications (definitely not on mobile devices).
 If this would get better it could be implemented in the app for a much nicer user experience.
 
