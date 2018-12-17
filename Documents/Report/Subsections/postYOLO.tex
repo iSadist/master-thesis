@@ -227,7 +227,19 @@ These values can then be plotted giving us the graph shown in figure \ref{fig:mA
 \end{center}
 \end{figure}
 
-[iNCLUDE IMAGES FROM TESTING  IN TURI]
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width = 0.3\textwidth, height = 0.3\textwidth]{./Images/turi100-1.png}
+\includegraphics[width = 0.3\textwidth, height = 0.3\textwidth]{./Images/turi100-2.png}
+\includegraphics[width = 0.3\textwidth, height = 0.3\textwidth]{./Images/turi100-3.png}
+\includegraphics[width = 0.3\textwidth, height = 0.3\textwidth]{./Images/turi015-1.png}
+\includegraphics[width = 0.3\textwidth, height = 0.3\textwidth]{./Images/turi015-2.png}
+\includegraphics[width = 0.3\textwidth, height = 0.3\textwidth]{./Images/turi015-3.png}
+\caption{Images showing how the same three images were classified differently using different models. The top row is classified using the model that was trained on all of the training set. The bottom row shows the images that were trained on only $ 15 \% $ of the training set. }
+\label{fig:mAPExamples}
+\end{center}
+\end{figure}
+
 
 When testing on different sizes of data it can appears as if more data gives a worse
 result sometimes. That can be explained in two ways. The first explanation is that when
@@ -239,7 +251,7 @@ An important thing to mention however is that for the model to perform well it a
 areas in the image of no object.
 
 The other explanation is that when training, the most optimal model for that data set is
-not always (if ever) returned. Take into account early stopping for example.
+not always ,if ever, returned. Take into account early stopping for example.
 Sometimes the early stopping can happen on a good place and sometimes it could have
 given a better result if the training session would have kept going for a little bit.
 Nobody can know for sure. \\
