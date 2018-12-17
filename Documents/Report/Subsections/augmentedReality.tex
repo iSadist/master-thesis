@@ -1,6 +1,6 @@
 \chapter{Augmented Reality}
 
-To help better the understanding of augmented reality, this chapter will describe the historical background as well as how it works. In Section \ref{sec:ARtype} there
+To help better the understanding of augmented reality, this chapter will describe the historical background as well as how it works. In section \ref{sec:ARtype} there
 are a few different types of AR explained. Then a brief history of AR is presented in section \ref{sec:ARhistory}. Afterwards, a method about mapping the environment called \textit{S.L.A.M} is described in section \ref{sec:ARslam}. The chapter is rounded in section \ref{subsecARKit} with some information about how the the toolkit used in this project, \textit{ARKit}, functions. 
 
 \section{The different types of Augmented Reality}
@@ -83,7 +83,7 @@ The easiest way to use ARKit is to use it through Xcode, which can be downloaded
 The coding language can be either Objective-C or Swift. We will be using Swift for all
 examples.
 
-ARKit works similar to SceneKit were a scene (which is basically a 3D environment in which nodes containing 3D models (geometry) can be rendered) is loaded at start up and interacted with.
+ARKit works similar to SceneKit where a scene, which is basically a 3D environment in which nodes containing 3D models, known as geometries, can be rendered, is loaded at start up and interacted with.
 An ARScene is contained inside an ARSCNView (AR Scene View) which also has an ARSession
 that that manages the motion tracking and camera image processing. For an ARScene to work, it must have a running ARSession.
 The session is started with configuration (ARConfiguration). This configuration can be of many kinds, the most common ones begin ARWorldTrackingConfiguration and ARFaceTrackingConfigurations. For this project, ARWorldTrackingConfiguration will be used since the face tracking one uses the front camera.
@@ -115,7 +115,7 @@ func loadWorldTrackingConfiguration()
     }
 \end{lstlisting}
 
-But before a session can be started, an ARScene must exists and be loaded. The ARScene is a regular .scn file that has the starting nodes that together form the starting
+But before a session can be started, an ARScene must exist and be loaded. The ARScene is a regular .scn file that has the starting nodes that together form the starting
 environment the user will interact with. An example of how a scene like that looks like is shown in figure \ref{fig:3dsceneImage}.
 
 \begin{figure}[hbtp]
