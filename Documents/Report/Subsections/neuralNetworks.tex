@@ -9,13 +9,13 @@ Afterwards, the chapter goes more into how neural networks were tried and used d
 There exists many different machine learning techniques out there today. Due to its high 
 effectiveness and relevance, for this report we are going to focus on the highly popular 
 method of artificial neural networks.
-This is a proven method for working well with images (Convolutional neural networks) and
-is therefore highly relevant for this project.
+A variant, convolutional neural networks, is a proven method for working well with 
+images and is therefore highly relevant for this project.
 
 \subsection{Perceptron}
 A perceptron is the simplest form of the neural network. It has a set of inputs and an output.
-The perceptron first sums up all the input values, x, multiplied with the weight value, w.
-After that it passes that sum through an activation function. This activation function can be everything from a simple $f(x)=x$ to the more complex sigmoid function, depending on the need. More on this in the upcoming section.
+The perceptron first sums up all the input values, $x$, multiplied with the weight value, $w$.
+After that it passes that sum through an activation function. This activation function can be everything from a simple $f(x)=x$ to the more complex sigmoid function, depending on the need. More on this in section \ref{subsec:activationfunctions}.
 
 \begin{figure}[hbtp]
 \begin{center}
@@ -24,7 +24,7 @@ After that it passes that sum through an activation function. This activation fu
 \end{center}
 \end{figure}
 
-A bias also exists in every node which is not based on any input. The bias function in the perceptron is similar to what the m in $y = kx + m$ does. It gives the function the ability to move up and down in the graph for more possibilities of splitting the data set. The bias is usually disregarded when illustrating the perceptron.
+A bias also exists in every node which is not based on any input. The bias function in the perceptron is similar to what the $m$ in $y = kx + m$ does. It gives the function the ability to move up and down in the graph for more possibilities of splitting the data set. The bias is usually disregarded when illustrating the perceptron.
 
 The perceptron only has the ability to draw a single line and thus is only able to split simple data sets.
 
@@ -32,7 +32,7 @@ The output of the perceptron is described by the following formula:
 
 \[ y = b + \displaystyle\sum_{i=1}^{n} x_i \cdot w_i \]
 
-where b is the bias value, x is the input, w is the weight for that input and n is the number of inputs.
+where $b$ is the bias value, $x$ is the input, $w$ is the weight for that input and $n$ is the number of inputs.
 
 \subsection{Activation functions}
 \label{subsec:activationfunctions}
@@ -43,7 +43,8 @@ A few commonly used functions are \textbf{ReLu}, \textbf{Tanh}, \textbf{Sigmoid}
 
 \textbf{ReLu} is described as
 \[f(x) = max(0, x)\]
-and is a good option when negative values should be ignored or don't make sense. Problems with ReLu?
+and is a good option when negative values should be ignored or don't make sense. 
+It is also a good choice avoiding the net to become computationally heavy.
 
 \textbf{Tanh} is the tangens hyperbolicus function and is used to output values either as -1 or 1 like a binary operator. Unlike a binary operator, tanh's derivative is always defined which makes back propagation possible.
 Back propagation is described in section \ref{subSec:optimizers}
@@ -99,12 +100,12 @@ which leads to
 \[ \Delta\omega_{ik} = \frac{1}{N}  \displaystyle\sum_{i=1}^{N} \Delta\omega_{ik}(n) \]
 
 $ E(n) $ can be, for example, mean squared error mentioned above.
-The most common form of gradient decent is called \textbf{Stochastic gradient decent}.
+The most common form of gradient decent is called \textbf{Stochastic gradient decent}, SGD.
 The difference is that SGD only evaluates on a small number of nodes/patterns and updates all the weights from that observation.
 
 \[ \Delta\omega_{ik} = \frac{1}{P}  \displaystyle\sum_{i=1}^{P} \Delta\omega_{ik}(p) \]
 
-\textbf{Adam} (which is short for Adaptive moment estimation) is another optimizer which is quite popular.
+\textbf{Adam}, short for Adaptive moment estimation, is another optimizer which is quite popular.
 The reason is because it has been proven to be a very effective algorithm in many different use cases.
 
 Adam is a kind of combination of using \textbf{RMSPROP} and SGD with momentum.
@@ -126,8 +127,6 @@ and $ \eta, \beta_1 $ and $ \beta_2 $ are adjustable parameters and $ \epsilon $
 
 There are a lot of other optimizers such as \textbf{Adagrad}, \textbf{Adadelta}, \textbf{Nadam} etc. They all have their own advantage and use-cases. We won't go into further details about them.
 
-REFERENCE TO THE BOOK
-
 \subsection{Layers}
 
 \begin{figure}[hbtp]
@@ -139,7 +138,7 @@ REFERENCE TO THE BOOK
 \end{figure}
 
 With more layers and more neurons the networks parameters and complexity begins to grow. So does also the training time, size of the model and the cost for doing predictions. 
-Thus, these networks are capable of describing much more complex data sets. But as a result of that, the risk of overfitting (the act of describing the training data set too well so that new data sets will not get recognized. More on this soon.) becomes much greater.
+Thus, these networks are capable of describing much more complex data sets. But as a result of that, the risk of overfitting (the act of describing the training data set too well so that new data sets will not get recognized) becomes much greater.
 That is why a complex network is not always wanted.
 In figure \ref{fig:layers} an example is given of how a network with many layers might look.
 
@@ -163,7 +162,7 @@ There are tricks for combating overfitting. They usually involve trying to limit
 The hypothesis behind this is that if a weight is much larger than the rest it also has much more influence over the final prediction. That way, a small detail in the data can have much more influence than the general trend.
 
 One way to do this is to cut random connections between layers during epochs, usually by specifying a certain amount that is going to be cut.
-This way, the model is not relying on a small number of nodes to make the correct predictions. This method is called dropout.
+This way, the model is not relying on a small number of nodes to make the correct predictions. This method is called \textbf{dropout}.
 
 Another way is to introduce random noise on a layer during training. This works because if a node with a large weight receives noise, it will be heavily amplified and probably give a false prediction.
 When doing this, Gaussian noise is usually implemented, which is basically random noise with a gaussian distribution.
@@ -197,7 +196,7 @@ improving anymore. A graph showing when to do early stopping is given in figure 
 
  \section{Convolutional Neural Networks}
  \label{sec:CNN}
- Convolutional neural networks have been used for quite some time when it comes to deep learning and their capabilities are rather astounding, as proved by Krizhevsky et al \cite{NIPS2012_4824}.  They use layers which perform convolutions, hence it's name.  The input to a convolutional network are either 2D or 3D tensors, where the 3D alternative usually has color channels along the third dimension. Use of convolutional neural networks in image recognition  can be practical for several reasons, e.g., it can tell of spatial relationships in an image. This section has been written with reference to V. Dumolin et al \cite{convArit}. Figure \ref{fig:cnn} shows an example of how a CNN may look.
+Convolutional neural networks, CNN, have been used for quite some time when it comes to deep learning and their capabilities are rather astounding, as proved by Krizhevsky et al \cite{NIPS2012_4824}.  They use layers which perform convolutions, hence it's name.  The input to a convolutional network are either 2D or 3D tensors, where the 3D alternative usually has color channels along the third dimension. Use of convolutional neural networks in image recognition  can be practical for several reasons, e.g., it can tell of spatial relationships in an image. This section has been written with reference to V. Dumolin et al \cite{convArit}. Figure \ref{fig:cnn} shows an example of how a CNN may look.
  
  \begin{figure}[hbtp]
 \begin{center}
@@ -207,7 +206,7 @@ improving anymore. A graph showing when to do early stopping is given in figure 
 \end{center}
 \end{figure}
  
- A convolutional layer performs the mathematical operation \textit{convolution} on the input tensor, which can be presented as an image. A kernel of size $k \cdot l$ slides across the input and sums pixel values that are included inside the kernel; a new image containing these sums is the output. Padding on the input can be used to account for values when the kernel is outside the input. Use of padding have an impact on the output size after the convolutional layer. Stride can also be used, which tells how much the kernel translates along an axis;  increased stride leads to subsampling. Since changes of parameters in one axis do not affect outcome in another axis it simplifies explaining CNNs by having the parameter values being the same along both axes. The more convolutional layers used in a network, the more complex shapes are detected. First layers may detect edges and corners, whereas, later layers may find features representing, for example, a car or a dog. A common addition to the layers is an activation function, commonly ReLU (which is described in section \ref{subsec:activationfunctions}), which has been described earlier in the report. This gives faster training by only allowing for positive weights to pass the layer.
+A convolutional layer performs the mathematical operation \textit{convolution} on the input tensor, which can be presented as an image. A kernel of size $k \cdot l$ slides across the input and sums pixel values that are included inside the kernel; a new image containing these sums is the output. Padding on the input can be used to account for values when the kernel is outside the input. Use of padding have an impact on the output size after the convolutional layer. Stride can also be used, which tells how much the kernel translates along an axis;  increased stride leads to subsampling. Since changes of parameters in one axis do not affect outcome in another axis it simplifies explaining CNNs by having the parameter values being the same along both axes. The more convolutional layers used in a network, the more complex shapes are detected. First layers may detect edges and corners, whereas, later layers may find features representing, for example, a car or a dog. A common addition to the layers is an activation function, commonly ReLU (which is described in section \ref{subsec:activationfunctions}). This gives faster training by only allowing for positive weights to pass the layer.
 
  The common types of padding is \textit{no zero}, \textit{same} and \textit{full}; examples seen in figure \ref{fig:padding}. No Zero padding involves having no padding outside of the input. This means that the kernel never goes outside of the actual image, once a side of the kernel hits the side of the input it jumps down to the next line (if stride is 1). 
  
@@ -249,7 +248,10 @@ A problem with this is that it can be tricky to obtain such a large data set bec
 labels with that data to be manually put in. These labels will be used by the neural net to, during training, check if
 the predicted value is correct or not.
 
-In this project the data is sets of images of different furniture parts. These images didn't exist anywhere online, so they had to be collected by taking lots of photos. The photos contained the part in different background and from different angles. The backgrounds were mostly of typical office surroundings, although there were exceptions (as will be explained shortly). All the photos were then resized to 256x256 pixels. The reason for choosing a square size is because when rotating them (this will be useful later on when augmenting data) the images will not have any black bars on the sides or be stretched.
+In this project the data is sets of images of different furniture parts. These images didn't exist anywhere online, so they had to be collected by taking lots of photos. The photos contained the part in different background and from different angles. The backgrounds were mostly of typical office surroundings, although there were exceptions (example is shown in figure \ref{fig:exampleCutout}). All the photos were then resized to 256x256 pixels.
+The reason for choosing a square size is because when rotating them
+(this will be useful later on when augmenting data in section \ref{sec:NNaugment}) 
+the images will not have any black bars on the sides or be stretched.
 
 For the first furniture Nolmyra, there were only 3 unique parts (excluding screws and similar parts). Therefore the model was trained to recognize 4 things; the different parts and an unknown object. The unknown label was because the object detection algorithm could detect other objects and it is then unwanted that those objects be mistaken for furniture parts. This could of course also be done by setting a threshold on the confidence value, i.e., if the model gives a confidence value under 0.8 it discards it as being an unknown object. The problem with this type is that it is much harder to distinguish parts from unknown objects. This is due to that the best model is the one that can give a close to 100\% confidence value on every prediction.
 
@@ -263,7 +265,6 @@ However, there are other options.
 \includegraphics[width = 0.3\textwidth]{./Images/image_31.jpg}
 \includegraphics[width = 0.3\textwidth]{./Images/image_133.jpg}
 \includegraphics[width = 0.3\textwidth]{./Images/image_136.jpg}
-
 \caption{Images showing different samples of training data used for training the model}
 \label{fig:exampleData}
 \end{center}
@@ -516,7 +517,7 @@ The best result  that was achieved for each of the models using this method is l
  table \ref{table:transferLearning}. It shows that using InceptionV3 model with pretrained
  weights gave the best result. However, a few factors, such as, where the models were
  frozen, how adding and removing layers, has most likely affected the results. As can be
- seen from using ResNet, the best model achieved 25\% accuracy, which is the same as making a guess, seeing as there are only four possible classes. These models could, and would most like have been, improved if it was not decided to take a new approach to the problem, which is described further on in this report.
+ seen from using ResNet, the best model achieved 25\% accuracy, which is the same as making a guess, seeing as there are only four possible classes. These models could, and would most like have been, improved if it was not decided to take a new approach to the problem, which is described further in section \ref{sec:ODresults}
 
 \begin{table}[h]
 \centering

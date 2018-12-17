@@ -10,8 +10,8 @@ In this chapter, a few of the methods for object detection that were tried is ex
   
 \section{Testing Object Scanning with ARKit2}
 \label{sec:ODscanning}
-Apple's ARKit2 has a feature where it can detect scanned 3D objects. For scanning, they have developed an app that can be downloaded from their website. \cite{ARScanning}
-After the scanning is complete the app lets you export the model to then include it in your ARKit2 project. Once in the project it is simply imported into the ARWorldTrackingConfiguration like shown below. (The models are kept inside the Assets.xcassets catalogue in a folder called 'Objects').
+Apple's ARKit has a feature where it can detect scanned 3D objects. For scanning, they have developed an app that can be downloaded from their website. \cite{ARScanning}
+After the scanning is complete the app lets you export the model to then include it in your ARKit project. Once in the project it is simply imported into the ARWorldTrackingConfiguration like shown below. (The models are kept inside the Assets.xcassets catalogue in a folder called 'Objects').
 
 \begin{lstlisting}[language=swift]
 let configuration = ARWorldTrackingConfiguration()
@@ -58,13 +58,7 @@ Another way to find objects in an image is to try to classify each pixel as eith
 One of the most basic functions for separating background and foreground is the flood fill method.
 Anyone that has used Paint for Windows knows exactly what this one is. It fills a segment of similar pixels with the same color. This method works best on one backgrounds with only one color.
 Online there are many different variations but they all accomplish the same goal.\cite{floodFill}
-\\\\
-Mathematical morphology
 
-Edge detection
-
-Histogram equalisation
-\\\\
 One possible way of detecting objects in an image is to use depth data, or RGB-D which is depth data embedded in an RGB photo.
 A popular device that uses depth data for object detection is the Kinect camera
 for Xbox.
