@@ -1,7 +1,7 @@
 \chapter{Augmented Reality}
 
 To help better the understanding of augmented reality, this chapter will describe the historical background as well as how it works. In section \ref{sec:ARtype} there
-are a few different types of AR explained. Then a brief history of AR is presented in section \ref{sec:ARhistory}. Afterwards, a method about mapping the environment called \textit{S.L.A.M} is described in section \ref{sec:ARslam}. The chapter is rounded in section \ref{subsecARKit} with some information about how the the toolkit used in this project, \textit{ARKit}, functions. 
+are a few different types of AR explained. Then a brief history of AR is presented in section \ref{sec:ARhistory}. Afterwards, a method about mapping the environment called Simultaneous Localization and Mapping, \textit{S.L.A.M}, is described in section \ref{sec:ARslam}. The chapter is rounded in section \ref{subsecARKit} with some information about how the the toolkit used in this project, \textit{ARKit}, functions. 
 
 \section{The different types of Augmented Reality}
 \label{sec:ARtype}
@@ -59,7 +59,7 @@ Apple launches AR Kit and Google launches AR Core.\\
 
 \section{S.L.A.M.}
 \label{sec:ARslam}
-S.L.A.M (Simultaneous Localization and Mapping) is a way for a machine to get to know the environment that it is in. It registers features and maps them to its surroundings. S.L.A.M is about having the map of the environment and knowing where the robot is in that map.
+S.L.A.M is a way for a machine to get to know the environment that it is in. It registers features and maps them to its surroundings. S.L.A.M is about having the map of the environment and knowing where the robot is in that map.
 The problem with this is that a map is needed for knowing where you are, and you have to know where you are to be able to create a map. That is why S.L.A.M is doing this at the same time, hence 'Simultaneous'. The system is used in autonomous robots, but also valuable in Augmented Reality. \cite{slam}
 In figure \ref{fig:slam} a robot is driving around in a room collecting data. The robots 
 camera can be seen in the lower left corner. On the right, a 3D model with 
