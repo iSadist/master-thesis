@@ -12,9 +12,9 @@ method of artificial neural networks.
 A variant, convolutional neural networks, is a proven method for working well with 
 images and is therefore highly relevant for this project.
 
-\subsection{Perceptron}
-A perceptron is the simplest form of the neural network. It has a set of inputs and an output.
-The perceptron first sums up all the input values, $x$, multiplied with the weight value, $w$.
+\subsection{Artificial neuron}
+An artificial neuron is the simplest form of the neural network. It has a set of inputs and an output.
+The artificial neuron first sums up all the input values, $x$, multiplied with the weight value, $w$.
 After that it passes that sum through an activation function. This activation function can be everything from a simple $f(x)=x$ to the more complex sigmoid function, depending on the need. More on this in section \ref{subsec:activationfunctions}.
 
 \begin{figure}[hbtp]
@@ -28,7 +28,7 @@ A bias also exists in every node which is not based on any input. The bias funct
 
 The perceptron only has the ability to draw a single line and thus is only able to split simple data sets.
 
-The output of the perceptron is described by the following formula:
+The output of the artificial neuron is described by the following formula:
 
 \[ y = b + \displaystyle\sum_{i=1}^{n} x_i \cdot w_i \]
 
@@ -44,7 +44,10 @@ A few commonly used functions are \textbf{ReLu}, \textbf{Tanh}, \textbf{Sigmoid}
 \textbf{ReLu} is described as
 \[f(x) = max(0, x)\]
 and is a good option when negative values should be ignored or don't make sense. 
-It is also a good choice avoiding the net to become computationally heavy.
+It is also a good choice avoiding the net to become computationally heavy,
+since it only outputs the same input value but sets all negative values to zero.
+That is usually a good choice in larger networks with many neurons which can become
+slow.
 
 \textbf{Tanh} is the tangens hyperbolicus function and is used to output values either as -1 or 1 like a binary operator. Unlike a binary operator, tanh's derivative is always defined which makes back propagation possible.
 Back propagation is described in section \ref{subSec:optimizers}
@@ -56,7 +59,7 @@ and works like the Tanh function but keeps the values between 0 and 1 and sets y
 \textbf{Softmax} is a little bit more complex. It takes a vector $v$ of dimension $n$ and turns it into a vector $\sigma(v)$ of the same dimension where $\displaystyle\sum_{i=1}^{n} \sigma_i(v) = 1 $ and each element value is between zero and one.
 
 Each element in the array is described as below
-\[ \sigma_i(v) = \frac{e^{v_i}}{\displaystyle\sum_{j=1}^{n} e^{z_k}} \]
+\[ \sigma_i(v) = \frac{e^{v_i}}{\displaystyle\sum_{j=1}^{n} e^{v_k}} \]
 
 This output is good for describing the probability for each element to be correct and is therefore commonly used
 in the output layer.
@@ -65,14 +68,15 @@ in the output layer.
 When training the model, it will at first make a guess to what the right answer or value is based on the random initial weigh values. In the beginning, the model is usually mostly wrong and it is then important to know how wrong it was and in what direction it should go.
 
 For this, the model uses a loss function to calculate that error. For different applications the loss function can be different.
-One way to calculate the error is to simply take the predicted value and subtract it with the correct value, $ error = y_p - y_c $.
+One way to calculate the error, $E$, is to simply take the predicted value, $y_p$, and subtract it with the correct value, $y_c$.
+
+\[E = y_p - y_c\]
 
 Sometimes the sign of the error is not important. Then the absolute value can 
-be calculated instead. $error = |y_p - y_c| $
+be calculated instead. $E = |y_p - y_c| $
 
-Another approach is the \textbf{mean squared error} which squares the difference and takes the mean value over a few predictions.
-\[Error = \frac{1}{n} \cdot \displaystyle\sum_{i=1}^{n} (y_p - y_c)^{2} \]
-
+Another approach is the \textbf{mean squared error} which squares the difference and takes the mean value over a few predictions. $n$ is the number of predictions.
+\[E(n) = \frac{1}{n} \cdot \displaystyle\sum_{}^{n} (y_p - y_c)^{2} \]
 
 \subsection{Optimizers}
 \label{subSec:optimizers}
@@ -94,26 +98,27 @@ where the error function is
 \[E = \frac{1}{N} \displaystyle\sum_{i=1}^{N} E(n) \]
 
 \begin{center}
-which leads to
+where N is the total number of neurons. This leads to
 \end{center}
 
-\[ \Delta\omega_{ik} = \frac{1}{N}  \displaystyle\sum_{i=1}^{N} \Delta\omega_{ik}(n) \]
+\[ \hat{\Delta\omega_{ik}} = \frac{1}{N}  \displaystyle\sum_{i=1}^{N} \Delta\omega_{ik}(n) \]
 
 $ E(n) $ can be, for example, mean squared error mentioned above.
 The most common form of gradient decent is called \textbf{Stochastic gradient decent}, SGD.
-The difference is that SGD only evaluates on a small number of nodes/patterns and updates all the weights from that observation.
+The difference is that SGD only evaluates on a small number of nodes/patterns, $P$ and updates all the weights from that observation.
 
-\[ \Delta\omega_{ik} = \frac{1}{P}  \displaystyle\sum_{i=1}^{P} \Delta\omega_{ik}(p) \]
+\[ \hat{\Delta\omega_{ik}} = \frac{1}{P}  \displaystyle\sum_{i=1}^{P} \Delta\omega_{ik}(p) \]
 
-\textbf{Adam}, short for Adaptive moment estimation, is another optimizer which is quite popular.
+\textbf{Adam}\cite{adamoptimizer}, short for Adaptive moment estimation, is another optimizer which is quite popular.
 The reason is because it has been proven to be a very effective algorithm in many different use cases.
 
-Adam is a kind of combination of using \textbf{RMSPROP} and SGD with momentum.
+Adam is a kind of combination of using \textbf{RMSPROP}\cite{rmsprop} and SGD with momentum.
 Without going into too much detail, SGD with momentum keeps track of which direction the the improvement is in and keeps the improvement going in that same way. The optimisation goes faster when the previous direction is the same and slower when they are different. Almost like a rolling ball that gains speed as it is rolling down hill.
 RMSPROP does something similar and uses a running average of each weight value and the previous values importance can be controlled with a parameter. It also only uses the sign of the direction and not its value. Also RMSPROP has individual weights.
 
 Adam keeps a running average of both the past gradients and the squared past gradients.
-The full mathematical description of Adam is given by
+The full mathematical description of Adam is given by the formula below where
+$t$ is a time iteration index.
 
 \[ \omega_i (t+1) = \omega_i(t) - \eta \frac{m_i}{\sqrt{v_i} + \epsilon} \]
 
@@ -125,7 +130,9 @@ where
 
 and $ \eta, \beta_1 $ and $ \beta_2 $ are adjustable parameters and $ \epsilon $ a small value to keep the equation from dividing by zero.\\
 
-There are a lot of other optimizers such as \textbf{Adagrad}, \textbf{Adadelta}, \textbf{Nadam} etc. They all have their own advantage and use-cases. We won't go into further details about them.
+There are a lot of other optimizers such as \textbf{Adagrad}, \textbf{Adadelta}, 
+\textbf{Nadam} \cite{optimizers}. They all have their own advantage and use-cases.
+We won't go into further details about them.
 
 \subsection{Layers}
 
@@ -162,18 +169,18 @@ There are a few methods that can help handle the problem of overfitting. They us
 The hypothesis behind this is that if a weight is much larger than the rest it also has much more influence over the final prediction. That way, a small detail in the data can have much more influence than the general trend.
 
 One way to do this is to cut random connections between layers during epochs, usually by specifying a certain amount that is going to be cut.
-This way, the model is not relying on a small number of nodes to make the correct predictions. This method is called \textbf{dropout}.
+This way, the model is not relying on a small number of nodes to make the correct predictions. This method is called \textbf{dropout} \cite{dropout}.
 
 Another way is to introduce random noise on a layer during training. This works because if a node with a large weight receives noise, it will be heavily amplified and probably give a false prediction.
 When doing this, Gaussian noise is usually implemented, which is basically random noise with a gaussian distribution.
 
 To force the model to keep weights small, one way is to add a penalty to the loss for every weight based on its size. 
 This is called weight regularisation and is widely used and exists in two forms, L1 and L2.
-L1 simply adds the weights size multiplied with an l1 term that is chosen by the designer.
+L1 simply adds the weights size multiplied with an L1 term that is chosen by the designer.
 The other, L2, is to do the same but in this case square that value. This has the effect of making values over 1 even bigger and values less than 1 smaller.
 In that way, it doesn't affect the loss as much as L1 when not being overtrained. L2 is also called weight decay and is the more common method of the two.
 
-Another way to keep the values between 0 and 1 is to normalize the input to every layer. In Tensorflow, this can be done with the BatchNormalization layer. \cite{batchnormalization}
+Another way to keep the values small is to normalize the input to every layer and set the mean to 0 and variance to 1. In Tensorflow, this can be done with the BatchNormalization layer \cite{batchnormalization}.
 
 One important thing to point out is that all these methods mentioned so far are only active during training and is not doing anything when making real predictions.
 
@@ -248,24 +255,41 @@ A problem with this is that it can be tricky to obtain such a large data set bec
 labels with that data to be manually put in. These labels will be used by the neural network to, during training, check if
 the predicted value is correct or not.
 
-In this project the data is sets of images of different furniture parts. These images didn't exist anywhere online, so they had to be collected by taking lots of photos. The photos contained the part in different background and from different angles. The backgrounds were mostly of typical office surroundings, although there were exceptions (example is shown in figure \ref{fig:exampleCutout}). All the photos were then resized to 256x256 pixels.
+In this project the data is sets of images of different furniture parts. These images did not exist anywhere online, so they had to be collected by taking lots of photos. The photos contained the part in different background and from different angles. Table \ref{table:imageclassnumbers} shows how many images of each class we had. The backgrounds were mostly of typical office surroundings, although there were exceptions (example is shown in figure \ref{fig:exampleCutout}). All the photos were then resized to 256x256 pixels.
 The reason for choosing a square size is because when rotating them
 (this will be useful later on when augmenting data in section \ref{sec:NNaugment}) 
 the images will not have any black bars on the sides nor be stretched.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{ |c|c| } 
+ \hline
+ Class &  Number of images  \\ 
+ \hline
+ Leg piece & 203 \\ 
+ \hline
+ Bridge piece & 210 \\ 
+  \hline
+ Seat & 216 \\ 
+ \hline
+\end{tabular}
+\caption{Table showing how many images of each class we had.}
+\label{table:imageclassnumbers}
+\end{table}
 
 For the first furniture Nolmyra, there were only 3 unique parts (excluding screws and similar parts). Therefore the model was trained to recognize 4 things; the different parts and an unknown object. The unknown label was because the object detection algorithm could detect other objects and it is then unwanted that those objects be mistaken for furniture parts. This could of course also be done by setting a threshold on the confidence value, i.e., if the model gives a confidence value under 0.8 it discards it as being an unknown object. The problem with this type is that it is much harder to distinguish parts from unknown objects. This is due to that the best model is the one that can give a close to 100\% confidence value on every prediction.
 
 For this reason, photos of random objects were also added to the data set. Most of these photos were taken by ourselves, but some were also collected from the web. The images were placed in folders with a specific item which meant labelling them became much simpler. Just put all the images containing a certain part in the same folder.
 
 Training a model usually requires hundreds of thousands or even millions of photos. That much data is hard to get and would take a lot of time to obtain Going around the office to snap that many photos is almost unthinkable.
-However, there are other options.
+However, there are other options which will be explained in the next section.
 
 \begin{figure}[hbtp]
 \begin{center}
 \includegraphics[width = 0.3\textwidth]{./Images/image_31.jpg}
 \includegraphics[width = 0.3\textwidth]{./Images/image_133.jpg}
 \includegraphics[width = 0.3\textwidth]{./Images/image_136.jpg}
-\caption{Images showing different samples of training data used for training the model}
+\caption{Images showing different samples of training data used for training the model. From left to right: seat, bridge piece, leg piece.}
 \label{fig:exampleData}
 \end{center}
 \end{figure}
@@ -320,7 +344,7 @@ classification probability between four classes.
 The activation functions of the other layers were set to ReLu since they are the fastest
 and preferred for larger nets. Tanh was also tried but with no success.
 
-SGD with momentum as an optimizer was tested but was was changed to Adam
+SGD with momentum as an optimizer was tested but was changed to Adam
 quite early on since it had better performance.
 Only linear optimizers were considered because non-linear optimizers take a lot of
 computing power and are usually only recommended for small networks.
@@ -356,7 +380,7 @@ training sessions.
 
 \begin{figure}[!hbtp]
 \begin{center}
-\includegraphics[width = 0.4\textwidth]{./Images/augmentedtestdata}
+\includegraphics[width = 0.5\textwidth]{./Images/augmentedtestdata}
 \caption{Test and train accuracy over a 100 epochs. The performance seems much better than it actually is.}
 \label{fig:augmentedtestdata}
 \end{center}
@@ -364,15 +388,15 @@ training sessions.
 
 \begin{figure}[!hbtp]
 \begin{center}
-\includegraphics[width = 0.4\textwidth]{./Images/imageclassification1}
-\includegraphics[width = 0.4\textwidth]{./Images/imageclassification2}
-\includegraphics[width = 0.4\textwidth]{./Images/imageclassification3}
+\includegraphics[width = 0.45\textwidth]{./Images/imageclassification1}
+\includegraphics[width = 0.45\textwidth]{./Images/imageclassification2}
+\includegraphics[width = 0.45\textwidth]{./Images/imageclassification3}
 \caption{Images shows the result from introducing weight regularisation and dropout to a model. The graphs show the training loss (green) and evaluation loss (red). The upper left image shows the training without any dropout or weight regularisation. The upper right image shows the training with dropout implemented. The bottom image shows the training with dropout and weight regularisation implemented.}
 \label{fig:imageclassification}
 \end{center}
 \end{figure}
 
-As shown in the code in appendix B.1., early stopping was also finally implemented with a callback to save
+As shown in the code in appendix B.1., early stopping was also finally implemented with a callback to save the
 highest performing model at the end of the process.
 
 The network that proved to be the best performing network (\textbf{92.25\%} accuracy) had the configuration shown in appendix B.2.
@@ -394,8 +418,7 @@ fully connected layers were added on top, and new classifiers were trained.
 Several different models were tried, including ResNet50, InceptionV3 and VGG16, 
 which where all integrated in Keras to start with.
 
-The code shown in appendix B.3. shows how to load the VGG16 network which has weights that has been pretrained on imageNet. The fully connected layer is then removed and instead a custom top layer is added to be trained. 
-
+The code shown in appendix B.3. shows how to load the VGG16 network which has weights that has been pretrained on imageNet. The fully connected layer is then removed and instead a custom top layer is added to be trained.
 
 The best result  that was achieved for each of the models using this method is listed in
  table \ref{table:transferLearning}. It shows that using InceptionV3 model with pretrained
