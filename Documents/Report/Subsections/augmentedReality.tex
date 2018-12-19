@@ -88,32 +88,7 @@ An ARScene is contained inside an ARSCNView (AR Scene View) which also has an AR
 that that manages the motion tracking and camera image processing. For an ARScene to work, it must have a running ARSession.
 The session is started with configuration (ARConfiguration). This configuration can be of many kinds, the most common ones being ARWorldTrackingConfiguration and ARFaceTrackingConfigurations. For this project, ARWorldTrackingConfiguration will be used since the face tracking one uses the front camera.
 
-Below, an example of how to setup a configuration and running a session using Swift is given:
-
-\begin{lstlisting}[language=swift]
-func loadWorldTrackingConfiguration()
-    {
-        let configuration = ARWorldTrackingConfiguration()
-        configuration.planeDetection = [.horizontal]
-
-        // All the objects that are tracked is contained in the Objects folder
-        guard let detectingObjects = ARReferenceObject.referenceObjects(inGroupNamed: "Objects", bundle: nil) else { return }
-        configuration.detectionObjects = detectingObjects
-        
-        // Setting up tracking of images
-        for imageURL in trackingImageURLs
-        {
-            guard let image: CGImage = UIImage(named: imageURL)?.cgImage else { return }
-            let referenceImage = ARReferenceImage(image, orientation: CGImagePropertyOrientation.up, physicalWidth: 0.3)
-            configuration.detectionImages.insert(referenceImage)
-        }
-
-        configuration.maximumNumberOfTrackedImages = trackingImageURLs.count
-        
-        // Running the sessoin with the configuration
-        sceneView.session.run(configuration)
-    }
-\end{lstlisting}
+An example of how to setup a configuration and running a session using Swift is given in appendix A.1.
 
 But before a session can be started, an ARScene must exist and be loaded. The ARScene is a regular .scn file that has the starting nodes that together form the starting
 environment the user will interact with. An example of how a scene like that looks like is shown in figure \ref{fig:3dsceneImage}.
@@ -126,42 +101,10 @@ environment the user will interact with. An example of how a scene like that loo
 \end{center}
 \end{figure}
 
-To load a scene, a new .scn file must be created in the art.scnassets folder and fetched like below.
-\begin{lstlisting}[language=swift]
-// Load the scene
-let scene = SCNScene(named: "art.scnassets/world.scn")!        
-sceneView.scene = scene
-\end{lstlisting}
+To load a scene, a new .scn file must be created in the art.scnassets folder and fetched, as seen in the code snippet in appendix A.2.
 
-When ARScene detects objects, images, planes etc. it calls the renderer function. This function can be implemented by setting the ViewController to conform to the ARSCNViewDelegate. ARScene adds an anchor (ARAnchor) and a node (SCNNode) for the place where it detected it, and this can be used inside the function to render new nodes or other logic.
 
-\begin{lstlisting}[language=swift]
-func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor)
-    {
-    	    // If detected an object
-        if let objectAnchor = anchor as? ARObjectAnchor
-        {
-        	   // Add some 3D text to the scene
-            let objectName = objectAnchor.referenceObject.name!
-            let textNode = GeometryFactory.makeText(text: objectName)
-            node.addChildNode(textNode)
-        }
-        // If detected a plane
-        else if let planeAnchor = anchor as? ARPlaneAnchor
-        {
-        // Add a plane geometry of the detected floor to the scene
-        node.addChildNode(GeometryFactory.createPlane(planeAnchor: planeAnchor, metalDevice: metalDevice!))
-            model.numberOfPlanesDetected += 1
-        }
-    }
-\end{lstlisting}
-
-If nodes need to be rendered outside of this function it can be done by accessing the
-scenes root node.
-
-\begin{lstlisting}[language=swift]
-sceneView.scene.rootNode.addChildNode(node)
-\end{lstlisting}
+When ARScene detects objects, images, planes etc. it calls the renderer function. This function can be implemented by setting the ViewController to conform to the ARSCNViewDelegate. ARScene adds an anchor (ARAnchor) and a node (SCNNode) for the place where it detected it, and this can be used inside the function to render new nodes or other logic. The code we used to do this is seen in appendix A.3.
 
 
 \newpage
