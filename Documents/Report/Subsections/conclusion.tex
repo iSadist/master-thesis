@@ -86,13 +86,14 @@ many more furnitures. For a complete catalogue there could exist hundreds of fur
 
 To add support for a new furniture in the app the following steps are needed:
 
-\begin{list}{•}
-\item Take at least 50 pictures of every furniture part
+\begin{enumerate}
+\item Take at least 30 pictures of every furniture part, however, more is recommended for more complex objects and more backgrounds
 \item Train a neural net to recognize those parts and import the model into Xcode
 \item Add an instruction set on how to put the furniture together
 \item Add 3D models of all the parts and the fully assembled model
 \item Add anchor points and screw points to the models
-\end{list}
+\end{enumerate}
+
 
 The problem of making the app scalable is the size of the ML-model. For many furnitures it could
 easily be the size of 1 GB or more. A way to solve this is to have an downloadable ML-model for each 

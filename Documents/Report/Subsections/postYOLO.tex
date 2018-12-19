@@ -16,7 +16,7 @@ YOLO, or You Only Look Once, is a one stage detector approach to object detectio
 IOU(A,B) =  \frac{|A\cap B |}{|A\cup B|} =\frac{|A\cap B|}{|A| + |B| - |A \cap B|}
 , \quad 0\leq IOU(A,B) \leq 1
  \]
- if $A,B$ are two finite sets. If the two sets are equal, then \[ IOU(A,A) =  \frac{|A\cap A |}{|A\cup A|} = \frac{|A\cap A|}{|A| + |A| - |A \cap A|}  = \frac{A}{A} = 1 \]
+ if $A,B$ are two finite sets. If the two sets are equal, then \[ IOU(A,A) =  \frac{|A\cap A |}{|A\cup A|} = \frac{|A\cap A|}{|A| + |A| - |A \cap A|}  = \frac{|A|}{|A|} = 1 \]
  
  When testing, these scores are then combined to give the class specific confidence values for each of the boxes, thus it receives both the confidence of the class being in the box, and how well the box fits the object. Figure \ref{fig:YOLO_stages} summarizes the flow in YOLO. 
 \begin{figure}[hbtp]
@@ -49,7 +49,7 @@ There are different standards when calculating the mAP. The PASCAL VOC Challenge
 \section{Turi Create}
 \label{sec:turi}
 %Write about the testing an implementation of Turi
-Apple has a licenced toolkit for development of custom machine learning models called Turi Create \cite{turiCreate}. This was created to help developers easily implement their own ideas into an app. It includes methods for image classification, object detection etc.
+Apple has a licenced toolkit for development of custom machine learning models called Turi Create \cite{turiCreate}. This was created to help developers easily implement their own ideas into an app. It includes a methods object detection.
 
 In this project, the object detection method included in Turi Create was tested. First, one
  has to create ground truth data for every image that was trained and tested on. This was
@@ -153,15 +153,14 @@ areas in the image of no object.
 The other explanation is that when training, the most optimal model for that data set is
 not always, if ever, returned. Take into account early stopping for example.
 Sometimes the early stopping can happen on a good place and sometimes it could have
-given a better result if the training session would have kept going for a little bit.
-Nobody can know for sure. \\
+given a better result if the training session would have kept going for a little bit. We did not have a way to use an evaluation set during training, and as such, could not receive training and validation curves. Hence, we can not know how if we trained for too long or too little.
 
 The curve from the tests, fig. \ref{fig:mAPResult}, shows no sign of saturation yet, thus even more data would
 surely improve the performance. The reason for not testing with more data is because
 of the difficulty of gathering more data (taking photos in different environments and 
 adding ground truth data) and the time it took for training.
 As of now, the time for training with 926 images on a MacBook Pro 15 inch 2017 with a 2,8 GHz
-Intel Core i7 processor is over 24 hours. With half the amount it takes about 17 hours.\\
+Intel Core i7 processor is over 24 hours. With half the amount it takes about 17 hours. We would have trained with a GPU, however, it was at the time of training not supported on our hardware.\\
 
 From the graph there is a small plateau between 185 to 370 images. Around that
 performance (0.4 mAP) is a sort of minimum for the model to perform well.
