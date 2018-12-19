@@ -6,7 +6,7 @@ To first get an understanding of why this project was done, it is important for 
 
 \section{Background}
 \label{subsecBackground}
-The idea of Augmented Reality is to render virtual objects in the real world. This usually 
+The idea of Augmented Reality,  often referred to as just AR, is to render virtual objects in the real world. This usually 
 requires hardware in the form of a camera and display, a processing unit and software. 
 Common devices capable of AR today are the HoloLens \cite{microsoft}, Google Glass 
 \cite{googleGlasses} and a vast amount of mobile devices, such as Apple's iPhone X 
@@ -37,15 +37,12 @@ for many more possible use cases for AR.
  
 \section{Previous studies}
 \label{subsecPrevStud}
-D. Chatzopoulos et al.(2017) describes the basics of MAR, or Mobile Augmented Reality, its advancements and it's flaws. They estimate that MAR is the most promising field of mobile applications and that it will have a massive impact on how we interact with the real world. However, they also go through some of the current hiccoughs with the technology, such as bandwith limitation and the computing power required. 
-\cite{MARS}
+D. Chatzopoulos et al.(2017) describes the basics of MAR, or Mobile Augmented Reality, its advancements and it's flaws. They estimate that MAR is the most promising field of mobile applications and that it will have a massive impact on how we interact with the real world. However, they also go through some of the current hiccoughs with the technology, such as bandwith limitation and the computing power required \cite{MARS}. 
 
-S.Gould et al.(2009) writes about a hierarchical model for joint object detection and image segmentation, where they basically tried to segment all objects in an image and classifies every pixel. 
-\cite{NIPS2009_3766}
+S.Gould et al.(2009) writes about a hierarchical model for joint object detection and image segmentation, where they basically tried to segment all objects in an image and classifies every pixel \cite{NIPS2009_3766}. 
 
 
-Y LeCun and M.A. Ranzato goes in-depth on the history and progress of deep learning, from the first machine learning model, the Perceptron, to future challenges with deep learning. They write about the use cases for machine learning and how models generally work. They also classify different kinds of models into separate categories. Also written about is areas such as what makes a good feature and how convolutional neural networks are constructed.
-\cite{deepLearningTutorial}
+Y LeCun and M.A. Ranzato goes in-depth on the history and progress of deep learning, from the first machine learning model, the Perceptron, to future challenges with deep learning. They write about the use cases for machine learning and how models generally work. They also classify different kinds of models into separate categories. Also written about is areas such as what makes a good feature and how convolutional neural networks are constructed \cite{deepLearningTutorial}.
 
 
 \section{The goal of this project}
@@ -97,7 +94,7 @@ After selecting a furniture the user is taken to a detail view, figure \ref{fig:
 In the Assemble view the user is greeted with a live feed camera view as well as an information field containing instructions, see figure \ref{fig:assemble-view}. The first step for the user is to scan the pieces on the floor, allowing the machine learning model to find the pieces that are supposed to be assembled. Once the first parts are automatically found, they are highlighted using bounding boxes to alert the user of their current importance. The user can then press the "Next" button to continue. Afterwards, an animation showing the 3D parts in question being assembled properly and informatively. When the user has put together the parts, they press "Next". This process will then be fed with the next set of instructions and will continue like this until the	 piece of furniture is fully assembled.
 \begin{figure}[hbtp]
 \begin{center}
-\includegraphics[height = 0.4\textheight]{./Images/AR_Scene.png}
+\includegraphics[height = 0.35\textheight]{./Images/AR_Scene.png}
 \caption{Shows from left to right the user flow of putting two pieces together.}
 \label{fig:assemble-view}
 \end{center}
