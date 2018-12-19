@@ -66,90 +66,18 @@ samples, as well as much more. Lowest amount of training images were around 50, 
 highest  were around 1000. The \textit{mean average precision} was measured for each model using 200 testing images, and then plotted to create a graph showing how it
  changed, depending on the amount of training data was used. The results can be seen in section \ref{sec:turiResults}. The best performing model was then to be used in the application.
 
-The code below shows how the model was created using turi in python.
-\begin{lstlisting}[language=python]
-import turicreate as tc
-tc.config.set_num_gpus(0)
+The code in appendix D.1. shows how the model was created using Turi in python.
 
-# Load the data
-train_data = tc.SFrame("Train_Data.sframe")
+The results could also be further inspected by drawing the newly predicted bounding boxes on top of the original image, from this one can visualize how the model actually performed. This was done using code in appendix D.2. Some of the resulting images from different models can be seen in section \ref{sec:turiResults}. 
 
-#Random split train data to get specific training size
-train_data, unused_data = train_data.random_split(0.3)
-
-test_data = tc.SFrame("Test_Data.sframe")
-
-# Create a model
-model = tc.object_detector.create(train_data)
-
-# Evaluate the model and save the results into a dictionary
-metrics = model.evaluate(test_data,metric='mean_average_precision')
-print(metrics)
-
-# Save the model for later use in Turi Create
-model.save('Nolmyra030.model')
-
-# Export for use in Core ML
-model.export_coreml('Nolmyra030.mlmodel', include_non_maximum_suppression=False)
-\end{lstlisting}
-The results could also be further inspected by drawing the newly predicted bounding boxes on top of the original image, from this one can visualize how the model actually performed. This was done using code below. Some of the resulting images from different models can be seen in section \ref{sec:turiResults}. 
-
-\begin{lstlisting}[language=python]
-#Load test data
-test_data = tc.SFrame("Test_Data.sframe")
-
-#Load created model
-model = tc.load_model('Nolmyra.model')
-
-# Save predictions to an SArray and draw predicted bounding boxes
-predictions = model.predict(test_data)
-predictions_stacked = tc.object_detector.util.stack_annotations(predictions)
-image_prediction = tc.object_detector.util.draw_bounding_boxes(test_data['image'], predictions)
-
-#Look through the predicted bounding boxes
-image_prediction.explore()
-\end{lstlisting}
 
 \subsection{Importing model to application}
 After training and evaluating that the model lives up to a standard worth including in this
  project, it was converted to the \textit{.mlmodel} format used in Swift. When inputting a frame from the
 application into the model, the model outputs a multi array containing an array for each
   \textit{object} found. These predictions have not been \textit{non-max suppressed}, since that functionality is lost during the conversion from the model used in python, to the .mlmodel format. Thus, it has to be reimplemented in the application itself. 
-  A non-max supression threshold of $0.5$ was used as it is considered a traditional standard \cite{nms}. The code below shows how non-max suppression was implemented. 
+  A non-max supression threshold of $0.5$ was used as it is considered a traditional standard \cite{nms}. The code in appendix D.3. shows how non-max suppression was implemented. 
 
-\begin{lstlisting}[language=swift]
-    private func filterOverlappingPredictions(unorderedPredictions: [Prediction], nmsThreshold: Float) -> [Prediction]
-    {
-        var predictions = [Prediction]()
-        let orderedPredictions = unorderedPredictions.sorted { $0.confidence > $1.confidence }
-        var keep = [Bool](repeating: true, count: orderedPredictions.count)
-        for i in 0..<orderedPredictions.count {
-            if keep[i] {
-                predictions.append(orderedPredictions[i])
-                let bbox1 = orderedPredictions[i].boundingBox
-                for j in (i+1)..<orderedPredictions.count {
-                    if keep[j] {
-                        let bbox2 = orderedPredictions[j].boundingBox
-                        if bbox1.IoU(other: bbox2) > nmsThreshold {
-                            keep[j] = false
-                        }
-                    }
-                }
-            }
-        }
-        return predictions
-    }
-    
-    extension CGRect
-{
-    func IoU(other: CGRect) -> Float
-    {
-        let intersection = self.intersection(other)
-        let union = self.union(other)
-        return Float((intersection.width * intersection.height) / (union.width * union.height))
-    }
-}
-\end{lstlisting}
 
 \section{Results from doing object detection with Turi}
 \label{sec:turiResults}

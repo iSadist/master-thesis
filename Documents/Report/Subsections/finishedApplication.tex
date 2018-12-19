@@ -93,60 +93,7 @@ The virtual objects are rendered in the scene using SCNNode's as talked about in
 When both pieces are placed in the scene they are to be moved with an animation in a way so that they become connected.
 
 Each virtual object node can embed another node called the "anchor point". The position of this node within the parent node is where the other object is to be connected. To connect them, either the object without the anchor point moves to the anchor point position, or the two object move so that each of their anchor points are at the same position.
-This is accomplished using the algorithm below.
-
-\begin{lstlisting}[language=swift]
-    var furniturePartNodes = [SCNNode]()
-
-        for object in model.foundObjects
-        {
-            guard object.name != nil else { return }
-            guard object.position != nil else { return }
-            
-            let furnitureNode = addFurniture(part: object.name!, position: object.position!)
-            furniturePartNodes.append(furnitureNode)
-        }
-        
-        var previousNode: SCNNode? = nil
-        var previousAnchorPoint: SCNNode? = nil
-        
-        var nodeActions = [(SCNNode, [SCNAction])]() // A list for storing animations to run on a node later
-        
-        for node in furniturePartNodes
-        {
-            var actions: [SCNAction] = []
-            actions.append(SCNAction.rotate(by: -CGFloat.pi / 2, around: SCNVector3(0, 0, 1), duration: 1))
-
-            let anchorPoint = node.childNode(withName: ANCHOR_POINT, recursively: true)
-            
-            if anchorPoint == nil
-            {
-                if previousAnchorPoint != nil
-                {
-                    actions.append(SCNAction.move(to: previousAnchorPoint!.worldPosition, duration: 2))
-                }
-
-                previousNode = node
-            }
-            else
-            {
-                previousNode?.runAction(SCNAction.move(to: anchorPoint!.worldPosition, duration: 2))
-                if previousAnchorPoint != nil
-                {
-                    actions.append(SCNAction.move(to: previousAnchorPoint!.worldPosition, duration: 2))
-                    actions.append(SCNAction.move(by: node.worldPosition.substract(other: anchorPoint!.worldPosition), duration: 2))
-                }
-
-                previousAnchorPoint = anchorPoint
-            }
-            
-            // HACK: Adds an extra action with no content at the end to make completion handler wait until the last action is done
-            actions.append(SCNAction.move(by: SCNVector3Zero, duration: 1))
-            
-            nodeActions.append((node, actions))
-        }
-}
-\end{lstlisting}
+This is accomplished using the algorithm descibed in code in appendix F.1.
 
 Afterwards, the items in 'action' are performed on the respective node.
 

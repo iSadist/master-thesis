@@ -11,13 +11,8 @@ In this chapter, a few of the methods for object detection that were tried is ex
 \section{Testing Object Scanning with ARKit2}
 \label{sec:ODscanning}
 Apple's ARKit has a feature where it can detect scanned 3D objects. For scanning, they have developed an app that can be downloaded from their website. \cite{ARScanning}
-After the scanning is complete the app lets you export the model to then include it in your ARKit project. Once in the project it is simply imported into the ARWorldTrackingConfiguration like shown below. (The models are kept inside the Assets.xcassets catalogue in a folder called 'Objects').
+After the scanning is complete the app lets you export the model to then include it in your ARKit project. Once in the project it is simply imported into the ARWorldTrackingConfiguration in a way show in appendix C.1. (The models are kept inside the Assets.xcassets catalogue in a folder called 'Objects').
 
-\begin{lstlisting}[language=swift]
-let configuration = ARWorldTrackingConfiguration()
-guard let detectingObjects = ARReferenceObject.referenceObjects(inGroupNamed: "Objects", bundle: nil) else { return }
-configuration.detectionObjects = detectingObjects
-\end{lstlisting}
 
 \begin{figure}[hbtp]
 \begin{center}
