@@ -20,19 +20,21 @@ After that it passes that sum through an activation function. This activation fu
 \begin{figure}[hbtp]
 \begin{center}
 \includegraphics[width = 0.75\textwidth]{./Images/perceptron.jpg} 
-\caption{An illustration of the perceptron, the simplest version of a neural network.}
+\caption{An illustration of an artificial neuron, the simplest version of a neural network.}
 \end{center}
 \end{figure}
 
-A bias also exists in every node which is not based on any input. The bias function in the perceptron is similar to what the $m$ in $y = kx + m$ does. It gives the function the ability to move up and down in the graph for more possibilities of splitting the data set. The bias is usually disregarded when illustrating the perceptron.
+A bias also exists in every node which is not based on any input. The bias function in the artificial neuron is similar to what the $m$ in $y = kx + m$ does. It gives the function the ability to move up and down in the graph for more possibilities of splitting the data set. The bias is usually disregarded when illustrating the artificial neuron.
 
-The perceptron only has the ability to draw a single line and thus is only able to split simple data sets.
+The artificial neuron only has the ability to draw a single line and thus is only able to split simple data sets.
 
-The output of the artificial neuron is described by the following formula:
+The output of an artificial neuron is described by the following formula:
 
 \[ y = b + \displaystyle\sum_{i=1}^{n} x_i \cdot w_i \]
 
-where $b$ is the bias value, $x$ is the input, $w$ is the weight for that input and $n$ is the number of inputs.
+\[y=f(b+\sum_{i=1}^n x_i\cdot w_i)\]
+
+where $b$ is the bias value, $x$ is the input, $w$ is the weight for that input, $n$ is the number of inputs and $f(*)$ is the activation function.
 
 \subsection{Activation functions}
 \label{subsec:activationfunctions}
@@ -155,12 +157,12 @@ When training a neural net, one needs to be careful not to train the model too m
 Overfitting is when a model gets really good at predicting the data that it is training on but fails to predict accurately on new data.
 This is because it starts to pick up too much on detail or in some instances even noise.
 For this reason it fails to pick up the general trends, which is more valuable.
-An illustration is given i figure \ref{fig:overfitting}
+An illustration is given i figure \ref{fig:overfitting}.
 
 \begin{figure}[hbtp]
 \begin{center}
 \includegraphics[width = 1.0\textwidth]{./Images/overfitting.jpg} 
-\caption{Overfitting of a dataset. On the left is a generalized trained model and on the right is an overtrained model. Image taken from OReilly.com \cite{overfitting}}
+\caption{Overfitting of a dataset. On the left is a generalized trained model and on the right is an overtrained model. Image taken from OReilly.com \cite{overfitting}.}
 \label{fig:overfitting}
 \end{center}
 \end{figure}
@@ -208,7 +210,7 @@ Convolutional neural networks, CNN, have been used for quite some time when it c
  \begin{figure}[hbtp]
 \begin{center}
 \includegraphics[width = 0.9\textwidth]{./Images/convNetwork.jpg}
-\caption{Image shows the flow of a convolutional neural network from left to right. Several convolutions as well as pooling functions are done in order on the input image. The last feature map is then flattened to fit into the hidden layers, to then be classified with a softmax function. Image taken from \cite{cnnImage}}.
+\caption{Image shows the flow of a convolutional neural network from left to right. Several convolutions as well as pooling functions are done in order on the input image. The last feature map is then flattened to fit into the hidden layers, to then be classified with a softmax function. Image taken from \cite{cnnImage}.}
 \label{fig:cnn}
 \end{center}
 \end{figure}
@@ -426,7 +428,7 @@ The best result  that was achieved for each of the models using this method is l
  table \ref{table:transferLearning}. It shows that using InceptionV3 model with pretrained
  weights gave the best result. However, a few factors, such as, where the models were
  frozen, how adding and removing layers, has most likely affected the results. As can be
- seen from using ResNet, the best model achieved 25\% accuracy, which is the same as making a guess, seeing as there are only four possible classes. These models could, and would most like have been, improved if it was not decided to take a new approach to the problem, which is described further in section \ref{sec:ODresults}
+ seen from using ResNet, the best model achieved 25\% accuracy, which is the same as making a guess, seeing as there are only four possible classes. These models could, and would most like have been, improved if it was not decided to take a new approach to the problem, which is described further in section \ref{sec:ODresults}.
 
 \begin{table}[h]
 \centering
